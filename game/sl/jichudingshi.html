@@ -1,0 +1,118 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width">
+
+<title>扫雷入门定式 | 名侦探柯基</title>
+<link rel="icon" type="image/png" href="/favicon.png">
+
+<style>
+body{background:#f7f7f0;}
+table{border-collapse:collapse;cursor:default;}
+#foo{border-top:solid 1px #cccccc;padding-top:2rem;margin-top:6rem;width:90%;text-align:center}
+</style>
+
+
+
+<base target="_top">
+</head>
+
+<body>
+
+
+
+
+<a href="./">返回游戏</a>
+
+<center>
+
+<br><br>
+
+<div style="text-align:left;width:90%">
+
+
+
+
+<br>
+<br>
+<b>最常用的基础定式</b>
+
+
+<br><br>
+应用定式，要求数字的一侧没有未明方块。
+<br>
+先假设数字一侧没有已标记的雷。周围有雷的情况，请看后面的“减法原理”。
+
+<br><br>
+
+
+
+<b>“靠边”</b>是指靠边框，或靠已翻开的格子。
+<br>
+（图中隐去了不相关的数字。）
+
+<br><br>
+一、2靠边，两个雷；
+<br>
+<img src="static/picture/2-1.jpg">
+，
+<img src="static/picture/2-2.jpg">
+
+<br><br>
+二、两个1靠边，第三列的三个格子无雷；
+<br>
+<img src="static/picture/11.jpg">
+<img src="static/picture/11-2.jpg">
+
+<br><br>
+三、12在任意位置，第三格是雷；
+<br>
+<img src="static/picture/12.jpg">
+
+
+<br><br>
+四、3在中间，三个雷；
+<br>
+<img src="static/picture/3.jpg">
+
+
+<br><br>
+五、121在任何位置，两个1有雷，2无雷；
+<br>
+<img src="static/picture/121.jpg">
+
+
+<br><br>
+六、1221在任何位置：两个2有雷，1无雷
+<br>
+<img src="static/picture/1221.jpg">
+
+
+<br><br>
+
+方向左右横竖都一样。更多定式上网搜索。
+
+<br><br><br>
+<b>减法原理：</b>
+<br><br>
+一、如果数字的周围已标有地雷，则先用数字减去周围雷数，再应用定式。
+<br><br>
+比如图中，3周围有两个雷3-2=1，2周围有一个雷2-1=1，故简化为11模式，画点的两个格子可以直接打开。
+<br>
+<img src="static/picture/minus.jpg">
+<br><br><br>
+二、根据减法原理，如果未明方块的一头是一个标记的雷，则把此雷数减掉，也视为靠边，可应用定式。
+</div>
+
+
+
+
+<div id="foo">
+在线扫雷游戏
+</div>
+<br><br>
+</center>
+</div>
+
+</body>
+</html>

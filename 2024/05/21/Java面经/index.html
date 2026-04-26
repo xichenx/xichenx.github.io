@@ -1,0 +1,1338 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>Java面经 | 心灵涂鸦</title><meta name="author" content="曦臣"><meta name="copyright" content="曦臣"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="Java面经"><meta name="application-name" content="Java面经"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta property="og:type" content="article"><meta property="og:title" content="Java面经"><meta property="og:url" content="https://blog.liumingzhi.cn/2024/05/21/Java面经/index.html"><meta property="og:site_name" content="心灵涂鸦"><meta property="og:description" content="Java 面经一、Java  基础1、final 关键字的作用 修饰引用：该引用为常量，其值无法修改 修饰方法：该方法为最终方法，无法被子类重写 修饰类：该类为最终类，无法被继承  2、String、StringBuffer、StringBuilder 的区别 String：值是不可变的，这就导致每"><meta property="og:locale" content="zh-CN"><meta property="og:image" content="https://unpkg.com/image-hosting-service/img/consulting-blog-09.webp"><meta property="article:author" content="曦臣"><meta property="article:tag"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://unpkg.com/image-hosting-service/img/consulting-blog-09.webp"><meta name="description" content="Java 面经一、Java  基础1、final 关键字的作用 修饰引用：该引用为常量，其值无法修改 修饰方法：该方法为最终方法，无法被子类重写 修饰类：该类为最终类，无法被继承  2、String、StringBuffer、StringBuilder 的区别 String：值是不可变的，这就导致每"><link rel="shortcut icon" href="/favicon.ico"><link rel="canonical" href="https://blog.liumingzhi.cn/2024/05/21/Java%E9%9D%A2%E7%BB%8F/"><link rel="preconnect" href="//cdn.cbd.int"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="google-site-verification" content="xxx"/><meta name="baidu-site-verification" content="code-xxx"/><meta name="msvalidate.01" content="xxx"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/@fortawesome/fontawesome-free@7.1.0/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@6.1.6/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/swiper/swiper.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  linkPageTop: {"enable":true,"title":"与数百名博主无限进步","addFriendPlaceholder":"昵称（请勿包含博客等字样）：\n网站地址（要求博客地址，请勿提交个人主页）：\n头像图片url（请提供尽可能清晰的图片，我会上传到我自己的图床）：\n描述：\n站点截图（可选）：\n"},
+  peoplecanvas: undefined,
+  postHeadAiDescription: {"enable":true,"gptName":"AnZhiYu","mode":"local","switchBtn":false,"btnLink":"https://afdian.net/item/886a79d4db6711eda42a52540025c377","randomNum":3,"basicWordCount":1000,"key":"xxxx","Referer":"https://xx.xx/"},
+  diytitle: {"enable":true,"leaveTitle":"w(ﾟДﾟ)w 不要走！再看看嘛！","backTitle":"♪(^∇^*)欢迎肥来！"},
+  LA51: {"enable":true,"ck":null,"LingQueMonitorID":null},
+  greetingBox: {"enable":true,"default":"晚上好👋","list":[{"greeting":"晚安😴","startTime":0,"endTime":5},{"greeting":"早上好鸭👋, 祝你一天好心情！","startTime":6,"endTime":9},{"greeting":"上午好👋, 状态很好，鼓励一下～","startTime":10,"endTime":10},{"greeting":"11点多啦, 在坚持一下就吃饭啦～","startTime":11,"endTime":11},{"greeting":"午安👋, 宝贝","startTime":12,"endTime":14},{"greeting":"🌈充实的一天辛苦啦！","startTime":14,"endTime":18},{"greeting":"19点喽, 奖励一顿丰盛的大餐吧🍔。","startTime":19,"endTime":19},{"greeting":"晚上好👋, 在属于自己的时间好好放松😌~","startTime":20,"endTime":24}]},
+  twikooEnvId: 'https://martinleo-twikoo.hf.space',
+  commentBarrageConfig:{"enable":true,"maxBarrage":1,"barrageTime":4000,"accessToken":"","mailMd5":""},
+  music_page_default: undefined,
+  root: '/',
+  preloader: {"source":3},
+  friends_vue_info: {"apiurl":"https://friends.anheyu.com/"},
+  navMusic: true,
+  mainTone: undefined,
+  authorStatus: undefined,
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: true,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"作者: 曦臣","link":"链接: ","source":"来源: 心灵涂鸦","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。","copySuccess":"复制成功，复制和转载请标注本文地址"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.2.0/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.2.0/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  shortcutKey: undefined,
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: '心灵涂鸦',
+  title: 'Java面经',
+  postAI: '',
+  pageFillDescription: 'Java 面经, 一、Java  基础, 1、final 关键字的作用, 2、String、StringBuffer、StringBuilder 的区别, 3、String为什么要设计成不可变的, 4、抽象类和接口的区别, 5、static 关键字的作用, 6、多态是什么, 7、Exception 和 Error 的区别, 8、什么是反射机制？反射机制的应用场景有哪些？, 9、为什么重写 equals 还要重写 hashCode ？, 10、Java 泛型类型擦除和其局限性, 11、Java中引用类型的区别具体的使用场景, 12、单例模式, 13、类加载过程, 14、双亲委派模型, 15、new一个对象要经历哪些过程, 二、Java 数据结构, 1、HashMap 和 Hashtable 的区别, 2、HashMap 底层原理, 3、HashMap 的扩容过程, 4、为什么 HashMap 使用红黑树而不用二叉平衡树（AVL）, 5、TreeMap 底层原理, 6、Hashtable 怎么保证线程安全的, 7、ConcurrentHashMap 原理, 8、ConcurrentHashMap 读操作为什么不需要加锁？, 9、怎么解决hash冲突, 三、Java 多线程, 1、进程和线程的区别, 2、什么是上下文切换, 3、并发和并行的区别, 4、线程有哪几种状态, 5、volatile 关键字的作用和原理, 6、synchronized 关键字的作用, 7、synchronized 和 ReentrantLock的区别, 8、synchronized 原理, 9、synchronized锁升级策略, 10、ReentrantLock原理, 11、公平锁与非公平锁, 12、乐观锁和悲观锁, 13、sleep 和 wait 的区别, 14、join、yield、interrupt、notify和notifyAll的作用, 15、ThreadLocal的作用, 16、ThreadLocal的原理, 17、什么是死锁？死锁产生的原因？, 18、自己写代码时如何有效避免死锁, 19、atomic 原理, 20、线程池构造函数, 21、线程池原理, 四、JVM, 1、JVM内存区域的划分, 2、JVM 哪些区域会发生 OOM, 3、GC（垃圾回收）机制, 4、Java 内存泄漏的原因, 5、Java 对象模型, 6、一个空对象占用多少字节, 7、什么是内存对齐, 8、什么是指针压缩（64位才支持）面经一基础关键字的作用修饰引用该引用为常量其值无法修改修饰方法该方法为最终方法无法被子类重写修饰类该类为最终类无法被继承的区别值是不可变的这就导致每次对的操作都会产生新的对象效率低下且浪费内存值可变且线程安全值可变但线程不安全速度较更快为什么要设计成不可变的防止被篡改保证信息数据的安全性不变的对象和值是线程安全的哈希值的唯一性来提高性能提高常量池的可用性抽象类和接口的区别抽象类是半抽象的有构造方法只允许出现常量和抽象方法类和类之间只能单继承一个抽象类只能继承一个类单继承多个功能的集成部分可用抽象类抽象类提供简单方法接口是完全抽象的没有构造方法接口和接口之间支持多继承一个类可以同时实现多个接口关键字的作用修饰方法静态方法不依赖于任何对象就可以进行访问在静态方法中不能访问类的非静态成员变量和非静态成员方法修饰变量静态变量被所有的对象所共享在内存中只有一个副本它当且仅当在类初次加载时会被初始化修饰代码块在类初次被加载的时候会按照块的顺序来执行每个块并且只会执行一次多态是什么多态分为两种编译时多态设计时多态方法重载运行时多态运行时系统根据调用该方法的实例的类型来决定选择调用哪个方法则被称为运行时多态多态存在的三个必要条件要有继承包括接口的实现要有重写父类引用指向子类对象向上转型和的区别是程序正常运行中可以预料的意外情况可能并且应该被捕获进行相应的处理是指在正常情况下不大可能出现的情况绝大部分都会使程序处于非正常不可恢复的状态既然是非正常所以不便于也不需要捕获常见的就是的子类什么是反射机制反射机制的应用场景有哪些对于任意一个类都能够获得这个类的所有属性和方法对于任意一个对象都能够调用它的任意一个属性和方法这种在运行时动态的获取信息以及动态调用对象的方法的功能称为的反射机制应用场景工厂模式注解解析动态代理为什么重写还要重写和两个方法是用来协同判断两个对象是否相等的采用这种方式的原因是可以提高程序插入和查询的速度如果在重写时不重写就会导致在某些场景下例如将两个相等的自定义对象存储在集合时就会出现程序执行的异常为了保证程序的正常执行所以我们就需要在重写时也一并重写方法才行泛型类型擦除和其局限性的泛型是伪泛型的泛型基本上都是在编译器这个层次上实现的在生成的字节码中是不包含泛型中的类型信息的使用泛型的时候加上类型参数在编译器编译的时候会去掉这个过程称为类型擦除局限性运行时类型查询只适用于原始类型查询一个对象是否属于某个泛型类型时倘若使用会得到一个编译器错误如果使用强制类型转换会得到一个警告不能用基本类型实例化类型参数不能用类型参数代替基本类型因此没有只有当然其原因是类型擦除擦除之后类含有类型的域而不能存储值不能实例化类型变量不能使用像或这样的表达式中的类型变量不能抛出或捕获泛型类的实例实际上甚至泛型类扩展都是不合法的子句中不能使用类型变量例如以下方法将不能编译不能创建参数化类型的数组例如中引用类型的区别具体的使用场景强引用强引用指的是通过对象创建的引用正常创建的对象只要引用存在永远不会被回收即使如果要中断强引用和某个对象的关联为其赋值这样就会在合适的时候回收对象类的方法就是通过赋值进行清除软引用软引用是通过实现的它的生命周期比强引用短在内存不足抛出之前垃圾回收器会回收软引用引用的对象软引用常见的使用场景是存储一些内存敏感的缓存当内存不足时会被回收在内存足够的情况下进行缓存提升速度内存不足时自动回收可以和引用队列联合使用如果软引用所引用的对象被回收这个软引用就会被加入到与之关联的引用队列中弱引用弱引用是通过实现的它的生命周期比软引用还短只要扫描到弱引用的对象就会回收弱引用常见的使用场景也是存储一些内存敏感的缓存防止内存泄漏监控对象是否将要被回收虚引用虚引用是通过实现的它的生命周期最短随时可能被回收如果一个对象只被虚引用引用我们无法通过虚引用来访问这个对象的任何属性和方法它的作用仅仅是保证对象在后做某些事情虚引用常见的使用场景是跟踪对象被垃圾回收的活动当一个虚引用关联的对象被垃圾回收器回收之前会收到一条系统通知程序可以通过判断引用队列中是否已经加入了虚引用来了解被引用的对象是否将要被垃圾回收如果程序发现某个虚引用已经被加入到引用队列那么就可以在所引用的对象的内存被回收之前采取必要的行动单例模式双重检查单例模式第一次校验也就是第一个这个是为了代码提高代码执行效率由于单例模式只要一次创建实例即可所以当创建了一个实例之后再次调用方法就不必要进入同步代码块不用竞争锁直接返回前面创建的实例即可第二次校验也就是第二个这个校验是防止二次创建实例假如有一种情况当还未被创建时线程调用方法由于第一次判断此时线程准备继续执行但是由于资源被线程抢占了此时页调用方法同样的由于并没有实例化同样可以通过第一个然后继续往下执行同步代码块第二个也通过然后线程创建了一个实例此时线程完成任务资源又回到线程此时也进入同步代码块如果没有这个第二个那么就也会创建一个实例那么就会出现创建多个实例的情况但是加上第二个就可以完全避免这个多线程导致多次创建实例的问题静态内部类单例模式在内部类被加载和初始化时才创建静态类不会自动随着外部类的加载和初始化而初始化的它是要单独去加载和初始化的因为是在内部类加载和初始化时创建的因此是线程安全的类加载过程中类加载分为个步骤加载链接初始化加载由类加载器负责根据一个类的全限定名来读取此类的二进制字节流到内部并存储在运行时内存区的方法区然后将其转换为一个与目标类型对应的对象实例数据源可以是文件文件等等如果数据的格式并不是的结构则会报链接链接是类加载的核心部分这一步分为个步骤验证准备解析验证验证是保证安全的重要步骤需要校验字节信息是否符合规范避免恶意信息和不规范数据危害运行安全如果验证出错则会报格式验证验证是否符合文件规范语义验证检查一个被标记为的类型是否包含子类检查一个类中的方法是否被子类进行重写确保父类和子类之间没有不兼容的一些方法声明比如方法签名相同但方法的返回值不同操作验证在操作数栈中的数据必须进行正确的操作对常量池中的各种符号引用执行验证通常在解析阶段执行检查是否可以通过符号引用中描述的全限定名定位到指定类型上以及类成员信息的访问修饰符是否允许访问等准备这一步会创建静态变量并为静态变量开辟内存空间并为其设置一个初始值由于还没有产生对象实例变量不在此操作范围内被修饰的变量常量会直接赋值解析这一步会将符号引用替换为直接引用解析动作主要针对类或接口字段类方法接口方法方法类型方法句柄和调用点限定符类符号引用进行符号引用就是一组符号来描述目标可以是任何字面量直接引用就是直接指向目标的指针相对偏移量或一个间接定位到目标的句柄初始化先父后子初始化会为静态变量赋值并执行静态代码块中的逻辑如果是多线程需要同时初始化一个类仅仅只能允许其中一个线程对其执行初始化操作其余线程必须等待只有在活动线程执行完对类的初始化操作之后才会通知正在等待的其他线程因为子类存在对父类的依赖所以类的加载顺序是先加载父类后加载子类初始化也一样不过父类初始化时子类静态变量的值也有有的是默认值双亲委派模型类加载器大致分为类启动类加载器扩展类加载器应用程序类加载器启动类加载器主要加载下的文件扩展类加载器主要加载下的文件应用程序类加载器主要加载下的文件所谓的双亲委派模型就是当加载一个类时会优先使用父类加载器加载当父类加载器无法加载时才会使用子类加载器去加载这么做的目的是为了避免类的重复加载一个对象要经历哪些过程首先在一个对象的时候会先查看对象所属的类有没有被加载到内存如果没有的话就会先通过类的全限定名将对象所属的文件加载到内存中加载并初始化类完成后再进行对象的创建工作初始化类完成后就是创建对象在堆区分配对象需要的内存分配的内存包括本类和父类的所有实例变量但不包括任何静态变量对所有实例变量赋默认值将方法区内对实例变量的定义拷贝一份到堆区然后赋默认值执行实例初始化代码初始化顺序是先初始化父类再初始化子类初始化时先执行实例代码块然后是构造方法如果有类似于形式的引用的话在栈区定义类型引用变量然后将堆区对象的地址赋值给它需要注意的是每个子类对象持有父类对象的引用可在内部通过关键字来调用父类对象但在外部不可访问补充通过实例引用调用实例方法的时候先从方法区中对象的实际类型信息找找不到的话再去父类类型信息中找如果继承的层次比较深要调用的方法位于比较上层的父类则调用的效率是比较低的因为每次调用都要经过很多次查找这时候大多系统会采用一种称为虚方法表的方法来优化调用的效率所谓虚方法表就是在类加载的时候为每个类创建一个表这个表包括该类的对象所有动态绑定的方法及其地址包括父类的方法但一个方法只有一条记录子类重写了父类方法后只会保留子类的当通过对象动态绑定方法的时候只需要查找这个表就可以了而不需要挨个查找每个父类二数据结构和的区别是线程不安全的效率高是线程安全的效率低可以存储键和值不可以存储键和值底层原理由数组键值对组成的数组主干链表元素太多时为解决哈希冲突数组的一个元素上多个组成的链表红黑树当链表的元素个数达到链表存储改为红黑树存储进行数据的存储在之前采用数组链表实现即使用链表处理冲突同一值的链表都存储在一个链表里但是当位于一个数组中的元素较多即值相等的元素较多时通过值依次查找的效率较低而中采用数组链表红黑树实现当链表长度超过阈值时将链表转换为红黑树这样大大减少了查找时间的扩容过程默认的负载因子大小为也就是说当一个填满了的时候和其它集合类如等一样将会创建原来大小的两倍的数组来重新调整的大小并将原来的对象放入新的数组中这个过程叫作因为它调用方法找到新的位置这个值只可能在两个地方一个是原下标的位置另一种是在下标为原下标原容量的位置为什么使用红黑树而不用二叉平衡树红黑树虽然不是严格的平衡树但是其依旧是平衡树查找效率是也是红黑树舍去了严格的平衡使其插入删除查找的效率稳定在反观树查找没问题但是为了保证高度平衡动态插入和删除的代价也随之增加综合效率肯定达不到在进行大量插入删除操作时红黑树更优一些底层原理底层通过红黑树实现可保证在完成和操作效率很高怎么保证线程安全的使用关键字修饰方法保证线程安全原理在中使用分段锁机制实现线程安全数据结构可以看成是数组数组链表一个实例中包含若干个实例组成的数组每个实例又包含由若干个桶每个桶中都是由若干个对象链接起来的链表因为类继承类所以能充当锁的角色通过段将划分为不同的部分就可以使用不同的锁来控制对哈希表不同部分的修改从而允许多个写操作并发进行默认支持个线程执行并发写操作及任意数量线程的读操作过程对进行第次通过值确定的位置在内进行操作获取锁获取当前的数组后对进行第次通过值确定在数组的索引位置头部通过继承的方法尝试去获取锁如果获取成功就直接插入相应的位置如果已经有线程获取该的锁那当前线程会以自旋的方式去继续的调用方法去获取锁超过指定次数就挂起等待唤醒然后对当前索引的链进行遍历如果有重复的则替换如果没有重复的则插入到链头释放锁操作和操作类似也是要两次但是操作的不需要加锁原因是存储元素都标记了操作操作就是遍历两次所有的每次记录的值然后将两次的进行比较如果相同则表示期间没有发生过写入操作就将原先遍历的结果返回如果经判断发现两次统计出的并不一致要全部加锁来进行的获取和统计在此期间每个都被锁住无法进行其他操作统计出的自然很准确读操作为什么不需要加锁在类中和域都被声明为的域被所修饰因此对象几乎是不可变的通过对象的不变性来降低读操作对加锁的需求域被声明为意味着不能从链的中间或尾部添加或删除节点因为这需要修改引用值因此所有的节点的修改只能从头部开始但是对于操作需要将要删除节点的前面所有节点整个复制一遍最后一个节点指向要删除结点的下一个结点用变量协调读写线程间的内存可见性若读时发生指令重排序现象也就是读到域的值为的时候则加锁重读怎么解决冲突链地址法对于相同的哈希值使用链表进行连接使用此法优点处理冲突简单无堆积现象即非同义词决不会发生冲突因此平均查找长度较短适合总数经常变化的情况因为拉链法中各链表上的结点空间是动态申请的占空间小装填因子可取且结点较大时拉链法中增加的指针域可忽略不计删除结点的操作易于实现只要简单地删去链表上相应的结点即可缺点查询时效率较低存储是动态的查询时跳转需要更多的时间在可以预知以及没有后续增改操作时候开放定址法性能优于链地址法不容易序列化再哈希法提供多个哈希函数如果第一个哈希函数计算出来的的哈希值冲突了则使用第二个哈希函数计算的哈希值优点不易产生聚集缺点增加了计算时间建立公共溢出区将哈希表分为基本表和溢出表两部分凡是和基本表发生冲突的元素一律填入溢出表开放定址法当关键字的哈希地址出现冲突时以为基础产生另一个哈希地址若仍然冲突再以为基础产生另一个哈希地址直到找出一个不冲突的哈希地址将相应元素存入其中三多线程进程和线程的区别根本区别进程是操作系统进行资源分配的最小单元是操作系统对一个正在运行的程序的一种抽象可以把进程看作程序运行的一次运行过程线程是操作系统进行运算调度的最小单元进程中包含了线程线程属于进程进程的创建销毁和切换的开销都远大于线程每个进程有自己的内存和资源一个进程中的线程会共享这些内存和资源子进程无法影响父进程而子线程可以影响父线程如果主线程发生异常会影响其所在进程和子线程进程的利用率较低因为上下文切换开销较大而线程的的利用率较高上下文的切换速度快进程的操纵者一般是操作系统线程的操纵者一般是编程人员什么是上下文切换即使是单核处理器也支持多线程执行代码通过给每个线程分配时间片来实现这个机制时间片是分配给各个线程的时间因为时间片非常短所以通过不停地切换线程执行让我们感觉多个线程是同时执行的时间片一般是几十毫秒通过时间片分配算法来循环执行任务当前任务执行一个时间片后会切换到下一个任务但是在切换前会保存上一个任务的状态以便下次切换回这个任务时可以再加载这个任务的状态所以任务从保存到再加载的过程就是一次上下文切换并发和并行的区别并发在操作系统中是指一个时间段中有几个程序都处于已启动运行到运行完毕之间且这几个程序都是在同一个处理机上运行并行当系统有一个以上时当一个执行一个进程时另一个可以执行另一个进程两个进程互不抢占资源可以同时进行线程有哪几种状态初始新创建了一个线程对象但还没有调用方法运行线程中将就绪和运行中两种状态笼统的称为运行线程对象创建后其他线程比如线程调用了该对象的方法该状态的线程位于可运行线程池中等待被线程调度选中获取的使用权此时处于就绪状态就绪状态的线程在获得时间片后变为运行中状态阻塞表示线程阻塞于锁等待进入该状态的线程需要等待其他线程做出一些特定动作通知或中断超时等待该状态不同于它可以在指定的时间后自行返回终止表示该线程已经执行完毕关键字的作用和原理禁止了指令重排指令重排是指为了提高性能编译器和和处理器通常会对指令进行指令重排序保证了不同线程对这个变量进行操作时的可见性即一个线程修改了某个变量值这个新值对其他线程是立即可见的这就指示这个变量是不稳定的每次使用它都到主存中进行读取不保证原子性原理的原理是在生成的汇编代码中多了一个前缀指令这个前缀指令相当于一个内存屏障这个内存屏障有个作用确保指令重排的时候不会把屏障后的指令排在屏障前确保不会把屏障前的指令排在屏障后将当前处理器缓存行的数据写回到系统内存一个处理器的缓存回写到内存会导致其他处理器的缓存失效关键字的作用修饰实例方法作用于当前对象实例加锁进入同步代码前要获得当前对象实例的锁修饰静态方法也就是给当前类即对象加锁会作用于类的所有对象实例因为静态成员不属于任何一个实例对象是类成员表明这是该类的一个静态资源不管了多少个对象只有一份所以如果一个线程调用一个实例对象的非静态方法而线程需要调用这个实例对象所属类的静态方法是允许的不会发生互斥现象因为访问静态方法占用的锁是当前类的锁而访问非静态方法占用的锁是当前实例对象锁修饰代码块指定加锁对象对给定对象加锁进入同步代码库前要获得给定对象的锁可重入性当一个线程试图操作一个由其他线程持有的对象锁的临界资源时将会处于阻塞状态但当一个线程再次请求自己持有对象锁的临界资源时这种情况属于重入锁请求将会成功和的区别用法不同可以用来修饰普通方法静态方法和代码块而只能用于代码块获取锁和释放锁的机制不同是自动加锁和释放锁的而需要手动加锁和释放锁锁类型不同是非公平锁而默认为非公平锁也可以手动指定为公平锁响应中断不同可以响应中断解决死锁的问题而不能响应中断底层实现不同是层面通过监视器实现的而是基于实现的原理虚拟机中的同步基于进入和退出管程对象实现无论是显式同步有明确的和指令即同步代码块还是隐式同步都是如此修饰的代码块使用和指令来实现同步的原理我们通过解析修饰的代码块的字节码发现同步语句块的实现使用的是和指令也就是在代码块的开始位置会添加一个指令在结束位置会添加一个指令当执行指令时当前线程将试图获取即对象锁所对应的对象监听器每个对象都会对应一个的持有权当的的进入计数器为那线程可以成功取得并将计数器值设置为取锁成功如果当前线程已经拥有的的持有权那它可以重入这个关于重入性稍后会分析重入时计数器的值也会加倘若其他线程已经拥有的的所有权那当前线程将被阻塞直到正在执行线程执行完毕即指令被执行执行线程将释放锁并设置计数器值为其他线程将有机会持有值得注意的是编译器将会确保无论方法通过何种方式完成方法中调用过的每条指令都有执行其对应指令而无论这个方法是正常结束还是异常结束为了保证在方法异常完成时和指令依然可以正确配对执行编译器会自动产生一个异常处理器这个异常处理器声明可处理所有的异常它的目的就是用来执行指令从字节码中也可以看出多了一个指令它就是异常结束时被执行的释放的指令总的来说修饰代码块同步的底层原理就是在代码块的前后位置使用和指令会判断是否可以获取当前对象锁的对象监听器如果可以获取将就将其锁计数器加此时其他线程要获取该对象锁的对象监听器的时候就会被阻塞直到当前线程执行指令进行对象监听器的释放同时将锁计数器减修饰的同步方法同步方法并不是由和指令来实现同步的而是由方法调用指令读取运行时常量池中方法的标志来隐式实现的原理方法级的同步是隐式的即无需通过字节码指令来控制的它实现在方法调用和返回操作之中可以从方法常量池中的方法表结构中的访问标志区分一个方法是否同步方法当方法调用时调用指令将会检查方法的访问标志是否被设置如果设置了执行线程将先持有虚拟机规范中用的是管程一词然后再执行方法最后再方法完成无论是正常完成还是非正常完成时释放在方法执行期间执行线程持有了其他任何线程都无法再获得同一个如果一个同步方法执行期间抛出了异常并且在方法内部无法处理此异常那这个同步方法所持有的将在异常抛到同步方法之外时自动释放锁升级策略前言我们刚刚所提到的是通过获取对象监听器实现的监视器锁是依赖于底层的操作系统的来实现的这种实现方式导致属于重量级锁意思就是这种锁比较消耗系统内核资源所以之后官方对从层面对进行了优化也就是所说的锁升级策略偏向锁偏向锁它是一种针对加锁操作的优化手段经过研究发现在大多数情况下锁不仅不存在多线程竞争而且总是由同一线程多次获得因此为了减少同一线程获取锁会涉及到一些操作耗时的代价而引入偏向锁偏向锁的核心思想是如果一个线程获得了锁那么锁就进入偏向模式当这个线程再次请求锁时无需再做任何同步操作即获取锁的过程这样就省去了大量有关锁申请的操作从而也就提供程序的性能所以对于没有锁竞争的场合偏向锁有很好的优化效果毕竟极有可能连续多次是同一个线程申请相同的锁但是对于锁竞争比较激烈的场合偏向锁就失效了因为这样场合极有可能每次申请锁的线程都是不相同的因此这种场合下不应该使用偏向锁否则会得不偿失需要注意的是偏向锁失败后并不会立即膨胀为重量级锁而是先升级为轻量级锁下面我们接着了解轻量级锁轻量级锁倘若偏向锁失败虚拟机并不会立即升级为重量级锁它还会尝试使用一种称为轻量级锁的优化手段之后加入的轻量级锁能够提升程序性能的依据是对绝大部分的锁在整个同步周期内都不存在竞争注意这是经验数据需要了解的是轻量级锁所适应的场景是线程交替执行同步块的场合如果存在同一时间访问同一锁的场合就会导致轻量级锁膨胀为重量级锁自旋锁轻量级锁失败后虚拟机为了避免线程真实地在操作系统层面挂起还会进行一项称为自旋锁的优化手段这是基于在大多数情况下线程持有锁的时间都不会太长如果直接挂起操作系统层面的线程可能会得不偿失毕竟操作系统实现线程之间的切换时需要从用户态转换到核心态这个状态之间的转换需要相对比较长的时间时间成本相对较高因此自旋锁会假设在不久将来当前的线程可以获得锁因此虚拟机会让当前想要获取锁的线程做几个空循环这也是称为自旋的原因一般不会太久可能是个循环或循环在经过若干次循环后如果得到锁就顺利进入临界区如果还不能获得锁那就会将线程在操作系统层面挂起这就是自旋锁的优化方式这种方式确实也是可以提升效率的最后没办法也就只能升级为重量级锁了重量级锁当自旋锁失败之后就会升级成重量级锁了也就是我们刚刚一直在讲述的的底层实现原理消除锁消除锁是虚拟机另外一种锁的优化这种优化更彻底虚拟机在编译时可以简单理解为当某段代码即将第一次被执行时进行编译又称即时编译通过对运行上下文的扫描去除不可能存在共享资源竞争的锁通过这种方式消除没有必要的锁可以节省毫无意义的请求锁时间如下的是一个同步方法但是在方法中的属于一个局部变量并且不会被其他线程所使用因此不可能存在共享资源竞争的情景会自动将其锁消除锁升级策略概述偏向锁当锁对象第一次被线程获取的时候线程使用操作把这个锁的线程记录在对象头之中同时置偏向标志位以后该线程在进入和退出同步块时不需要进行操作来加锁和解锁只需要简单地测试一下对象头的里是否存储着指当前线程的偏向锁如果测试成功表示线程已经获得了锁如果线程使用操作时失败则表示该锁对象上存在竞争并且这个时候另外一个线程获得偏向锁的所有权当到达全局安全点这个时间点上没有正在执行的字节码时获得偏向锁的线程被挂起膨胀为轻量级锁也就是说当有另外一个线程去尝试获取这个锁时偏向模式就宣告结束轻量级锁当前线程使用将对象头的锁标记位替换为锁记录指针如果成功当前线程获得锁如果失败表示其他线程竞争锁当前线程尝试通过自旋获取锁如果自旋成功则依然处于轻量级状态如果自旋失败升级为重量级锁重量级锁此时就升级到重量级锁了原理操作是一种无锁算法有个操作数内存值旧的预期值要修改的新值当我们要修改内存值的时候要进行判断当且仅当预期值和内存值相同时将内存值修改为否则什么都不做队列是一个用于构建锁和同步容器的框架使用一个的队列也叫队列是锁的一种变形底层通过双向链表实现表示排队等待锁的线程队列头节点称作哨兵节点或者哑节点它不与任何线程关联其他的节点与等待线程关联每个节点维护一个等待状态的锁流程先通过尝试获取锁如果获取了就将锁状态设置为如果此时锁已经被占用被自己占用判断当前的锁是否是自己占用了如果是的话就锁计数器会可重入性被其他线程占用该线程加入队列并当前驱线程的锁被释放一直到挂在队列为首的线程就会被然后继续尝试获取锁此时非公平锁如果有其他线程尝试有可能被其他刚好申请锁的线程抢占公平锁只有在队列头的线程才可以获取锁新来的线程只能插入到队尾公平锁与非公平锁如果在绝对时间上先对锁进行获取的请求一定先被满足也就是等待时间最长的线程最优先获取锁也可以说锁获取是顺序的那么这个锁是公平的反之是不公平的公平锁是严格的以的方式进行锁的竞争但是非公平锁是无序的锁竞争刚释放锁的线程很大程度上能比较快的获取到锁队列中的线程只能等待所以非公平锁可能会有饥饿的问题但是重复的锁获取能减小线程之间的切换而公平锁则是严格的线程切换这样对操作系统的影响是比较大的所以非公平锁的吞吐量是大于公平锁的这也是为什么将非公平锁作为默认的实现既可以是公平锁又可以是非公平锁是非公平锁乐观锁和悲观锁乐观锁乐观锁在操作数据时非常乐观认为别人不会同时修改数据因此乐观锁不会上锁只是在执行更新的时候判断一下在此期间别人是否修改了数据如果别人修改了数据则放弃操作否则执行操作悲观锁悲观锁在操作数据时比较悲观认为别人会同时修改数据因此操作数据时直接把数据锁住直到操作完成后才会释放锁上锁期间其他人不能修改数据和的区别方法是类中的静态方法是类中的方法并不会释放同步锁而会释放同步锁可以在任何地方使用而只能在同步方法或同步代码块中使用中必须传入时间而可以传也可以不传不穿时间的话只有或者才能唤醒传时间的话在时间之后才会唤醒和的作用当前线程里调用其它线程的方法当前线程进入状态当前线程不会释放已经持有的对象锁线程执行完毕或者时间到当前线程进入就绪状态当前线程调用此方法当前线程放弃获取的时间片但不释放锁资源由运行状态变为就绪状态让再次选择线程当前线程里调用其它线程的方法中断指定的线程如果指定线程调用了方法或者方法在阻塞状态那么指定线程会抛出唤醒在此对象监视器锁对象上等待的单个线程选择是任意性的唤醒在此对象监视器锁对象上等待的所有线程的作用的作用是提供线程内的局部变量说白了就是在各线程内部创建一个变量的副本相比于使用各种锁机制访问变量的思想就是用空间换时间使各线程都能访问属于自己这一份的变量副本变量值不互相干扰减少同一个线程内的多个函数或者组件之间一些公共变量传递的复杂度的原理每个对象都有一个中初始化了一个大小的数组对象用来保存每一个键值对当创建一个的时候就会将该对象添加到该中其中键就是值可以是任意类型键值对以类存储什么是死锁死锁产生的原因多个线程同时被阻塞它们中的一个或者全部都在等待某个资源被释放由于线程被无限期地阻塞因此程序不可能正常终止原因互斥条件一个资源只能被一个线程占有当这个资源被占有后其他线程就只能等待不可剥夺条件当一个线程不主动释放资源时此资源一直被拥有线程占有请求和保持条件线程已经拥有了一个资源后又尝试请求新的资源环路等待条件产生死锁一定是发生了线程资源环形链自己写代码时如何有效避免死锁设置超时时间使用包中的接口提供的方法该方法在获取锁的时候可以设置超时时间如果超过了这个时间还没拿到这把锁那么就可以做其他的事情而不是像如果没有拿到锁会一直等待下去多使用包提供的并发类而不是自己设计锁后有包提供并发类而不需要自己用和来进行线程间的通信操作这些成熟的并发类已经考虑的场景很完备了比自己设计锁更加安全中的并发类例如等等实际应用中包中提供的类使用广泛简单方便并且效率比更高尽量降低锁的使用粒度用不同的锁而不是同一个锁整个类如果使用一个锁来保护的话那么效率会很低而且有死锁的风险很多线程都来用这把锁的话就容易造成死锁锁的使用范围只要能满足业务要求范围越小越好尽量使用同步代码块而不是同步方法同步方法是把整个方法给加上锁给同步了范围较大造成性能低下使用同步代码块范围小性能高使用同步代码块可以自己指定锁的对象这样有了锁的控制权这样也能避免发生死锁给线程起有意义的名字避免锁的嵌套分配锁资源之前先看能不能收回来资源银行家算法专锁专用原理包的类的实现绝大调用的方法而底层实际上是调用代码代码调用汇编最后生成出一条指令完成操作这也就为啥是原子性的因为它是一条指令不会被打断线程池构造函数核心线程数线程池维护的最小线程数量核心线程创建后不会被回收注意设置后空闲的核心线程超过存活时间也会被回收大于核心线程数的线程在空闲时间超过后会被回收线程池刚创建时里面没有一个线程当调用方法添加一个任务时如果正在运行的线程数量小于则马上创建新线程并运行这个任务最大线程数线程池允许创建的最大线程数量当添加一个任务时核心线程数已满工作队列已满的情况下线程池还没达到最大线程数并且没有空闲线程创建一个新线程然后从工作队列的头部取出一个任务交由新线程来处理而将刚提交的任务放入工作队列尾部空闲线程存活时间当一个可被回收的线程的空闲时间大于就会被回收可被回收的线程设置的核心线程大于核心线程数的线程非核心线程时间单位纳秒微秒毫秒秒分钟小时工作队列作用存放待执行任务的队列当提交的任务数超过核心线程数大小后再提交的任务就存放在工作队列任务调度时再从队列中取出任务它仅仅用来存放被方法提交的任务工作队列实现了接口默认的工作队列有五种数组型阻塞队列数组结构初始化时传入大小有界先进先出策略使用一个重入锁默认使用非公平锁入队和出队共用一个锁互斥链表型阻塞队列链表结构默认初始化大小为有界近似无界先进先出策略使用两个重入锁分别控制元素的入队和出队用进行线程间的唤醒和等待同步移交队列容量为添加任务必须等待取出任务这个队列相当于通道不存储元素优先级阻塞队列无界在的时候会要说它有界也没问题因为界是但其实上这个队列应该是无界的默认采用元素自然顺序升序排列可以自定义使用一个重入锁分别控制元素的入队和出队延时队列无界队列中的元素有过期时间过期的元素才能被取出使用一个重入锁分别控制元素的入队和出队用进行线程间的唤醒和等待任务调度时候可以使用线程工厂创建线程的工厂可以设定线程名线程编号等默认创建的线程工厂通过获取拒绝策略当线程池线程数已满并且工作队列达到限制新提交的任务使用拒绝策略处理可以自定义拒绝策略拒绝策略需要实现接口默认的拒绝策有四种丢弃任务并抛出异常默认拒绝策略丢弃任务但是不抛出异常可能导致无法发现系统的异常状态丢弃队列最前面的任务然后重新提交被拒绝的任务由调用线程处理该任务线程池原理四内存区域的划分的内存区域可以分为两类线程私有和区域和线程共有的区域线程私有的区域程序计数器虚拟机栈本地方法栈线程共有的区域堆方法区运行时常量池程序计数器每个线程有有一个私有的程序计数器任何时间一个线程都只会有一个方法正在执行也就是所谓的当前方法程序计数器存放的就是这个当前方法的指令地址虚拟机栈创建线程的时候会创建线程内的虚拟机栈栈中存放着一个个的栈帧对应着一个个方法的调用虚拟机栈有两种操作分别是压栈和出栈栈帧中存放着局部变量表方法返回值和方法的正常或异常退出的定义等等本地方法栈跟虚拟机栈比较类似只不过它支持的是方法堆堆是内存中最大的一块被所有线程共享在虚拟机创建时创建堆的唯一目的就是存放对象实例堆是垃圾收集器管理的主要区域所以又被叫为堆现在收集器基本都是采用分代收集算法所以堆很可以细分新生代和老年代新生代再细致一点的有空间空间空间方法区方法区是所有线程共享内存区域它主要是被用来储存虚拟机加载过类的类信息常量静态变量即编译器编译后的代码数据常量池静态常量池文件常量池静态常量池主要是存放编译后的字面量和符号引用字面量相当于语言层面的常量概念如文本字符串声明为的常量值符号引用则属于编译原理的内容主要为类和接口的全限定名字段名称和描述符方法名称和描述符描述符的作用是用来描述字段的数据类型方法的参数列表包括数量类型以及顺序和返回值动态常量池运行时常量池动态常量池是虚拟机在完成类装载的操作后将静态常量池的常量保存在方法区中动态常量池对比静态常量池具有动态性并非文件常量池中的常量才能进入运行时常量池运行期间也可以将新的常量放入池中这种特性主要在类中的运用哪些区域会发生除了程序计数器其他的部分都会发生堆内存堆内存不足是最常见的发送的原因之一如果在堆中没有内存完成对象实例的分配并且堆无法再扩展时将抛出异常抛出的错误信息是虚拟机栈和本地方法栈这两个区域的区别不过是虚拟机栈为虚拟机执行方法服务而本地方法栈则为虚拟机使用到的方法服务在内存分配异常上是相同的在规范中对虚拟机栈规定了两种异常如果线程请求的栈大于所分配的栈大小则抛出错误比如进行了一个不会停止的递归调用如果虚拟机栈是可以动态拓展的拓展时无法申请到足够的内存则抛出错误除了程序计数器其他的部分都会发生垃圾回收机制内存标记算法在内存被回收前系统必须标记哪些内存已经没有人使用可以释放这个工作就由内存标记算法的来完成在各版本中使用过如下几种标记算法引用计数法每个堆中分配的对象都有一个引用计数器当一个对象被引用时它的引用计数器会加一垃圾回收时会清理掉引用计数为的对象但这种方法有一个问题比方说有两个对象和引用了又引用了除此之外没有别的对象引用和那么和在我们看来已经是垃圾对象需要被回收但它们的引用计数不为没有达到回收的条件正因为这个循环引用的问题并没有采用引用计数法可达性分析法又称跟踪算法算法引入了图论把所有对象间的关系看成一张图内存标记从一组根节点开始通过递归搜索建立对象的引用关系图当搜索完毕后图外的对象就是可回收对象这是目前中使用的内存标记算法根级对象一般包括虚拟机栈中的对象本地方法栈中的对象方法区中的静态对象和常量池中的常量内存回收方式复制算法复制算法是将存活的对象复制到另一块内存区域中并做相应的内存整理工作复制算法的优点是可以避免内存碎片化缺点也显而易见它需要两倍的内存标记清除算法采用跟踪算法标记内存对象后再扫描堆内存中未被标记的对象进行回收此算法不移动对象仅对不存活对象进行回收在存活对象占比高的情况下处理效率高但不移动对象会引起内存碎片标记整理算法此方法和标记清理算法使用相同标记算法但在对不存活对象回收时会把存活对象向内存前部空闲区域移动同时更新对象的指针此方法在清理的基础上会对对象进行移动执行成本较高但可解决内存碎片问题基于此算法的内存回收实现一般会增加句柄和句柄表分代回收策略中堆中移除了永生代区域堆内存主要由新生代和老年代两部分组成其中新生代由一个伊甸园和两个幸存者和部分组成新创建对象首先保存在中当中对象达到一定数量时触发时先把和中的存活对象拷贝到区再清除和两个区域的数据最后和互换身份完成一次内存回收新生代区域对象数量大存活时间短一般采用复制算法通过这种结构和回收方式来提高垃圾回收效率减少内存碎片经过若干默认次后还存活的对象将进入老年代区当老年代数据满时会触发又称此时新生代老年代元区域直接内存区域都会执行操作大对象会直接进入老年代区例如图片很长的字符串及数组内存泄漏的原因静态集合类如等等如果这些容器为静态的那么它们的生命周期与程序一致则容器中的对象在程序结束之前将不能被释放从而造成内存泄漏简单而言长生命周期的对象持有短生命周期对象的引用尽管短生命周期的对象不再使用但是因为长生命周期对象持有它的引用而导致不能被回收单例模式和静态集合导致内存泄漏原因类似因为单例的静态特性它的生命周期和的生命周期一样长所以如果单例对象持有外部对象引用那么这个外部对象也不会被回收那么就会发生内存泄漏要注意单例对象如果持有那么很容易引发内存泄漏此时需要注意传递给单例对象的最好是未关闭的资源类如数据库连接网络连接和连接等在对数据库进行操作的过程中首先需要建立与数据库的连接当不再使用时需要调用方法来释放与数据库的连接只有连接被关闭后垃圾回收器才会回收对应的对象否则如果在访问数据库的过程中对或不显性地关闭将会造成大量的对象无法被回收从而引起内存泄漏变量不合理的作用域一般而言一个变量的定义的作用范围大于其使用范围很有可能会造成内存泄漏另一方面如果没有及时地把对象设置为很有可能导致内存泄漏的发生非静态内部类持有外部类的引用如果有地方引用了这个非静态内部类会导致外部类也被引用这个内部类对象被长期引用了即使那个外部类实例对象不再被使用但由于内部类持有外部类的实例对象这个外部类对象将不会被垃圾回收这也会造成内存泄露改变哈希值当一个对象被存储进集合中以后就不能修改这个对象中的那些参与计算哈希值的字段了否则对象修改后的哈希值与最初存储进集合中时的哈希值就不同了在这种情况下即使在方法使用该对象的当前引用作为的参数去集合中检索对象也将返回找不到对象的结果这也会导致无法从集合中单独删除当前对象造成内存泄露缓存泄漏内存泄漏的另一个常见来源是缓存一旦你把对象引用放入到缓存中他就很容易遗忘对于这个问题可以使用代表缓存此种的特点是当除了自身有对的引用外此没有其他引用那么此会自动丢弃此值监听器和回调内存泄漏还有一个常见来源是监听器和其他回调如果客户端在实现的中注册回调却没有显示的取消那么就会积聚需要确保回调立即被当作垃圾回收的最佳方法是只保存他的弱引用例如将他们保存成为中的键对象模型在虚拟机中对象在内存中的存储布局分为块区域对象头实例数据和对齐填充对象头又包括三部分元数据指针数组长度用于存储对象运行时的数据比如锁状态标志分代年龄等这部分在位操作系统下占字节在位操作系统下占字节对象指向它的类元数据的指针虚拟机通过这个指针来确定这个对象是哪个类的实例这部分就涉及到一个指针压缩的概念在开启指针压缩的情况下占字节未开启情况下占字节现在在之后在位操作系统下都是默认开启的数组长度这部分只有是数组对象才有如果是非数组对象就没这部分了这部分占字节一个空对象占用多少字节只要是对象那么就肯定会包括对象头也就是说这部分内存占用是避免不了的所以在位虚拟机开启了指针压缩的环境下任何一个对象啥也不做只要声明一个类那么它的内存占用就至少是也就是至少字节加上内存对齐填充的字节总共占用字节而不开启指针压缩情况下则占用字节在位虚拟机一个空对象占用字节对象头什么是内存对齐并不会以一个一个字节去读取和写入内存相反读取内存是一块一块读取的块的大小可以为字节等大小块大小我们称其为内存访问粒度假设一个位平台的那它就会以字节为粒度去读取内存块位平台的则会以字节为粒度去读取内存块那为什么需要内存对齐呢主要有两个原因平台移植性原因不是所有的硬件平台都能够访问任意地址上的任意数据例如特定的硬件平台只允许在特定地址获取特定类型的数据否则会导致异常情况性能原因若访问未对齐的内存将会导致进行两次内存访问并且要花费额外的时钟周期来处理对齐及运算而本身就对齐的内存仅需要一次访问就可以完成读取动作什么是指针压缩位才支持当我们启用了之后我们原本的普通对象指针就会被压缩当然也不是所有的对象都会被压缩只有以下几种的对象才会被压缩对象的全局静态变量类属性对象头中信息对象的引用类型对象数组类型而以下几种对象则不能被压缩指向的对象指针局部变量传参返回值指针指针压缩的大概原理通过对齐还有偏移量将位指针压缩成位零基压缩是针对压缩解压动作的进一步优化它通过改变正常指针的随机地址分配特性强制堆地址从零开始分配',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-04-26 11:30:02',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.css" /><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.1"></head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><img class="loading-img nolazyload" alt="加载头像" src="https://image.liumingzhi.cn/file/859f0131ef9e8d043e44e.png"/><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.getElementById('loading-box').classList.add("loaded");
+  },
+  initLoading: () => {
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+setTimeout(function(){preloader.endLoading();},10000)
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.10/progress_bar/progress_bar.css"/><script async="async" src="https://cdn.cbd.int/pace-js@1.2.4/pace.min.js" data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}"></script><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><div class="back-home-button"><i class="anzhiyufont anzhiyu-icon-grip-vertical"></i><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" href="https://blog.liumingzhi.cn/" title="博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://qexo.liumingzhi.cn" title="Qexo后台"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.liumingzhi.cn/file/14dbd2629a9b1bb9a85a2.jpg" alt="Qexo后台"/><span class="back-menu-item-text">Qexo后台</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">博客路线</div><div class="back-menu-list"><a class="back-menu-item" href="https://blog.liumingzhi.cn/" title="主路线"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="主路线"/><span class="back-menu-item-text">主路线</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://vercel.liumingzhi.cn/" title="Vercel路线"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.liumingzhi.cn/file/7e8b03d953ce5e9005cb8.jpg" alt="Vercel路线"/><span class="back-menu-item-text">Vercel路线</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://image.liumingzhi.cn" title="图床"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.liumingzhi.cn/file/25ae14abec33eedb1ac32.png" alt="图床"/><span class="back-menu-item-text">图床</span></a></div></div></div></div><a id="site-name" href="/" accesskey="h"><div class="title">心灵涂鸦</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a><div id="he-plugin-simple"></div><script>var WIDGET = {
+  "CONFIG": {
+    "modules": "0124",
+    "background": "2",
+    "tmpColor": "FFFFFF",
+    "tmpSize": "16",
+    "cityColor": "FFFFFF",
+    "citySize": "16",
+    "aqiColor": "E8D87B",
+    "aqiSize": "16",
+    "weatherIconSize": "24",
+    "alertIconSize": "18",
+    "padding": "10px 10px 10px 10px",
+    "shadow": "0",
+    "language": "auto",
+    "borderRadius": "20",
+    "fixed": "true",
+    "vertical": "top",
+    "horizontal": "left",
+    "left": "20",
+    "top": "7.1",
+    "key": "df245676fb434a0691ead1c63341cd94"
+  }
+}
+</script><link rel="stylesheet" href="https://widget.qweather.net/simple/static/css/he-simple.css?v=1.4.0"/><script src="https://widget.qweather.net/simple/static/js/he-simple.js?v=1.4.0"></script></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 友链</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人帐</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/fcircle/"><i class="anzhiyufont anzhiyu-icon-artstation faa-tada" style="font-size: 0.9em;"></i><span> 朋友圈</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/"><i class="anzhiyufont anzhiyu-icon-music faa-tada" style="font-size: 0.9em;"></i><span> 音乐馆</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/bangumis/"><i class="anzhiyufont anzhiyu-icon-bilibili faa-tada" style="font-size: 0.9em;"></i><span> 追番页</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/album/"><i class="anzhiyufont anzhiyu-icon-images faa-tada" style="font-size: 0.9em;"></i><span> 相册集</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/air-conditioner/"><i class="anzhiyufont anzhiyu-icon-fan faa-tada" style="font-size: 0.9em;"></i><span> 小空调</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 游戏厅</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/game/2048"><i class="anzhiyufont anzhiyu-icon-fire faa-tada" style="font-size: 0.9em;"></i><span> 2048</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/game/mf"><i class="anzhiyufont anzhiyu-icon-fire faa-tada" style="font-size: 0.9em;"></i><span> 魔方</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/game/sl"><i class="anzhiyufont anzhiyu-icon-fire faa-tada" style="font-size: 0.9em;"></i><span> 扫雷</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/game/wzq"><i class="anzhiyufont anzhiyu-icon-fire faa-tada" style="font-size: 0.9em;"></i><span> 五子棋</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/game/txz"><i class="anzhiyufont anzhiyu-icon-fire faa-tada" style="font-size: 0.9em;"></i><span> 推箱子</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li></ul></div></div></div><div id="nav-right"><div class="nav-button only-home" id="travellings_button" title="随机前往一个开往项目网站"><a class="site-page" onclick="anzhiyu.totraveling()" title="随机前往一个开往项目网站" href="javascript:void(0);" rel="external nofollow" data-pjax-state="external"><i class="anzhiyufont anzhiyu-icon-train"></i></a></div><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><div class="nav-button" id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" title="搜索🔍" accesskey="s"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span> 搜索</span></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="https://image.liumingzhi.cn/file/1ac25b4ee273216e58887.png" target="_blank"><img class="post-qr-code-img" alt="微信" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.liumingzhi.cn/file/1ac25b4ee273216e58887.png"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://image.liumingzhi.cn/file/0dd29dcb00dff55ddef7b.png" target="_blank"><img class="post-qr-code-img" alt="支付宝" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.liumingzhi.cn/file/0dd29dcb00dff55ddef7b.png"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> 最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/Android/" style="font-size: 1.05rem; color: rgb(189, 84, 113);">Android<sup>4</sup></a><a href="/tags/ArkTS/" style="font-size: 1.05rem; color: rgb(18, 187, 156);">ArkTS<sup>1</sup></a><a href="/tags/Flutter/" style="font-size: 1.05rem; color: rgb(89, 105, 200);">Flutter<sup>2</sup></a><a href="/tags/HarmonyOS/" style="font-size: 1.05rem; color: rgb(182, 147, 197);">HarmonyOS<sup>2</sup></a><a href="/tags/KMP/" style="font-size: 1.05rem; color: rgb(16, 177, 13);">KMP<sup>1</sup></a><a href="/tags/Kotlin/" style="font-size: 1.05rem; color: rgb(95, 65, 146);">Kotlin<sup>2</sup></a><a href="/tags/Router/" style="font-size: 1.05rem; color: rgb(21, 152, 104);">Router<sup>1</sup></a><a href="/tags/java/" style="font-size: 1.05rem; color: rgb(24, 19, 131);">java<sup>1</sup></a><a href="/tags/%E5%AE%9E%E4%B9%A0/" style="font-size: 1.05rem; color: rgb(134, 63, 102);">实习<sup>2</sup></a><a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 1.05rem; color: rgb(129, 38, 139);">网络<sup>1</sup></a><a href="/tags/%E8%AE%A1%E7%BD%91/" style="font-size: 1.05rem; color: rgb(144, 127, 1);">计网<sup>1</sup></a><a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 1.05rem; color: rgb(115, 115, 43);">设计模式<sup>1</sup></a><a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 1.05rem; color: rgb(71, 157, 67);">面试<sup>2</sup></a><a href="/tags/%E9%AB%98%E6%96%B0%E5%85%B4/" style="font-size: 1.05rem; color: rgb(105, 30, 74);">高新兴<sup>2</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="anzhiyufont anzhiyu-icon-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/09/"><span class="card-archive-list-date">九月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/01/"><span class="card-archive-list-date">一月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/12/"><span class="card-archive-list-date">十二月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/09/"><span class="card-archive-list-date">九月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/08/"><span class="card-archive-list-date">八月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/07/"><span class="card-archive-list-date">七月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">4</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/06/"><span class="card-archive-list-date">六月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">7</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/05/"><span class="card-archive-list-date">五月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">5</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div><div class="console-btn-item on" id="consoleCommentBarrage" onclick="anzhiyu.switchCommentBarrage()" title="热评开关"><a class="commentBarrage"><i class="anzhiyufont anzhiyu-icon-message"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="anzhiyu.musicToggle()" title="音乐开关"><a class="music-switch"><i class="anzhiyufont anzhiyu-icon-music"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="article-meta tags"></span></div></div><h1 class="post-title" itemprop="name headline">Java面经</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2024-05-21T00:19:00.000Z" title="发表于 2024-05-21 08:19:00">2024-05-21</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2026-04-26T03:30:02.937Z" title="更新于 2026-04-26 11:30:02">2026-04-26</time></span></div><div class="meta-secondline"><span class="post-meta-separator"></span><span class="post-meta-wordcount"><i class="anzhiyufont anzhiyu-icon-file-word post-meta-icon" title="文章字数"></i><span class="post-meta-label" title="文章字数">字数总计:</span><span class="word-count" title="文章字数">16.5k</span><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-clock post-meta-icon" title="阅读时长"></i><span class="post-meta-label" title="阅读时长">阅读时长:</span><span>50分钟</span></span><span class="post-meta-separator"></span><span class="post-meta-pv-cv" id="" data-flag-title="Java面经"><i class="anzhiyufont anzhiyu-icon-fw-eye post-meta-icon"></i><span class="post-meta-label" title="阅读量">阅读量:</span><span id="busuanzi_value_page_pv"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></span><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为长沙"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>长沙</span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src="https://unpkg.com/image-hosting-service/img/consulting-blog-09.webp"></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container" itemscope itemtype="https://blog.liumingzhi.cn/2024/05/21/Java%E9%9D%A2%E7%BB%8F/"><header><h1 id="CrawlerTitle" itemprop="name headline">Java面经</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">曦臣</span><time itemprop="dateCreated datePublished" datetime="2024-05-21T00:19:00.000Z" title="发表于 2024-05-21 08:19:00">2024-05-21</time><time itemprop="dateCreated datePublished" datetime="2026-04-26T03:30:02.937Z" title="更新于 2026-04-26 11:30:02">2026-04-26</time></header><h1 id="Java-面经"><a href="#Java-面经" class="headerlink" title="Java 面经"></a>Java 面经</h1><h2 id="一、Java-基础"><a href="#一、Java-基础" class="headerlink" title="一、Java  基础"></a>一、Java  基础</h2><h3 id="1、final-关键字的作用"><a href="#1、final-关键字的作用" class="headerlink" title="1、final 关键字的作用"></a>1、final 关键字的作用</h3><ul>
+<li>修饰引用：该引用为常量，其值无法修改</li>
+<li>修饰方法：该方法为最终方法，无法被子类重写</li>
+<li>修饰类：该类为最终类，无法被继承</li>
+</ul>
+<h3 id="2、String、StringBuffer、StringBuilder-的区别"><a href="#2、String、StringBuffer、StringBuilder-的区别" class="headerlink" title="2、String、StringBuffer、StringBuilder 的区别"></a>2、String、StringBuffer、StringBuilder 的区别</h3><ul>
+<li>String：值是不可变的，这就导致每次对String的操作都会产生新的String对象，效率低下且浪费内存</li>
+<li>StringBuffer：值可变且线程安全</li>
+<li>StringBuilder：值可变但线程不安全，速度较StringBuffer更快</li>
+</ul>
+<h3 id="3、String为什么要设计成不可变的"><a href="#3、String为什么要设计成不可变的" class="headerlink" title="3、String为什么要设计成不可变的"></a>3、String为什么要设计成不可变的</h3><ul>
+<li>防止被篡改，保证信息数据的安全性</li>
+<li>不变的对象和值是线程安全的</li>
+<li>哈希值的唯一性来提高性能</li>
+<li>提高常量池的可用性</li>
+</ul>
+<h3 id="4、抽象类和接口的区别"><a href="#4、抽象类和接口的区别" class="headerlink" title="4、抽象类和接口的区别"></a>4、抽象类和接口的区别</h3><ul>
+<li>抽象类是半抽象的，有构造方法，只允许出现常量和抽象方法。类和类之间只能单继承，一个抽象类只能继承一个类（单继承），多个功能的集成部分，可用抽象类（抽象类提供简单方法）</li>
+<li>接口是完全抽象的，没有构造方法，接口和接口之间支持多继承，一个类可以同时实现多个接口</li>
+</ul>
+<h3 id="5、static-关键字的作用"><a href="#5、static-关键字的作用" class="headerlink" title="5、static 关键字的作用"></a>5、static 关键字的作用</h3><ul>
+<li>修饰方法：静态方法不依赖于任何对象就可以进行访问，在静态方法中不能访问类的非静态成员变量和非静态成员方法</li>
+<li>修饰变量：静态变量被所有的对象所共享，在内存中只有一个副本，它当且仅当在类初次加载时会被初始化</li>
+<li>修饰代码块：在类初次被加载的时候，会按照static块的顺序来执行每个static块，并且只会执行一次</li>
+</ul>
+<h3 id="6、多态是什么"><a href="#6、多态是什么" class="headerlink" title="6、多态是什么"></a>6、多态是什么</h3><ul>
+<li>多态分为两种：<ul>
+<li>编译时多态(设计时多态)：方法重载</li>
+<li>运行时多态：JAVA运行时系统根据调用该方法的实例的类型来决定选择调用哪个方法则被称为运行时多态</li>
+</ul>
+</li>
+<li>多态存在的三个必要条件：<ul>
+<li>要有继承(包括接口的实现)</li>
+<li>要有重写</li>
+<li>父类引用指向子类对象（向上转型）</li>
+</ul>
+</li>
+</ul>
+<h3 id="7、Exception-和-Error-的区别"><a href="#7、Exception-和-Error-的区别" class="headerlink" title="7、Exception 和 Error 的区别"></a>7、Exception 和 Error 的区别</h3><ul>
+<li>Exception 是程序正常运行中，可以预料的意外情况，可能并且应该被捕获，进行相应的处理</li>
+<li>Error 是指在正常情况下，不大可能出现的情况，绝大部分 Error 都会使程序处于非正常、不可恢复的状态。既然是非正常，所以不便于也不需要捕获，常见的 OutOfMemoryError 就是 Error 的子类</li>
+</ul>
+<h3 id="8、什么是反射机制？反射机制的应用场景有哪些？"><a href="#8、什么是反射机制？反射机制的应用场景有哪些？" class="headerlink" title="8、什么是反射机制？反射机制的应用场景有哪些？"></a>8、什么是反射机制？反射机制的应用场景有哪些？</h3><ul>
+<li>对于任意一个类，都能够获得这个类的所有属性和方法，对于任意一个对象都能够调用它的任意一个属性和方法。这种在运行时动态的获取信息以及动态调用对象的方法的功能称为Java 的反射机制</li>
+<li>应用场景：<ul>
+<li>工厂模式</li>
+<li>注解</li>
+<li>json解析</li>
+<li>动态代理</li>
+</ul>
+</li>
+</ul>
+<h3 id="9、为什么重写-equals-还要重写-hashCode-？"><a href="#9、为什么重写-equals-还要重写-hashCode-？" class="headerlink" title="9、为什么重写 equals 还要重写 hashCode ？"></a>9、为什么重写 equals 还要重写 hashCode ？</h3><p>hashCode 和 equals 两个方法是用来协同判断两个对象是否相等的，采用这种方式的原因是可以提高程序插入和查询的速度，如果在重写 equals 时，不重写 hashCode，就会导致在某些场景下，例如将两个相等的自定义对象存储在 Set 集合时，就会出现程序执行的异常，为了保证程序的正常执行，所以我们就需要在重写 equals 时，也一并重写 hashCode 方法才行</p>
+<h3 id="10、Java-泛型类型擦除和其局限性"><a href="#10、Java-泛型类型擦除和其局限性" class="headerlink" title="10、Java 泛型类型擦除和其局限性"></a>10、Java 泛型类型擦除和其局限性</h3><ul>
+<li><p>Java的泛型是伪泛型，Java的泛型基本上都是在编译器这个层次上实现的，在生成的字节码中是不包含泛型中的类型信息的，使用泛型的时候加上类型参数，在编译器编译的时候会去掉，这个过程称为类型擦除</p>
+</li>
+<li><p>局限性：</p>
+<ul>
+<li><p><strong>运行时类型查询只适用于原始类型</strong></p>
+<p>查询一个对象是否属于某个泛型类型时，倘若使用 <code>instanceof</code> 会得到一个编译器错误， 如果使用强制类型转换会得到一个警告</p>
+</li>
+<li><p><strong>不能用基本类型实例化类型参数</strong></p>
+<p>不能用类型参数代替基本类型。因此， 没有 <code>Pair&lt;int&gt;</code>, 只 有 <code>Pair&lt;Integer&gt;</code>。 当然,其原因是类型擦除。擦除之后， Pair 类含有 Object 类型的域， 而 Object 不能存储 int值</p>
+</li>
+<li><p><strong>不能实例化类型变量</strong></p>
+<p>不能使用像 new T(…)、 newT[…] 或 T.class 这样的表达式中的类型变量</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Singleton</span>&lt;T&gt; &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> T singlelnstance;        <span class="comment">// Error</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> T <span class="title function_">getSinglelnstance</span><span class="params">()</span> &#123;   <span class="comment">// Error</span></span><br><span class="line">        <span class="keyword">if</span> (singleinstance == <span class="literal">null</span>) construct <span class="keyword">new</span> <span class="title class_">instance</span> of T</span><br><span class="line">        <span class="keyword">return</span> singlelnstance; </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>不能抛出或捕获泛型类的实例</strong></p>
+<p>实际上， 甚至泛型类扩展 <strong>Throwable</strong> 都是不合法的；</p>
+<p><strong>catch</strong> 子句中不能使用类型变量。例如， 以下方法将不能编译：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T <span class="keyword">extends</span> <span class="title class_">Throwable</span>&gt; <span class="keyword">void</span> <span class="title function_">doWork</span><span class="params">(Class&lt;T&gt; t)</span> &#123;</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        <span class="keyword">do</span> work</span><br><span class="line">    &#125; <span class="keyword">catch</span> (T e) &#123;     <span class="comment">// Error can &#x27;t catch type variable</span></span><br><span class="line">        Logger,global.info(...) </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>不能创建参数化类型的数组</strong></p>
+<p>例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Pair&lt;String&gt;[] table = <span class="keyword">new</span> <span class="title class_">Pair</span>&lt;String&gt;[<span class="number">10</span>];</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h3 id="11、Java中引用类型的区别，具体的使用场景"><a href="#11、Java中引用类型的区别，具体的使用场景" class="headerlink" title="11、Java中引用类型的区别，具体的使用场景"></a>11、Java中引用类型的区别，具体的使用场景</h3><ul>
+<li><p><strong>强引用：</strong> 强引用指的是通过 new 对象创建的引用。</p>
+<ul>
+<li>正常创建的对象，只要引用存在，永远不会被GC回收，即使OOM</li>
+<li>如果要中断强引用和某个对象的关联，为其赋值null，这样GC就会在合适的时候回收对象</li>
+<li>Vector类的clear()方法就是通过赋值null进行清除</li>
+</ul>
+</li>
+<li><p><strong>软引用：</strong> 软引用是通过 SoftRefrence 实现的，它的生命周期比强引用短，在内存不足，抛出 OOM 之前，垃圾回收器会回收软引用引用的对象。软引用常见的使用场景是存储一些内存敏感的缓存，当内存不足时会被回收。</p>
+<ul>
+<li>在内存足够的情况下进行缓存，提升速度，内存不足时JVM自动回收</li>
+<li>可以和引用队列ReferenceQueue联合使用，如果软引用所引用的对象被JVM回收，这个软引用就会被加入到与之关联的引用队列中</li>
+</ul>
+</li>
+<li><p><strong>弱引用：</strong> 弱引用是通过 WeakRefrence 实现的，它的生命周期比软引用还短，GC 只要扫描到弱引用的对象就会回收。弱引用常见的使用场景也是存储一些内存敏感的缓存。</p>
+<ul>
+<li>ThreadLocalMap防止内存泄漏 </li>
+<li>监控对象是否将要被回收</li>
+</ul>
+</li>
+<li><p><strong>虚引用：</strong> 虚引用是通过 FanttomRefrence 实现的，它的生命周期最短，随时可能被回收。如果一个对象只被虚引用引用，我们无法通过虚引用来访问这个对象的任何属性和方法。它的作用仅仅是保证对象在 finalize 后，做某些事情。虚引用常见的使用场景是跟踪对象被垃圾回收的活动，当一个虚引用关联的对象被垃圾回收器回收之前会收到一条系统通知。</p>
+<ul>
+<li>程序可以通过判断引用队列中是否已经加入了虚引用，来了解被引用的对象是否将要被垃圾回收。如果程序发现某个虚引用已经被加入到引用队列，那么就可以在所引用的对象的内存被回收之前采取必要的行动</li>
+</ul>
+</li>
+</ul>
+<h3 id="12、单例模式"><a href="#12、单例模式" class="headerlink" title="12、单例模式"></a>12、单例模式</h3><ul>
+<li>双重检查单例模式</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Singleton</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> Singleton instance;</span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">Singleton</span><span class="params">()</span>&#123;&#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title function_">getInstance</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (instance==<span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (Singleton.class) &#123;</span><br><span class="line">                <span class="keyword">if</span> (instance==<span class="literal">null</span>)&#123;</span><br><span class="line">                    instance=<span class="keyword">new</span> <span class="title class_">Singleton</span>();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>第一次校验</strong>：</p>
+<p>也就是第一个if（singleton&#x3D;&#x3D;null），这个是为了代码提高代码执行效率，由于单例模式只要一次创建实例即可，所以当创建了一个实例之后，再次调用getInstance方法就不必要进入同步代码块，不用竞争锁。直接返回前面创建的实例即可。</p>
+<p><strong>第二次校验</strong>：</p>
+<p>也就是第二个if（singleton&#x3D;&#x3D;null），这个校验是防止二次创建实例，假如有一种情况，当singleton还未被创建时，线程t1调用getInstance方法，由于第一次判断singleton&#x3D;&#x3D;null，此时线程t1准备继续执行，但是由于资源被线程t2抢占了，此时t2页调用getInstance方法，同样的，由于singleton并没有实例化，t2同样可以通过第一个if，然后继续往下执行，同步代码块，第二个if也通过，然后t2线程创建了一个实例singleton。此时t2线程完成任务，资源又回到t1线程，t1此时也进入同步代码块，如果没有这个第二个if，那么，t1就也会创建一个singleton实例，那么，就会出现创建多个实例的情况，但是加上第二个if，就可以完全避免这个多线程导致多次创建实例的问题。</p>
+<ul>
+<li>静态内部类单例模式</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">在内部类被加载和初始化时，才创建INSTANCE</span></span><br><span class="line"><span class="comment">静态类不会自动随着外部类的加载和初始化而初始化的，它是要单独去加载和初始化的。</span></span><br><span class="line"><span class="comment">因为是在内部类加载和初始化时，创建的，因此是线程安全的</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Singleton</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">Singleton</span><span class="params">()</span>&#123;&#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">Inner</span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Singleton</span> <span class="variable">instance</span> <span class="operator">=</span><span class="keyword">new</span> <span class="title class_">Singleton</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title function_">getInstance</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Inner.instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="13、类加载过程"><a href="#13、类加载过程" class="headerlink" title="13、类加载过程"></a>13、类加载过程</h3><p>Java 中类加载分为 3 个步骤：加载、链接、初始化。</p>
+<ul>
+<li><p><strong>加载</strong>： 由类加载器负责根据一个类的全限定名来读取此类的二进制字节流到JVM内部，并存储在运行时内存区的方法区，然后将其转换为一个与目标类型对应的java.lang.Class对象实例。数据源可以是 Jar 文件、Class 文件等等。如果数据的格式并不是 ClassFile 的结构，则会报 ClassFormatError</p>
+</li>
+<li><p><strong>链接</strong>：链接是类加载的核心部分，这一步分为 3 个步骤：验证、准备、解析</p>
+<ul>
+<li><strong>验证</strong>： 验证是保证JVM安全的重要步骤。JVM需要校验字节信息是否符合规范，避免恶意信息和不规范数据危害JVM运行安全。如果验证出错，则会报VerifyError<ul>
+<li>格式验证：验证是否符合class文件规范。</li>
+<li>语义验证：检查一个被标记为final的类型是否包含子类；检查一个类中的final方法是否被子类进行重写；确保父类和子类之间没有不兼容的一些方法声明（比如方法签名相同，但方法的返回值不同）</li>
+<li>操作验证：在操作数栈中的数据必须进行正确的操作，对常量池中的各种符号引用执行验证（通常在解析阶段执行，检查是否可以通过符号引用中描述的全限定名定位到指定类型上，以及类成员信息的访问修饰符是否允许访问等）</li>
+</ul>
+</li>
+<li><strong>准备</strong>： 这一步会创建静态变量，并为静态变量开辟内存空间，并为其设置一个初始值（由于还没有产生对象，实例变量不在此操作范围内），被final修饰的static变量（常量），会直接赋值</li>
+<li><strong>解析</strong>： 这一步会将符号引用替换为直接引用。解析动作主要针对类或接口、字段、类方法、接口方法、方法类型、方法句柄和调用点限定符7类符号引用进行。符号引用就是一组符号来描述目标，可以是任何字面量。直接引用就是直接指向目标的指针、相对偏移量或一个间接定位到目标的句柄</li>
+</ul>
+</li>
+<li><p><strong>初始化（先父后子）</strong>： 初始化会为静态变量赋值，并执行静态代码块中的逻辑</p>
+<ul>
+<li><p>如果是多线程需要同时初始化一个类，仅仅只能允许其中一个线程对其执行初始化操作，其余线程必须等待，只有在活动线程执行完对类的初始化操作之后，才会通知正在等待的其他线程。</p>
+<p>因为子类存在对父类的依赖，所以类的加载顺序是先加载父类后加载子类，初始化也一样。不过，父类初始化时，子类静态变量的值也有有的，是默认值。</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="C:\Users\zzp\AppData\Roaming\Typora\typora-user-images\image-20230315205319406.png" alt="image-20230315205319406" style="zoom:80%;" /></li>
+</ul>
+</li>
+</ul>
+<h3 id="14、双亲委派模型"><a href="#14、双亲委派模型" class="headerlink" title="14、双亲委派模型"></a>14、双亲委派模型</h3><p>类加载器大致分为3类：启动类加载器、扩展类加载器、应用程序类加载器。</p>
+<ul>
+<li>启动类加载器主要加载 <code>jre/lib</code>下的<code>jar</code>文件。</li>
+<li>扩展类加载器主要加载 <code>jre/lib/ext</code> 下的<code>jar</code>文件。</li>
+<li>应用程序类加载器主要加载 <code>classpath</code> 下的文件。</li>
+</ul>
+<p>所谓的双亲委派模型就是当加载一个类时，会优先使用父类加载器加载，当父类加载器无法加载时才会使用子类加载器去加载。这么做的目的是为了避免类的重复加载。</p>
+<h3 id="15、new一个对象要经历哪些过程"><a href="#15、new一个对象要经历哪些过程" class="headerlink" title="15、new一个对象要经历哪些过程"></a>15、new一个对象要经历哪些过程</h3><ul>
+<li><p>首先Java在new一个对象的时候，会先查看对象所属的类有没有被加载到内存，如果没有的话，就会先通过类的全限定名将对象所属的.class文件加载到内存中。加载并初始化类完成后，再进行对象的创建工作。</p>
+</li>
+<li><p>初始化类完成后，就是创建对象</p>
+<ol>
+<li><p><strong>在堆区分配对象需要的内存</strong></p>
+<p>分配的内存包括本类和父类的所有实例变量，但不包括任何静态变量。</p>
+</li>
+<li><p><strong>对所有实例变量赋默认值</strong></p>
+<p>将方法区内对实例变量的定义拷贝一份到堆区，然后赋默认值。</p>
+</li>
+<li><p><strong>执行实例初始化代码</strong></p>
+<p>初始化顺序是先初始化父类再初始化子类，初始化时先执行实例代码块然后是构造方法。</p>
+</li>
+<li><p>如果有类似于<code>Child c = new Child()</code>形式的c引用的话，在栈区定义Child类型引用变量c，然后将堆区对象的地址赋值给它需要注意的是，每个子类对象持有父类对象的引用，可在内部通过super关键字来调用父类对象，但在外部不可访问。</p>
+</li>
+<li><p>补充：通过实例引用调用实例方法的时候，先从方法区中对象的实际类型信息找，找不到的话再去父类类型信息中找。</p>
+<p>如果继承的层次比较深，要调用的方法位于比较上层的父类，则调用的效率是比较低的，因为每次调用都要经过很多次查找。这时候大多系统会采用一种称为虚方法表的方法来优化调用的效率。</p>
+<p>所谓虚方法表，就是在类加载的时候，为每个类创建一个表，这个表包括该类的对象所有动态绑定的方法及其地址，包括父类的方法，但一个方法只有一条记录，子类重写了父类方法后只会保留子类的。当通过对象动态绑定方法的时候，只需要查找这个表就可以了，而不需要挨个查找每个父类。</p>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="二、Java-数据结构"><a href="#二、Java-数据结构" class="headerlink" title="二、Java 数据结构"></a>二、Java 数据结构</h2><h3 id="1、HashMap-和-Hashtable-的区别"><a href="#1、HashMap-和-Hashtable-的区别" class="headerlink" title="1、HashMap 和 Hashtable 的区别"></a>1、HashMap 和 Hashtable 的区别</h3><ul>
+<li>HashMap是线程不安全的，效率高；Hashtable是线程安全的，效率低；</li>
+<li>HashMap可以存储null键和null值；Hashtable不可以存储null键和null值；</li>
+</ul>
+<h3 id="2、HashMap-底层原理"><a href="#2、HashMap-底层原理" class="headerlink" title="2、HashMap 底层原理"></a>2、HashMap 底层原理</h3><ul>
+<li>HashMap由数组（键值对entry组成的数组主干）+ 链表（元素太多时为解决哈希冲突数组的一个元素上多个entry组成的链表）+ 红黑树（当链表的元素个数达到8链表存储改为红黑树存储）进行数据的存储</li>
+<li>在JDK1.7之前，HashMap采用数组+链表实现，即使用链表处理冲突，同一hash值的链表都存储在一个链表里。但是当位于一个数组中的元素较多，即hash值相等的元素较多时，通过key值依次查找的效率较低。而JDK1.8中，HashMap采用数组+链表+红黑树实现，当链表长度超过阈值（8）时，将链表转换为红黑树，这样大大减少了查找时间。</li>
+</ul>
+<h3 id="3、HashMap-的扩容过程"><a href="#3、HashMap-的扩容过程" class="headerlink" title="3、HashMap 的扩容过程"></a>3、HashMap 的扩容过程</h3><p>默认的负载因子大小为0.75，也就是说，当一个map填满了75%的bucket时候，和其它集合类(如ArrayList等)一样，将会创建原来HashMap大小的两倍的bucket数组，来重新调整map的大小，并将原来的对象放入新的bucket数组中。这个过程叫作rehashing，因为它调用hash方法找到新的bucket位置。这个值只可能在两个地方，一个是原下标的位置，另一种是在下标为&lt;原下标+原容量&gt;的位置</p>
+<h3 id="4、为什么-HashMap-使用红黑树而不用二叉平衡树（AVL）"><a href="#4、为什么-HashMap-使用红黑树而不用二叉平衡树（AVL）" class="headerlink" title="4、为什么 HashMap 使用红黑树而不用二叉平衡树（AVL）"></a>4、为什么 HashMap 使用红黑树而不用二叉平衡树（AVL）</h3><ul>
+<li>红黑树虽然不是严格的平衡树，但是其依旧是平衡树，查找效率是 <strong>O(logn)</strong>；AVL也是 <strong>O(logn)</strong></li>
+<li>红黑树舍去了严格的平衡，使其插入，删除，查找的效率稳定在 <strong>O(logn)</strong>；反观 AVL 树，查找没问题 <strong>O(logn)</strong>，但是为了保证高度平衡，动态插入和删除的代价也随之增加，综合效率肯定达不到 <strong>O(logn)</strong></li>
+<li>在进行大量插入，删除操作时，红黑树更优一些</li>
+</ul>
+<h3 id="5、TreeMap-底层原理"><a href="#5、TreeMap-底层原理" class="headerlink" title="5、TreeMap 底层原理"></a>5、TreeMap 底层原理</h3><p>TreeMap底层通过红黑树实现，可保证在**O(logn)**完成get、put和remove操作，效率很高</p>
+<h3 id="6、Hashtable-怎么保证线程安全的"><a href="#6、Hashtable-怎么保证线程安全的" class="headerlink" title="6、Hashtable 怎么保证线程安全的"></a>6、Hashtable 怎么保证线程安全的</h3><p>使用synchronized关键字修饰public方法保证线程安全</p>
+<h3 id="7、ConcurrentHashMap-原理"><a href="#7、ConcurrentHashMap-原理" class="headerlink" title="7、ConcurrentHashMap 原理"></a>7、ConcurrentHashMap 原理</h3><ul>
+<li><p>在 JDK7 中，ConcurrentHashMap 使用“分段锁”机制实现线程安全，数据结构可以看成是”Segment数组+HashEntry数组+链表”，一个 ConcurrentHashMap 实例中包含若干个 Segment 实例组成的数组，每个 Segment 实例又包含由若干个桶，每个桶中都是由若干个 HashEntry 对象链接起来的链表。因为<strong>Segment 类继承 ReentrantLock 类</strong>，所以能充当锁的角色，通过 segment 段将 ConcurrentHashMap 划分为不同的部分，就可以使用不同的锁来控制对哈希表不同部分的修改，从而允许多个写操作并发进行，默认支持 16 个线程执行并发写操作，及任意数量线程的读操作。</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="C:\Users\zzp\AppData\Roaming\Typora\typora-user-images\image-20230313113723907.png" alt="image-20230313113723907" style="zoom:80%;" />
+</li>
+<li><p>put过程：</p>
+<ol>
+<li>对key进行第1次hash，通过hash值确定Segment的位置</li>
+<li>在Segment内进行操作，获取锁</li>
+<li>获取当前Segment的HashEntry数组后对key进行第2次hash，通过hash值确定在HashEntry数组的索引位置（头部）</li>
+<li>通过继承ReentrantLock的tryLock方法尝试去获取锁，如果获取成功就直接插入相应的位置，如果已经有线程获取该Segment的锁，那当前线程会以自旋的方式去继续的调用tryLock方法去获取锁，超过指定次数就挂起，等待唤醒</li>
+<li>然后对当前索引的HashEntry链进行遍历，如果有重复的key，则替换；如果没有重复的，则插入到链头</li>
+<li>释放锁</li>
+</ol>
+</li>
+<li><p>get操作</p>
+<p>和put操作类似，也是要两次hash。但是get操作的ConcurrentHashMap不需要加锁，原因是存储元素都标记了volatile</p>
+</li>
+<li><p>size操作</p>
+<ul>
+<li>size操作就是遍历两次所有的Segments，每次记录Segment的modCount值，然后将两次的modCount进行比较</li>
+<li>如果相同，则表示期间没有发生过写入操作，就将原先遍历的结果返回。<br>如果经判断发现两次统计出的modCount并不一致，要全部Segment加锁来进行count的获取和统计。在此期间每个Segement都被锁住，无法进行其他操作，统计出的count自然很准确。</li>
+</ul>
+</li>
+</ul>
+<h3 id="8、ConcurrentHashMap-读操作为什么不需要加锁？"><a href="#8、ConcurrentHashMap-读操作为什么不需要加锁？" class="headerlink" title="8、ConcurrentHashMap 读操作为什么不需要加锁？"></a>8、ConcurrentHashMap 读操作为什么不需要加锁？</h3><ul>
+<li>在 HashEntry 类中，key，hash 和 next 域都被声明为 final 的，value 域被 volatile 所修饰，因此 HashEntry 对象几乎是不可变的，通过 HashEntry 对象的不变性来降低读操作对加锁的需求<ul>
+<li>next 域被声明为 final，意味着不能从hash链的中间或尾部添加或删除节点，因为这需要修改 next 引用值，因此所有的节点的修改只能从头部开始。但是对于 remove 操作，需要将要删除节点的前面所有节点整个复制一遍，最后一个节点指向要删除结点的下一个结点。</li>
+</ul>
+</li>
+<li>用 volatile 变量协调读写线程间的内存可见性；</li>
+<li>若读时发生指令重排序现象（也就是读到 value 域的值为 null 的时候），则加锁重读；</li>
+</ul>
+<h3 id="9、怎么解决hash冲突"><a href="#9、怎么解决hash冲突" class="headerlink" title="9、怎么解决hash冲突"></a>9、怎么解决hash冲突</h3><ul>
+<li><p><strong>链地址法</strong>：对于相同的哈希值，使用链表进行连接。（<strong>HashMap使用此法</strong>）</p>
+<ul>
+<li><p>优点：</p>
+<ol>
+<li>处理冲突简单，无堆积现象。即非同义词决不会发生冲突，因此平均查找长度较短。</li>
+<li>适合总数经常变化的情况。（因为拉链法中各链表上的结点空间是动态申请的）</li>
+<li>占空间小。装填因子可取α≥1，且结点较大时，拉链法中增加的指针域可忽略不计。</li>
+<li>删除结点的操作易于实现。只要简单地删去链表上相应的结点即可。</li>
+</ol>
+</li>
+<li><p>缺点</p>
+<ol>
+<li>查询时效率较低。（存储是动态的，查询时跳转需要更多的时间）</li>
+<li>在key-value可以预知，以及没有后续增改操作时候，开放定址法性能优于链地址法。</li>
+<li>不容易序列化。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p><strong>再哈希法</strong>：提供多个哈希函数，如果第一个哈希函数计算出来的key的哈希值冲突了，则使用第二个哈希函数计算key的哈希值。</p>
+<ul>
+<li>优点：不易产生聚集</li>
+<li>缺点：增加了计算时间</li>
+</ul>
+</li>
+<li><p><strong>建立公共溢出区</strong>：将哈希表分为基本表和溢出表两部分，凡是和基本表发生冲突的元素，一律填入溢出表。</p>
+</li>
+<li><p><strong>开放定址法</strong>：当关键字key的哈希地址p &#x3D;H（key）出现冲突时，以p为基础，产生另一个哈希地址p1，若p1仍然冲突，再以p为基础，产生另一个哈希地址p2，…，直到找出一个不冲突的哈希地址pi ，将相应元素存入其中。</p>
+</li>
+</ul>
+<h2 id="三、Java-多线程"><a href="#三、Java-多线程" class="headerlink" title="三、Java 多线程"></a>三、Java 多线程</h2><h3 id="1、进程和线程的区别"><a href="#1、进程和线程的区别" class="headerlink" title="1、进程和线程的区别"></a>1、进程和线程的区别</h3><ul>
+<li>根本区别：进程是操作系统进行资源分配的最小单元，是操作系统对一个正在运行的程序的一种抽象，可以把进程看作程序运行的一次运行过程；线程是操作系统进行运算调度的最小单元</li>
+<li>进程中包含了线程，线程属于进程</li>
+<li>进程的创建、销毁和切换的开销都远大于线程</li>
+<li>每个进程有自己的内存和资源，一个进程中的线程会共享这些内存和资源</li>
+<li>子进程无法影响父进程，而子线程可以影响父线程，如果主线程发生异常会影响其所在进程和子线程</li>
+<li>进程的CPU利用率较低，因为上下文切换开销较大，而线程的CPU的利用率较高，上下文的切换速度快</li>
+<li>进程的操纵者一般是操作系统，线程的操纵者一般是编程人员</li>
+</ul>
+<h3 id="2、什么是上下文切换"><a href="#2、什么是上下文切换" class="headerlink" title="2、什么是上下文切换"></a>2、什么是上下文切换</h3><ul>
+<li>即使是单核处理器也支持多线程执行代码，CPU通过给每个线程分配CPU时间片来实现这个机制。时间片是CPU分配给各个线程的时间，因为时间片非常短，所以CPU通过不停地切换线程执行，让我们感觉多个线程是同时执行的，时间片一般是几十毫秒（ms）。 CPU通过时间片分配算法来循环执行任务，当前任务执行一个时间片后会切换到下一个 任务。但是，在切换前会保存上一个任务的状态，以便下次切换回这个任务时，可以再加载这 个任务的状态。所以<strong>任务从保存到再加载的过程就是一次上下文切换</strong>。</li>
+</ul>
+<h3 id="3、并发和并行的区别"><a href="#3、并发和并行的区别" class="headerlink" title="3、并发和并行的区别"></a>3、并发和并行的区别</h3><ul>
+<li>并发：在操作系统中，是指一个时间段中有几个程序都处于已启动运行到运行完毕之间，且这几个程序都是在同一个处理机上运行</li>
+<li>并行：当系统有一个以上CPU时，当一个CPU执行一个进程时，另一个CPU可以执行另一个进程，两个进程互不抢占CPU资源，可以同时进行</li>
+</ul>
+<h3 id="4、线程有哪几种状态"><a href="#4、线程有哪几种状态" class="headerlink" title="4、线程有哪几种状态"></a>4、线程有哪几种状态</h3><ul>
+<li><strong>初始(NEW)</strong>：新创建了一个线程对象，但还没有调用start()方法</li>
+<li><strong>运行(RUNNABLE)</strong>：Java线程中将就绪（ready）和运行中（running）两种状态笼统的称为“运行”。<br>线程对象创建后，其他线程(比如main线程）调用了该对象的start()方法。该状态的线程位于可运行线程池中，等待被线程调度选中，获取CPU的使用权，此时处于就绪状态（ready）。就绪状态的线程在获得CPU时间片后变为运行中状态（running）</li>
+<li><strong>阻塞(BLOCKED)</strong>：表示线程阻塞于锁</li>
+<li><strong>等待(WAITING)</strong>：进入该状态的线程需要等待其他线程做出一些特定动作（通知或中断）</li>
+<li><strong>超时等待(TIMED_WAITING)</strong>：该状态不同于WAITING，它可以在指定的时间后自行返回</li>
+<li><strong>终止(TERMINATED)</strong>：表示该线程已经执行完毕</li>
+</ul>
+<h3 id="5、volatile-关键字的作用和原理"><a href="#5、volatile-关键字的作用和原理" class="headerlink" title="5、volatile 关键字的作用和原理"></a>5、volatile 关键字的作用和原理</h3><ul>
+<li><p>禁止了指令重排（指令重排是指：为了提高性能，编译器和和处理器通常会对指令进行指令重排序）</p>
+</li>
+<li><p>保证了不同线程对这个变量进行操作时的可见性，即一个线程修改了某个变量值，这个新值对其他线程是立即可见的</p>
+<ul>
+<li>这就指示JVM，这个变量是不稳定的，每次使用它都到主存中进行读取</li>
+</ul>
+</li>
+<li><p><strong>不保证原子性</strong></p>
+</li>
+<li><p>原理：volatile的原理是在生成的汇编代码中多了一个lock前缀指令，这个前缀指令相当于一个内存屏障，这个内存屏障有3个作用：</p>
+<ul>
+<li>确保指令重排的时候不会把屏障后的指令排在屏障前，确保不会把屏障前的指令排在屏障后。</li>
+<li>将当前处理器缓存行的数据写回到系统内存</li>
+<li>一个处理器的缓存回写到内存会导致其他处理器的缓存失效</li>
+</ul>
+</li>
+</ul>
+<h3 id="6、synchronized-关键字的作用"><a href="#6、synchronized-关键字的作用" class="headerlink" title="6、synchronized 关键字的作用"></a>6、synchronized 关键字的作用</h3><ul>
+<li>修饰实例方法：作用于<strong>当前对象实例</strong>加锁，进入同步代码前要获得当前对象实例的锁</li>
+<li>修饰静态方法：也就是给当前类（即<strong>XXX.class</strong>对象）加锁，会作用于类的所有对象实例，因为静态成员不属于任何一个实例对象，是类成员（ static 表明这是该类的一个静态资源，不管new了多少个对象，只有一份）。所以如果一个线程A调用一个实例对象的非静态 synchronized 方法，而线程B需要调用这个实例对象所属类的静态 synchronized  方法，是允许的，不会发生互斥现象，因为访问静态 synchronized 方法占用的锁是当前类的锁，而访问非静态 synchronized 方法占用的锁是当前实例对象锁</li>
+<li>修饰代码块：指定加锁对象，对给定对象加锁，进入同步代码库前要获得给定对象的锁</li>
+<li>synchronized <strong>可重入性</strong>（当一个线程试图操作一个由其他线程持有的对象锁的临界资源时，将会处于阻塞状态，但当一个线程再次请求自己持有对象锁的临界资源时，这种情况属于重入锁，请求将会成功）</li>
+</ul>
+<h3 id="7、synchronized-和-ReentrantLock的区别"><a href="#7、synchronized-和-ReentrantLock的区别" class="headerlink" title="7、synchronized 和 ReentrantLock的区别"></a>7、synchronized 和 ReentrantLock的区别</h3><ul>
+<li>用法不同：synchronized 可以用来修饰普通方法、静态方法和代码块，而 ReentrantLock 只能用于代码块</li>
+<li>获取锁和释放锁的机制不同：synchronized 是自动加锁和释放锁的，而 ReentrantLock 需要手动加锁和释放锁</li>
+<li>锁类型不同：synchronized 是非公平锁，而 ReentrantLock 默认为非公平锁，也可以手动指定为公平锁</li>
+<li>响应中断不同：ReentrantLock 可以响应中断，解决死锁的问题，而 synchronized 不能响应中断</li>
+<li>底层实现不同：synchronized 是 JVM 层面通过监视器实现的，而 ReentrantLock 是基于 AQS 实现的</li>
+</ul>
+<h3 id="8、synchronized-原理"><a href="#8、synchronized-原理" class="headerlink" title="8、synchronized 原理"></a>8、synchronized 原理</h3><ul>
+<li>Java 虚拟机中的同步(Synchronization)基于进入和退出管程(<strong>Monitor</strong>)对象实现， 无论是显式同步(有明确的 monitorenter 和 monitorexit 指令,即同步代码块)还是隐式同步都是如此。</li>
+<li>synchronized 修饰的代码块：使用<strong>monitorenter</strong> 和 <strong>monitorexit</strong> 指令来实现同步的。原理：<ul>
+<li>我们通过解析synchronized修饰的代码块的字节码发现：同步语句块的实现使用的是monitorenter 和 monitorexit 指令。也就是在代码块的开始位置会添加一个monitorenter指令，在结束位置会添加一个monitorexit指令。</li>
+<li>当执行monitorenter指令时，当前线程将试图获取 objectref(即对象锁) 所对应的 monitor（对象监听器：每个对象都会对应一个monitor） 的持有权，当 objectref 的 monitor 的进入计数器为 0，那线程可以成功取得 monitor，并将计数器值设置为 1，取锁成功。如果当前线程已经拥有 objectref 的 monitor 的持有权，那它可以重入这个 monitor (关于重入性稍后会分析)，重入时计数器的值也会加 1。</li>
+<li>倘若其他线程已经拥有 objectref 的 monitor 的所有权，那当前线程将被阻塞，直到正在执行线程执行完毕，即monitorexit指令被执行，执行线程将释放 monitor(锁)并设置计数器值为0 ，其他线程将有机会持有 monitor 。</li>
+<li>值得注意的是编译器将会确保无论方法通过何种方式完成，方法中调用过的每条 monitorenter 指令都有执行其对应 monitorexit 指令，而无论这个方法是正常结束还是异常结束。为了保证在方法异常完成时 monitorenter 和 monitorexit 指令依然可以正确配对执行，编译器会自动产生一个异常处理器，这个异常处理器声明可处理所有的异常，它的目的就是用来执行 monitorexit 指令。从字节码中也可以看出多了一个monitorexit指令，它就是异常结束时被执行的释放monitor 的指令。</li>
+<li>总的来说，synchronized修饰代码块同步的底层原理就是在代码块的前后位置使用monitorenter和monitorexit 指令。monitorenter会判断是否可以获取当前对象锁的对象监听器，如果可以获取将就将其锁计数器加1。此时其他线程要获取该对象锁的对象监听器的时候就会被阻塞。直到当前线程执行monitorexit 指令，进行对象监听器的释放，同时将锁计数器减1。</li>
+</ul>
+</li>
+<li>synchronized 修饰的同步方法：同步方法 并不是由 monitorenter 和 monitorexit 指令来实现同步的，而是由方法调用指令读取运行时常量池中方法的 ACC_SYNCHRONIZED 标志来隐式实现的。原理：<ul>
+<li>方法级的同步是隐式的，即无需通过字节码指令来控制的，它实现在方法调用和返回操作之中。JVM可以从方法常量池中的方法表结构(method_info Structure) 中的 ACC_SYNCHRONIZED 访问标志区分一个方法是否同步方法。</li>
+<li>当方法调用时，调用指令将会检查方法的 ACC_SYNCHRONIZED 访问标志是否被设置，如果设置了，执行线程将先持有monitor（虚拟机规范中用的是管程一词）， 然后再执行方法，最后再方法完成(无论是正常完成还是非正常完成)时释放monitor。</li>
+<li>在方法执行期间，执行线程持有了monitor，其他任何线程都无法再获得同一个monitor。如果一个同步方法执行期间抛 出了异常，并且在方法内部无法处理此异常，那这个同步方法所持有的monitor将在异常抛到同步方法之外时自动释放。</li>
+</ul>
+</li>
+</ul>
+<h3 id="9、synchronized锁升级策略"><a href="#9、synchronized锁升级策略" class="headerlink" title="9、synchronized锁升级策略"></a>9、synchronized锁升级策略</h3><p>前言： 我们刚刚所提到的synchronized是通过获取monitor（对象监听器）实现的，监视器锁（monitor）是依赖于底层的操作系统的Mutex Lock来实现的，这种实现方式导致synchronized属于重量级锁。意思就是这种锁比较消耗系统内核资源，所以Java 6之后Java官方对从JVM层面对synchronized进行了优化，也就是所说的synchronized锁升级策略。</p>
+<ul>
+<li><p>偏向锁：</p>
+<ul>
+<li>偏向锁它是一种针对加锁操作的优化手段，经过研究发现，在大多数情况下，锁不仅不存在多线程竞争，而且总是由同一线程多次获得，因此为了减少同一线程获取锁(会涉及到一些CAS操作,耗时)的代价而引入偏向锁。</li>
+<li>偏向锁的核心思想是，如果一个线程获得了锁，那么锁就进入偏向模式，当这个线程再次请求锁时，无需再做任何同步操作，即获取锁的过程，这样就省去了大量有关锁申请的操作，从而也就提供程序的性能。</li>
+<li>所以，对于没有锁竞争的场合，偏向锁有很好的优化效果，毕竟极有可能连续多次是同一个线程申请相同的锁。但是对于锁竞争比较激烈的场合，偏向锁就失效了，因为这样场合极有可能每次申请锁的线程都是不相同的，因此这种场合下不应该使用偏向锁，否则会得不偿失，需要注意的是，偏向锁失败后，并不会立即膨胀为重量级锁，而是先升级为轻量级锁。下面我们接着了解轻量级锁。</li>
+</ul>
+</li>
+<li><p>轻量级锁：</p>
+<ul>
+<li>倘若偏向锁失败，虚拟机并不会立即升级为重量级锁，它还会尝试使用一种称为轻量级锁的优化手段(1.6之后加入的)。轻量级锁能够提升程序性能的依据是“对绝大部分的锁，在整个同步周期内都不存在竞争”，注意这是经验数据。需要了解的是，轻量级锁所适应的场景是线程交替执行同步块的场合，如果存在同一时间访问同一锁的场合，就会导致轻量级锁膨胀为重量级锁。</li>
+</ul>
+</li>
+<li><p>自旋锁：</p>
+<ul>
+<li>轻量级锁失败后，虚拟机为了避免线程真实地在操作系统层面挂起，还会进行一项称为自旋锁的优化手段。这是基于在大多数情况下，线程持有锁的时间都不会太长，如果直接挂起操作系统层面的线程可能会得不偿失，毕竟操作系统实现线程之间的切换时需要从用户态转换到核心态，这个状态之间的转换需要相对比较长的时间，时间成本相对较高，因此自旋锁会假设在不久将来，当前的线程可以获得锁，因此虚拟机会让当前想要获取锁的线程做几个空循环(这也是称为自旋的原因)，一般不会太久，可能是50个循环或100循环，在经过若干次循环后，如果得到锁，就顺利进入临界区。如果还不能获得锁，那就会将线程在操作系统层面挂起，这就是自旋锁的优化方式，这种方式确实也是可以提升效率的。最后没办法也就只能升级为重量级锁了。</li>
+</ul>
+</li>
+<li><p>重量级锁：</p>
+<ul>
+<li>当自旋锁失败之后，就会升级成重量级锁了，也就是我们刚刚一直在讲述的synchronized的底层实现原理。</li>
+</ul>
+</li>
+<li><p>消除锁：</p>
+<ul>
+<li>消除锁是虚拟机另外一种锁的优化，这种优化更彻底，Java虚拟机在JIT编译时(可以简单理解为当某段代码即将第一次被执行时进行编译，又称即时编译)，通过对运行上下文的扫描，去除不可能存在共享资源竞争的锁，通过这种方式消除没有必要的锁，可以节省毫无意义的请求锁时间，如下StringBuffer的append是一个同步方法，但是在add方法中的StringBuffer属于一个局部变量，并且不会被其他线程所使用，因此StringBuffer不可能存在共享资源竞争的情景，JVM会自动将其锁消除。</li>
+</ul>
+</li>
+<li><p>锁升级策略概述：</p>
+<ul>
+<li>偏向锁：<ul>
+<li>当锁对象第一次被线程获取的时候，线程使用CAS操作把这个锁的线程ID记录在对象头之中，同时置偏向标志位1。以后该线程在进入和退出同步块时不需要进行CAS操作来加锁和解锁，只需要简单地测试一下对象头的Mark Word里是否存储着指当前线程的偏向锁。如果测试成功，表示线程已经获得了锁。</li>
+<li>如果线程使用CAS操作时失败则表示该锁对象上存在竞争并且这个时候另外一个线程获得偏向锁的所有权。当到达全局安全点（safepoint，这个时间点上没有正在执行的字节码）时获得偏向锁的线程被挂起，膨胀为轻量级锁。也就是说：当有另外一个线程去尝试获取这个锁时，偏向模式就宣告结束</li>
+</ul>
+</li>
+<li>轻量级锁：<ul>
+<li>当前线程使用CAS将对象头的mark Word锁标记位替换为锁记录指针,如果成功,当前线程获得锁。</li>
+<li>如果失败，表示其他线程竞争锁,当前线程尝试通过自旋获取锁</li>
+<li>如果自旋成功则依然处于轻量级状态</li>
+<li>如果自旋失败,升级为重量级锁</li>
+</ul>
+</li>
+<li>重量级锁： 此时就升级到重量级锁了</li>
+</ul>
+</li>
+</ul>
+<h3 id="10、ReentrantLock原理"><a href="#10、ReentrantLock原理" class="headerlink" title="10、ReentrantLock原理"></a>10、ReentrantLock原理</h3><ul>
+<li><p>CAS操作：</p>
+<ul>
+<li>CAS是一种无锁算法。有3个操作数：内存值V、旧的预期值A、要修改的新值B。</li>
+<li>当我们要修改内存值的时候要进行判断，当且仅当预期值A和内存值V相同时，将内存值V修改为B，否则什么都不做。</li>
+</ul>
+</li>
+<li><p>AQS队列</p>
+<ul>
+<li>AQS是一个用于构建锁和同步容器的框架。</li>
+<li>AQS使用一个FIFO的队列（也叫CLH队列，是CLH锁的一种变形， 底层通过双向链表实现），表示排队等待锁的线程。队列头节点称作“哨兵节点”或者“哑节点”，它不与任何线程关联。其他的节点与等待线程关联，每个节点维护一个等待状态waitStatus。</li>
+</ul>
+</li>
+<li><p>ReentrantLock的锁流程</p>
+<ul>
+<li>ReentrantLock先通过CAS尝试获取锁，如果获取了就将锁状态state设置为1</li>
+<li>如果此时锁已经被占用，<ul>
+<li>被自己占用：判断当前的锁是否是自己占用了，如果是的话就锁计数器会state++（可重入性）</li>
+<li>被其他线程占用：该线程加入AQS队列并wait()</li>
+</ul>
+</li>
+<li>当前驱线程的锁被释放，一直到state&#x3D;&#x3D;0，挂在CLH队列为首的线程就会被notify()，然后继续CAS尝试获取锁，此时：<ul>
+<li>非公平锁，如果有其他线程尝试lock()，有可能被其他刚好申请锁的线程抢占</li>
+<li>公平锁，只有在CLH队列头的线程才可以获取锁，新来的线程只能插入到队尾。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="11、公平锁与非公平锁"><a href="#11、公平锁与非公平锁" class="headerlink" title="11、公平锁与非公平锁"></a>11、公平锁与非公平锁</h3><ul>
+<li>如果在绝对时间上，先对锁进行获取的请求一定先被满足，也就是等待时间最长的线程最优先获取锁，也可以说锁获取是顺序的。那么这个锁是公平的，反之，是不公平的</li>
+<li>公平锁是严格的以FIFO的方式进行锁的竞争，但是非公平锁是无序的锁竞争，刚释放锁的线程很大程度上能比较快的获取到锁，队列中的线程只能等待，所以非公平锁可能会有“饥饿”的问题。但是重复的锁获取能减小线程之间的切换，而公平锁则是严格的线程切换，这样对操作系统的影响是比较大的，所以非公平锁的吞吐量是大于公平锁的，这也是为什么JDK将非公平锁作为默认的实现。<br>ReentrantLock既可以是公平锁又可以是非公平锁，synchronized 是非公平锁</li>
+</ul>
+<h3 id="12、乐观锁和悲观锁"><a href="#12、乐观锁和悲观锁" class="headerlink" title="12、乐观锁和悲观锁"></a>12、乐观锁和悲观锁</h3><ul>
+<li>乐观锁：乐观锁在操作数据时非常乐观，认为别人不会同时修改数据。因此乐观锁不会上锁，只是在执行更新的时候判断一下在此期间别人是否修改了数据：如果别人修改了数据则放弃操作，否则执行操作</li>
+<li>悲观锁：悲观锁在操作数据时比较悲观，认为别人会同时修改数据。因此操作数据时直接把数据锁住，直到操作完成后才会释放锁；上锁期间其他人不能修改数据</li>
+</ul>
+<h3 id="13、sleep-和-wait-的区别"><a href="#13、sleep-和-wait-的区别" class="headerlink" title="13、sleep 和 wait 的区别"></a>13、sleep 和 wait 的区别</h3><ul>
+<li>sleep 方法是 Thread 类中的静态方法，wait 是Object类中的方法</li>
+<li>sleep 并不会释放同步锁，而 wait 会释放同步锁</li>
+<li>sleep 可以在任何地方使用，而 wait 只能在同步方法或同步代码块中使用</li>
+<li>sleep 中必须传入时间，而 wait 可以传，也可以不传，不穿时间的话只有 notify 或者notifyAll 才能唤醒，传时间的话在时间之后才会唤醒</li>
+</ul>
+<h3 id="14、join、yield、interrupt、notify和notifyAll的作用"><a href="#14、join、yield、interrupt、notify和notifyAll的作用" class="headerlink" title="14、join、yield、interrupt、notify和notifyAll的作用"></a>14、join、yield、interrupt、notify和notifyAll的作用</h3><ul>
+<li>join：当前线程里调用其它线程thread的join方法，当前线程进入WAITING&#x2F;TIMED_WAITING状态，当前线程不会释放已经持有的对象锁。线程thread执行完毕或者millis时间到，当前线程进入就绪状态</li>
+<li>yield：当前线程调用此方法，当前线程放弃获取的CPU时间片，但不释放锁资源，由运行状态变为就绪状态，让OS再次选择线程</li>
+<li>interrupt：当前线程里调用其它线程thread的interrupt()方法,中断指定的线程。如果指定线程调用了wait()方法或者join方法在阻塞状态，那么指定线程会抛出InterruptedException</li>
+<li>notify：唤醒在此对象监视器（锁对象）上等待的单个线程，选择是任意性的</li>
+<li>notifyAll：唤醒在此对象监视器（锁对象）上等待的所有线程</li>
+</ul>
+<h3 id="15、ThreadLocal的作用"><a href="#15、ThreadLocal的作用" class="headerlink" title="15、ThreadLocal的作用"></a>15、ThreadLocal的作用</h3><p>ThreadLocal的作用是提供线程内的局部变量，说白了，就是在各线程内部创建一个变量的副本，相比于使用各种锁机制访问变量，ThreadLocal的思想就是用空间换时间，使各线程都能访问属于自己这一份的变量副本，变量值不互相干扰，减少同一个线程内的多个函数或者组件之间一些公共变量传递的复杂度</p>
+<h3 id="16、ThreadLocal的原理"><a href="#16、ThreadLocal的原理" class="headerlink" title="16、ThreadLocal的原理"></a>16、ThreadLocal的原理</h3><p>每个Thread对象都有一个ThreadLocalMap，ThreadLoalMap中初始化了一个大小16的Entry数组，Entry对象用来保存每一个key-value键值对。当创建一个ThreadLocal的时候，就会将该ThreadLocal对象添加到该Map中，其中键就是ThreadLocal，值可以是任意类型，键值对以Entry类存储。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="C:\Users\zzp\AppData\Roaming\Typora\typora-user-images\image-20230312174042823.png" alt="image-20230312174042823"></p>
+<h3 id="17、什么是死锁？死锁产生的原因？"><a href="#17、什么是死锁？死锁产生的原因？" class="headerlink" title="17、什么是死锁？死锁产生的原因？"></a>17、什么是死锁？死锁产生的原因？</h3><p>多个线程同时被阻塞，它们中的一个或者全部都在等待某个资源被释放。由于线程被无限期地阻塞，因此程序不可能正常终止</p>
+<p>原因：</p>
+<ul>
+<li>互斥条件：一个资源只能被一个线程占有，当这个资源被占有后其他线程就只能等待</li>
+<li>不可剥夺条件：当一个线程不主动释放资源时，此资源一直被拥有线程占有</li>
+<li>请求和保持条件：线程已经拥有了一个资源后，又尝试请求新的资源</li>
+<li>环路等待条件：产生死锁一定是发生了线程资源环形链</li>
+</ul>
+<h3 id="18、自己写代码时如何有效避免死锁"><a href="#18、自己写代码时如何有效避免死锁" class="headerlink" title="18、自己写代码时如何有效避免死锁"></a>18、自己写代码时如何有效避免死锁</h3><ul>
+<li><strong>设置超时时间</strong>：使用JUC包中的Lock接口提供的**<code>tryLock</code>**方法。该方法在获取锁的时候, 可以设置超时时间, 如果超过了这个时间还没拿到这把锁, 那么就可以做其他的事情, 而不是像<code>synchronized</code>如果没有拿到锁会一直等待下去</li>
+<li><strong>多使用JUC包提供的并发类,而不是自己设计锁</strong>：JDK1.5后, 有JUC包提供并发类, 而不需要自己用wait 和notify来进行线程间的通信操作 , 这些成熟的并发类已经考虑的场景很完备了, 比自己设计锁更加安全。JUC中的并发类，例如 ConcurrentHashMap、ConcurrentLinkedQueue、AtomicBoolean 等等；实际应用中java.util.concurrent.atomic 包中提供的类使用广泛, 简单方便, 并且效率比Lock更高</li>
+<li><strong>尽量降低锁的使用粒度</strong>：用不同的锁 ,而不是同一个锁。整个类如果使用一个锁来保护的话, 那么效率会很低, 而且有死锁的风险, 很多线程都来用这把锁的话, 就容易造成死锁。锁的使用范围, 只要能满足业务要求, 范围越小越好</li>
+<li><strong>尽量使用同步代码块 而不是同步方法</strong>：<ul>
+<li>同步方法是把整个方法给加上锁给同步了，范围较大，造成性能低下，使用同步代码块范围小，性能高</li>
+<li>使用同步代码块, 可以自己指定锁的对象, 这样有了锁的控制权, 这样也能避免发生死锁</li>
+</ul>
+</li>
+<li><strong>给线程起有意义的名字</strong></li>
+<li><strong>避免锁的嵌套</strong></li>
+<li><strong>分配锁资源之前先看能不能收回来资源</strong>：银行家算法</li>
+<li><strong>专锁专用</strong></li>
+</ul>
+<h3 id="19、atomic-原理"><a href="#19、atomic-原理" class="headerlink" title="19、atomic 原理"></a>19、atomic 原理</h3><p>Atomic包的类的实现绝大调用Unsafe的方法，而Unsafe底层实际上是调用C代码，C代码调用汇编，最后生成出一条CPU指令cmpxchg，完成操作（<strong>CAS</strong>）。这也就为啥CAS是原子性的，因为它是一条CPU指令，不会被打断。</p>
+<h3 id="20、线程池构造函数"><a href="#20、线程池构造函数" class="headerlink" title="20、线程池构造函数"></a>20、线程池构造函数</h3><ul>
+<li><p><strong>corePoolSize：核心线程数</strong></p>
+<ul>
+<li>线程池维护的最小线程数量，核心线程创建后不会被回收（注意：设置 <code>allowCoreThreadTimeout = true</code> 后，空闲的核心线程超过存活时间也会被回收）</li>
+<li>大于核心线程数的线程，在空闲时间超过keepAliveTime后会被回收</li>
+<li>线程池刚创建时，里面没有一个线程，当调用 <code>execute()</code> 方法添加一个任务时，如果正在运行的线程数量小于corePoolSize，则马上创建新线程并运行这个任务</li>
+</ul>
+</li>
+<li><p><strong>maximumPoolSize：最大线程数</strong></p>
+<ul>
+<li>线程池允许创建的最大线程数量。当添加一个任务时，核心线程数已满，工作队列已满的情况下，线程池还没达到最大线程数，并且没有空闲线程，创建一个新线程，然后从工作队列的头部取出一个任务交由新线程来处理，而将刚提交的任务放入工作队列尾部</li>
+</ul>
+</li>
+<li><p><strong>keepAliveTime：空闲线程存活时间</strong></p>
+<ul>
+<li>当一个可被回收的线程的空闲时间大于<code>keepAliveTime</code>，就会被回收</li>
+<li>可被回收的线程：<ol>
+<li>设置<code>allowCoreThreadTimeout = true</code>的核心线程</li>
+<li>大于核心线程数的线程（非核心线程）</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p><strong>unit：时间单位</strong></p>
+<ul>
+<li>TimeUnit.NANOSECONDS    &#x2F;&#x2F; 纳秒</li>
+<li>TimeUnit.MICROSECONDS    &#x2F;&#x2F; 微秒</li>
+<li>TimeUnit.MILLISECONDS    &#x2F;&#x2F; 毫秒</li>
+<li>TimeUnit.SECONDS        &#x2F;&#x2F; 秒</li>
+<li>TimeUnit.MINUTES        &#x2F;&#x2F; 分钟</li>
+<li>TimeUnit.HOURS            &#x2F;&#x2F; 小时</li>
+<li>TimeUnit.DAYS</li>
+</ul>
+</li>
+<li><p><strong>workQueue：工作队列</strong></p>
+<ul>
+<li><strong>作用</strong>：存放待执行任务的队列。当提交的任务数超过核心线程数大小后，再提交的任务就存放在工作队列，任务调度时再从队列中取出任务。它仅仅用来存放被 execute() 方法提交的 Runnable 任务。工作队列实现了 <strong>BlockingQueue</strong> 接口</li>
+<li>JDK默认的工作队列有五种<ul>
+<li><strong>ArrayBlockingQueue</strong>：数组型阻塞队列。<strong>数组结构，初始化时传入大小（有界），FIFO（先进先出策略）</strong>。使用一个重入锁（ReentrantLock），默认使用非公平锁，入队和出队共用一个锁，互斥</li>
+<li><strong>LinkedBlockingQueue</strong>：链表型阻塞队列。<strong>链表结构，默认初始化大小为Integer.MAX_VALUE，有界（近似无界），FIFO（先进先出策略）</strong>。使用两个重入锁分别控制元素的入队和出队，用 Condition 进行线程间的唤醒和等待</li>
+<li><strong>SynchronousQueue</strong>：同步移交队列。<strong>容量为0</strong>，添加任务必须等待取出任务，这个队列相当于通道，<strong>不存储元素</strong></li>
+<li><strong>PriorityBlockingQueue</strong>：优先级阻塞队列。<strong>无界，在 put 的时候会tryGrow，要说它有界也没问题，因为界是 Integer.MAX_VALUE</strong>，但其实上这个队列应该是无界的。默认采用元素自然顺序升序排列（可以自定义Comparator）。使用一个重入锁分别控制元素的入队和出队</li>
+<li><strong>DelayQueue</strong>：延时队列。<strong>无界，队列中的元素有过期时间，过期的元素才能被取出</strong>。使用一个重入锁分别控制元素的入队和出队，用 Condition 进行线程间的唤醒和等待。任务调度时候可以使用</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>threadFactory：线程工厂</strong></p>
+<ul>
+<li>创建线程的工厂，可以设定线程名、线程编号等</li>
+<li>默认创建的线程工厂，通过<code>Executors.defaultThreadFactory()</code>获取</li>
+</ul>
+</li>
+<li><p><strong>handler：拒绝策略</strong></p>
+<ul>
+<li>当线程池线程数已满，并且工作队列达到限制，新提交的任务使用拒绝策略处理。可以自定义拒绝策略，拒绝策略需要实现 <strong>RejectedExecutionHandler</strong> 接口</li>
+<li>JDK默认的拒绝策有四种<ul>
+<li><strong>AbortPolicy</strong>：丢弃任务并抛出 RejectedExecutionException 异常（默认拒绝策略）</li>
+<li><strong>DiscardPolicy</strong>：丢弃任务，但是不抛出异常。可能导致无法发现系统的异常状态</li>
+<li><strong>DiscardOldestPolicy</strong>：丢弃队列最前面的任务，然后重新提交被拒绝的任务</li>
+<li><strong>CallerRunsPolicy</strong>：由调用线程处理该任务</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="21、线程池原理"><a href="#21、线程池原理" class="headerlink" title="21、线程池原理"></a>21、线程池原理</h3><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="C:\Users\zzp\AppData\Roaming\Typora\typora-user-images\image-20230314093259155.png" alt="image-20230314093259155" style="zoom:80%;" />
+
+<h2 id="四、JVM"><a href="#四、JVM" class="headerlink" title="四、JVM"></a>四、JVM</h2><h3 id="1、JVM内存区域的划分"><a href="#1、JVM内存区域的划分" class="headerlink" title="1、JVM内存区域的划分"></a>1、JVM内存区域的划分</h3><p>JVM 的内存区域可以分为两类：线程私有和区域和线程共有的区域。线程私有的区域：程序计数器、JVM 虚拟机栈、本地方法栈。线程共有的区域：堆、方法区、运行时常量池</p>
+<ul>
+<li><p><strong>程序计数器</strong> ：每个线程有有一个私有的程序计数器，任何时间一个线程都只会有一个方法正在执行，也就是所谓的当前方法。程序计数器存放的就是这个当前方法的JVM指令地址</p>
+</li>
+<li><p><strong>JVM虚拟机栈</strong>：创建线程的时候会创建线程内的虚拟机栈，栈中存放着一个个的栈帧，对应着一个个方法的调用。JVM 虚拟机栈有两种操作，分别是压栈和出栈。栈帧中存放着局部变量表、方法返回值和方法的正常或异常退出的定义等等</p>
+</li>
+<li><p><strong>本地方法栈</strong>：跟 JVM 虚拟机栈比较类似，只不过它支持的是 Native 方法</p>
+</li>
+<li><p><strong>堆</strong>：堆是java内存中最大的一块，被所有线程共享，在虚拟机创建时创建，堆的唯一目的就是存放对象实例。<br>java堆是垃圾收集器管理的主要区域，所以又被叫为GC堆，现在收集器基本都是采用分代收集算法，所以java堆很可以细分新生代和老年代；新生代再细致一点的有Eden空间、From Survivor空间、To Survivor空间</p>
+</li>
+<li><p><strong>方法区</strong>：方法区是所有线程共享内存区域，它主要是被用来储存java虚拟机加载过类的类信息、常量、静态变量即编译器编译后的代码数据</p>
+</li>
+<li><p><strong>常量池</strong>：</p>
+<ul>
+<li>静态常量池(Class文件常量池)<br>静态常量池主要是存放编译后的字面量和符号引用，字面量相当于java语言层面的常量概念，如文本字符串，声明为final的常量值，符号引用则属于编译原理的内容，主要为：类和接口的全限定名、字段名称和描述符、方法名称和描述符。描述符的作用是用来描述字段的数据类型、方法的参数列表(包括数量、类型以及顺序)和返回值。</li>
+<li>动态常量池(运行时常量池)<br>动态常量池是jvm虚拟机在完成类装载的操作后将静态常量池的常量保存在方法区中，动态常量池对比静态常量池具有动态性，并非Class文件常量池中的常量才能进入运行时常量池，运行期间也可以将新的常量放入池中，这种特性主要在String类中的inter()运用。</li>
+</ul>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="C:\Users\zzp\AppData\Roaming\Typora\typora-user-images\image-20230315212135170.png" alt="image-20230315212135170" style="zoom:67%;" /></li>
+</ul>
+<h3 id="2、JVM-哪些区域会发生-OOM"><a href="#2、JVM-哪些区域会发生-OOM" class="headerlink" title="2、JVM 哪些区域会发生 OOM"></a>2、JVM 哪些区域会发生 OOM</h3><p>除了程序计数器，其他的部分都会发生 OOM</p>
+<ul>
+<li><strong>堆内存</strong>，堆内存不足是最常见的发送OOM的原因之一。<br>如果在堆中没有内存完成对象实例的分配，并且堆无法再扩展时，将抛出OutOfMemoryError异常，抛出的错误信息是“java.lang.OutOfMemoryError:Java heap space”</li>
+<li><strong>Java虚拟机栈和本地方法栈</strong>，这两个区域的区别不过是虚拟机栈为虚拟机执行Java方法服务，而本地方法栈则为虚拟机使用到的Native方法服务，在内存分配异常上是相同的。<br>在JVM规范中，对Java虚拟机栈规定了两种异常：<br>a. 如果线程请求的栈大于所分配的栈大小，则抛出StackOverFlowError错误，比如进行了一个不会停止的递归调用；<br>b. 如果虚拟机栈是可以动态拓展的，拓展时无法申请到足够的内存，则抛出OutOfMemoryError错误</li>
+<li>除了程序计数器，其他的部分都会发生 OOM</li>
+</ul>
+<h3 id="3、GC（垃圾回收）机制"><a href="#3、GC（垃圾回收）机制" class="headerlink" title="3、GC（垃圾回收）机制"></a>3、GC（垃圾回收）机制</h3><ul>
+<li><p>内存标记算法：在内存被回收前，系统必须标记哪些内存已经没有人使用可以释放，这个工作就由内存标记算法的来完成，在Java各版本中，使用过如下几种标记算法。</p>
+<ul>
+<li><strong>引用计数法（Reference Counting）：</strong> 每个堆中分配的对象都有一个引用计数器，当一个对象被引用时，它的引用计数器会加一，垃圾回收时会清理掉引用计数为0的对象。但这种方法有一个问题，比方说有两个对象 A 和 B，A 引用了 B，B 又引用了 A，除此之外没有别的对象引用 A 和 B，那么 A 和 B 在我们看来已经是垃圾对象，需要被回收，但它们的引用计数不为 0，没有达到回收的条件。正因为这个循环引用的问题，Java 并没有采用引用计数法。</li>
+<li><strong>可达性分析法（Reference Counting）：</strong> 又称跟踪算法（Tracing），算法引入了图论，把所有对象间的关系看成一张图，内存标记从一组根节点（GC Root Set）开始，通过递归搜索，建立对象的引用关系图，当搜索完毕后，图外的对象就是可回收对象。这是目前Java中使用的内存标记算法。根级对象一般包括 <strong>Java 虚拟机栈中的对象</strong>、<strong>本地方法栈中的对象</strong>、<strong>方法区中的静态对象</strong>和<strong>常量池中的常量</strong>。</li>
+</ul>
+</li>
+<li><p>内存回收方式：</p>
+<ul>
+<li><p><strong>复制算法</strong>： 复制算法是将存活的对象复制到另一块内存区域中，并做相应的内存整理工作。复制算法的优点是可以避免内存碎片化，缺点也显而易见，它需要两倍的内存。</p>
+</li>
+<li><p><strong>标记-清除算法（Mark and Sweep）</strong>：</p>
+<p>采用跟踪算法标记内存对象后，再扫描堆内存中未被标记的对象，进行回收。此算法不移动对象，仅对不存活对象进行回收，在存活对象占比高的情况下处理效率高，但不移动对象会引起内存碎片。</p>
+</li>
+<li><p><strong>标记-整理算法（Compacting）</strong>：<br>此方法和标记-清理算法使用相同标记算法，但在对不存活对象回收时，会把存活对象向内存前部空闲区域移动，同时更新对象的指针。此方法在清理的基础上，会对对象进行移动，执行成本较高，但可解决内存碎片问题。基于此算法的内存回收实现，一般会增加句柄和句柄表。</p>
+</li>
+<li><p><strong>分代回收策略</strong>：<br>JDK8中，堆中移除了永生代区域，堆内存主要由新生代和老年代两部分组成。其中新生代由一个伊甸园（Eden）和两个幸存者Survivor From和Survivor To 3部分组成，新创建对象首先保存在Eden中，当Eden中对象达到一定数量时，JVM触发Minor GC，GC时，先把Eden和From中的存活对象拷贝到Survivor To区，再清除Eden和From两个区域的数据，最后From和To互换身份，完成一次内存回收。新生代区域对象数量大，存活时间短，一般采用复制算法，通过这种结构和回收方式来提高垃圾回收效率，减少内存碎片。<br>经过若干（默认15）次后还存活的对象，将进入老年代区，当老年代数据满时，会触发Major GC（又称Full GC），此时新生代、老年代、元区域、直接内存区域都会执行GC操作。（<strong>大对象会直接进入老年代区</strong>，例如图片、很长的字符串及数组）</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="4、Java-内存泄漏的原因"><a href="#4、Java-内存泄漏的原因" class="headerlink" title="4、Java 内存泄漏的原因"></a>4、Java 内存泄漏的原因</h3><ul>
+<li><strong>静态集合类</strong>。如HashMap、LinkedList等等。如果这些容器为静态的，那么它们的生命周期与程序一致，则容器中的对象在程序结束之前将不能被释放，从而造成内存泄漏。简单而言，长生命周期的对象持有短生命周期对象的引用，尽管短生命周期的对象不再使用，但是因为长生命周期对象持有它的引用而导致不能被回收。</li>
+<li><strong>单例模式</strong>。和静态集合导致内存泄漏原因类似，因为单例的静态特性，它的生命周期和 JVM 的生命周期一样长，所以如果单例对象持有外部对象引用，那么这个外部对象也不会被回收，那么就会发生内存泄漏。<strong>要注意！！！！单例对象如果持有Context，那么很容易引发内存泄漏，此时需要注意传递给单例对象的Context最好是Application Context。</strong></li>
+<li><strong>未关闭的资源类：如数据库连接、网络连接和IO连接等</strong>。在对数据库进行操作的过程中，首先需要建立与数据库的连接，当不再使用时，需要调用close方法来释放与数据库的连接。只有连接被关闭后，垃圾回收器才会回收对应的对象。否则，如果在访问数据库的过程中，对Connection、Statement或ResultSet不显性地关闭，将会造成大量的对象无法被回收，从而引起内存泄漏。</li>
+<li><strong>变量不合理的作用域</strong>。一般而言，一个变量的定义的作用范围大于其使用范围，很有可能会造成内存泄漏。另一方面，如果没有及时地把对象设置为null，很有可能导致内存泄漏的发生。</li>
+<li>**非静态内部类持有外部类的引用。**如果有地方引用了这个非静态内部类，会导致外部类也被引用。这个内部类对象被长期引用了，即使那个外部类实例对象不再被使用，但由于内部类持有外部类的实例对象，这个外部类对象将不会被垃圾回收，这也会造成内存泄露。</li>
+<li><strong>改变哈希值</strong>。当一个对象被存储进HashSet集合中以后，就不能修改这个对象中的那些参与计算哈希值的字段了，否则，对象修改后的哈希值与最初存储进HashSet集合中时的哈希值就不同了，在这种情况下，即使在contains方法使用该对象的当前引用作为的参数去HashSet集合中检索对象，也将返回找不到对象的结果，这也会导致无法从HashSet集合中单独删除当前对象，造成内存泄露。</li>
+<li><strong>缓存泄漏</strong>。内存泄漏的另一个常见来源是缓存，一旦你把对象引用放入到缓存中，他就很容易遗忘，对于这个问题，可以使用WeakHashMap代表缓存，此种Map的特点是，当除了自身有对key的引用外，此key没有其他引用那么此map会自动丢弃此值。</li>
+<li><strong>监听器和回调</strong>。内存泄漏还有一个常见来源是监听器和其他回调，如果客户端在实现的API中注册回调，却没有显示的取消，那么就会积聚。需要确保回调立即被当作垃圾回收的最佳方法是只保存他的弱引用，例如将他们保存成为WeakHashMap中的键。</li>
+</ul>
+<h3 id="5、Java-对象模型"><a href="#5、Java-对象模型" class="headerlink" title="5、Java 对象模型"></a>5、Java 对象模型</h3><p>在Hotspot虚拟机中，对象在内存中的存储布局分为 3 块区域：对象头（Header）、实例数据（Instance Data）和对齐填充（Padding）。</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="C:\Users\zzp\AppData\Roaming\Typora\typora-user-images\image-20230312165224851.png" alt="image-20230312165224851" style="zoom:70%;" />
+
+<ul>
+<li>对象头，又包括三部分：<strong>Mark Word</strong>、<strong>Klass Word</strong>（元数据指针）、<strong>数组长度</strong><ul>
+<li><strong>Mark Word</strong>：用于存储对象运行时的数据，比如HashCode、锁状态标志、GC分代年龄等。这部分在64位操作系统下，占8字节（64bit），在32位操作系统下，占4字节（32bit）。</li>
+<li><strong>Klass Word</strong>：对象指向它的类元数据的指针，虚拟机通过这个指针来确定这个对象是哪个类的实例。这部分就涉及到一个指针压缩的概念，在开启指针压缩的情况下，占4字节（32bit），未开启情况下，占8字节（64bit），现在JVM在1.6之后，在64位操作系统下都是默认开启的。</li>
+<li><strong>数组长度</strong>：这部分只有是数组对象才有，如果是非数组对象，就没这部分了，这部分占4字节（32bit）。</li>
+</ul>
+</li>
+</ul>
+<h3 id="6、一个空对象占用多少字节"><a href="#6、一个空对象占用多少字节" class="headerlink" title="6、一个空对象占用多少字节"></a>6、一个空对象占用多少字节</h3><p>只要是Java对象，那么就肯定会包括对象头，也就是说这部分内存占用是避免不了的。所以，在64位虚拟机，Jdk1.8（开启了指针压缩）的环境下，任何一个对象，啥也不做，只要声明一个类，那么它的内存占用就至少是96bits，也就是至少12字节，加上<strong>内存对齐</strong>填充的6字节，总共占用16字节。而不开启指针压缩情况下，则占用16字节。在32位虚拟机，一个空对象占用8字节（对象头）。</p>
+<h3 id="7、什么是内存对齐"><a href="#7、什么是内存对齐" class="headerlink" title="7、什么是内存对齐"></a>7、什么是内存对齐</h3><p>CPU 并不会以一个一个字节去读取和写入内存。相反，CPU 读取内存是一块一块读取的，块的大小可以为 2、4、6、8、16 字节等大小。块大小我们称其为内存访问粒度。假设一个32位平台的 CPU，那它就会以4字节为粒度去读取内存块，64位平台的 CPU则会以8字节为粒度去读取内存块。那为什么需要内存对齐呢？主要有两个原因：</p>
+<ul>
+<li><strong>平台（移植性）原因</strong>：不是所有的硬件平台都能够访问任意地址上的任意数据。例如：特定的硬件平台只允许在特定地址获取特定类型的数据，否则会导致异常情况。</li>
+<li><strong>性能原因</strong>：若访问未对齐的内存，将会导致 CPU 进行两次内存访问，并且要花费额外的时钟周期来处理对齐及运算。而本身就对齐的内存仅需要一次访问就可以完成读取动作。</li>
+</ul>
+<h3 id="8、什么是指针压缩（64位才支持）"><a href="#8、什么是指针压缩（64位才支持）" class="headerlink" title="8、什么是指针压缩（64位才支持）"></a>8、什么是指针压缩（64位才支持）</h3><p>当我们启用了<code>-XX:+UseCompressedOops</code>之后，我们原本的OOP（Ordinary Object Pointer，普通对象指针）就会被压缩，当然也不是所有的对象都会被压缩，只有 以下几种的对象才会被压缩：</p>
+<ul>
+<li>对象的全局静态变量（类属性）</li>
+<li>对象头中Klass Word信息</li>
+<li>对象的引用类型</li>
+<li>对象数组类型</li>
+</ul>
+<p>而以下几种对象则不能被压缩：</p>
+<ul>
+<li>指向PermGen的Class对象指针</li>
+<li>局部变量</li>
+<li>传参</li>
+<li>返回值</li>
+<li>NULL指针</li>
+</ul>
+<p>指针压缩的大概原理： 通过对齐，还有偏移量将64位指针压缩成32位。零基压缩是针对压缩解压动作的进一步优化。 它通过改变正常指针的随机地址分配特性，强制堆地址从零开始分配。</p>
+</article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://pic3.zhimg.com/v2-b1951610711c8d80060d509d9b499c72_r.jpg?source=1940ef5c" title="头像" alt="头像"><img class="post-copyright__author_img_front" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://pic3.zhimg.com/v2-b1951610711c8d80060d509d9b499c72_r.jpg?source=1940ef5c" title="头像" alt="头像"></a><div class="post-copyright__author_name">曦臣</div><div class="post-copyright__author_desc">愿世界更美好</div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="https://blog.liumingzhi.cn/2024/05/21/Java%E9%9D%A2%E7%BB%8F/">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('https://blog.liumingzhi.cn/2024/05/21/Java面经/')">Java面经</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"><div class="post-reward" onclick="anzhiyu.addRewardMask()"><div class="reward-button button--animated" title="赞赏作者"><i class="anzhiyufont anzhiyu-icon-hand-heart-fill"></i>打赏作者</div><div class="reward-main"><div class="reward-all"><span class="reward-title">感谢你赐予我前进的力量</span><ul class="reward-group"><li class="reward-item"><a href="https://image.liumingzhi.cn/file/1ac25b4ee273216e58887.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.liumingzhi.cn/file/1ac25b4ee273216e58887.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://image.liumingzhi.cn/file/0dd29dcb00dff55ddef7b.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.liumingzhi.cn/file/0dd29dcb00dff55ddef7b.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul><a class="reward-main-btn" href="/about/#about-reward" target="_blank"><div class="reward-text">赞赏者名单</div><div class="reward-dec">因为你们的支持让我意识到写文章的价值🙏</div></a></div></div></div><div id="quit-box" onclick="anzhiyu.removeRewardMask()" style="display: none"></div></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="https://blog.liumingzhi.cn/2024/05/21/Java%E9%9D%A2%E7%BB%8F/"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=Java面经&amp;url=https://blog.liumingzhi.cn/2024/05/21/Java%E9%9D%A2%E7%BB%8F/&amp;pic=https://unpkg.com/image-hosting-service/img/consulting-blog-09.webp" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><script>function copyCurrentPageUrl() {
+  var currentPageUrl = window.location.href;
+  var input = document.createElement("input");
+  input.setAttribute("value", currentPageUrl);
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://blog.liumingzhi.cn" target="_blank">心灵涂鸦</a>！</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__tag-list"></div></div></div><div class="post_share"><div class="social-share" data-image="https://ktor.kotlincn.net/assets/images/ktor_logo.svg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"/><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer="defer"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/05/20/%E9%98%85%E6%96%87%E9%9D%A2%E8%AF%95/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://tse1-mm.cn.bing.net/th/id/OIP-C.le-aN_esFaiU6aNw1Sl_ywHaEA?rs=1&amp;pid=ImgDetMain" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">阅文面试</div></div></a></div><div class="next-post pull-right"><a href="/2024/05/21/Android%E9%9D%A2%E7%BB%8F/"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://unpkg.com/image-hosting-service/img/dall-e-3-android-phone-level-5-featured-image.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Android面经</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="anzhiyufont anzhiyu-icon-comments"></i><span> 评论</span></div><div class="comment-randomInfo"><a onclick="anzhiyu.addRandomCommentInfo()" href="javascript:void(0)">匿名评论</a><a href="/privacy" style="margin-left: 4px">隐私政策</a></div><div class="comment-tips" id="comment-tips"><span>✅ 你无需删除空行，直接评论以获取最佳展示效果</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div><div class="comment-barrage"></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://pic3.zhimg.com/v2-b1951610711c8d80060d509d9b499c72_r.jpg?source=1940ef5c" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__description">归途也还可爱</div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/"><h1 class="author-info__name">曦臣</h1><div class="author-info__desc">愿世界更美好</div></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/xichenx" target="_blank" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="social-icon faa-parent animated-hover" href="https://blog.csdn.net/qq_60642811?spm=1011.2415.3001.5343" target="_blank" title="CSDN"><i class="anzhiyufont anzhiyu-icon-copyright"></i></a></div></div></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bullhorn anzhiyu-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来看我的博客鸭~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>文章目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Java-%E9%9D%A2%E7%BB%8F"><span class="toc-number">1.</span> <span class="toc-text">Java 面经</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81Java-%E5%9F%BA%E7%A1%80"><span class="toc-number">1.1.</span> <span class="toc-text">一、Java  基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81final-%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">1.1.1.</span> <span class="toc-text">1、final 关键字的作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81String%E3%80%81StringBuffer%E3%80%81StringBuilder-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.1.2.</span> <span class="toc-text">2、String、StringBuffer、StringBuilder 的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81String%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E8%AE%BE%E8%AE%A1%E6%88%90%E4%B8%8D%E5%8F%AF%E5%8F%98%E7%9A%84"><span class="toc-number">1.1.3.</span> <span class="toc-text">3、String为什么要设计成不可变的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.1.4.</span> <span class="toc-text">4、抽象类和接口的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81static-%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">1.1.5.</span> <span class="toc-text">5、static 关键字的作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81%E5%A4%9A%E6%80%81%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">1.1.6.</span> <span class="toc-text">6、多态是什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E3%80%81Exception-%E5%92%8C-Error-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.1.7.</span> <span class="toc-text">7、Exception 和 Error 的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6%EF%BC%9F%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="toc-number">1.1.8.</span> <span class="toc-text">8、什么是反射机制？反射机制的应用场景有哪些？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E9%87%8D%E5%86%99-equals-%E8%BF%98%E8%A6%81%E9%87%8D%E5%86%99-hashCode-%EF%BC%9F"><span class="toc-number">1.1.9.</span> <span class="toc-text">9、为什么重写 equals 还要重写 hashCode ？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10%E3%80%81Java-%E6%B3%9B%E5%9E%8B%E7%B1%BB%E5%9E%8B%E6%93%A6%E9%99%A4%E5%92%8C%E5%85%B6%E5%B1%80%E9%99%90%E6%80%A7"><span class="toc-number">1.1.10.</span> <span class="toc-text">10、Java 泛型类型擦除和其局限性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11%E3%80%81Java%E4%B8%AD%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%8C%E5%85%B7%E4%BD%93%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">1.1.11.</span> <span class="toc-text">11、Java中引用类型的区别，具体的使用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12%E3%80%81%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.1.12.</span> <span class="toc-text">12、单例模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13%E3%80%81%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B"><span class="toc-number">1.1.13.</span> <span class="toc-text">13、类加载过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14%E3%80%81%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.1.14.</span> <span class="toc-text">14、双亲委派模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15%E3%80%81new%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1%E8%A6%81%E7%BB%8F%E5%8E%86%E5%93%AA%E4%BA%9B%E8%BF%87%E7%A8%8B"><span class="toc-number">1.1.15.</span> <span class="toc-text">15、new一个对象要经历哪些过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Java-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">1.2.</span> <span class="toc-text">二、Java 数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81HashMap-%E5%92%8C-Hashtable-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.2.1.</span> <span class="toc-text">1、HashMap 和 Hashtable 的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81HashMap-%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86"><span class="toc-number">1.2.2.</span> <span class="toc-text">2、HashMap 底层原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81HashMap-%E7%9A%84%E6%89%A9%E5%AE%B9%E8%BF%87%E7%A8%8B"><span class="toc-number">1.2.3.</span> <span class="toc-text">3、HashMap 的扩容过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88-HashMap-%E4%BD%BF%E7%94%A8%E7%BA%A2%E9%BB%91%E6%A0%91%E8%80%8C%E4%B8%8D%E7%94%A8%E4%BA%8C%E5%8F%89%E5%B9%B3%E8%A1%A1%E6%A0%91%EF%BC%88AVL%EF%BC%89"><span class="toc-number">1.2.4.</span> <span class="toc-text">4、为什么 HashMap 使用红黑树而不用二叉平衡树（AVL）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81TreeMap-%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86"><span class="toc-number">1.2.5.</span> <span class="toc-text">5、TreeMap 底层原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81Hashtable-%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84"><span class="toc-number">1.2.6.</span> <span class="toc-text">6、Hashtable 怎么保证线程安全的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E3%80%81ConcurrentHashMap-%E5%8E%9F%E7%90%86"><span class="toc-number">1.2.7.</span> <span class="toc-text">7、ConcurrentHashMap 原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8%E3%80%81ConcurrentHashMap-%E8%AF%BB%E6%93%8D%E4%BD%9C%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E9%9C%80%E8%A6%81%E5%8A%A0%E9%94%81%EF%BC%9F"><span class="toc-number">1.2.8.</span> <span class="toc-text">8、ConcurrentHashMap 读操作为什么不需要加锁？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9%E3%80%81%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3hash%E5%86%B2%E7%AA%81"><span class="toc-number">1.2.9.</span> <span class="toc-text">9、怎么解决hash冲突</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81Java-%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="toc-number">1.3.</span> <span class="toc-text">三、Java 多线程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.3.1.</span> <span class="toc-text">1、进程和线程的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2"><span class="toc-number">1.3.2.</span> <span class="toc-text">2、什么是上下文切换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E5%B9%B6%E5%8F%91%E5%92%8C%E5%B9%B6%E8%A1%8C%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.3.3.</span> <span class="toc-text">3、并发和并行的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E7%BA%BF%E7%A8%8B%E6%9C%89%E5%93%AA%E5%87%A0%E7%A7%8D%E7%8A%B6%E6%80%81"><span class="toc-number">1.3.4.</span> <span class="toc-text">4、线程有哪几种状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81volatile-%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E4%BD%9C%E7%94%A8%E5%92%8C%E5%8E%9F%E7%90%86"><span class="toc-number">1.3.5.</span> <span class="toc-text">5、volatile 关键字的作用和原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81synchronized-%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">1.3.6.</span> <span class="toc-text">6、synchronized 关键字的作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E3%80%81synchronized-%E5%92%8C-ReentrantLock%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.3.7.</span> <span class="toc-text">7、synchronized 和 ReentrantLock的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8%E3%80%81synchronized-%E5%8E%9F%E7%90%86"><span class="toc-number">1.3.8.</span> <span class="toc-text">8、synchronized 原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9%E3%80%81synchronized%E9%94%81%E5%8D%87%E7%BA%A7%E7%AD%96%E7%95%A5"><span class="toc-number">1.3.9.</span> <span class="toc-text">9、synchronized锁升级策略</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10%E3%80%81ReentrantLock%E5%8E%9F%E7%90%86"><span class="toc-number">1.3.10.</span> <span class="toc-text">10、ReentrantLock原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11%E3%80%81%E5%85%AC%E5%B9%B3%E9%94%81%E4%B8%8E%E9%9D%9E%E5%85%AC%E5%B9%B3%E9%94%81"><span class="toc-number">1.3.11.</span> <span class="toc-text">11、公平锁与非公平锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12%E3%80%81%E4%B9%90%E8%A7%82%E9%94%81%E5%92%8C%E6%82%B2%E8%A7%82%E9%94%81"><span class="toc-number">1.3.12.</span> <span class="toc-text">12、乐观锁和悲观锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13%E3%80%81sleep-%E5%92%8C-wait-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.3.13.</span> <span class="toc-text">13、sleep 和 wait 的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14%E3%80%81join%E3%80%81yield%E3%80%81interrupt%E3%80%81notify%E5%92%8CnotifyAll%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">1.3.14.</span> <span class="toc-text">14、join、yield、interrupt、notify和notifyAll的作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15%E3%80%81ThreadLocal%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">1.3.15.</span> <span class="toc-text">15、ThreadLocal的作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16%E3%80%81ThreadLocal%E7%9A%84%E5%8E%9F%E7%90%86"><span class="toc-number">1.3.16.</span> <span class="toc-text">16、ThreadLocal的原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF%E6%AD%BB%E9%94%81%EF%BC%9F%E6%AD%BB%E9%94%81%E4%BA%A7%E7%94%9F%E7%9A%84%E5%8E%9F%E5%9B%A0%EF%BC%9F"><span class="toc-number">1.3.17.</span> <span class="toc-text">17、什么是死锁？死锁产生的原因？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#18%E3%80%81%E8%87%AA%E5%B7%B1%E5%86%99%E4%BB%A3%E7%A0%81%E6%97%B6%E5%A6%82%E4%BD%95%E6%9C%89%E6%95%88%E9%81%BF%E5%85%8D%E6%AD%BB%E9%94%81"><span class="toc-number">1.3.18.</span> <span class="toc-text">18、自己写代码时如何有效避免死锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#19%E3%80%81atomic-%E5%8E%9F%E7%90%86"><span class="toc-number">1.3.19.</span> <span class="toc-text">19、atomic 原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#20%E3%80%81%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-number">1.3.20.</span> <span class="toc-text">20、线程池构造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21%E3%80%81%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%8E%9F%E7%90%86"><span class="toc-number">1.3.21.</span> <span class="toc-text">21、线程池原理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81JVM"><span class="toc-number">1.4.</span> <span class="toc-text">四、JVM</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81JVM%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E7%9A%84%E5%88%92%E5%88%86"><span class="toc-number">1.4.1.</span> <span class="toc-text">1、JVM内存区域的划分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81JVM-%E5%93%AA%E4%BA%9B%E5%8C%BA%E5%9F%9F%E4%BC%9A%E5%8F%91%E7%94%9F-OOM"><span class="toc-number">1.4.2.</span> <span class="toc-text">2、JVM 哪些区域会发生 OOM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81GC%EF%BC%88%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%EF%BC%89%E6%9C%BA%E5%88%B6"><span class="toc-number">1.4.3.</span> <span class="toc-text">3、GC（垃圾回收）机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81Java-%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="toc-number">1.4.4.</span> <span class="toc-text">4、Java 内存泄漏的原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81Java-%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.4.5.</span> <span class="toc-text">5、Java 对象模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81%E4%B8%80%E4%B8%AA%E7%A9%BA%E5%AF%B9%E8%B1%A1%E5%8D%A0%E7%94%A8%E5%A4%9A%E5%B0%91%E5%AD%97%E8%8A%82"><span class="toc-number">1.4.6.</span> <span class="toc-text">6、一个空对象占用多少字节</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90"><span class="toc-number">1.4.7.</span> <span class="toc-text">7、什么是内存对齐</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF%E6%8C%87%E9%92%88%E5%8E%8B%E7%BC%A9%EF%BC%8864%E4%BD%8D%E6%89%8D%E6%94%AF%E6%8C%81%EF%BC%89"><span class="toc-number">1.4.8.</span> <span class="toc-text">8、什么是指针压缩（64位才支持）</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/09/28/Ktor%20%E5%AD%A6%E4%B9%A0%E4%B8%8E%E5%AE%9E%E8%B7%B5%E6%96%87%E6%A1%A3/" title="Ktor 学习与实践文档"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://ktor.kotlincn.net/assets/images/ktor_logo.svg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Ktor 学习与实践文档"/></a><div class="content"><a class="title" href="/2025/09/28/Ktor%20%E5%AD%A6%E4%B9%A0%E4%B8%8E%E5%AE%9E%E8%B7%B5%E6%96%87%E6%A1%A3/" title="Ktor 学习与实践文档">Ktor 学习与实践文档</a><time datetime="2025-09-28T18:36:20.623Z" title="发表于 2025-09-29 02:36:20">2025-09-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/09/21/Flutter%20-%20AutoRoute/" title="Flutter - AutoRoute"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://raw.githubusercontent.com/Milad-Akarie/auto_route_library/master/art/auto_route_logo.svg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Flutter - AutoRoute"/></a><div class="content"><a class="title" href="/2025/09/21/Flutter%20-%20AutoRoute/" title="Flutter - AutoRoute">Flutter - AutoRoute</a><time datetime="2025-09-21T17:29:14.518Z" title="发表于 2025-09-22 01:29:14">2025-09-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/20/HarmonyOS-%E4%B8%A4%E7%A7%8DPreferencesUtil%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/" title="HarmonyOS-两种PreferencesUtil实现方式"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/default_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="HarmonyOS-两种PreferencesUtil实现方式"/></a><div class="content"><a class="title" href="/2025/01/20/HarmonyOS-%E4%B8%A4%E7%A7%8DPreferencesUtil%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/" title="HarmonyOS-两种PreferencesUtil实现方式">HarmonyOS-两种PreferencesUtil实现方式</a><time datetime="2025-01-20T06:15:16.788Z" title="发表于 2025-01-20 14:15:16">2025-01-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/01/HarmonyOS-@ohos/axios%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82/" title="HarmonyOS-@ohos/axios网络请求"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://i-blog.csdnimg.cn/blog_migrate/325308e06ccb68e3917adef7a5d51b89.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="HarmonyOS-@ohos/axios网络请求"/></a><div class="content"><a class="title" href="/2024/12/01/HarmonyOS-@ohos/axios%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82/" title="HarmonyOS-@ohos/axios网络请求">HarmonyOS-@ohos/axios网络请求</a><time datetime="2024-12-01T01:42:35.296Z" title="发表于 2024-12-01 09:42:35">2024-12-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/09/09/RxJava%20%E9%9D%A2%E8%AF%95%E9%A2%98/" title="RxJava 面试题"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/default_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="RxJava 面试题"/></a><div class="content"><a class="title" href="/2024/09/09/RxJava%20%E9%9D%A2%E8%AF%95%E9%A2%98/" title="RxJava 面试题">RxJava 面试题</a><time datetime="2024-09-09T18:39:54.147Z" title="发表于 2024-09-10 02:39:54">2024-09-10</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div id="footer_deal"><a class="deal_link" href="/3108531642@qq.com" title="email"><i class="anzhiyufont anzhiyu-icon-envelope"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://weibo.com/u/" title="微博"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://www.facebook.com/" title="facebook"><i class="anzhiyufont anzhiyu-icon-facebook1"></i></a><a class="deal_link" href="/atom.xml" title="RSS"><i class="anzhiyufont anzhiyu-icon-rss"></i></a><img class="footer_mini_logo" title="返回顶部" alt="返回顶部" onclick="anzhiyu.scrollToDest(0, 500)" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://pic3.zhimg.com/v2-b1951610711c8d80060d509d9b499c72_r.jpg?source=1940ef5c" size="50px"/><a class="deal_link" target="_blank" rel="noopener" href="https://github.com/xichenx" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://space.bilibili.com/1410474192" title="Bilibili"><i class="anzhiyufont anzhiyu-icon-bilibili"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://v.douyin.com/" title="抖音"><i class="anzhiyufont anzhiyu-icon-tiktok"></i></a><a class="deal_link" href="/copyright" title="CC"><i class="anzhiyufont anzhiyu-icon-copyright-line"></i></a></div><div id="workboard"><img class="workSituationImg boardsign" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@2.0.4/img/badge/安知鱼-上班摸鱼中.svg" alt="距离月入25k也就还差一个大佬带我~" title="距离月入25k也就还差一个大佬带我~"/><div id="runtimeTextTip"></div></div><div id="anzhiyu-footer"><div class="footer-group"><div class="footer-title">服务</div><div class="footer-links"><a class="footer-item" title="51la统计" target="_blank" rel="noopener" href="https://v6.51.la/">51la统计</a><a class="footer-item" title="十年之约" target="_blank" rel="noopener" href="https://www.foreverblog.cn/">十年之约</a><a class="footer-item" title="开往" target="_blank" rel="noopener" href="https://github.com/travellings-link/travellings">开往</a></div></div><div class="footer-group"><div class="footer-title">主题</div><div class="footer-links"><a class="footer-item" title="文档" href="/docs/">文档</a><a class="footer-item" title="源码" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu">源码</a><a class="footer-item" title="更新日志" href="/update/">更新日志</a></div></div><div class="footer-group"><div class="footer-title">导航</div><div class="footer-links"><a class="footer-item" title="即刻短文" href="/essay/">即刻短文</a><a class="footer-item" title="友链文章" href="/fcircle/">友链文章</a><a class="footer-item" title="留言板" href="/comments/">留言板</a></div></div><div class="footer-group"><div class="footer-title">协议</div><div class="footer-links"><a class="footer-item" title="隐私协议" href="/privacy/">隐私协议</a><a class="footer-item" title="Cookies" href="/cookies/">Cookies</a><a class="footer-item" title="版权协议" href="/copyright/">版权协议</a></div></div><div class="footer-group"><div class="footer-title-group"><div class="footer-title">友链</div><a class="random-friends-btn" id="footer-random-friends-btn" href="javascript:addFriendLinksInFooter();" title="换一批友情链接"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right"></i></a></div><div class="footer-links" id="friend-links-in-footer"></div></div></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v5.4.0" title="博客框架为Hexo_v5.4.0"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@2.1.5/img/badge/Frame-Hexo.svg" alt="博客框架为Hexo_v5.4.0"/></a><a class="github-badge" target="_blank" href="https://blog.anheyu.com/" style="margin-inline:5px" data-title="本站使用AnZhiYu主题" title="本站使用AnZhiYu主题"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.9/img/Theme-AnZhiYu-2E67D3.svg" alt="本站使用AnZhiYu主题"/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" data-title="本站项目由Github托管" title="本站项目由Github托管"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@2.1.5/img/badge/Source-Github.svg" alt="本站项目由Github托管"/></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@2.2.0/img/badge/Copyright-BY-NC-SA.svg" alt="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"/></a><a class="github-badge" target="_blank" href="https://beian.miit.gov.cn/" style="margin-inline:5px" data-title="本站已备案" title="本站已备案"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://img.shields.io/badge/%E6%B9%98ICP%E5%A4%87-2024053403%E5%8F%B7-orange.svg" alt="本站已备案"/></a></p></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div id="footer-bar-tips"><div class="copyright">&copy;2024 - 2026 By <a class="footer-bar-link" href="/" title="曦臣" target="_blank">曦臣</a></div></div><div id="footer-type-tips"></div><div class="js-pjax"><script>function subtitleType () {
+  fetch('https://v1.hitokoto.cn')
+    .then(response => response.json())
+    .then(data => {
+      if (true) {
+        const from = '出自 ' + data.from
+        const sub = ["生活明朗&#44; 万物可爱&#44; 人间值得&#44; 未来可期."]
+        sub.unshift(data.hitokoto, from)
+        window.typed = new Typed('#footer-type-tips', {
+          strings: sub,
+          startDelay: 300,
+          typeSpeed: 150,
+          loop: true,
+          backSpeed: 50,
+        })
+      } else {
+        document.getElementById('footer-type-tips').innerHTML = data.hitokoto
+      }
+    })
+}
+
+if (true) {
+  if (typeof Typed === 'function') {
+    subtitleType()
+  } else {
+    getScript('https://cdn.cbd.int/typed.js@2.1.0/dist/typed.umd.js').then(subtitleType)
+  }
+} else {
+  subtitleType()
+}
+</script></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu" title="主题">主题</a><a class="footer-bar-link" target="_blank" rel="noopener" href="https://image.liumingzhi.cn" title="图床">图床</a><a class="footer-bar-link" target="_blank" rel="noopener" href="https://beian.miit.gov.cn/" title="湘ICP备-2024053403号">湘ICP备-2024053403号</a><a class="footer-bar-link cc" href="/copyright" title="CC协议"><i class="anzhiyufont anzhiyu-icon-copyright-line"></i><i class="anzhiyufont anzhiyu-icon-creative-commons-by-line"></i><i class="anzhiyufont anzhiyu-icon-creative-commons-nc-line"></i><i class="anzhiyufont anzhiyu-icon-creative-commons-nd-line"></i></a></div></div></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">文章</div><div class="length-num">27</div></a><a href="/tags/" title="tag"><div class="headline">标签</div><div class="length-num">14</div></a><a href="/categories/" title="category"><div class="headline">分类</div><div class="length-num">6</div></a></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="显示模式"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>显示模式</span></a></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" href="https://blog.liumingzhi.cn/" title="博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://qexo.liumingzhi.cn" title="Qexo后台"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.liumingzhi.cn/file/14dbd2629a9b1bb9a85a2.jpg" alt="Qexo后台"/><span class="back-menu-item-text">Qexo后台</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">博客路线</div><div class="back-menu-list"><a class="back-menu-item" href="https://blog.liumingzhi.cn/" title="主路线"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="主路线"/><span class="back-menu-item-text">主路线</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://vercel.liumingzhi.cn/" title="Vercel路线"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.liumingzhi.cn/file/7e8b03d953ce5e9005cb8.jpg" alt="Vercel路线"/><span class="back-menu-item-text">Vercel路线</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://image.liumingzhi.cn" title="图床"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.liumingzhi.cn/file/25ae14abec33eedb1ac32.png" alt="图床"/><span class="back-menu-item-text">图床</span></a></div></div></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 友链</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人帐</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/fcircle/"><i class="anzhiyufont anzhiyu-icon-artstation faa-tada" style="font-size: 0.9em;"></i><span> 朋友圈</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/"><i class="anzhiyufont anzhiyu-icon-music faa-tada" style="font-size: 0.9em;"></i><span> 音乐馆</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/bangumis/"><i class="anzhiyufont anzhiyu-icon-bilibili faa-tada" style="font-size: 0.9em;"></i><span> 追番页</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/album/"><i class="anzhiyufont anzhiyu-icon-images faa-tada" style="font-size: 0.9em;"></i><span> 相册集</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/air-conditioner/"><i class="anzhiyufont anzhiyu-icon-fan faa-tada" style="font-size: 0.9em;"></i><span> 小空调</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 游戏厅</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/game/2048"><i class="anzhiyufont anzhiyu-icon-fire faa-tada" style="font-size: 0.9em;"></i><span> 2048</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/game/mf"><i class="anzhiyufont anzhiyu-icon-fire faa-tada" style="font-size: 0.9em;"></i><span> 魔方</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/game/sl"><i class="anzhiyufont anzhiyu-icon-fire faa-tada" style="font-size: 0.9em;"></i><span> 扫雷</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/game/wzq"><i class="anzhiyufont anzhiyu-icon-fire faa-tada" style="font-size: 0.9em;"></i><span> 五子棋</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/game/txz"><i class="anzhiyufont anzhiyu-icon-fire faa-tada" style="font-size: 0.9em;"></i><span> 推箱子</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li></ul></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/Android/" style="font-size: 0.88rem;">Android<sup>4</sup></a><a href="/tags/ArkTS/" style="font-size: 0.88rem;">ArkTS<sup>1</sup></a><a href="/tags/Flutter/" style="font-size: 0.88rem;">Flutter<sup>2</sup></a><a href="/tags/HarmonyOS/" style="font-size: 0.88rem;">HarmonyOS<sup>2</sup></a><a href="/tags/KMP/" style="font-size: 0.88rem;">KMP<sup>1</sup></a><a href="/tags/Kotlin/" style="font-size: 0.88rem;">Kotlin<sup>2</sup></a><a href="/tags/Router/" style="font-size: 0.88rem;">Router<sup>1</sup></a><a href="/tags/java/" style="font-size: 0.88rem;">java<sup>1</sup></a><a href="/tags/%E5%AE%9E%E4%B9%A0/" style="font-size: 0.88rem;">实习<sup>2</sup></a><a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 0.88rem;">网络<sup>1</sup></a><a href="/tags/%E8%AE%A1%E7%BD%91/" style="font-size: 0.88rem;">计网<sup>1</sup></a><a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 0.88rem;">设计模式<sup>1</sup></a><a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 0.88rem;">面试<sup>2</sup></a><a href="/tags/%E9%AB%98%E6%96%B0%E5%85%B4/" style="font-size: 0.88rem;">高新兴<sup>2</sup></a></div></div><hr/></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><button id="chat-btn" type="button" title="聊天"><i class="anzhiyufont anzhiyu-icon-comment-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="anzhiyufont anzhiyu-icon-comments"></i></a><a id="switch-commentBarrage" href="javascript:anzhiyu.switchCommentBarrage();" title="开关弹幕"><i class="anzhiyufont anzhiyu-icon-danmu"></i></a><button id="go-up" type="button" title="回到顶部"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="nav-music"><a id="nav-music-hoverTips" onclick="anzhiyu.musicToggle()" accesskey="m">播放音乐</a><div id="console-music-bg"></div><meting-js id="1451608172" server="tencent" type="playlist" mutex="true" preload="none" theme="var(--anzhiyu-main)" data-lrctype="0" order="random" volume="0.7"></meting-js></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="anzhiyufont anzhiyu-icon-xmark"></i></button></nav><div class="is-center" id="loading-database"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-pulse-icon"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://y.qq.com/n/ryqq/playlist/1451608172&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@6.1.6/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/vanilla-lazyload@19.1.3/dist/lazyload.iife.min.js"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("03/15/2024 00:00:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎使用安知鱼!`,
+    `生活明朗, 万物可爱`,
+    `
+        
+       █████╗ ███╗   ██╗███████╗██╗  ██╗██╗██╗   ██╗██╗   ██╗
+      ██╔══██╗████╗  ██║╚══███╔╝██║  ██║██║╚██╗ ██╔╝██║   ██║
+      ███████║██╔██╗ ██║  ███╔╝ ███████║██║ ╚████╔╝ ██║   ██║
+      ██╔══██║██║╚██╗██║ ███╔╝  ██╔══██║██║  ╚██╔╝  ██║   ██║
+      ██║  ██║██║ ╚████║███████╗██║  ██║██║   ██║   ╚██████╔╝
+      ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝
+        
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2024 By 安知鱼 V1.7.1",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
+
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by 安知鱼 %c 你正在访问 曦臣 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async src="/anzhiyu/random.js"></script><script async="async">(function () {
+  var grt = new Date("03/15/2024 00:00:00"); //设置网站上线时间
+  var now = new Date();
+  var dnum;
+  var hnum;
+  var mnum;
+  var snum;
+  var nowHour;
+
+  // 计算并更新天数、小时数、分钟数和秒数
+  function updateTime() {
+    now = new Date(); // 更新 now 的值
+    nowHour = now.getHours(); // 更新 nowHour 的值
+    var days = (now - grt) / 1000 / 60 / 60 / 24;
+    dnum = Math.floor(days);
+    var hours = (now - grt) / 1000 / 60 / 60 - 24 * dnum;
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+      hnum = "0" + hnum;
+    }
+    var minutes = (now - grt) / 1000 / 60 - 24 * 60 * dnum - 60 * hnum;
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+      mnum = "0" + mnum;
+    }
+    var seconds = (now - grt) / 1000 - 24 * 60 * 60 * dnum - 60 * 60 * hnum - 60 * mnum;
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+      snum = "0" + snum;
+    }
+  }
+
+  // 更新网页中显示的网站运行时间
+  function updateHtml() {
+    const footer = document.getElementById("footer");
+    if (!footer) return
+    let currentTimeHtml = "";
+    if (nowHour < 18 && nowHour >= 9) {
+      // 如果是上班时间，默认就是"安知鱼-上班摸鱼中.svg"图片，不需要更改
+      currentTimeHtml = `本站居然运行了 ${dnum} 天<span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span><i class='anzhiyufont anzhiyu-icon-heartbeat' style='color:red'></i>`;
+    } else {
+      // 如果是下班时间，插入"安知鱼-下班啦.svg"图片
+      let img = document.querySelector("#workboard .workSituationImg");
+      if (img != null) {
+        img.src = "https://npm.elemecdn.com/anzhiyu-blog@2.0.4/img/badge/安知鱼-下班啦.svg";
+        img.title = "下班了就该开开心心的玩耍，嘿嘿~";
+        img.alt = "下班了就该开开心心的玩耍，嘿嘿~";
+      }
+
+      currentTimeHtml = `本站居然运行了 ${dnum} 天<span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span><i class='anzhiyufont anzhiyu-icon-heartbeat' style='color:red'></i>`;
+    }
+
+    if (document.getElementById("runtimeTextTip")) {
+      document.getElementById("runtimeTextTip").innerHTML = currentTimeHtml;
+    }
+  }
+
+  setInterval(() => {
+    updateTime();
+    updateHtml();
+  }, 1000);
+})();</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.cbd.int/mermaid@11.12.2/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  anzhiyu.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://martinleo-twikoo.hf.space',
+      region: '',
+      onCommentLoaded: () => {
+        anzhiyu.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(runFn,0)
+    else getScript('https://cdn.cbd.int/twikoo@1.6.44/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://martinleo-twikoo.hf.space',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const runFn = () => {
+    init();
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) anzhiyu.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else {
+      loadTwikoo()
+    }
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script><input type="hidden" name="page-type" id="page-type" value="post"><script async src="/js/anzhiyu/comment_barrage.js"></script></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getComment = () => {
+    const runTwikoo = () => {
+      twikoo.getRecentComments({
+        envId: 'https://martinleo-twikoo.hf.space',
+        region: '',
+        pageSize: 6,
+        includeReply: true
+      }).then(function (res) {
+        const twikooArray = res.map(e => {
+          return {
+            'content': changeContent(e.comment),
+            'avatar': e.avatar,
+            'nick': e.nick,
+            'url': e.url + '#' + e.id,
+            'date': new Date(e.created).toISOString()
+          }
+        })
+
+        saveToLocal.set('twikoo-newest-comments', JSON.stringify(twikooArray), 10/(60*24))
+        generateHtml(twikooArray)
+      }).catch(function (err) {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.textContent= "无法获取评论，请确认相关配置是否正确"
+      })
+    }
+
+    if (typeof twikoo === 'object') {
+      runTwikoo()
+    } else {
+      getScript('https://cdn.cbd.int/twikoo@1.6.44/dist/twikoo.all.min.js').then(runTwikoo)
+    }
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'data-lazy-src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'><div class='name'><span>${array[i].nick} </span></div></a>`
+        }
+        
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <time datetime="${array[i].date}">${anzhiyu.diffDate(array[i].date, true)}</time></div>
+        </div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom && ($dom.innerHTML= result)
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('twikoo-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script>var visitorMail = "visitor@anheyu.com";
+</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://cdn.cbd.int/qrcodejs@1.0.0/qrcode.min.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/dist/canvas-fluttering-ribbon.min.js"></script><script>(() => {
+  const isChatBtn = true
+  const isChatHideShow = true
+
+  if (isChatBtn) {
+    const close = () => {
+      Chatra('minimizeWidget')
+      Chatra('hide')
+    }
+
+    const open = () => {
+      Chatra('openChat', true)
+      Chatra('show')
+    }
+
+    window.ChatraSetup = {
+      startHidden: true
+    }
+  
+    window.chatBtnFn = () => {
+      const isShow = document.getElementById('chatra').classList.contains('chatra--expanded')
+      isShow ? close() : open()
+    }
+  } else if (isChatHideShow) {
+    window.chatBtn = {
+      hide: () => {
+        Chatra('hide')
+      },
+      show: () => {
+        Chatra('show')
+      }
+    }
+  }
+
+  (function(d, w, c) {
+    w.ChatraID = ''
+    var s = d.createElement('script')
+    w[c] = w[c] || function() {
+        (w[c].q = w[c].q || []).push(arguments)
+    }
+    s.async = true
+    s.src = 'https://call.chatra.io/chatra.js'
+    if (d.head) d.head.appendChild(s)
+  })(document, window, 'Chatra')
+
+})()</script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://npm.elemecdn.com/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script src="https://cdn.cbd.int/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","meta[property=\"og:type\"]","meta[property=\"og:site_name\"]","meta[property=\"og:description\"]","head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  anzhiyu.removeGlobalFnEvent('pjax')
+  anzhiyu.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div><!-- hexo injector body_end start -->
+  <script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/hexo-github-calendar@1.16/hexo_githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://calendar.liumingzhi.cn/api/?user=xichenx";
+            var git_color =['#ebedf0', '#fdcdec', '#fc9bd9', '#fa6ac5', '#f838b2', '#f5089f', '#c4067e', '#92055e', '#540336', '#48022f', '#30021f'];
+            var git_user ="xichenx";
+            var parent_div_git = document.getElementById('recent-posts');
+            var git_div_html = '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><div id="github_loading" style="height:100%;display: flex;align-items: center;justify-content: center;"><svg style="height:50px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div>';
+            if(parent_div_git && location.pathname =='/'){
+                console.log("已挂载hexo-github-calendar https://github.com/Barry-Flynn/hexo-github-calendar");
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('recent-posts')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:280px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><script data-pjax>
+  function butterfly_clock_anzhiyu_injector_config(){
+    var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+    var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img class="entered loading" id="card-clock-loading" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading"/></div></div></div></div></div>';
+    console.log('已挂载butterfly_clock_anzhiyu')
+    if(parent_div_git) {
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var qweather_key = '8585f2ef2043406faed9c976db6effce';
+  var qweather_api_host = 'nj6r6pm8pt.re.qweatherapi.com';
+  var ip_api_key = 'Kq1pRjB3WyDja7rhKcWV9f5QU8';
+  var gaud_map_key = 'c424c6bc430399b7b84c56a392b0096c';
+  var baidu_ak_key = 'undefined';
+  var flag = 0;
+  var clock_rectangle = '112.982279,28.19409';
+  var clock_default_rectangle_enable = 'false';
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  </script><script data-pjax src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"scale":1,"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true,"scale":0.5},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>

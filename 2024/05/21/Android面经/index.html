@@ -1,0 +1,1082 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>Android面经 | 心灵涂鸦</title><meta name="keywords" content="Android"><meta name="author" content="曦臣"><meta name="copyright" content="曦臣"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="Android面经"><meta name="application-name" content="Android面经"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta property="og:type" content="article"><meta property="og:title" content="Android面经"><meta property="og:url" content="https://blog.liumingzhi.cn/2024/05/21/Android面经/index.html"><meta property="og:site_name" content="心灵涂鸦"><meta property="og:description" content="Android面经一、四大组件1、Activity的生命周期 启动Activity：系统会先调用onCreate方法，然后调用onStart方法，最后调用onResume，Activity进入运行状态。 当前Activity被其他Activity覆盖其上或被锁屏：系统会调用onPause方法，暂停当"><meta property="og:locale" content="zh-CN"><meta property="og:image" content="https://unpkg.com/image-hosting-service/img/dall-e-3-android-phone-level-5-featured-image.jpg"><meta property="article:author" content="曦臣"><meta property="article:tag"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://unpkg.com/image-hosting-service/img/dall-e-3-android-phone-level-5-featured-image.jpg"><meta name="description" content="Android面经一、四大组件1、Activity的生命周期 启动Activity：系统会先调用onCreate方法，然后调用onStart方法，最后调用onResume，Activity进入运行状态。 当前Activity被其他Activity覆盖其上或被锁屏：系统会调用onPause方法，暂停当"><link rel="shortcut icon" href="/favicon.ico"><link rel="canonical" href="https://blog.liumingzhi.cn/2024/05/21/Android%E9%9D%A2%E7%BB%8F/"><link rel="preconnect" href="//cdn.cbd.int"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="google-site-verification" content="xxx"/><meta name="baidu-site-verification" content="code-xxx"/><meta name="msvalidate.01" content="xxx"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/@fortawesome/fontawesome-free@7.1.0/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@6.1.6/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/swiper/swiper.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  linkPageTop: {"enable":true,"title":"与数百名博主无限进步","addFriendPlaceholder":"昵称（请勿包含博客等字样）：\n网站地址（要求博客地址，请勿提交个人主页）：\n头像图片url（请提供尽可能清晰的图片，我会上传到我自己的图床）：\n描述：\n站点截图（可选）：\n"},
+  peoplecanvas: undefined,
+  postHeadAiDescription: {"enable":true,"gptName":"AnZhiYu","mode":"local","switchBtn":false,"btnLink":"https://afdian.net/item/886a79d4db6711eda42a52540025c377","randomNum":3,"basicWordCount":1000,"key":"xxxx","Referer":"https://xx.xx/"},
+  diytitle: {"enable":true,"leaveTitle":"w(ﾟДﾟ)w 不要走！再看看嘛！","backTitle":"♪(^∇^*)欢迎肥来！"},
+  LA51: {"enable":true,"ck":null,"LingQueMonitorID":null},
+  greetingBox: {"enable":true,"default":"晚上好👋","list":[{"greeting":"晚安😴","startTime":0,"endTime":5},{"greeting":"早上好鸭👋, 祝你一天好心情！","startTime":6,"endTime":9},{"greeting":"上午好👋, 状态很好，鼓励一下～","startTime":10,"endTime":10},{"greeting":"11点多啦, 在坚持一下就吃饭啦～","startTime":11,"endTime":11},{"greeting":"午安👋, 宝贝","startTime":12,"endTime":14},{"greeting":"🌈充实的一天辛苦啦！","startTime":14,"endTime":18},{"greeting":"19点喽, 奖励一顿丰盛的大餐吧🍔。","startTime":19,"endTime":19},{"greeting":"晚上好👋, 在属于自己的时间好好放松😌~","startTime":20,"endTime":24}]},
+  twikooEnvId: 'https://martinleo-twikoo.hf.space',
+  commentBarrageConfig:{"enable":true,"maxBarrage":1,"barrageTime":4000,"accessToken":"","mailMd5":""},
+  music_page_default: undefined,
+  root: '/',
+  preloader: {"source":3},
+  friends_vue_info: {"apiurl":"https://friends.anheyu.com/"},
+  navMusic: true,
+  mainTone: undefined,
+  authorStatus: undefined,
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: true,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"作者: 曦臣","link":"链接: ","source":"来源: 心灵涂鸦","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。","copySuccess":"复制成功，复制和转载请标注本文地址"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.2.0/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.2.0/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  shortcutKey: undefined,
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: '心灵涂鸦',
+  title: 'Android面经',
+  postAI: '',
+  pageFillDescription: 'Android面经, 一、四大组件, 1、Activity的生命周期, 2、Activity的四种启动模式, 二、View, 1、View的绘制流程, 2、MeasureSpec, 3、View的事件分发机制, 4、dp 和 sp 的区别, 三、线程与进程, 1、Bundle机制, 2、Handler机制, 3、Looper死循环为什么不会导致应用卡死即使不会的话它会慢慢的消耗越来越多的资源吗？, 4、主线程的消息循环机制是什么？, 5、Handler同步屏障是什么, 6、什么是IdleHandler？, 7、什么是HandlerThread？, 8、进程间的通信方式有哪些？, 9、ANR发生的原因及其解决办法, 四、项目架构, 1、MVC, 2、MVP, 3、MVVM, 五、Kotlin, 1、扩展函数原理, 2、协程原理面经一四大组件的生命周期启动系统会先调用方法然后调用方法最后调用进入运行状态当前被其他覆盖其上或被锁屏系统会调用方法暂停当前的执行当前由被覆盖状态回到前台或解锁屏系统会调用方法再次进入运行状态当前转到新的界面或按键回到主屏自身退居后台系统会先调用方法然后调用方法进入停滞状态用户后退回到此系统会先调用方法然后调用方法最后调用方法再次进入运行状态当前处于被覆盖状态或者后台不可见状态即第步和第步系统内存不足杀死当前而后用户退回当前再次调用方法方法方法进入运行状态用户退出当前系统先调用方法然后调用方法最后调用方法结束当前的四种启动模式标准模式如果在中不设置就默认就是新建一个就在栈中新建一个实例栈顶复用模式与相比栈顶复用可以有效减少重复创建对资源的消耗但是这要根据具体情况而定不能一概而论栈内单例模式栈内只有一个实例栈内已存实例在其他中这个直接把这个实例上面其他实例踢出栈掉堆内单例整个手机操作系统里面只有一个实例存在就是内存单例如经常调用的拨打电话系统通讯录系统锁屏键来电显示等系统应用适合需要与程序分离开的页面例如闹铃提醒将闹铃提醒与闹铃设置分离在中如果在应用内存在实例并且再次发生回到后由于并不是重新创建而是复用栈中的实例因此再获取焦点后并没调用而是直接调用了函数二的绘制流程视图绘制的起点在类的方法在这个方法内其实是按照顺序依次调用了的绘制流程分为步测量布局绘制分别对应个方法测量阶段方法会被父调用在方法中做一些优化和准备工作后会调用方法进行实际的自我测量方法在和做的事情是不一样的中的方法会计算自己的尺寸并通过保存中的方法会调用所有子的方法进行自我测量并保存然后通过子的尺寸和位置计算出自己的尺寸并保存布局阶段方法会被父调用方法会保存父传进来的尺寸和位置并调用进行实际的内部布局在和中做的事情也是不一样的因为是没有子的所以的里面什么都不做中的方法会调用所有子的方法把尺寸和位置传给他们让他们完成自我的内部布局绘制阶段方法会做一些调度工作然后会调用方法进行的自我绘制方法的调度流程大致是这样的绘制背景对应方法绘制主体对应方法绘制子对应方法绘制滑动相关和前景对应是的测量规则通常父控件要测量子控件的时候会传给子控件和这两个类型的值这个值里面包含两个信息和一个值怎么会包含两个信息呢我们知道是一个字节位的数据在这两个类型的数据中前面高位是后面低位代表了有三种类型精准模式当或为固定或者为的时候是这种测量模式当或设置为的时候是这种测量模式父容器对当前没有任何显示子可以取任意大小一般用在系统内部比如的事件分发机制在我们的手指触摸到屏幕的时候事件其实是通过这样的流程到达最后响应我们触摸事件的说到事件分发必不可少的是这几个方法接下来就按照的流程来大致说一下事件分发机制我们的手指触摸到屏幕的时候会触发一个类型的事件当前页面的会首先做出响应也就是说会走到的方法内在这个方法内部简单来说是这么一个逻辑调用如果上一步返回直接返回否则就自己的这个逻辑很好理解如果返回代表当前事件已经被处理无需调用自己的否则代表事件并没有被处理需要自己处理也就是调用自己的方法返回了一个类型的对象这个我们都知道在中是的唯一实现类所以这句本质上是调用了中的而在的这个方法中实际调用了这个就是它是的一个子类在中的中调用的是到这里就很明显了是一个的子类是一个的子类本质上调用的还是的分析到这里我们的事件已经从传递到了接下来我们来分析下中的这几个事件处理方法在中的中的逻辑大致如下通过判断当前是否拦截事件默认的都是不拦截的如果拦截则自己的如果不拦截则根据的返回值判断如果返回则否则自己的在这里实现了未处理事件的向上传递通常情况下的都返回也就是不拦截这里需要注意的是事件序列比如事件事件事件从到是一个完整的事件序列对应着手指从按下到抬起这一系列的事件如果拦截了事件那么后续事件都会交给这个的如果拦截的不是事件那么会给之前处理这个事件的发送一个类型的事件通知子这个后续的事件序列已经被接管了子恢复之前的状态即可这里举一个常见的例子在一个钟有很多的我们首先按下了一个然后滑动一段距离再松开这时候会跟着滑动并不会触发这个的点击事件这个例子中当我们按下时这个接收到了事件正常情况下后续的事件序列应该由这个处理但我们滑动了一段距离这时察觉到这是一个滑动操作拦截了这个事件序列走了自身的方法反映在屏幕上就是列表的滑动而这时仍然处于按下的状态所以在拦截的时候需要发送一个来通知恢复之前状态事件分发最终会走到的中在的中没有这也很容易理解不是不会包含其他子所以也不存在拦截不拦截这一说忽略一些细节的中直接了自己的如果返回代表事件被处理否则未处理的事件会向上传递直到有处理了事件或者一直没有处理最终到达了的终止这里经常有人问和的区别首先这两个方法都在的中是这么一个逻辑如果不为并且这个是的而且返回的是满足这三个条件时会直接不会走方法上面只要有一个条件不满足就会走到方法中所以的顺序是在之前的和的区别一种基于屏幕密度的抽象单位在每英寸点的显示器上不同设备有不同的显示效果这个和设备硬件有关主要用于字体显示与刻度无关的一种像素与类似但会随着系统的字体大小改变三线程与进程机制实现了接口所以他可以方便的在不同进程间传输这里要注意我们传输的数据必须能够被序列化使用场景状态数据的保存与恢复涉及到的两个回调的方法消息机制中的的方法底层使用的是这个集合类存储的也是键值对但是与不同的是采用的是数组链表的方式存储而中使用的是两个数组进行存储一个数组存储一个数组存储内部的增删改查都将会使用二分查找来进行这个和差不多只不过的值只能是型的而可以是型所以在数据量不大的情况下可以使用这两个集合代替去优化性能机制的作用是负责跨线程通信这是因为在主线程不能做耗时操作而子线程不能更新所以当子线程中进行耗时操作后需要更新时通过将有关的操作切换到主线程中执行说到就不得不提与之密切相关的这几个类中有两个成员变量值得关注和其实就是发送消息的对象是当调用时传入的类型的任务事件的本质也是创建了一个将我们传入的这个赋值给创建的的这个成员变量消息队列很明显是存放消息的队列值得关注的是中的方法它会返回下一个待处理的消息消息轮询器其实是连接和消息队列的核心如果想要在一个线程中创建一个首先要通过创建之后还得调用开启轮询这个方法做了两件事首先通过获取当前线程中的如果不为空则会抛出一个意思是一个线程不能创建个如果为则执行下一步第二步是创建了一个并通过将我们创建的与当前线程绑定这里需要提一下的是消息队列的创建其实就发生在的构造方法中这个方法开启了整个事件机制的轮询它的本质是开启了一个死循环不断的通过的方法获取消息拿到消息后会调用来做处理其实我们在说到的时候提到过其实就是发送这个消息的这句代码的本质就是调用的的分析着重在两个部分发送消息和处理消息发送消息其实发送消息除了之外还有和以及等等不同的方式但它们的本质都是调用了在这个方法中调用了在这个方法中做了两件事通过实现了消息与当前的绑定然后通过实现了消息入队处理消息消息处理的核心其实就是这个方法这个方法里面的逻辑很简单先判断是否为如果不为空则执行这个如果为空则会执行我们的方法死循环为什么不会导致应用卡死即使不会的话它会慢慢的消耗越来越多的资源吗对于线程即是一段可执行的代码当可执行代码执行完成后线程生命周期便该终止了线程退出而对于主线程我们是绝不希望会被运行一段时间自己就退出那么如何保证能一直存活呢简单做法就是可执行代码是能一直执行下去的死循环便能保证不会被退出例如线程也是采用死循环的方法通过循环方式不同与驱动进行读写操作当然并非简单地死循环无消息时会休眠但这里可能又引发了另一个问题既然是死循环又如何去处理其他事务呢通过创建新线程的方式真正会卡死主线程的操作是在回调方法等操作时间过长会导致掉帧甚至发生本身不会导致应用卡死主线程的死循环一直运行是不是特别消耗资源呢其实不然这里就涉及到机制简单说就是在主线程的没有消息时便阻塞在的中的方法里此时主线程会释放资源进入休眠状态直到下个消息到达或者有事务发生通过往管道写端写入数据来唤醒主线程工作这里采用的机制是一种多路复用机制可以同时监控多个描述符当某个描述符就绪读或写就绪则立刻通知相应程序进行读或写操作本质同步即读写是阻塞的所以说主线程大多数时候都是处于休眠状态并不会消耗大量资源主线程的消息循环机制是什么事实上会在进入死循环之前便创建了新线程在代码中创建和对象用于处理主线程的消息创建对象建立通道创建新线程消息循环运行的生命周期都是依靠主线程的当收到不同时则采用相应措施一旦退出消息循环那么你的程序也就可以退出了从消息队列中取消息可能会阻塞取到消息会做出相应的处理如果某个消息处理时间过长就可能会影响线程的刷新速率造成卡顿的现象方法函数中便会创建一个线程具体是指的服务端用于接收系统服务发送来的事件该线程通过将发送给主线程启动过程比如收到则调用方法最终会通过反射机制创建实例然后再执行等方法再比如收到则调用方法最终会执行等方法主线程的消息又是哪来的呢当然是进程中的其他线程通过发送给主线程进程同步屏障是什么种类的种类分为种普通消息屏障消息异步消息其中普通消息又称为同步消息屏障消息又称为同步屏障我们通常使用的都是普通消息而屏障消息就是在消息队列中插入一个屏障在屏障之后的所有普通消息都会被挡着不能被处理不过异步消息却例外屏障不会挡住异步消息因此可以这样认为屏障消息就是为了确保异步消息的优先级设置了屏障后只能处理其后的异步消息同步消息会被挡住除非撤销屏障屏障消息如何插入消息队列同步屏障是通过的方法插入到消息队列的源码如下屏障消息和普通消息的区别是屏障消息没有根据时间顺序将屏障插入到消息链表中适当的位置返回一个序号通过这个序号可以撤销屏障方法就是用来插入一个屏障到消息队列的可以看到它很简单从这个方法我们可以知道如下屏障消息和普通消息的区别在于屏障没有普通消息有是因为它需要将消息分发给对应的而屏障不需要被分发它就是用来挡住普通消息来保证异步消息优先处理的屏障和普通消息一样可以根据时间来插入到消息队列中的适当位置并且只会挡住它后面的同步消息的分发返回一个类型的数值通过这个数值可以撤销屏障方法是私有的如果我们想调用它就得使用反射插入普通消息会唤醒消息队列但是插入屏障不会屏障消息的工作原理我们知道是通过方法来获取消息的如果有消息被插入到消息队列或者超时时间到就被唤醒否则阻塞在这遇到屏障遍历消息链表找到最近的一条异步消息如果找到异步消息异步消息还没到处理时间就在等会超时时间异步消息到了处理时间就从链表移除返回它如果没有异步消息就一直休眠等待被唤醒在注释如果碰到屏障就遍历整个消息链表找到最近的一条异步消息在遍历的过程中只有异步消息才会被处理执行到中的代码屏障消息就是通过这种方式就挡住了所有的普通消息同步屏障的作用我们的手机屏幕刷新频率有不同的类型等表示屏幕在一秒内刷新次也就是每隔刷新一次屏幕会在每次刷新的时候发出一个信号通知进行绘制计算具体到我们的代码中可以认为就是执行这些方法绘制的起点是在方法开始这个方法会去执行上面的三大绘制任务就是测量布局绘制但是调用方法之后并不会马上开始进行绘制任务而是会给主线程设置一个同步屏障并设置信号监听当信号的到来会发送一个异步消息到主线程执行我们上一步设置的绘制监听任务并移除同步屏障什么是介绍是内定义的一个接口一般可用于做性能优化当消息队列内没有需要立即执行的时会主动触发的方法返回值为即只会执行一次返回值为即每次当消息队列内没有需要立即执行的消息时都会触发该方法使用方式通过获取对应的队列注册监听源码解析的执行源码很短隐藏无关代码隐藏无关代码在里方法的死循环内获取的数量通过判断当前消息队列为空或者目前没有需要执行的消息时给赋值当数量大于遍历取出数组内的执行返回值为时主动移除监听使用场景如果启动的内含有大量数据和视图的加载导致首次打开时动画切换卡顿或者一瞬间白屏可将部分加载逻辑放到内处理例如引导图的加载和弹窗提示等系统源码中的在某些场景等待消息队列暂时空闲时会尝试执行操作系统源码中的在方法内会注册等待后视图绘制完成消息队列暂时空闲时再调用的方法检查页面的生命周期状态触发的生命周期等这也是为什么我们跳转时生命周期的会在的后一些第三方框架和等也使用到什么是本质上是一个线程类它继承了有自己的内部对象可以进行循环通过获取的对象传递给对象可以在方法中执行异步任务创建后必须先调用方法会先调用方法创建对象其实就是在一个子线程内部自己创建并管理了一个如果经常要开启线程接着又是销毁线程这是很耗性能的很好的解决了这个问题由于异步操作是放在的消息队列中的所以是串行的但只适合并发量较少的耗时操作进程间的通信方式有哪些传递数据可传递基本类型实现了或接口的数据结构是的序列化方法是的序列化方法前者代码量少仅一句但开销较大一般用于输出到磁盘或网卡后者实现代码多效率高一般用户内存间序列化和反序列化传输文件共享对同一个文件先后写读从而实现传输机制下可以对文件并发写所以要注意同步顺便一提下不支持并发读或写是基于实现的服务端被动方提供一个来处理客户端主动方连接维护一个来创建在时返回的通过定义服务端暴露的接口以提供给客户端来调用使服务器可以并行处理而封装了之后只能串行运行所以一般用作消息传递通过编写文件来设计想要暴露的接口编译后会自动生成响应的文件服务器将接口的具体实现写在中用对象传递给客户端客户端的时候用的形式将还原成接口再调用其中的方法系统四大组件之一底层也是实现主要用来为其他提供数据可以说天生就是为进程通信而生的自己实现一个需要实现个方法其中是主线程中回调的其他方法是运行在之中的自定义的注册时要提供属性应用需要访问的时候将属性包装成还可以设置来设置权限有等方法看起来貌似是一个数据库管理类但其实可以用文件内存数据等等一切来充当数据源返回的是一个可以自定义继承的类来实现发生的原因及其解决办法的全称是是指应用程序未响应系统对于一些事件需要在一定的时间范围内完成如果超过预定时间能未能得到有效响应或者响应时间过长都会造成一般地这时往往会弹出一个提示框告知用户当前未响应用户可选择继续等待或者首先的发生是有条件限制的分为以下三点只有主线程才会产生主线程就是线程必须发生某些输入事件或特定操作比如按键或触屏等输入事件在或的各个生命周期调用函数上述事件响应超时不同的规定的上限时间不同主线程对输入事件秒内没有处理完毕主线程在执行的函数时秒内没有处理完毕主线程在前台的各个生命周期函数时秒内没有处理完毕后台那么导致的根本原因是什么呢简单的总结有以下两点主线程执行了耗时操作比如数据库操作或网络编程操作其他进程就是其他程序占用导致本进程得不到时间片比如其他进程的频繁读写操作可能会导致这个问题那么如何避免的发生呢或者说的解决办法是什么呢避免在主线程执行耗时操作所有耗时操作应新开一个子线程完成然后再在主线程更新要执行耗时操作时应启动一个将耗时操作交给来完成避免在里启动一个因为它会创建一个新的画面并从当前用户正在运行的程序上抢夺焦点如果你的应用程序在响应广播时需要向用户展示什么你应该使用来实现四项目架构模型层负责处理数据的加载或者存储视图层负责界面数据的展示与用户进行交互控制器层负责逻辑业务的处理在模式中层可以直接访问层和层所以层包含层信息和层的业务逻辑处理优点耦合性低生命周期成本低部署快可维护性高适用于快速开发的小型项目缺点不适合大型中等项目层层连接过于紧密层对层的访问效率低一般的高级页面工具和构造器不支持模式注意和既有的性质又具有的性质导致和很重中层与层直接交互所以和与的耦合性很高数据层负责对数据的存取操作例如对数据库的读写网络的数据的请求等视图层负责对数据的展示提供友好的界面与用户进行交互通常将或者作为层控制器层连接层与层的桥梁并对业务逻辑进行处理执行流程层收到用户的操作层把用户的操作交给直接操作层进行业务逻辑处理层处理完毕后通知收到通知后去更新层在模式中与无法直接进行交互所以层会从层获得数据适当处理后交给层进行显示层将层和层进行隔离使和之间不存在耦合同时将业务逻辑从层剥离优点模型与视图完全分离修改而不可以更高效的使用所有的交互都发生在内部将一个用于多个视图而不需要改变的逻辑变化比变化频繁逻辑结构清晰层代码不再臃肿缺点模式基于接口设计会增加很多类代码逻辑虽然清晰但代码量庞大适用于中小型项目大型项目慎用和的主要区别中与并不直接交互而是通过与交互来与间接交互中是基于行为的并且可以被多个共享可以负责决定显示哪个中与的交互是通过接口来进行的更有利于添加单元测试中可以与直接交互通常与是一对一的但复杂的可能绑定多个来处理逻辑注意中将这三层分别抽象到各自的接口当中通过接口将层次之间进行隔离对和的相互依赖也是依赖于各自的接口符合了接口隔离原则层中包含了一个接口并且依赖于接口从而将层与层联系在一起层会持有一个成员变量并且只保留对接口的调用具体业务逻辑全部交由接口实现类中处理模型实体模型定义实体类获取业务数据模型如通过数据库或者网络来操作数据等视图布局文件主要进行控件的初始化设置控制器连接与的中间桥梁与直接交互通过将数据变化反应给注可以理解为与的合成体优点低耦合模式中数据处理逻辑是独立于层的只负责提供数据和处理数据不会持有层的引用层只负责对数据变化的监听不会处理任何跟数据相关的逻辑层的发生变化时也不需要像模式那样修改对应接口和方法实现一般情况下不需要做太多的改动数据驱动的展现是依赖于数据的数据的变化会自然的引发的变化而的改变也会使数据进行对应的更新只需要处理数据而层只需要监听并使用数据进行更新异步线程更新数据可以在异步线程中发生变化此时调用者不需要做额外的处理数据绑定框架会将异步线程中数据的变化通知到线程中交给去更新方便协作层和逻辑层几乎没有耦合在团队协作的过程中可以一个人负责一个人负责数据处理并行开发保证开发进度易于单元测试层只负责处理数据在进行单元测试时测试不需要构造一个等来进行数据层的测试层也一样只需要输入指定格式的数据即可进行测试而且两者相互独立不会互相影响数据复用层对数据的获取和处理逻辑尤其是使用模式时获取数据的逻辑完全是可以复用的开发者可以在不同的模块多次方便的获取同一份来源的数据同样的一份数据在版本功能迭代时逻辑层不需要改变只需要改变层即可五扩展函数原理扩展函数实际上就是一个对应中的静态函数这个静态函数参数为接收者类型的对象然后利用这个对象就可以访问这个类中的成员属性和方法了并且最后返回一个这个接收者类型对象本身这样在外部感觉和使用类的成员函数是一样的这个类名就是顶层文件名后缀扩展函数对应实际上是中的静态函数并且传入一个接收者类型对象作为参数设置加粗最后返回这个接收者对象自身以致于我们在中完全可以使用替代接收者对象或者直接不写协程原理',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-04-26 11:30:02',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.css" /><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.1"></head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><img class="loading-img nolazyload" alt="加载头像" src="https://image.liumingzhi.cn/file/859f0131ef9e8d043e44e.png"/><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.getElementById('loading-box').classList.add("loaded");
+  },
+  initLoading: () => {
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+setTimeout(function(){preloader.endLoading();},10000)
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.10/progress_bar/progress_bar.css"/><script async="async" src="https://cdn.cbd.int/pace-js@1.2.4/pace.min.js" data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}"></script><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><div class="back-home-button"><i class="anzhiyufont anzhiyu-icon-grip-vertical"></i><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" href="https://blog.liumingzhi.cn/" title="博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://qexo.liumingzhi.cn" title="Qexo后台"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.liumingzhi.cn/file/14dbd2629a9b1bb9a85a2.jpg" alt="Qexo后台"/><span class="back-menu-item-text">Qexo后台</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">博客路线</div><div class="back-menu-list"><a class="back-menu-item" href="https://blog.liumingzhi.cn/" title="主路线"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="主路线"/><span class="back-menu-item-text">主路线</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://vercel.liumingzhi.cn/" title="Vercel路线"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.liumingzhi.cn/file/7e8b03d953ce5e9005cb8.jpg" alt="Vercel路线"/><span class="back-menu-item-text">Vercel路线</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://image.liumingzhi.cn" title="图床"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.liumingzhi.cn/file/25ae14abec33eedb1ac32.png" alt="图床"/><span class="back-menu-item-text">图床</span></a></div></div></div></div><a id="site-name" href="/" accesskey="h"><div class="title">心灵涂鸦</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a><div id="he-plugin-simple"></div><script>var WIDGET = {
+  "CONFIG": {
+    "modules": "0124",
+    "background": "2",
+    "tmpColor": "FFFFFF",
+    "tmpSize": "16",
+    "cityColor": "FFFFFF",
+    "citySize": "16",
+    "aqiColor": "E8D87B",
+    "aqiSize": "16",
+    "weatherIconSize": "24",
+    "alertIconSize": "18",
+    "padding": "10px 10px 10px 10px",
+    "shadow": "0",
+    "language": "auto",
+    "borderRadius": "20",
+    "fixed": "true",
+    "vertical": "top",
+    "horizontal": "left",
+    "left": "20",
+    "top": "7.1",
+    "key": "df245676fb434a0691ead1c63341cd94"
+  }
+}
+</script><link rel="stylesheet" href="https://widget.qweather.net/simple/static/css/he-simple.css?v=1.4.0"/><script src="https://widget.qweather.net/simple/static/js/he-simple.js?v=1.4.0"></script></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 友链</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人帐</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/fcircle/"><i class="anzhiyufont anzhiyu-icon-artstation faa-tada" style="font-size: 0.9em;"></i><span> 朋友圈</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/"><i class="anzhiyufont anzhiyu-icon-music faa-tada" style="font-size: 0.9em;"></i><span> 音乐馆</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/bangumis/"><i class="anzhiyufont anzhiyu-icon-bilibili faa-tada" style="font-size: 0.9em;"></i><span> 追番页</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/album/"><i class="anzhiyufont anzhiyu-icon-images faa-tada" style="font-size: 0.9em;"></i><span> 相册集</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/air-conditioner/"><i class="anzhiyufont anzhiyu-icon-fan faa-tada" style="font-size: 0.9em;"></i><span> 小空调</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 游戏厅</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/game/2048"><i class="anzhiyufont anzhiyu-icon-fire faa-tada" style="font-size: 0.9em;"></i><span> 2048</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/game/mf"><i class="anzhiyufont anzhiyu-icon-fire faa-tada" style="font-size: 0.9em;"></i><span> 魔方</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/game/sl"><i class="anzhiyufont anzhiyu-icon-fire faa-tada" style="font-size: 0.9em;"></i><span> 扫雷</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/game/wzq"><i class="anzhiyufont anzhiyu-icon-fire faa-tada" style="font-size: 0.9em;"></i><span> 五子棋</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/game/txz"><i class="anzhiyufont anzhiyu-icon-fire faa-tada" style="font-size: 0.9em;"></i><span> 推箱子</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li></ul></div></div></div><div id="nav-right"><div class="nav-button only-home" id="travellings_button" title="随机前往一个开往项目网站"><a class="site-page" onclick="anzhiyu.totraveling()" title="随机前往一个开往项目网站" href="javascript:void(0);" rel="external nofollow" data-pjax-state="external"><i class="anzhiyufont anzhiyu-icon-train"></i></a></div><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><div class="nav-button" id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" title="搜索🔍" accesskey="s"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span> 搜索</span></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="https://image.liumingzhi.cn/file/1ac25b4ee273216e58887.png" target="_blank"><img class="post-qr-code-img" alt="微信" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.liumingzhi.cn/file/1ac25b4ee273216e58887.png"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://image.liumingzhi.cn/file/0dd29dcb00dff55ddef7b.png" target="_blank"><img class="post-qr-code-img" alt="支付宝" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.liumingzhi.cn/file/0dd29dcb00dff55ddef7b.png"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> 最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/Android/" style="font-size: 1.05rem; color: rgb(189, 84, 113);">Android<sup>4</sup></a><a href="/tags/ArkTS/" style="font-size: 1.05rem; color: rgb(18, 187, 156);">ArkTS<sup>1</sup></a><a href="/tags/Flutter/" style="font-size: 1.05rem; color: rgb(89, 105, 200);">Flutter<sup>2</sup></a><a href="/tags/HarmonyOS/" style="font-size: 1.05rem; color: rgb(182, 147, 197);">HarmonyOS<sup>2</sup></a><a href="/tags/KMP/" style="font-size: 1.05rem; color: rgb(16, 177, 13);">KMP<sup>1</sup></a><a href="/tags/Kotlin/" style="font-size: 1.05rem; color: rgb(95, 65, 146);">Kotlin<sup>2</sup></a><a href="/tags/Router/" style="font-size: 1.05rem; color: rgb(21, 152, 104);">Router<sup>1</sup></a><a href="/tags/java/" style="font-size: 1.05rem; color: rgb(24, 19, 131);">java<sup>1</sup></a><a href="/tags/%E5%AE%9E%E4%B9%A0/" style="font-size: 1.05rem; color: rgb(134, 63, 102);">实习<sup>2</sup></a><a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 1.05rem; color: rgb(129, 38, 139);">网络<sup>1</sup></a><a href="/tags/%E8%AE%A1%E7%BD%91/" style="font-size: 1.05rem; color: rgb(144, 127, 1);">计网<sup>1</sup></a><a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 1.05rem; color: rgb(115, 115, 43);">设计模式<sup>1</sup></a><a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 1.05rem; color: rgb(71, 157, 67);">面试<sup>2</sup></a><a href="/tags/%E9%AB%98%E6%96%B0%E5%85%B4/" style="font-size: 1.05rem; color: rgb(105, 30, 74);">高新兴<sup>2</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="anzhiyufont anzhiyu-icon-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/09/"><span class="card-archive-list-date">九月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/01/"><span class="card-archive-list-date">一月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/12/"><span class="card-archive-list-date">十二月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/09/"><span class="card-archive-list-date">九月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/08/"><span class="card-archive-list-date">八月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/07/"><span class="card-archive-list-date">七月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">4</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/06/"><span class="card-archive-list-date">六月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">7</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/05/"><span class="card-archive-list-date">五月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">5</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div><div class="console-btn-item on" id="consoleCommentBarrage" onclick="anzhiyu.switchCommentBarrage()" title="热评开关"><a class="commentBarrage"><i class="anzhiyufont anzhiyu-icon-message"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="anzhiyu.musicToggle()" title="音乐开关"><a class="music-switch"><i class="anzhiyufont anzhiyu-icon-music"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="post-meta-categories"><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/Android/" itemprop="url">Android</a></span><span class="article-meta tags"><a class="article-meta__tags" href="/tags/Android/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>Android</span></a></span></div></div><h1 class="post-title" itemprop="name headline">Android面经</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2024-05-21T00:20:04.000Z" title="发表于 2024-05-21 08:20:04">2024-05-21</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2026-04-26T03:30:02.936Z" title="更新于 2026-04-26 11:30:02">2026-04-26</time></span></div><div class="meta-secondline"><span class="post-meta-separator"></span><span class="post-meta-wordcount"><i class="anzhiyufont anzhiyu-icon-file-word post-meta-icon" title="文章字数"></i><span class="post-meta-label" title="文章字数">字数总计:</span><span class="word-count" title="文章字数">9k</span><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-clock post-meta-icon" title="阅读时长"></i><span class="post-meta-label" title="阅读时长">阅读时长:</span><span>30分钟</span></span><span class="post-meta-separator"></span><span class="post-meta-pv-cv" id="" data-flag-title="Android面经"><i class="anzhiyufont anzhiyu-icon-fw-eye post-meta-icon"></i><span class="post-meta-label" title="阅读量">阅读量:</span><span id="busuanzi_value_page_pv"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></span><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为长沙"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>长沙</span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src="https://unpkg.com/image-hosting-service/img/dall-e-3-android-phone-level-5-featured-image.jpg"></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container" itemscope itemtype="https://blog.liumingzhi.cn/2024/05/21/Android%E9%9D%A2%E7%BB%8F/"><header><a class="post-meta-categories" href="/categories/Android/" itemprop="url">Android</a><a href="/tags/Android/" tabindex="-1" itemprop="url">Android</a><h1 id="CrawlerTitle" itemprop="name headline">Android面经</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">曦臣</span><time itemprop="dateCreated datePublished" datetime="2024-05-21T00:20:04.000Z" title="发表于 2024-05-21 08:20:04">2024-05-21</time><time itemprop="dateCreated datePublished" datetime="2026-04-26T03:30:02.936Z" title="更新于 2026-04-26 11:30:02">2026-04-26</time></header><h1 id="Android面经"><a href="#Android面经" class="headerlink" title="Android面经"></a>Android面经</h1><h2 id="一、四大组件"><a href="#一、四大组件" class="headerlink" title="一、四大组件"></a>一、四大组件</h2><h3 id="1、Activity的生命周期"><a href="#1、Activity的生命周期" class="headerlink" title="1、Activity的生命周期"></a>1、Activity的生命周期</h3><ol>
+<li>启动Activity：系统会先调用<strong>onCreate</strong>方法，然后调用<strong>onStart</strong>方法，最后调用<strong>onResume</strong>，Activity进入运行状态。</li>
+<li>当前Activity被其他Activity覆盖其上或被锁屏：系统会调用<strong>onPause</strong>方法，暂停当前Activity的执行。</li>
+<li>当前Activity由被覆盖状态回到前台或解锁屏：系统会调用<strong>onResume</strong>方法，再次进入运行状态。</li>
+<li>当前Activity转到新的Activity界面或按Home键回到主屏，自身退居后台：系统会先调用<strong>onPause</strong>方法，然后调用<strong>onStop</strong>方法，进入停滞状态。</li>
+<li>用户后退回到此Activity：系统会先调用<strong>onRestart</strong>方法，然后调用<strong>onStart</strong>方法，最后调用<strong>onResume</strong>方法，再次进入运行状态。</li>
+<li>当前Activity处于被覆盖状态或者后台不可见状态，即第2步和第4步，系统内存不足，杀死当前Activity，而后用户退回当前Activity：再次调用<strong>onCreate</strong>方法、<strong>onStart</strong>方法、<strong>onResume</strong>方法，进入运行状态。</li>
+<li>用户退出当前Activity：系统先调用<strong>onPause</strong>方法，然后调用<strong>onStop</strong>方法，最后调用<strong>onDestory</strong>方法，结束当前Activity。</li>
+</ol>
+<h3 id="2、Activity的四种启动模式"><a href="#2、Activity的四种启动模式" class="headerlink" title="2、Activity的四种启动模式"></a>2、Activity的四种启动模式</h3><ul>
+<li><strong>standard（标准模式）</strong>：如果在mainfest中不设置就默认standard。standard就是新建一个Activity就在栈中新建一个activity实例；</li>
+<li><strong>singleTop（栈顶复用模式）</strong>：与standard相比栈顶复用可以有效减少activity重复创建对资源的消耗，但是这要根据具体情况而定，不能一概而论；</li>
+<li><strong>singleTask（栈内单例模式）</strong>：栈内只有一个activity实例，栈内已存activity实例，在其他activity中start这个activity，Android直接把这个实例上面其他activity实例踢出栈GC掉；</li>
+<li><strong>singleInstance（堆内单例）</strong> ：整个手机操作系统里面只有一个实例存在就是内存单例；如APP经常调用的拨打电话、系统通讯录、系统Launcher、锁屏键、来电显示等系统应用。singleInstance适合需要与程序分离开的页面。例如闹铃提醒，将闹铃提醒与闹铃设置分离。</li>
+</ul>
+<p>在singleTop、singleTask、singleInstance 中如果在应用内存在Activity实例，并且再次发生startActivity(Intent intent)回到Activity后,由于并不是重新创建Activity而是复用栈中的实例，因此Activity再获取焦点后并没调用onCreate、onStart，而是直接调用了onNewIntent(Intent intent)函数。</p>
+<h2 id="二、View"><a href="#二、View" class="headerlink" title="二、View"></a>二、View</h2><h3 id="1、View的绘制流程"><a href="#1、View的绘制流程" class="headerlink" title="1、View的绘制流程"></a>1、View的绘制流程</h3><p>视图绘制的起点在 ViewRootImpl 类的 <code>performTraversals()</code>方法，在这个方法内其实是按照顺序依次调用了 <code>mView.measure()、mView.layout()、mView.draw()</code></p>
+<p>View的绘制流程分为3步：测量、布局、绘制，分别对应3个方法 measure、layout、draw</p>
+<ul>
+<li><strong>测量阶段</strong>：measure 方法会被父 View 调用，在measure 方法中做一些优化和准备工作后会调用 onMeasure 方法进行实际的自我测量。onMeasure方法在View和ViewGroup做的事情是不一样的：<ul>
+<li><strong>View</strong>：View 中的 onMeasure 方法会计算自己的尺寸并通过 setMeasureDimension 保存。</li>
+<li><strong>ViewGroup</strong>： ViewGroup 中的 onMeasure 方法会调用所有子 View的measure 方法进行自我测量并保存。然后通过子View的尺寸和位置计算出自己的尺寸并保存。</li>
+</ul>
+</li>
+<li><strong>布局阶段</strong>：layout 方法会被父View调用，layout 方法会保存父 View 传进来的尺寸和位置，并调用 onLayout 进行实际的内部布局。onLayout 在 View 和 ViewGroup 中做的事情也是不一样的：<ul>
+<li><strong>View</strong>： 因为 View 是没有子 View 的，所以View的onLayout里面什么都不做。</li>
+<li><strong>ViewGroup</strong> ：ViewGroup 中的 onLayout 方法会调用所有子 View 的 layout 方法，把尺寸和位置传给他们，让他们完成自我的内部布局。</li>
+</ul>
+</li>
+<li><strong>绘制阶段</strong>：draw 方法会做一些调度工作，然后会调用 onDraw 方法进行 View 的自我绘制。draw 方法的调度流程大致是这样的：<ul>
+<li><strong>绘制背景</strong>：对应 <code>drawBackground(Canvas)</code>方法。</li>
+<li><strong>绘制主体</strong>：对应 <code>onDraw(Canvas)</code>方法。</li>
+<li><strong>绘制子View</strong>： 对应 <code>dispatchDraw(Canvas)</code>方法。</li>
+<li><strong>绘制滑动相关和前景</strong>： 对应 <code>onDrawForeground(Canvas)</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="2、MeasureSpec"><a href="#2、MeasureSpec" class="headerlink" title="2、MeasureSpec"></a>2、MeasureSpec</h3><p>MeasureSpec 是 View 的测量规则。通常父控件要测量子控件的时候，会传给子控件 widthMeasureSpec 和 heightMeasureSpec 这两个 int 类型的值。这个值里面包含两个信息，<strong>SpecMode</strong> 和 <strong>SpecSize</strong>。一个 int 值怎么会包含两个信息呢？我们知道 int 是一个4字节32位的数据，在这两个 int 类型的数据中，前面高2位是 <strong>SpecMode</strong> ，后面低30位代表了  <strong>SpecSize</strong>。mode 有三种类型：<code>UNSPECIFIED</code>，<code>EXACTLY</code>，<code>AT_MOST</code></p>
+<ul>
+<li><strong>EXACTLY</strong>：精准模式，当 width 或 height 为固定 xxdp 或者为 MACH_PARENT 的时候，是这种测量模式</li>
+<li><strong>AT_MOST</strong>：当 width 或 height 设置为 warp_content 的时候，是这种测量模式</li>
+<li><strong>UNSPECIFIED</strong>：父容器对当前 View 没有任何显示，子 View 可以取任意大小。一般用在系统内部，比如：Scrollview、ListView。</li>
+</ul>
+<h3 id="3、View的事件分发机制"><a href="#3、View的事件分发机制" class="headerlink" title="3、View的事件分发机制"></a>3、View的事件分发机制</h3><p>在我们的手指触摸到屏幕的时候，事件其实是通过 <code>Activity -&gt; ViewGroup -&gt; View</code> 这样的流程到达最后响应我们触摸事件的 View。</p>
+<p>说到事件分发，必不可少的是这几个方法：<code>dispatchTouchEvent()、onInterceptTouchEvent()、onTouchEvent。</code>接下来就按照<code>Activity -&gt; ViewGroup -&gt; View</code> 的流程来大致说一下事件分发机制。</p>
+<p>我们的手指触摸到屏幕的时候，会触发一个 Action_Down 类型的事件，当前页面的 Activity 会首先做出响应，也就是说会走到 Activity 的 <code>dispatchTouchEvent()</code> 方法内。在这个方法内部简单来说是这么一个逻辑：</p>
+<ul>
+<li>调用 <code>getWindow.superDispatchTouchEvent()。</code></li>
+<li>如果上一步返回 true，直接返回 true；否则就 return 自己的 <code>onTouchEvent()。</code> 这个逻辑很好理解，<code>getWindow().superDispatchTouchEvent()</code> 如果返回 true 代表当前事件已经被处理，无需调用自己的 onTouchEvent；否则代表事件并没有被处理，需要 Activity 自己处理，也就是调用自己的 onTouchEvent。</li>
+</ul>
+<p><code>getWindow()</code>方法返回了一个 Window 类型的对象，这个我们都知道，在 Android 中，PhoneWindow 是Window 的唯一实现类。所以这句本质上是调用了<code>PhoneWindow</code>中的<code>superDispatchTouchEvent()</code>。</p>
+<p>而在 PhoneWindow 的这个方法中实际调用了<code>mDecor.superDispatchTouchEvent(event)</code>。这个 mDecor 就是 DecorView，它是 FrameLayout 的一个子类，在 DecorView 中的 <code>superDispatchTouchEvent()</code> 中调用的是 <code>super.dispatchTouchEvent()</code>。到这里就很明显了，DecorView 是一个 FrameLayout 的子类，FrameLayout 是一个 ViewGroup 的子类，本质上调用的还是 <code>ViewGroup的dispatchTouchEvent()</code>。</p>
+<p>分析到这里，我们的事件已经从 Activity 传递到了 ViewGroup，接下来我们来分析下 ViewGroup 中的这几个事件处理方法。</p>
+<p>在 ViewGroup 中的 <code>dispatchTouchEvent()</code>中的逻辑大致如下：</p>
+<ul>
+<li>通过 <code>onInterceptTouchEvent()</code> 判断当前 ViewGroup 是否拦截事件，默认的 ViewGroup 都是不拦截的；</li>
+<li>如果拦截，则 return 自己的 <code>onTouchEvent()</code>；</li>
+<li>如果不拦截，则根据 <code>child.dispatchTouchEvent()</code>的返回值判断。如果返回 true，则 return true；否则 return 自己的 <code>onTouchEvent()</code>，在这里实现了未处理事件的向上传递。</li>
+</ul>
+<p>通常情况下 ViewGroup 的 <code>onInterceptTouchEvent()</code>都返回 false，也就是不拦截。这里需要注意的是事件序列，比如 Down 事件、Move 事件……Up事件，从 Down 到 Up 是一个完整的事件序列，对应着手指从按下到抬起这一系列的事件，如果 ViewGroup 拦截了 Down 事件，那么后续事件都会交给这个 ViewGroup的onTouchEvent。如果 ViewGroup 拦截的不是 Down 事件，那么会给之前处理这个 Down 事件的 View 发送一个 Action_Cancel 类型的事件，通知子 View 这个后续的事件序列已经被 ViewGroup 接管了，子 View 恢复之前的状态即可。</p>
+<p>这里举一个常见的例子：在一个 Recyclerview 钟有很多的 Button，我们首先按下了一个 button，然后滑动一段距离再松开，这时候 Recyclerview 会跟着滑动，并不会触发这个 button 的点击事件。这个例子中，当我们按下 button 时，这个 button 接收到了 Action_Down 事件，正常情况下后续的事件序列应该由这个 button处理。但我们滑动了一段距离，这时 Recyclerview 察觉到这是一个滑动操作，拦截了这个事件序列，走了自身的 <code>onTouchEvent()</code>方法，反映在屏幕上就是列表的滑动。而这时 button 仍然处于按下的状态，所以在拦截的时候需要发送一个 Action_Cancel 来通知 button 恢复之前状态。</p>
+<p>事件分发最终会走到 View 的 <code>dispatchTouchEvent()</code>中。在 View 的 <code>dispatchTouchEvent()</code> 中没有 <code>onInterceptTouchEvent()</code>，这也很容易理解，View 不是 ViewGroup，不会包含其他子 View，所以也不存在拦截不拦截这一说。忽略一些细节，View 的 <code>dispatchTouchEvent()</code>中直接 return 了自己的 <code>onTouchEvent()</code>。如果 <code>onTouchEvent()</code>返回 true 代表事件被处理，否则未处理的事件会向上传递，直到有 View 处理了事件或者一直没有处理，最终到达了 Activity 的 <code>onTouchEvent()</code> 终止。</p>
+<p>这里经常有人问 onTouch 和 onTouchEvent 的区别。首先，这两个方法都在 View 的 <code>dispatchTouchEvent()</code>中，是这么一个逻辑：</p>
+<ul>
+<li>如果 touchListener 不为 null，并且这个 View 是 enable 的，而且 onTouch 返回的是 true，满足这三个条件时会直接 return true，不会走 <code>onTouchEvent()</code>方法。</li>
+<li>上面只要有一个条件不满足，就会走到 <code>onTouchEvent()</code>方法中。所以 onTouch 的顺序是在 onTouchEvent 之前的。</li>
+</ul>
+<h3 id="4、dp-和-sp-的区别"><a href="#4、dp-和-sp-的区别" class="headerlink" title="4、dp 和 sp 的区别"></a>4、dp 和 sp 的区别</h3><ul>
+<li><p>dp：一种基于屏幕密度的抽象单位。在每英寸160点的显示器上，1dp&#x3D;1px。不同设备有不同的显示效果，这个和设备硬件有关，<strong>px&#x3D; dp （dpi&#x2F;160）</strong></p>
+</li>
+<li><p>sp：主要用于字体显示，与刻度无关的一种像素，与dp类似，但会随着系统的字体大小改变</p>
+</li>
+</ul>
+<h2 id="三、线程与进程"><a href="#三、线程与进程" class="headerlink" title="三、线程与进程"></a>三、线程与进程</h2><h3 id="1、Bundle机制"><a href="#1、Bundle机制" class="headerlink" title="1、Bundle机制"></a>1、Bundle机制</h3><p>Bundle实现了Parcelable接口，所以他可以方便的在不同进程间传输，这里要注意我们传输的数据必须能够被序列化；</p>
+<ul>
+<li>使用场景：<ul>
+<li>Activity状态数据的保存与恢复涉及到的两个回调：void onSaveInstanceState (Bundle outState)、void onCreate (Bundle savedInstanceState)</li>
+<li>Fragment的setArguments方法：void setArguments (Bundle args)</li>
+<li>消息机制中的Message的setData方法：void setData (Bundle data)</li>
+</ul>
+</li>
+<li>Bundle底层使用的是ArrayMap，这个集合类存储的也是键值对，但是与HashMap不同的是，HashMap采用的是“数组+链表”的方式存储，而ArrayMap中使用的是两个数组进行存储，一个数组存储key，一个数组存储value，内部的增删改查都将会使用二分查找来进行，这个和SparseArray差不多，只不过SparseArray的key值只能是int型的，而ArrayMap可以是Map型，所以在数据量不大的情况下可以使用这两个集合代替HashMap去优化性能；</li>
+</ul>
+<h3 id="2、Handler机制"><a href="#2、Handler机制" class="headerlink" title="2、Handler机制"></a>2、Handler机制</h3><p>Handler的作用是负责跨线程通信，这是因为在主线程不能做耗时操作，而子线程不能更新 UI，所以当子线程中进行耗时操作后需要更新 UI时，通过 Handler 将有关 UI 的操作切换到主线程中执行。</p>
+<p>说到 Handler，就不得不提与之密切相关的这几个类：Message、MessageQueue，Looper。</p>
+<ul>
+<li><strong>Message</strong>：Message 中有两个成员变量值得关注：target 和 callback。<ul>
+<li>target 其实就是发送消息的 Handler 对象</li>
+<li>callback 是当调用 <code>handler.post(runnable)</code> 时传入的 Runnable 类型的任务。post 事件的本质也是创建了一个 Message，将我们传入的这个 runnable 赋值给创建的Message的 callback 这个成员变量。</li>
+</ul>
+</li>
+<li><strong>MessageQueue</strong>: 消息队列很明显是存放消息的队列，值得关注的是 MessageQueue 中的 <code>next()</code> 方法，它会返回下一个待处理的消息。</li>
+<li><strong>Looper</strong>：Looper 消息轮询器其实是连接 Handler 和消息队列的核心。如果想要在一个线程中创建一个 Handler，首先要通过<code>Looper.prepare()</code>创建 Looper，之后还得调用<code>Looper.loop()</code>开启轮询。<ul>
+<li><strong><code>prepare()</code></strong>： 这个方法做了两件事：首先通过<code>ThreadLocal.get()</code>获取当前线程中的Looper，如果不为空，则会抛出一个RunTimeException，意思是一个线程不能创建2个Looper。如果为null则执行下一步。第二步是创建了一个Looper，并通过 <code>ThreadLocal.set(looper)。</code>将我们创建的Looper与当前线程绑定。这里需要提一下的是消息队列的创建其实就发生在Looper的构造方法中。</li>
+<li><strong><code>loop()</code></strong>： 这个方法开启了整个事件机制的轮询。它的本质是开启了一个死循环，不断的通过 <code>MessageQueue的next()</code>方法获取消息。拿到消息后会调用 <code>msg.target.dispatchMessage()</code>来做处理。其实我们在说到 Message 的时候提到过，<code>msg.target</code> 其实就是发送这个消息的 handler。这句代码的本质就是调用 <code>handler的dispatchMessage()。</code></li>
+</ul>
+</li>
+<li><strong>Handler</strong>：Handler 的分析着重在两个部分：发送消息和处理消息。<ul>
+<li><strong>发送消息</strong>：其实发送消息除了 sendMessage 之外还有 sendMessageDelayed 和 post 以及 postDelayed 等等不同的方式。但它们的本质都是调用了 sendMessageAtTime。在 sendMessageAtTime 这个方法中调用了 enqueueMessage。在 enqueueMessage 这个方法中做了两件事：通过<code>msg.target = this</code>实现了消息与当前 handler 的绑定。然后通过<code>queue.enqueueMessage</code>实现了消息入队。</li>
+<li><strong>处理消息</strong>： 消息处理的核心其实就是<code>dispatchMessage()</code>这个方法。这个方法里面的逻辑很简单，先判断 <code>msg.callback</code> 是否为 null，如果不为空则执行这个 runnable。如果为空则会执行我们的<code>handleMessage</code>方法。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3、Looper死循环为什么不会导致应用卡死，即使不会的话，它会慢慢的消耗越来越多的资源吗？"><a href="#3、Looper死循环为什么不会导致应用卡死，即使不会的话，它会慢慢的消耗越来越多的资源吗？" class="headerlink" title="3、Looper死循环为什么不会导致应用卡死，即使不会的话，它会慢慢的消耗越来越多的资源吗？"></a>3、Looper死循环为什么不会导致应用卡死，即使不会的话，它会慢慢的消耗越来越多的资源吗？</h3><ul>
+<li>对于线程即是一段可执行的代码，当可执行代码执行完成后，线程生命周期便该终止了，线程退出。而对于主线程，我们是绝不希望会被运行一段时间，自己就退出，那么如何保证能一直存活呢？简单做法就是可执行代码是能一直执行下去的，死循环便能保证不会被退出，例如，<code>binder</code>线程也是采用死循环的方法，通过循环方式不同与<code>Binder</code>驱动进行读写操作，当然并非简单地死循环，无消息时会休眠。但这里可能又引发了另一个问题，既然是死循环又如何去处理其他事务呢？通过创建新线程的方式。真正会卡死主线程的操作是在回调方法<code>onCreate/onStart/onResume</code>等操作时间过长，会导致掉帧，甚至发生<code>ANR</code>，<code>looper.loop</code>本身不会导致应用卡死。</li>
+<li>主线程的死循环一直运行是不是特别消耗CPU资源呢？ 其实不然，这里就涉及到<code>Linux pipe/epoll</code>机制，简单说就是在主线程的<code>MessageQueue</code>没有消息时，便阻塞在<code>loop</code>的<code>queue.next()</code>中的<code>nativePollOnce()</code>方法里，此时主线程会释放CPU资源进入休眠状态，直到下个消息到达或者有事务发生，通过往pipe管道写端写入数据来唤醒主线程工作。这里采用的<code>epoll</code>机制，是一种IO多路复用机制，可以同时监控多个描述符，当某个描述符就绪(读或写就绪)，则立刻通知相应程序进行读或写操作，本质同步I&#x2F;O，即读写是阻塞的。 所以说，主线程大多数时候都是处于休眠状态，并不会消耗大量CPU资源。</li>
+</ul>
+<h3 id="4、主线程的消息循环机制是什么？"><a href="#4、主线程的消息循环机制是什么？" class="headerlink" title="4、主线程的消息循环机制是什么？"></a>4、主线程的消息循环机制是什么？</h3><p>事实上，会在进入死循环之前便创建了新binder线程，在代码<code>ActivityThread.main()</code>中：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">  <span class="comment">//创建Looper和MessageQueue对象，用于处理主线程的消息</span></span><br><span class="line">  Looper.prepareMainLooper();</span><br><span class="line">   <span class="comment">//创建ActivityThread对象</span></span><br><span class="line">   <span class="type">ActivityThread</span> <span class="variable">thread</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ActivityThread</span>(); </span><br><span class="line">   <span class="comment">//建立Binder通道 (创建新线程)</span></span><br><span class="line">   thread.attach(<span class="literal">false</span>);</span><br><span class="line">   Looper.loop(); <span class="comment">//消息循环运行</span></span><br><span class="line">   <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(<span class="string">&quot;Main thread loop unexpectedly exited&quot;</span>);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Activity的生命周期都是依靠主线程的</strong> <code>Looper.loop</code>，当收到不同<code>Message</code>时则采用相应措施：一旦退出消息循环，那么你的程序也就可以退出了。 从消息队列中取消息可能会阻塞，取到消息会做出相应的处理。如果某个消息处理时间过长，就可能会影响UI线程的刷新速率，造成卡顿的现象。</p>
+<p><code>thread.attach(false)</code>方法函数中便会创建一个Binder线程（具体是指<code>ApplicationThread</code>，<code>Binder</code>的服务端，用于接收系统服务<code>AMS</code>发送来的事件），该Binder线程通过<code>Handler</code>将<code>Message</code>发送给主线程。「Activity 启动过程」</p>
+<p>比如收到<code>msg=H.LAUNCH_ACTIVITY</code>，则调用<code>ActivityThread.handleLaunchActivity()</code>方法，最终会通过反射机制，创建<code>Activity</code>实例，然后再执行<code>Activity.onCreate()</code>等方法；</p>
+<p>再比如收到<code>msg=H.PAUSE_ACTIVITY</code>，则调用<code>ActivityThread.handlePauseActivity()</code>方法，最终会执行<code>Activity.onPause()</code>等方法。</p>
+<p>主线程的消息又是哪来的呢？当然是App进程中的其他线程通过Handler发送给主线程进程。</p>
+<h3 id="5、Handler同步屏障是什么"><a href="#5、Handler同步屏障是什么" class="headerlink" title="5、Handler同步屏障是什么"></a>5、Handler同步屏障是什么</h3><ul>
+<li><p>Handler Message 种类</p>
+<p>Handler的Message种类分为3种：</p>
+<ul>
+<li><p>普通消息</p>
+</li>
+<li><p>屏障消息</p>
+</li>
+<li><p>异步消息</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>​		其中普通消息又称为同步消息，屏障消息又称为同步屏障。</p>
+<p>​		我们通常使用的都是普通消息，而屏障消息就是在消息队列中插入一个屏障，在屏障之后的所有普通消息都会被挡着，不能被处理。		不过异步消息却例外，屏障不会挡住异步消息，因此可以这样认为：屏障消息就是为了确保异步消息的优先级，设置了屏障后，只能		处理其后的异步消息，同步消息会被挡住，除非撤销屏障。</p>
+<ul>
+<li><p>屏障消息如何插入消息队列</p>
+<p>同步屏障是通过MessageQueue的postSyncBarrier方法插入到消息队列的。源码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="type">int</span> <span class="title function_">postSyncBarrier</span><span class="params">(<span class="type">long</span> <span class="keyword">when</span>)</span> &#123;</span><br><span class="line">        <span class="keyword">synchronized</span> (<span class="built_in">this</span>) &#123;</span><br><span class="line">            <span class="keyword">final</span> <span class="type">int</span> <span class="variable">token</span> <span class="operator">=</span> mNextBarrierToken++;</span><br><span class="line">            <span class="comment">//1、屏障消息和普通消息的区别是屏障消息没有tartget。</span></span><br><span class="line">            <span class="keyword">final</span> <span class="type">Message</span> <span class="variable">msg</span> <span class="operator">=</span> Message.obtain();</span><br><span class="line">            msg.markInUse();</span><br><span class="line">            msg.<span class="keyword">when</span> = <span class="keyword">when</span>;</span><br><span class="line">            msg.arg1 = token;</span><br><span class="line"></span><br><span class="line">            <span class="type">Message</span> <span class="variable">prev</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">            <span class="type">Message</span> <span class="variable">p</span> <span class="operator">=</span> mMessages;</span><br><span class="line">            <span class="comment">//2、根据时间顺序将屏障插入到消息链表中适当的位置</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">when</span> != <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">while</span> (p != <span class="literal">null</span> &amp;&amp; p.<span class="keyword">when</span> &lt;= <span class="keyword">when</span>) &#123;</span><br><span class="line">                    prev = p;</span><br><span class="line">                    p = p.next;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (prev != <span class="literal">null</span>) &#123; <span class="comment">// invariant: p == prev.next</span></span><br><span class="line">                msg.next = p;</span><br><span class="line">                prev.next = msg;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                msg.next = p;</span><br><span class="line">                mMessages = msg;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//3、返回一个序号，通过这个序号可以撤销屏障</span></span><br><span class="line">            <span class="keyword">return</span> token;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>postSyncBarrier方法就是用来插入一个屏障到消息队列的，可以看到它很简单，从这个方法我们可以知道如下：</p>
+<ul>
+<li>屏障消息和普通消息的区别在于屏障没有tartget，普通消息有target是因为它需要将消息分发给对应的target，而屏障不需要被分发，它就是用来挡住普通消息来保证异步消息优先处理的。</li>
+<li>屏障和普通消息一样可以根据时间来插入到消息队列中的适当位置，并且只会挡住它后面的同步消息的分发。</li>
+<li>postSyncBarrier返回一个int类型的数值，通过这个数值可以撤销屏障。</li>
+<li>postSyncBarrier方法是私有的，如果我们想调用它就得使用反射。</li>
+<li>插入普通消息会唤醒消息队列，但是插入屏障不会。</li>
+</ul>
+</li>
+<li><p>屏障消息的工作原理</p>
+<p>我们知道MessageQueue是通过next方法来获取消息的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">Message <span class="title function_">next</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="comment">//1、如果有消息被插入到消息队列或者超时时间到，就被唤醒，否则阻塞在这。</span></span><br><span class="line">    nativePollOnce(ptr, nextPollTimeoutMillis);</span><br><span class="line">    <span class="keyword">synchronized</span> (<span class="built_in">this</span>) &#123;</span><br><span class="line">        <span class="type">Message</span> <span class="variable">prevMsg</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="type">Message</span> <span class="variable">msg</span> <span class="operator">=</span> mMessages;</span><br><span class="line">        <span class="keyword">if</span> (msg != <span class="literal">null</span> &amp;&amp; msg.target == <span class="literal">null</span>) &#123;<span class="comment">//2、遇到屏障  msg.target == null</span></span><br><span class="line">            <span class="keyword">do</span> &#123;</span><br><span class="line">                prevMsg = msg;</span><br><span class="line">                msg = msg.next;</span><br><span class="line">            &#125; <span class="keyword">while</span> (msg != <span class="literal">null</span> &amp;&amp; !msg.isAsynchronous());<span class="comment">//3、遍历消息链表找到最近的一条异步消息</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (msg != <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="comment">//4、如果找到异步消息</span></span><br><span class="line">            <span class="keyword">if</span> (now &lt; msg.<span class="keyword">when</span>) &#123;<span class="comment">//异步消息还没到处理时间，就在等会（超时时间）</span></span><br><span class="line">                nextPollTimeoutMillis = (<span class="type">int</span>) Math.min(msg.<span class="keyword">when</span> - now, Integer.MAX_VALUE);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">//异步消息到了处理时间，就从链表移除，返回它。</span></span><br><span class="line">                mBlocked = <span class="literal">false</span>;</span><br><span class="line">                <span class="keyword">if</span> (prevMsg != <span class="literal">null</span>) &#123;</span><br><span class="line">                    prevMsg.next = msg.next;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    mMessages = msg.next;</span><br><span class="line">                &#125;</span><br><span class="line">                msg.next = <span class="literal">null</span>;</span><br><span class="line">                <span class="keyword">if</span> (DEBUG) Log.v(TAG, <span class="string">&quot;Returning message: &quot;</span> + msg);</span><br><span class="line">                msg.markInUse();</span><br><span class="line">                <span class="keyword">return</span> msg;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 如果没有异步消息就一直休眠，等待被唤醒。</span></span><br><span class="line">            nextPollTimeoutMillis = -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在注释2如果碰到屏障就遍历整个消息链表找到最近的一条异步消息，在遍历的过程中只有异步消息才会被处理执行到 <code>if (msg != null &amp;&amp; msg.target == null){}</code>中的代码。</p>
+<p>屏障消息就是通过这种方式就挡住了所有的普通消息。</p>
+</li>
+<li><p>同步屏障的作用</p>
+<p>我们的手机屏幕刷新频率有不同的类型，60Hz、120Hz等。60Hz表示屏幕在一秒内刷新60次，也就是每隔16.6ms刷新一次。屏幕会在每次刷新的时候发出一个 VSYNC 信号，通知CPU进行绘制计算。具体到我们的代码中，可以认为就是执行<code>onMesure()</code>、<code>onLayout()</code>、<code>onDraw()</code>这些方法。view绘制的起点是在 <code>viewRootImpl.requestLayout()</code> 方法开始，这个方法会去执行上面的三大绘制任务，就是测量、布局、绘制。但是调用<code>requestLayout()</code>方法之后，并不会马上开始进行绘制任务，而是会给主线程设置一个同步屏障，并设置 VSYNC 信号监听。当 VSYNC 信号的到来，会发送一个异步消息到主线程Handler，执行我们上一步设置的绘制监听任务，并移除同步屏障。</p>
+</li>
+</ul>
+<h3 id="6、什么是IdleHandler？"><a href="#6、什么是IdleHandler？" class="headerlink" title="6、什么是IdleHandler？"></a>6、什么是IdleHandler？</h3><ul>
+<li><p><strong>介绍</strong>：</p>
+<p><code>IdleHandler</code> 是 <code>MessageQueue</code> 内定义的一个接口，一般可用于做性能优化。当消息队列内没有需要立即执行的 <code>message</code> 时，会主动触发 <code>IdleHandler</code> 的 <code>queueIdle()</code> 方法。返回值为 false，即只会执行一次；返回值为 true，即每次当消息队列内没有需要立即执行的消息时，都会触发该方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">class</span> <span class="title class_">MessageQueue</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">interface</span> <span class="title class_">IdleHandler</span> &#123;</span><br><span class="line">        <span class="type">boolean</span> <span class="title function_">queueIdle</span><span class="params">()</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>使用方式</strong>：</p>
+<p>通过获取 <code>looper</code> 对应的 <code>MessageQueue</code> 队列注册监听。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Looper.myQueue().addIdleHandler(<span class="keyword">new</span> <span class="title class_">MessageQueue</span>.IdleHandler() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">queueIdle</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// doSomething()</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>源码解析</strong>：</p>
+<p>IdleHandler 的执行源码很短。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">Message <span class="title function_">next</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="comment">// 隐藏无关代码...</span></span><br><span class="line">    <span class="type">int</span> <span class="variable">pendingIdleHandlerCount</span> <span class="operator">=</span> -<span class="number">1</span>; <span class="comment">// -1 only during first iteration</span></span><br><span class="line">    <span class="type">int</span> <span class="variable">nextPollTimeoutMillis</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (; ; ) &#123;</span><br><span class="line">        <span class="comment">// 隐藏无关代码...</span></span><br><span class="line">        <span class="comment">// If first time idle, then get the number of idlers to run.</span></span><br><span class="line">        <span class="comment">// Idle handles only run if the queue is empty or if the first message</span></span><br><span class="line">        <span class="comment">// in the queue (possibly a barrier) is due to be handled in the future.</span></span><br><span class="line">        <span class="keyword">if</span> (pendingIdleHandlerCount &lt; <span class="number">0</span></span><br><span class="line">                &amp;&amp; (mMessages == <span class="literal">null</span> || now &lt; mMessages.<span class="keyword">when</span>)) &#123;</span><br><span class="line">            pendingIdleHandlerCount = mIdleHandlers.size();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (pendingIdleHandlerCount &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="comment">// No idle handlers to run.  Loop and wait some more.</span></span><br><span class="line">            mBlocked = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (mPendingIdleHandlers == <span class="literal">null</span>) &#123;</span><br><span class="line">            mPendingIdleHandlers = <span class="keyword">new</span> <span class="title class_">IdleHandler</span>[Math.max(pendingIdleHandlerCount, <span class="number">4</span>)];</span><br><span class="line">        &#125;</span><br><span class="line">        mPendingIdleHandlers = mIdleHandlers.toArray(mPendingIdleHandlers);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// Run the idle handlers.</span></span><br><span class="line">    <span class="comment">// We only ever reach this code block during the first iteration.</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; pendingIdleHandlerCount; i++) &#123;</span><br><span class="line">        <span class="keyword">final</span> <span class="type">IdleHandler</span> <span class="variable">idler</span> <span class="operator">=</span> mPendingIdleHandlers[i];</span><br><span class="line">        mPendingIdleHandlers[i] = <span class="literal">null</span>; <span class="comment">// release the reference to the handler</span></span><br><span class="line">        <span class="type">boolean</span> <span class="variable">keep</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            keep = idler.queueIdle();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Throwable t) &#123;</span><br><span class="line">            Log.wtf(TAG, <span class="string">&quot;IdleHandler threw exception&quot;</span>, t);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (!keep) &#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (<span class="built_in">this</span>) &#123;</span><br><span class="line">                mIdleHandlers.remove(idler);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// Reset the idle handler count to 0 so we do not run them again.</span></span><br><span class="line">    pendingIdleHandlerCount = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// While calling an idle handler, a new message could have been delivered</span></span><br><span class="line">    <span class="comment">// so go back and look again for a pending message without waiting.</span></span><br><span class="line">    nextPollTimeoutMillis = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>在 <code>MessageQueue</code> 里 <code>next()</code> 方法的 for 死循环内，获取 <code>mIdleHandlers</code> 的数量 <code>pendingIdleHandlerCount</code>；</li>
+<li>通过 <code>mMessages == null || now &lt; mMessages.when</code> 判断当前消息队列为空或者目前没有需要执行的消息时，给 <code>pendingIdleHandlerCount</code> 赋值；</li>
+<li>当数量大于 0，遍历取出数组内的 <code>IdleHandler</code>，执行 <code>queueIdle()</code> ；</li>
+<li>返回值为 <code>false</code> 时，主动移除监听 <code>mIdleHandlers.remove(idler)</code>；</li>
+</ol>
+</li>
+<li><p><strong>使用场景</strong>：</p>
+<ul>
+<li>如果启动的 <code>Activity</code>、<code>Fragment</code>、<code>Dialog</code> 内含有大量数据和视图的加载，导致首次打开时动画切换卡顿或者一瞬间白屏，可将部分加载逻辑放到 <code>queueIdle()</code> 内处理。例如引导图的加载和弹窗提示等；</li>
+<li>系统源码中 <code>ActivityThread</code> 的 <code>GcIdler</code>，在某些场景等待消息队列暂时空闲时会尝试执行 GC 操作；</li>
+<li>系统源码中  <code>ActivityThread</code> 的 <code>Idler</code>，在 <code>handleResumeActivity()</code> 方法内会注册 <code>Idler()</code>，等待<code>handleResumeActivity</code> 后视图绘制完成，消息队列暂时空闲时再调用 <code>AMS</code> 的 <code>activityIdle</code> 方法，检查页面的生命周期状态，触发 <code>activity</code> 的 <code>stop</code> 生命周期等。这也是为什么我们 <code>BActivity</code> 跳转 <code>CActivity</code> 时，<code>BActivity</code> 生命周期的 <code>onStop()</code> 会在 <code>CActivity</code> 的 <code>onResume()</code> 后。</li>
+<li>一些第三方框架 <code>Glide</code> 和 <code>LeakCanary</code> 等也使用到 <code>IdleHandler</code>；</li>
+</ul>
+</li>
+</ul>
+<h3 id="7、什么是HandlerThread？"><a href="#7、什么是HandlerThread？" class="headerlink" title="7、什么是HandlerThread？"></a>7、什么是HandlerThread？</h3><ul>
+<li>HandlerThread本质上是一个线程类，它继承了Thread；</li>
+<li>HandlerThread有自己的内部Looper对象，可以进行looper循环；</li>
+<li>通过获取HandlerThread的looper对象传递给Handler对象，可以在handleMessage方法中执行异步任务；</li>
+<li>创建HandlerThread后必须先调用HandlerThread.start()方法，Thread会先调用run方法，创建Looper对象。<br>HandlerThread其实就是在一个子线程内部自己创建并管理了一个Looper。</li>
+<li>如果经常要开启线程，接着又是销毁线程，这是很耗性能的，HandlerThread 很好的解决了这个问题</li>
+<li>HandlerThread 由于异步操作是放在 Handler 的消息队列中的，所以是串行的，但只适合并发量较少的耗时操作</li>
+</ul>
+<h3 id="8、进程间的通信方式有哪些？"><a href="#8、进程间的通信方式有哪些？" class="headerlink" title="8、进程间的通信方式有哪些？"></a>8、进程间的通信方式有哪些？</h3><ul>
+<li><p><strong>Bundle&#x2F;Intent传递数据</strong>：</p>
+<p>可传递基本类型，String，实现了Serializable或Parcellable接口的数据结构。Serializable是Java的序列化方法，Parcellable是Android的序列化方法，前者代码量少（仅一句），但I&#x2F;O开销较大，一般用于输出到磁盘或网卡；后者实现代码多，效率高，一般用户内存间序列化和反序列化传输。</p>
+</li>
+<li><p><strong>文件共享</strong>：</p>
+<p>对同一个文件先后写读，从而实现传输，Linux机制下，可以对文件并发写，所以要注意同步。顺便一提，Windows下不支持并发读或写。</p>
+</li>
+<li><p><strong>Messenger</strong>：</p>
+<p>Messenger是基于AIDL实现的，服务端（被动方）提供一个Service来处理客户端（主动方）连接，维护一个Handler来创建Messenger，在onBind时返回Messenger的binder。</p>
+</li>
+<li><p><strong>AIDL</strong>：</p>
+<p>AIDL通过定义服务端暴露的接口，以提供给客户端来调用，AIDL使服务器可以并行处理，而Messenger封装了AIDL之后只能串行运行，所以Messenger一般用作消息传递。通过编写aidl文件来设计想要暴露的接口，编译后会自动生成响应的java文件，服务器将接口的具体实现写在Stub中，用iBinder对象传递给客户端，客户端bindService的时候，用asInterface的形式将iBinder还原成接口，再调用其中的方法。</p>
+</li>
+<li><p><strong>ContentProvider</strong>：</p>
+<p>系统四大组件之一，底层也是Binder实现，主要用来为其他APP提供数据，可以说天生就是为进程通信而生的。自己实现一个ContentProvider需要实现6个方法，其中onCreate是主线程中回调的，其他方法是运行在Binder之中的。自定义的ContentProvider注册时要提供authorities属性，应用需要访问的时候将属性包装成Uri.parse(“content:&#x2F;&#x2F;authorities”)。还可以设置permission，readPermission，writePermission来设置权限。 ContentProvider有query，delete，insert等方法，看起来貌似是一个数据库管理类，但其实可以用文件，内存数据等等一切来充当数据源，query返回的是一个Cursor，可以自定义继承AbstractCursor的类来实现。</p>
+</li>
+<li><p><strong>Socket</strong></p>
+</li>
+</ul>
+<h3 id="9、ANR发生的原因及其解决办法"><a href="#9、ANR发生的原因及其解决办法" class="headerlink" title="9、ANR发生的原因及其解决办法"></a>9、ANR发生的原因及其解决办法</h3><p>ANR的全称是application not responding，是指应用程序未响应，Android系统对于一些事件需要在一定的时间范围内完成，如果超过预定时间能未能得到有效响应或者响应时间过长，都会造成ANR。一般地，这时往往会弹出一个提示框，告知用户当前xxx未响应，用户可选择继续等待或者Force Close。</p>
+<p>首先ANR的发生是有条件限制的，分为以下三点：</p>
+<ul>
+<li>只有主线程才会产生ANR，主线程就是UI线程；</li>
+<li>必须发生某些输入事件或特定操作，比如按键或触屏等输入事件，在BroadcastReceiver或Service的各个生命周期调用函数；</li>
+<li>上述事件响应超时，不同的context规定的上限时间不同<ol>
+<li>主线程对输入事件5秒内没有处理完毕</li>
+<li>主线程在执行BroadcastReceiver的onReceive()函数时10秒内没有处理完毕</li>
+<li>主线程在前台Service的各个生命周期函数时20秒内没有处理完毕（后台Service 200s）</li>
+</ol>
+</li>
+</ul>
+<p>那么导致ANR的根本原因是什么呢？简单的总结有以下两点：</p>
+<ul>
+<li>主线程执行了<strong>耗时操作</strong>，比如数据库操作或网络编程，I&#x2F;O操作</li>
+<li>其他进程（就是其他程序）占用CPU导致本进程<strong>得不到CPU时间片</strong>，比如其他进程的频繁读写操作可能会导致这个问题</li>
+</ul>
+<p>那么如何避免ANR的发生呢或者说ANR的解决办法是什么呢？</p>
+<ul>
+<li>避免在主线程执行耗时操作，所有耗时操作应新开一个子线程完成，然后再在主线程更新UI</li>
+<li>BroadcastReceiver要执行耗时操作时应启动一个service，将耗时操作交给service来完成</li>
+<li>避免在Intent Receiver里启动一个Activity，因为它会创建一个新的画面，并从当前用户正在运行的程序上抢夺焦点。如果你的应用程序在响应Intent广播时需要向用户展示什么，你应该使用Notification Manager来实现</li>
+</ul>
+<h2 id="四、项目架构"><a href="#四、项目架构" class="headerlink" title="四、项目架构"></a>四、项目架构</h2><h3 id="1、MVC"><a href="#1、MVC" class="headerlink" title="1、MVC"></a>1、MVC</h3><p>M——模型层（Model）负责处理数据的加载或者存储</p>
+<p>V——视图层（View）负责界面数据的展示，与用户进行交互</p>
+<p>C——控制器层（Controller）负责逻辑业务的处理</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="C:\Users\zzp\AppData\Roaming\Typora\typora-user-images\image-20230312230131742.png" alt="image-20230312230131742" style="zoom:80%;" />
+
+<p>在MVC模式中，View层可以直接访问Model层和Controller层，所以View层包含Model层信息和Controller层的业务逻辑处理</p>
+<ul>
+<li><p>优点：</p>
+<ul>
+<li>耦合性低，生命周期成本低，部署快，可维护性高，适用于快速开发的小型项目</li>
+</ul>
+</li>
+<li><p>缺点：</p>
+<ul>
+<li>不适合大型，中等项目，View层Controller层连接过于紧密</li>
+<li>View层对Model层的访问效率低</li>
+<li>一般的高级UI页面工具和构造器不支持MVC模式</li>
+</ul>
+</li>
+<li><p>注意：</p>
+<ul>
+<li>Activity和Fragment既有View的性质，又具有Controller的性质，导致Acyivity和Fragment很重</li>
+<li>MVC中View层与Model层直接交互，所以Activity和Fragment与Model的耦合性很高</li>
+</ul>
+</li>
+</ul>
+<h3 id="2、MVP"><a href="#2、MVP" class="headerlink" title="2、MVP"></a>2、MVP</h3><p>M——数据层（Model）负责对数据的存取操作，例如对数据库的读写，网络的数据的请求等</p>
+<p>V——视图层（View）负责对数据的展示，提供友好的界面与用户进行交互，Android通常将Activity或者Fragment作为View层</p>
+<p>P——控制器层（Presenter）连接View层与Model层的桥梁并对业务逻辑进行处理</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="C:\Users\zzp\AppData\Roaming\Typora\typora-user-images\image-20230312230639460.png" alt="image-20230312230639460" style="zoom:80%;" />
+
+<p> <strong>MVP执行流程：</strong></p>
+<ul>
+<li>View层收到用户的操作</li>
+<li>View层把用户的操作交给Presenter</li>
+<li>Presenter直接操作Model层进行业务逻辑处理</li>
+<li>Model层处理完毕后，通知Presenter</li>
+<li>Presenter收到通知后，去更新View层</li>
+</ul>
+<p>在MVP模式中，Model与View无法直接进行交互，所以Presenter层会从Model层获得数据，适当处理后交给View层进行显示，Presenter层将View层和Model层进行隔离，使View和Model之间不存在耦合，同时将业务逻辑从View层剥离</p>
+<ul>
+<li><p>优点：</p>
+<ul>
+<li>模型与视图完全分离，修改View而不Model</li>
+<li>可以更高效的使用Model，所有的交互都发生在——Presenter内部</li>
+<li>将一个Presenter用于多个视图，而不需要改变Presenter的逻辑，View变化比Model变化频繁</li>
+<li>逻辑结构清晰，View层代码不再臃肿</li>
+</ul>
+</li>
+<li><p>缺点：</p>
+<ul>
+<li>MVP模式基于接口设计，会增加很多类，代码逻辑虽然清晰，但代码量庞大</li>
+<li>MVP适用于中小型项目，大型项目慎用</li>
+</ul>
+</li>
+<li><p>MVC和MVP的主要区别：</p>
+<ul>
+<li>MVP中View与Model并不直接交互，而是通过与Presenter交互来与Model间接交互</li>
+<li>MVC中Controller是基于行为的，并且可以被多个View共享，Controller可以负责决定显示哪个View</li>
+<li>MVP中Presenter与View的交互是通过接口来进行的，更有利于添加单元测试。</li>
+<li>MVC中View可以与Model直接交互，通常View与Presenter是一对一的，但复杂的View可能绑定多个Presenter来处理逻辑</li>
+</ul>
+</li>
+<li><p>注意：</p>
+<ul>
+<li>MVP中将这三层分别抽象到各自的接口当中，通过接口将层次之间进行隔离</li>
+<li>Presenter对View和Model的相互依赖也是依赖于各自的接口，符合了接口隔离原则</li>
+<li>Presenter层中包含了一个View接口，并且依赖于Model接口，从而将Model层与View层联系在一起</li>
+<li>View层会持有一个Presenter成员变量并且只保留对Presenter接口的调用，具体业务逻辑全部交由Presenter接口实现类中处理</li>
+</ul>
+</li>
+</ul>
+<h3 id="3、MVVM"><a href="#3、MVVM" class="headerlink" title="3、MVVM"></a>3、MVVM</h3><p>M——Model（模型）实体模型，定义实体类，获取业务数据模型，如通过数据库或者网络来操作数据等</p>
+<p>V——View（视图）布局文件(XML），主要进行控件的初始化设置</p>
+<p>VM——ViewModel（控制器）：连接 View 与 Model 的中间桥梁，ViewModel 与 Model 直接交互，通过DataBinding将数据变化反应给View<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="C:\Users\zzp\AppData\Roaming\Typora\typora-user-images\image-20230312231248908.png" alt="image-20230312231248908"></p>
+<p>**注：**ViewModel可以理解为View与Presenter的合成体</p>
+<p><strong>优点：</strong></p>
+<ul>
+<li>低耦合<ul>
+<li>MVVM 模式中，数据处理逻辑是独立于 UI 层的</li>
+<li>ViewModel 只负责提供数据和处理数据，不会持有 View 层的引用</li>
+<li>View 层只负责对数据变化的监听，不会处理任何跟数据相关的逻辑</li>
+<li>View 层的 UI 发生变化时，也不需要像 MVP 模式那样修改对应接口和方法实现，一般情况下ViewModel 不需要做太多的改动</li>
+</ul>
+</li>
+<li>数据驱动<ul>
+<li>UI 的展现是依赖于数据的，数据的变化会自然的引发 UI 的变化，而 UI 的改变也会使数据 Model 进行对应的更新</li>
+<li>ViewModel 只需要处理数据，而 View 层只需要监听并使用数据进行 UI 更新</li>
+</ul>
+</li>
+<li>异步线程更新Model<ul>
+<li>Model 数据可以在异步线程中发生变化，此时调用者不需要做额外的处理</li>
+<li>数据绑定框架会将异步线程中数据的变化通知到 UI 线程中交给 View去更新</li>
+</ul>
+</li>
+<li>方便协作<ul>
+<li>View 层和逻辑层几乎没有耦合，在团队协作的过程中，可以一个人负责 UI，一个人负责数据处理。并行开发，保证开发进度</li>
+</ul>
+</li>
+<li>易于单元测试<ul>
+<li>ViewModel 层只负责处理数据，在进行单元测试时，测试不需要构造一个 fragment&#x2F;Activity&#x2F;TextView 等来进行数据层的测试</li>
+<li>View 层也一样，只需要输入指定格式的数据即可进行测试，而且两者相互独立，不会互相影响</li>
+</ul>
+</li>
+<li>数据复用<ul>
+<li>ViewModel 层对数据的获取和处理逻辑，尤其是使用 Repository 模式时，获取数据的逻辑完全是可以复用的</li>
+<li>开发者可以在不同的模块，多次方便的获取同一份来源的数据</li>
+<li>同样的一份数据，在版本功能迭代时，逻辑层不需要改变，只需要改变 View 层即可</li>
+</ul>
+</li>
+</ul>
+<h2 id="五、Kotlin"><a href="#五、Kotlin" class="headerlink" title="五、Kotlin"></a>五、Kotlin</h2><h3 id="1、扩展函数原理"><a href="#1、扩展函数原理" class="headerlink" title="1、扩展函数原理"></a>1、扩展函数原理</h3><p>扩展函数实际上就是一个对应 Java 中的静态函数，这个静态函数参数为接收者类型的对象，然后利用这个对象就可以访问这个类中的成员属性和方法了，并且最后返回一个这个接收者类型对象本身。这样在外部感觉和使用类的成员函数是一样的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这个类名就是顶层文件名+“Kt”后缀</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">class</span> <span class="title class_">ExtendsionTextViewKt</span> &#123;</span><br><span class="line">   <span class="comment">// 扩展函数 isBold 对应实际上是 Java 中的静态函数，并且传入一个接收者类型对象作为参数</span></span><br><span class="line">   <span class="meta">@NotNull</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> TextView <span class="title function_">isBold</span><span class="params">(<span class="meta">@NotNull</span> TextView $receiver)</span> &#123;</span><br><span class="line">      Intrinsics.checkParameterIsNotNull($receiver, <span class="string">&quot;$receiver&quot;</span>);</span><br><span class="line">      $receiver.getPaint().setFakeBoldText(<span class="literal">true</span>); <span class="comment">// 设置加粗</span></span><br><span class="line">      <span class="keyword">return</span> $receiver; <span class="comment">// 最后返回这个接收者对象自身，以致于我们在Kotlin中完全可以使用 this 替代接收者对象或者直接不写。</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、协程原理"><a href="#2、协程原理" class="headerlink" title="2、协程原理"></a>2、协程原理</h3></article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://pic3.zhimg.com/v2-b1951610711c8d80060d509d9b499c72_r.jpg?source=1940ef5c" title="头像" alt="头像"><img class="post-copyright__author_img_front" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://pic3.zhimg.com/v2-b1951610711c8d80060d509d9b499c72_r.jpg?source=1940ef5c" title="头像" alt="头像"></a><div class="post-copyright__author_name">曦臣</div><div class="post-copyright__author_desc">愿世界更美好</div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="https://blog.liumingzhi.cn/2024/05/21/Android%E9%9D%A2%E7%BB%8F/">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('https://blog.liumingzhi.cn/2024/05/21/Android面经/')">Android面经</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"><div class="post-reward" onclick="anzhiyu.addRewardMask()"><div class="reward-button button--animated" title="赞赏作者"><i class="anzhiyufont anzhiyu-icon-hand-heart-fill"></i>打赏作者</div><div class="reward-main"><div class="reward-all"><span class="reward-title">感谢你赐予我前进的力量</span><ul class="reward-group"><li class="reward-item"><a href="https://image.liumingzhi.cn/file/1ac25b4ee273216e58887.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.liumingzhi.cn/file/1ac25b4ee273216e58887.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://image.liumingzhi.cn/file/0dd29dcb00dff55ddef7b.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.liumingzhi.cn/file/0dd29dcb00dff55ddef7b.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul><a class="reward-main-btn" href="/about/#about-reward" target="_blank"><div class="reward-text">赞赏者名单</div><div class="reward-dec">因为你们的支持让我意识到写文章的价值🙏</div></a></div></div></div><div id="quit-box" onclick="anzhiyu.removeRewardMask()" style="display: none"></div></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="https://blog.liumingzhi.cn/2024/05/21/Android%E9%9D%A2%E7%BB%8F/"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=Android面经&amp;url=https://blog.liumingzhi.cn/2024/05/21/Android%E9%9D%A2%E7%BB%8F/&amp;pic=https://unpkg.com/image-hosting-service/img/dall-e-3-android-phone-level-5-featured-image.jpg" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><script>function copyCurrentPageUrl() {
+  var currentPageUrl = window.location.href;
+  var input = document.createElement("input");
+  input.setAttribute("value", currentPageUrl);
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://blog.liumingzhi.cn" target="_blank">心灵涂鸦</a>！</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__tag-list"><a class="post-meta__box__tags" href="/tags/Android/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>Android<span class="tagsPageCount">4</span></a></div></div></div><div class="post_share"><div class="social-share" data-image="https://ktor.kotlincn.net/assets/images/ktor_logo.svg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"/><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer="defer"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/05/21/Java%E9%9D%A2%E7%BB%8F/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://unpkg.com/image-hosting-service/img/consulting-blog-09.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Java面经</div></div></a></div><div class="next-post pull-right"><a href="/2024/05/26/RecyclerView%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.liumingzhi.cn/file/a17dfce683e7539a87747.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">RecyclerView底层实现原理</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="anzhiyufont anzhiyu-icon-thumbs-up fa-fw" style="font-size: 1.5rem; margin-right: 4px"></i><span>喜欢这篇文章的人也看了</span></div><div class="relatedPosts-list"><div><a href="/2024/06/18/Android%E4%B8%89%E7%A7%8D%E5%8A%A8%E7%94%BB%E5%AD%A6%E4%B9%A0/" title="Android三种动画学习"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.liumingzhi.cn/file/6c23397160429decf90c5.png" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2024-06-19</div><div class="title">Android三种动画学习</div></div></a></div><div><a href="/2024/06/17/Glide%20-%20%E4%B8%80%E4%B8%AA%E5%A5%BD%E7%94%A8%E7%9A%84%E5%9B%BE%E7%89%87%E5%8A%A0%E8%BD%BD%E5%BA%93/" title="Glide - 一个好用的图片加载库"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.liumingzhi.cn/file/3cd1e5c22e4ddb0d9e650.png" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2024-06-17</div><div class="title">Glide - 一个好用的图片加载库</div></div></a></div><div><a href="/2024/07/25/RxJava-%E5%87%BD%E6%95%B0%E5%93%8D%E5%BA%94%E5%BC%8F%E7%BC%96%E7%A8%8B/" title="RxJava-函数响应式编程"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/default_cover.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2024-07-25</div><div class="title">RxJava-函数响应式编程</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="anzhiyufont anzhiyu-icon-comments"></i><span> 评论</span></div><div class="comment-randomInfo"><a onclick="anzhiyu.addRandomCommentInfo()" href="javascript:void(0)">匿名评论</a><a href="/privacy" style="margin-left: 4px">隐私政策</a></div><div class="comment-tips" id="comment-tips"><span>✅ 你无需删除空行，直接评论以获取最佳展示效果</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div><div class="comment-barrage"></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://pic3.zhimg.com/v2-b1951610711c8d80060d509d9b499c72_r.jpg?source=1940ef5c" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__description">归途也还可爱</div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/"><h1 class="author-info__name">曦臣</h1><div class="author-info__desc">愿世界更美好</div></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/xichenx" target="_blank" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="social-icon faa-parent animated-hover" href="https://blog.csdn.net/qq_60642811?spm=1011.2415.3001.5343" target="_blank" title="CSDN"><i class="anzhiyufont anzhiyu-icon-copyright"></i></a></div></div></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bullhorn anzhiyu-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来看我的博客鸭~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>文章目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Android%E9%9D%A2%E7%BB%8F"><span class="toc-number">1.</span> <span class="toc-text">Android面经</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6"><span class="toc-number">1.1.</span> <span class="toc-text">一、四大组件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81Activity%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-number">1.1.1.</span> <span class="toc-text">1、Activity的生命周期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81Activity%E7%9A%84%E5%9B%9B%E7%A7%8D%E5%90%AF%E5%8A%A8%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.1.2.</span> <span class="toc-text">2、Activity的四种启动模式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81View"><span class="toc-number">1.2.</span> <span class="toc-text">二、View</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81View%E7%9A%84%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B"><span class="toc-number">1.2.1.</span> <span class="toc-text">1、View的绘制流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81MeasureSpec"><span class="toc-number">1.2.2.</span> <span class="toc-text">2、MeasureSpec</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81View%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E6%9C%BA%E5%88%B6"><span class="toc-number">1.2.3.</span> <span class="toc-text">3、View的事件分发机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81dp-%E5%92%8C-sp-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.2.4.</span> <span class="toc-text">4、dp 和 sp 的区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E7%BA%BF%E7%A8%8B%E4%B8%8E%E8%BF%9B%E7%A8%8B"><span class="toc-number">1.3.</span> <span class="toc-text">三、线程与进程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81Bundle%E6%9C%BA%E5%88%B6"><span class="toc-number">1.3.1.</span> <span class="toc-text">1、Bundle机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81Handler%E6%9C%BA%E5%88%B6"><span class="toc-number">1.3.2.</span> <span class="toc-text">2、Handler机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81Looper%E6%AD%BB%E5%BE%AA%E7%8E%AF%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E4%BC%9A%E5%AF%BC%E8%87%B4%E5%BA%94%E7%94%A8%E5%8D%A1%E6%AD%BB%EF%BC%8C%E5%8D%B3%E4%BD%BF%E4%B8%8D%E4%BC%9A%E7%9A%84%E8%AF%9D%EF%BC%8C%E5%AE%83%E4%BC%9A%E6%85%A2%E6%85%A2%E7%9A%84%E6%B6%88%E8%80%97%E8%B6%8A%E6%9D%A5%E8%B6%8A%E5%A4%9A%E7%9A%84%E8%B5%84%E6%BA%90%E5%90%97%EF%BC%9F"><span class="toc-number">1.3.3.</span> <span class="toc-text">3、Looper死循环为什么不会导致应用卡死，即使不会的话，它会慢慢的消耗越来越多的资源吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E4%B8%BB%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%B6%88%E6%81%AF%E5%BE%AA%E7%8E%AF%E6%9C%BA%E5%88%B6%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">1.3.4.</span> <span class="toc-text">4、主线程的消息循环机制是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81Handler%E5%90%8C%E6%AD%A5%E5%B1%8F%E9%9A%9C%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">1.3.5.</span> <span class="toc-text">5、Handler同步屏障是什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AFIdleHandler%EF%BC%9F"><span class="toc-number">1.3.6.</span> <span class="toc-text">6、什么是IdleHandler？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AFHandlerThread%EF%BC%9F"><span class="toc-number">1.3.7.</span> <span class="toc-text">7、什么是HandlerThread？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8%E3%80%81%E8%BF%9B%E7%A8%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="toc-number">1.3.8.</span> <span class="toc-text">8、进程间的通信方式有哪些？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9%E3%80%81ANR%E5%8F%91%E7%94%9F%E7%9A%84%E5%8E%9F%E5%9B%A0%E5%8F%8A%E5%85%B6%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="toc-number">1.3.9.</span> <span class="toc-text">9、ANR发生的原因及其解决办法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84"><span class="toc-number">1.4.</span> <span class="toc-text">四、项目架构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81MVC"><span class="toc-number">1.4.1.</span> <span class="toc-text">1、MVC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81MVP"><span class="toc-number">1.4.2.</span> <span class="toc-text">2、MVP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81MVVM"><span class="toc-number">1.4.3.</span> <span class="toc-text">3、MVVM</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81Kotlin"><span class="toc-number">1.5.</span> <span class="toc-text">五、Kotlin</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E6%89%A9%E5%B1%95%E5%87%BD%E6%95%B0%E5%8E%9F%E7%90%86"><span class="toc-number">1.5.1.</span> <span class="toc-text">1、扩展函数原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E5%8D%8F%E7%A8%8B%E5%8E%9F%E7%90%86"><span class="toc-number">1.5.2.</span> <span class="toc-text">2、协程原理</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/09/28/Ktor%20%E5%AD%A6%E4%B9%A0%E4%B8%8E%E5%AE%9E%E8%B7%B5%E6%96%87%E6%A1%A3/" title="Ktor 学习与实践文档"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://ktor.kotlincn.net/assets/images/ktor_logo.svg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Ktor 学习与实践文档"/></a><div class="content"><a class="title" href="/2025/09/28/Ktor%20%E5%AD%A6%E4%B9%A0%E4%B8%8E%E5%AE%9E%E8%B7%B5%E6%96%87%E6%A1%A3/" title="Ktor 学习与实践文档">Ktor 学习与实践文档</a><time datetime="2025-09-28T18:36:20.623Z" title="发表于 2025-09-29 02:36:20">2025-09-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/09/21/Flutter%20-%20AutoRoute/" title="Flutter - AutoRoute"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://raw.githubusercontent.com/Milad-Akarie/auto_route_library/master/art/auto_route_logo.svg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Flutter - AutoRoute"/></a><div class="content"><a class="title" href="/2025/09/21/Flutter%20-%20AutoRoute/" title="Flutter - AutoRoute">Flutter - AutoRoute</a><time datetime="2025-09-21T17:29:14.518Z" title="发表于 2025-09-22 01:29:14">2025-09-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/20/HarmonyOS-%E4%B8%A4%E7%A7%8DPreferencesUtil%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/" title="HarmonyOS-两种PreferencesUtil实现方式"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/default_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="HarmonyOS-两种PreferencesUtil实现方式"/></a><div class="content"><a class="title" href="/2025/01/20/HarmonyOS-%E4%B8%A4%E7%A7%8DPreferencesUtil%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/" title="HarmonyOS-两种PreferencesUtil实现方式">HarmonyOS-两种PreferencesUtil实现方式</a><time datetime="2025-01-20T06:15:16.788Z" title="发表于 2025-01-20 14:15:16">2025-01-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/01/HarmonyOS-@ohos/axios%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82/" title="HarmonyOS-@ohos/axios网络请求"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://i-blog.csdnimg.cn/blog_migrate/325308e06ccb68e3917adef7a5d51b89.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="HarmonyOS-@ohos/axios网络请求"/></a><div class="content"><a class="title" href="/2024/12/01/HarmonyOS-@ohos/axios%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82/" title="HarmonyOS-@ohos/axios网络请求">HarmonyOS-@ohos/axios网络请求</a><time datetime="2024-12-01T01:42:35.296Z" title="发表于 2024-12-01 09:42:35">2024-12-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/09/09/RxJava%20%E9%9D%A2%E8%AF%95%E9%A2%98/" title="RxJava 面试题"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/default_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="RxJava 面试题"/></a><div class="content"><a class="title" href="/2024/09/09/RxJava%20%E9%9D%A2%E8%AF%95%E9%A2%98/" title="RxJava 面试题">RxJava 面试题</a><time datetime="2024-09-09T18:39:54.147Z" title="发表于 2024-09-10 02:39:54">2024-09-10</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div id="footer_deal"><a class="deal_link" href="/3108531642@qq.com" title="email"><i class="anzhiyufont anzhiyu-icon-envelope"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://weibo.com/u/" title="微博"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://www.facebook.com/" title="facebook"><i class="anzhiyufont anzhiyu-icon-facebook1"></i></a><a class="deal_link" href="/atom.xml" title="RSS"><i class="anzhiyufont anzhiyu-icon-rss"></i></a><img class="footer_mini_logo" title="返回顶部" alt="返回顶部" onclick="anzhiyu.scrollToDest(0, 500)" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://pic3.zhimg.com/v2-b1951610711c8d80060d509d9b499c72_r.jpg?source=1940ef5c" size="50px"/><a class="deal_link" target="_blank" rel="noopener" href="https://github.com/xichenx" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://space.bilibili.com/1410474192" title="Bilibili"><i class="anzhiyufont anzhiyu-icon-bilibili"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://v.douyin.com/" title="抖音"><i class="anzhiyufont anzhiyu-icon-tiktok"></i></a><a class="deal_link" href="/copyright" title="CC"><i class="anzhiyufont anzhiyu-icon-copyright-line"></i></a></div><div id="workboard"><img class="workSituationImg boardsign" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@2.0.4/img/badge/安知鱼-上班摸鱼中.svg" alt="距离月入25k也就还差一个大佬带我~" title="距离月入25k也就还差一个大佬带我~"/><div id="runtimeTextTip"></div></div><div id="anzhiyu-footer"><div class="footer-group"><div class="footer-title">服务</div><div class="footer-links"><a class="footer-item" title="51la统计" target="_blank" rel="noopener" href="https://v6.51.la/">51la统计</a><a class="footer-item" title="十年之约" target="_blank" rel="noopener" href="https://www.foreverblog.cn/">十年之约</a><a class="footer-item" title="开往" target="_blank" rel="noopener" href="https://github.com/travellings-link/travellings">开往</a></div></div><div class="footer-group"><div class="footer-title">主题</div><div class="footer-links"><a class="footer-item" title="文档" href="/docs/">文档</a><a class="footer-item" title="源码" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu">源码</a><a class="footer-item" title="更新日志" href="/update/">更新日志</a></div></div><div class="footer-group"><div class="footer-title">导航</div><div class="footer-links"><a class="footer-item" title="即刻短文" href="/essay/">即刻短文</a><a class="footer-item" title="友链文章" href="/fcircle/">友链文章</a><a class="footer-item" title="留言板" href="/comments/">留言板</a></div></div><div class="footer-group"><div class="footer-title">协议</div><div class="footer-links"><a class="footer-item" title="隐私协议" href="/privacy/">隐私协议</a><a class="footer-item" title="Cookies" href="/cookies/">Cookies</a><a class="footer-item" title="版权协议" href="/copyright/">版权协议</a></div></div><div class="footer-group"><div class="footer-title-group"><div class="footer-title">友链</div><a class="random-friends-btn" id="footer-random-friends-btn" href="javascript:addFriendLinksInFooter();" title="换一批友情链接"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right"></i></a></div><div class="footer-links" id="friend-links-in-footer"></div></div></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v5.4.0" title="博客框架为Hexo_v5.4.0"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@2.1.5/img/badge/Frame-Hexo.svg" alt="博客框架为Hexo_v5.4.0"/></a><a class="github-badge" target="_blank" href="https://blog.anheyu.com/" style="margin-inline:5px" data-title="本站使用AnZhiYu主题" title="本站使用AnZhiYu主题"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.9/img/Theme-AnZhiYu-2E67D3.svg" alt="本站使用AnZhiYu主题"/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" data-title="本站项目由Github托管" title="本站项目由Github托管"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@2.1.5/img/badge/Source-Github.svg" alt="本站项目由Github托管"/></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@2.2.0/img/badge/Copyright-BY-NC-SA.svg" alt="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"/></a><a class="github-badge" target="_blank" href="https://beian.miit.gov.cn/" style="margin-inline:5px" data-title="本站已备案" title="本站已备案"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://img.shields.io/badge/%E6%B9%98ICP%E5%A4%87-2024053403%E5%8F%B7-orange.svg" alt="本站已备案"/></a></p></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div id="footer-bar-tips"><div class="copyright">&copy;2024 - 2026 By <a class="footer-bar-link" href="/" title="曦臣" target="_blank">曦臣</a></div></div><div id="footer-type-tips"></div><div class="js-pjax"><script>function subtitleType () {
+  fetch('https://v1.hitokoto.cn')
+    .then(response => response.json())
+    .then(data => {
+      if (true) {
+        const from = '出自 ' + data.from
+        const sub = ["生活明朗&#44; 万物可爱&#44; 人间值得&#44; 未来可期."]
+        sub.unshift(data.hitokoto, from)
+        window.typed = new Typed('#footer-type-tips', {
+          strings: sub,
+          startDelay: 300,
+          typeSpeed: 150,
+          loop: true,
+          backSpeed: 50,
+        })
+      } else {
+        document.getElementById('footer-type-tips').innerHTML = data.hitokoto
+      }
+    })
+}
+
+if (true) {
+  if (typeof Typed === 'function') {
+    subtitleType()
+  } else {
+    getScript('https://cdn.cbd.int/typed.js@2.1.0/dist/typed.umd.js').then(subtitleType)
+  }
+} else {
+  subtitleType()
+}
+</script></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu" title="主题">主题</a><a class="footer-bar-link" target="_blank" rel="noopener" href="https://image.liumingzhi.cn" title="图床">图床</a><a class="footer-bar-link" target="_blank" rel="noopener" href="https://beian.miit.gov.cn/" title="湘ICP备-2024053403号">湘ICP备-2024053403号</a><a class="footer-bar-link cc" href="/copyright" title="CC协议"><i class="anzhiyufont anzhiyu-icon-copyright-line"></i><i class="anzhiyufont anzhiyu-icon-creative-commons-by-line"></i><i class="anzhiyufont anzhiyu-icon-creative-commons-nc-line"></i><i class="anzhiyufont anzhiyu-icon-creative-commons-nd-line"></i></a></div></div></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">文章</div><div class="length-num">27</div></a><a href="/tags/" title="tag"><div class="headline">标签</div><div class="length-num">14</div></a><a href="/categories/" title="category"><div class="headline">分类</div><div class="length-num">6</div></a></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="显示模式"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>显示模式</span></a></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" href="https://blog.liumingzhi.cn/" title="博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://qexo.liumingzhi.cn" title="Qexo后台"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.liumingzhi.cn/file/14dbd2629a9b1bb9a85a2.jpg" alt="Qexo后台"/><span class="back-menu-item-text">Qexo后台</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">博客路线</div><div class="back-menu-list"><a class="back-menu-item" href="https://blog.liumingzhi.cn/" title="主路线"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="主路线"/><span class="back-menu-item-text">主路线</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://vercel.liumingzhi.cn/" title="Vercel路线"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.liumingzhi.cn/file/7e8b03d953ce5e9005cb8.jpg" alt="Vercel路线"/><span class="back-menu-item-text">Vercel路线</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://image.liumingzhi.cn" title="图床"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.liumingzhi.cn/file/25ae14abec33eedb1ac32.png" alt="图床"/><span class="back-menu-item-text">图床</span></a></div></div></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 友链</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人帐</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/fcircle/"><i class="anzhiyufont anzhiyu-icon-artstation faa-tada" style="font-size: 0.9em;"></i><span> 朋友圈</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/"><i class="anzhiyufont anzhiyu-icon-music faa-tada" style="font-size: 0.9em;"></i><span> 音乐馆</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/bangumis/"><i class="anzhiyufont anzhiyu-icon-bilibili faa-tada" style="font-size: 0.9em;"></i><span> 追番页</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/album/"><i class="anzhiyufont anzhiyu-icon-images faa-tada" style="font-size: 0.9em;"></i><span> 相册集</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/air-conditioner/"><i class="anzhiyufont anzhiyu-icon-fan faa-tada" style="font-size: 0.9em;"></i><span> 小空调</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 游戏厅</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/game/2048"><i class="anzhiyufont anzhiyu-icon-fire faa-tada" style="font-size: 0.9em;"></i><span> 2048</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/game/mf"><i class="anzhiyufont anzhiyu-icon-fire faa-tada" style="font-size: 0.9em;"></i><span> 魔方</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/game/sl"><i class="anzhiyufont anzhiyu-icon-fire faa-tada" style="font-size: 0.9em;"></i><span> 扫雷</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/game/wzq"><i class="anzhiyufont anzhiyu-icon-fire faa-tada" style="font-size: 0.9em;"></i><span> 五子棋</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/game/txz"><i class="anzhiyufont anzhiyu-icon-fire faa-tada" style="font-size: 0.9em;"></i><span> 推箱子</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li></ul></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/Android/" style="font-size: 0.88rem;">Android<sup>4</sup></a><a href="/tags/ArkTS/" style="font-size: 0.88rem;">ArkTS<sup>1</sup></a><a href="/tags/Flutter/" style="font-size: 0.88rem;">Flutter<sup>2</sup></a><a href="/tags/HarmonyOS/" style="font-size: 0.88rem;">HarmonyOS<sup>2</sup></a><a href="/tags/KMP/" style="font-size: 0.88rem;">KMP<sup>1</sup></a><a href="/tags/Kotlin/" style="font-size: 0.88rem;">Kotlin<sup>2</sup></a><a href="/tags/Router/" style="font-size: 0.88rem;">Router<sup>1</sup></a><a href="/tags/java/" style="font-size: 0.88rem;">java<sup>1</sup></a><a href="/tags/%E5%AE%9E%E4%B9%A0/" style="font-size: 0.88rem;">实习<sup>2</sup></a><a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 0.88rem;">网络<sup>1</sup></a><a href="/tags/%E8%AE%A1%E7%BD%91/" style="font-size: 0.88rem;">计网<sup>1</sup></a><a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 0.88rem;">设计模式<sup>1</sup></a><a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 0.88rem;">面试<sup>2</sup></a><a href="/tags/%E9%AB%98%E6%96%B0%E5%85%B4/" style="font-size: 0.88rem;">高新兴<sup>2</sup></a></div></div><hr/></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><button id="chat-btn" type="button" title="聊天"><i class="anzhiyufont anzhiyu-icon-comment-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="anzhiyufont anzhiyu-icon-comments"></i></a><a id="switch-commentBarrage" href="javascript:anzhiyu.switchCommentBarrage();" title="开关弹幕"><i class="anzhiyufont anzhiyu-icon-danmu"></i></a><button id="go-up" type="button" title="回到顶部"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="nav-music"><a id="nav-music-hoverTips" onclick="anzhiyu.musicToggle()" accesskey="m">播放音乐</a><div id="console-music-bg"></div><meting-js id="1451608172" server="tencent" type="playlist" mutex="true" preload="none" theme="var(--anzhiyu-main)" data-lrctype="0" order="random" volume="0.7"></meting-js></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="anzhiyufont anzhiyu-icon-xmark"></i></button></nav><div class="is-center" id="loading-database"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-pulse-icon"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://y.qq.com/n/ryqq/playlist/1451608172&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@6.1.6/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/vanilla-lazyload@19.1.3/dist/lazyload.iife.min.js"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("03/15/2024 00:00:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎使用安知鱼!`,
+    `生活明朗, 万物可爱`,
+    `
+        
+       █████╗ ███╗   ██╗███████╗██╗  ██╗██╗██╗   ██╗██╗   ██╗
+      ██╔══██╗████╗  ██║╚══███╔╝██║  ██║██║╚██╗ ██╔╝██║   ██║
+      ███████║██╔██╗ ██║  ███╔╝ ███████║██║ ╚████╔╝ ██║   ██║
+      ██╔══██║██║╚██╗██║ ███╔╝  ██╔══██║██║  ╚██╔╝  ██║   ██║
+      ██║  ██║██║ ╚████║███████╗██║  ██║██║   ██║   ╚██████╔╝
+      ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝
+        
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2024 By 安知鱼 V1.7.1",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
+
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by 安知鱼 %c 你正在访问 曦臣 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async src="/anzhiyu/random.js"></script><script async="async">(function () {
+  var grt = new Date("03/15/2024 00:00:00"); //设置网站上线时间
+  var now = new Date();
+  var dnum;
+  var hnum;
+  var mnum;
+  var snum;
+  var nowHour;
+
+  // 计算并更新天数、小时数、分钟数和秒数
+  function updateTime() {
+    now = new Date(); // 更新 now 的值
+    nowHour = now.getHours(); // 更新 nowHour 的值
+    var days = (now - grt) / 1000 / 60 / 60 / 24;
+    dnum = Math.floor(days);
+    var hours = (now - grt) / 1000 / 60 / 60 - 24 * dnum;
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+      hnum = "0" + hnum;
+    }
+    var minutes = (now - grt) / 1000 / 60 - 24 * 60 * dnum - 60 * hnum;
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+      mnum = "0" + mnum;
+    }
+    var seconds = (now - grt) / 1000 - 24 * 60 * 60 * dnum - 60 * 60 * hnum - 60 * mnum;
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+      snum = "0" + snum;
+    }
+  }
+
+  // 更新网页中显示的网站运行时间
+  function updateHtml() {
+    const footer = document.getElementById("footer");
+    if (!footer) return
+    let currentTimeHtml = "";
+    if (nowHour < 18 && nowHour >= 9) {
+      // 如果是上班时间，默认就是"安知鱼-上班摸鱼中.svg"图片，不需要更改
+      currentTimeHtml = `本站居然运行了 ${dnum} 天<span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span><i class='anzhiyufont anzhiyu-icon-heartbeat' style='color:red'></i>`;
+    } else {
+      // 如果是下班时间，插入"安知鱼-下班啦.svg"图片
+      let img = document.querySelector("#workboard .workSituationImg");
+      if (img != null) {
+        img.src = "https://npm.elemecdn.com/anzhiyu-blog@2.0.4/img/badge/安知鱼-下班啦.svg";
+        img.title = "下班了就该开开心心的玩耍，嘿嘿~";
+        img.alt = "下班了就该开开心心的玩耍，嘿嘿~";
+      }
+
+      currentTimeHtml = `本站居然运行了 ${dnum} 天<span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span><i class='anzhiyufont anzhiyu-icon-heartbeat' style='color:red'></i>`;
+    }
+
+    if (document.getElementById("runtimeTextTip")) {
+      document.getElementById("runtimeTextTip").innerHTML = currentTimeHtml;
+    }
+  }
+
+  setInterval(() => {
+    updateTime();
+    updateHtml();
+  }, 1000);
+})();</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.cbd.int/mermaid@11.12.2/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  anzhiyu.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://martinleo-twikoo.hf.space',
+      region: '',
+      onCommentLoaded: () => {
+        anzhiyu.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(runFn,0)
+    else getScript('https://cdn.cbd.int/twikoo@1.6.44/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://martinleo-twikoo.hf.space',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const runFn = () => {
+    init();
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) anzhiyu.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else {
+      loadTwikoo()
+    }
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script><input type="hidden" name="page-type" id="page-type" value="post"><script async src="/js/anzhiyu/comment_barrage.js"></script></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getComment = () => {
+    const runTwikoo = () => {
+      twikoo.getRecentComments({
+        envId: 'https://martinleo-twikoo.hf.space',
+        region: '',
+        pageSize: 6,
+        includeReply: true
+      }).then(function (res) {
+        const twikooArray = res.map(e => {
+          return {
+            'content': changeContent(e.comment),
+            'avatar': e.avatar,
+            'nick': e.nick,
+            'url': e.url + '#' + e.id,
+            'date': new Date(e.created).toISOString()
+          }
+        })
+
+        saveToLocal.set('twikoo-newest-comments', JSON.stringify(twikooArray), 10/(60*24))
+        generateHtml(twikooArray)
+      }).catch(function (err) {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.textContent= "无法获取评论，请确认相关配置是否正确"
+      })
+    }
+
+    if (typeof twikoo === 'object') {
+      runTwikoo()
+    } else {
+      getScript('https://cdn.cbd.int/twikoo@1.6.44/dist/twikoo.all.min.js').then(runTwikoo)
+    }
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'data-lazy-src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'><div class='name'><span>${array[i].nick} </span></div></a>`
+        }
+        
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <time datetime="${array[i].date}">${anzhiyu.diffDate(array[i].date, true)}</time></div>
+        </div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom && ($dom.innerHTML= result)
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('twikoo-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script>var visitorMail = "visitor@anheyu.com";
+</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://cdn.cbd.int/qrcodejs@1.0.0/qrcode.min.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/dist/canvas-fluttering-ribbon.min.js"></script><script>(() => {
+  const isChatBtn = true
+  const isChatHideShow = true
+
+  if (isChatBtn) {
+    const close = () => {
+      Chatra('minimizeWidget')
+      Chatra('hide')
+    }
+
+    const open = () => {
+      Chatra('openChat', true)
+      Chatra('show')
+    }
+
+    window.ChatraSetup = {
+      startHidden: true
+    }
+  
+    window.chatBtnFn = () => {
+      const isShow = document.getElementById('chatra').classList.contains('chatra--expanded')
+      isShow ? close() : open()
+    }
+  } else if (isChatHideShow) {
+    window.chatBtn = {
+      hide: () => {
+        Chatra('hide')
+      },
+      show: () => {
+        Chatra('show')
+      }
+    }
+  }
+
+  (function(d, w, c) {
+    w.ChatraID = ''
+    var s = d.createElement('script')
+    w[c] = w[c] || function() {
+        (w[c].q = w[c].q || []).push(arguments)
+    }
+    s.async = true
+    s.src = 'https://call.chatra.io/chatra.js'
+    if (d.head) d.head.appendChild(s)
+  })(document, window, 'Chatra')
+
+})()</script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://npm.elemecdn.com/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script src="https://cdn.cbd.int/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","meta[property=\"og:type\"]","meta[property=\"og:site_name\"]","meta[property=\"og:description\"]","head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  anzhiyu.removeGlobalFnEvent('pjax')
+  anzhiyu.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div><!-- hexo injector body_end start -->
+  <script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/hexo-github-calendar@1.16/hexo_githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://calendar.liumingzhi.cn/api/?user=xichenx";
+            var git_color =['#ebedf0', '#fdcdec', '#fc9bd9', '#fa6ac5', '#f838b2', '#f5089f', '#c4067e', '#92055e', '#540336', '#48022f', '#30021f'];
+            var git_user ="xichenx";
+            var parent_div_git = document.getElementById('recent-posts');
+            var git_div_html = '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><div id="github_loading" style="height:100%;display: flex;align-items: center;justify-content: center;"><svg style="height:50px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div>';
+            if(parent_div_git && location.pathname =='/'){
+                console.log("已挂载hexo-github-calendar https://github.com/Barry-Flynn/hexo-github-calendar");
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('recent-posts')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:280px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><script data-pjax>
+  function butterfly_clock_anzhiyu_injector_config(){
+    var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+    var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img class="entered loading" id="card-clock-loading" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading"/></div></div></div></div></div>';
+    console.log('已挂载butterfly_clock_anzhiyu')
+    if(parent_div_git) {
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var qweather_key = '8585f2ef2043406faed9c976db6effce';
+  var qweather_api_host = 'nj6r6pm8pt.re.qweatherapi.com';
+  var ip_api_key = 'Kq1pRjB3WyDja7rhKcWV9f5QU8';
+  var gaud_map_key = 'c424c6bc430399b7b84c56a392b0096c';
+  var baidu_ak_key = 'undefined';
+  var flag = 0;
+  var clock_rectangle = '112.982279,28.19409';
+  var clock_default_rectangle_enable = 'false';
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  </script><script data-pjax src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"scale":1,"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true,"scale":0.5},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>

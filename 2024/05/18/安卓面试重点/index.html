@@ -1,0 +1,1112 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>安卓面试重点 | 心灵涂鸦</title><meta name="author" content="曦臣"><meta name="copyright" content="曦臣"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="安卓面试重点"><meta name="application-name" content="安卓面试重点"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta property="og:type" content="article"><meta property="og:title" content="安卓面试重点"><meta property="og:url" content="https://blog.liumingzhi.cn/2024/05/18/安卓面试重点/index.html"><meta property="og:site_name" content="心灵涂鸦"><meta property="og:description" content="1. 安卓四大组件 Activity service broadcast Receiver content Provider  2. Activity的生命周期onCreate() &amp;#x3D;&amp;gt; onStart() &amp;#x3D;&amp;gt; onResume()  &amp;#x3D;&amp;gt; onPa"><meta property="og:locale" content="zh-CN"><meta property="og:image" content="https://ts1.cn.mm.bing.net/th/id/R-C.0b19e683f2368e2db8cf45ac77282325?rik=zIO%2bNknVg1pj%2fg&amp;riu=http%3a%2f%2fnextbigtechnology.com%2fwp-content%2fuploads%2f2017%2f12%2fandroid_app_banner.jpg&amp;ehk=gNlPcIh05vyzxbNQRqYXkV08D5d5IC05rJ%2fvOoaI%2f8I%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0"><meta property="article:author" content="曦臣"><meta property="article:tag"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://ts1.cn.mm.bing.net/th/id/R-C.0b19e683f2368e2db8cf45ac77282325?rik=zIO%2bNknVg1pj%2fg&amp;riu=http%3a%2f%2fnextbigtechnology.com%2fwp-content%2fuploads%2f2017%2f12%2fandroid_app_banner.jpg&amp;ehk=gNlPcIh05vyzxbNQRqYXkV08D5d5IC05rJ%2fvOoaI%2f8I%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0"><meta name="description" content="1. 安卓四大组件 Activity service broadcast Receiver content Provider  2. Activity的生命周期onCreate() &amp;#x3D;&amp;gt; onStart() &amp;#x3D;&amp;gt; onResume()  &amp;#x3D;&amp;gt; onPa"><link rel="shortcut icon" href="/favicon.ico"><link rel="canonical" href="https://blog.liumingzhi.cn/2024/05/18/%E5%AE%89%E5%8D%93%E9%9D%A2%E8%AF%95%E9%87%8D%E7%82%B9/"><link rel="preconnect" href="//cdn.cbd.int"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="google-site-verification" content="xxx"/><meta name="baidu-site-verification" content="code-xxx"/><meta name="msvalidate.01" content="xxx"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/@fortawesome/fontawesome-free@7.1.0/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@6.1.6/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/swiper/swiper.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  linkPageTop: {"enable":true,"title":"与数百名博主无限进步","addFriendPlaceholder":"昵称（请勿包含博客等字样）：\n网站地址（要求博客地址，请勿提交个人主页）：\n头像图片url（请提供尽可能清晰的图片，我会上传到我自己的图床）：\n描述：\n站点截图（可选）：\n"},
+  peoplecanvas: undefined,
+  postHeadAiDescription: {"enable":true,"gptName":"AnZhiYu","mode":"local","switchBtn":false,"btnLink":"https://afdian.net/item/886a79d4db6711eda42a52540025c377","randomNum":3,"basicWordCount":1000,"key":"xxxx","Referer":"https://xx.xx/"},
+  diytitle: {"enable":true,"leaveTitle":"w(ﾟДﾟ)w 不要走！再看看嘛！","backTitle":"♪(^∇^*)欢迎肥来！"},
+  LA51: {"enable":true,"ck":null,"LingQueMonitorID":null},
+  greetingBox: {"enable":true,"default":"晚上好👋","list":[{"greeting":"晚安😴","startTime":0,"endTime":5},{"greeting":"早上好鸭👋, 祝你一天好心情！","startTime":6,"endTime":9},{"greeting":"上午好👋, 状态很好，鼓励一下～","startTime":10,"endTime":10},{"greeting":"11点多啦, 在坚持一下就吃饭啦～","startTime":11,"endTime":11},{"greeting":"午安👋, 宝贝","startTime":12,"endTime":14},{"greeting":"🌈充实的一天辛苦啦！","startTime":14,"endTime":18},{"greeting":"19点喽, 奖励一顿丰盛的大餐吧🍔。","startTime":19,"endTime":19},{"greeting":"晚上好👋, 在属于自己的时间好好放松😌~","startTime":20,"endTime":24}]},
+  twikooEnvId: 'https://martinleo-twikoo.hf.space',
+  commentBarrageConfig:{"enable":true,"maxBarrage":1,"barrageTime":4000,"accessToken":"","mailMd5":""},
+  music_page_default: undefined,
+  root: '/',
+  preloader: {"source":3},
+  friends_vue_info: {"apiurl":"https://friends.anheyu.com/"},
+  navMusic: true,
+  mainTone: undefined,
+  authorStatus: undefined,
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: true,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"作者: 曦臣","link":"链接: ","source":"来源: 心灵涂鸦","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。","copySuccess":"复制成功，复制和转载请标注本文地址"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.2.0/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.2.0/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  shortcutKey: undefined,
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: '心灵涂鸦',
+  title: '安卓面试重点',
+  postAI: '',
+  pageFillDescription: '1. 安卓四大组件, 2. Activity的生命周期, 按home键返回桌面后再次进入生命周期是什么样的？, 生命周期具体场景示例, 3. Fragment的生命周期, 4. service 的生命周期两种启动方式的区别, 5. Activity的四种启动模式, 6. 进程线程协程的关系, 7. Handler机制, 8. MVP、MVC、MVVM 架构模式, 9.  RecyclerView, ListView 和RecyclerView的区别, 用过listView和recyclerview吗？有什么优化的地方, 优化方面：, RecyclerView如何复用itemView：, 10. TCP 和 UDP 区别, TCP实现原理（三次握手四次挥手）为什么不能改成两次, 三次握手（Connection Establishment）：, 四次挥手（Connection Termination）：, 两次握手导致的问题, 11. HTTP 和 HTTPS, HTTP的状态码有哪一些, HTTP 与 HTTPS 有哪些区别？, 12. OkHttp, 1.创建 OkHttpClient 对象, 2. 发起 HTTP 请求, 13. Retrofit, 创建 Retrofit 对象, 定义 API 并获取 API 实例, OkHttp和Retrofit区别, OkHttp：, Retrofit：, 14. SharedPreferences, commit()和apply()区别, 15.volatile 关键字的作用和原理, 16. synchronized 关键字的作用, 17. String、StringBuffer、StringBuilder 的区别, 18. 单例模式, 懒汉式线程不安全, 懒汉式线程安全, 饿汉式, 双重检验锁, 静态内部类, 枚举, 19. ANR发生的原因及其解决办法安卓四大组件的生命周期按键返回桌面后再次进入生命周期是什么样的启动键的执行顺序下面的不用键的顺序生命周期具体场景示例启动系统会先调用方法然后调用方法最后调用进入运行状态当前被其他覆盖其上或被锁屏系统会调用方法暂停当前的执行当前由被覆盖状态回到前台或解锁屏系统会调用方法再次进入运行状态当前转到新的界面或按键回到主屏自身退居后台系统会先调用方法然后调用方法进入停滞状态用户后退回到此系统会先调用方法然后调用方法最后调用方法再次进入运行状态当前处于被覆盖状态或者后台不可见状态即第步和第步系统内存不足杀死当前而后用户退回当前再次调用方法方法方法进入运行状态用户退出当前系统先调用方法然后调用方法最后调用方法结束当前的生命周期的生命周期两种启动方式的区别区别启动如果服务已经开启多次执行不会重复的执行而是会调用和如果服务已经开启多次执行时和方法并不会被多次调用销毁当执行时直接调用方法调用者调用方法或者调用者不存在了如被了就会调用使用方法启用服务调用者与服务之间没有关连即使调用者退出了服务仍然运行使用方法启用服务调用者与服务绑定在了一起调用者一旦退出服务也就终止单独使用第一次调用会执行之后再多次调用只执行不再执行调用会执行单独使用第一次调用会执行之后再多次调用不会再执行和调用会执行的四种启动模式标准模式如果在中不设置就默认就是新建一个就在栈中新建一个实例栈顶复用模式与相比栈顶复用可以有效减少重复创建对资源的消耗但是这要根据具体情况而定不能一概而论栈内单例模式栈内只有一个实例栈内已存实例在其他中这个直接把这个实例上面其他实例踢出栈掉堆内单例整个手机操作系统里面只有一个实例存在就是内存单例如经常调用的拨打电话系统通讯录系统锁屏键来电显示等系统应用适合需要与程序分离开的页面例如闹铃提醒将闹铃提醒与闹铃设置分离在中如果在应用内存在实例并且再次发生回到后由于并不是重新创建而是复用栈中的实例因此再获取焦点后并没调用而是直接调用了函数进程线程协程的关系进程线程和协程都是计算机科学中用于管理和执行任务的概念它们之间有一些相似性和区别进程进程是操作系统分配资源的基本单位每个进程都有独立的内存空间和执行环境进程之间相互独立彼此之间不能直接访问彼此的内存空间通信需要通过特定的机制比如进程间通信每个进程都拥有独立的地址空间包括代码数据和堆栈因此进程之间的切换开销相对较大线程线程是进程内的执行单元多个线程可以共享同一个进程的资源如内存空间和文件句柄同一进程内的线程之间可以直接访问共享的内存空间因此线程间通信相对简单但需要注意同步和互斥线程共享进程的地址空间因此线程之间的切换开销相对较小协程协程是一种用户态的轻量级线程它可以在执行过程中暂停和恢复而不是像线程那样被操作系统调度协程可以避免创建大量线程的开销提高并发程序的性能和可读性协程通常是由程序员显式地控制调度而不是依赖于操作系统的线程调度器协程通常使用异步编程模式来实现非阻塞的并发操作例如在操作中等待结果而不阻塞线程关于它们的关系一个进程可以包含多个线程这些线程共享该进程的资源但彼此之间相对独立协程通常运行在线程之上一个线程可以包含多个协程但协程之间也是相对独立的它们可以在需要时挂起和恢复机制说到就不得不提与之密切相关的这几个类中有两个成员变量值得关注和其实就是发送消息的对象是当调用时传入的类型的任务事件的本质也是创建了一个将我们传入的这个赋值给创建的的这个成员变量消息队列很明显是存放消息的队列值得关注的是中的方法它会返回下一个待处理的消息消息轮询器其实是连接和消息队列的核心如果想要在一个线程中创建一个首先要通过创建之后还得调用开启轮询这个方法做了两件事首先通过获取当前线程中的如果不为空则会抛出一个意思是一个线程不能创建个如果为则执行下一步第二步是创建了一个并通过将我们创建的与当前线程绑定这里需要提一下的是消息队列的创建其实就发生在的构造方法中这个方法开启了整个事件机制的轮询它的本质是开启了一个死循环不断的通过的方法获取消息拿到消息后会调用来做处理其实我们在说到的时候提到过其实就是发送这个消息的这句代码的本质就是调用的的分析着重在两个部分发送消息和处理消息发送消息其实发送消息除了之外还有和以及等等不同的方式但它们的本质都是调用了在这个方法中调用了在这个方法中做了两件事通过实现了消息与当前的绑定然后通过实现了消息入队处理消息消息处理的核心其实就是这个方法这个方法里面的逻辑很简单先判断是否为如果不为空则执行这个如果为空则会执行我们的方法架构模式在开发中和是常用的架构模式它们都旨在帮助开发者组织代码提高代码的可读性和可维护性以下是它们的简要介绍是一种经典的架构模式将应用程序分为三个主要部分和表示数据模型或业务逻辑表示用户界面作为和之间的中介负责处理业务逻辑和更新视图在中通常是被动的它只负责展示数据和将用户输入传递给负责处理用户输入更新和与进行交互是另一种经典的架构模式也将应用程序分为三个部分和表示数据和业务逻辑表示用户界面负责处理用户输入更新和在中的实现方式可能会有所不同通常是或充当负责协调和是一种相对较新的架构模式它将应用程序分为三个部分和表示数据和业务逻辑表示用户界面作为和之间的中介负责管理视图的状态处理用户输入和更新通常通过数据绑定库如中的和与进行绑定使在的状态变化时自动更新每种架构模式都有其优点和适用场景选择合适的架构模式取决于项目的需求团队的技术水平和个人偏好适合需要测试和解耦的项目适用于简单的项目而则适用于需要利用数据绑定和响应式编程的项目具有多久缓存机制滑动回收复用机制刷新回收复用机制具有预布局的效果和的区别布局效果的布局比较单一只有一个纵向效果的布局效果丰富可以在中设置线性布局纵向横向表格布局瀑布流布局局部刷新中可以实现局部刷新例如如果要在实现局部刷新依然是可以实现的当一个数据刷新时我们可以在中实现一个方法在方法里面通过这个的刷新这个的数据缓存区别有两级缓存在屏幕与非屏幕内比多两级缓存缓存缓存用过和吗有什么优化的地方优化方面中的方法中复用在的方法中可以通过参数来重用已经存在的视图以减少内存消耗和提高性能如果不为可以直接对其进行重用而不是每次都创建新的视图避免重复创建点击事件在中可以在中为设置点击事件而不是在每次绑定数据时都创建新的点击事件监听器这样可以减少内存消耗并提高性能布局优化在布局方面尽量减少嵌套层级使用相对布局或者约束布局等能够提高布局性能的布局方式另外避免使用过多的复杂布局和不必要的视图可以减少渲染时间和内存消耗如何复用通过模式来复用这是其性能优势之一当需要显示新的数据时它会首先检查是否有可重用的可用如果有则会使用这些而不是创建新的这样做可以大大减少内存消耗和布局的层级具体来说在初始化时会创建一定数量的并在需要时将它们绑定到特定的数据上当滚出屏幕时对应的会被标记为可重用并保留在内存中以便在需要时进行重用这样即使有大量的数据需要显示也只需创建足够数量的而不需要为每个数据项都创建一个新的视图这种重用机制使得能够高效地处理大量数据并在滚动时保持流畅性能因为它不需要频繁地创建和销毁视图和区别连接是面向连接的传输层协议传输数据前先要建立连接是不需要连接即刻传输数据服务对象是一对一的两点服务即一条连接只有两个端点支持一对一一对多多对多的交互通信可靠性是可靠交付数据的数据可以无差错不丢失不重复按序到达是尽最大努力交付不保证可靠交付数据但是我们可以基于传输协议实现一个可靠的传输协议比如协议具体可以参见这篇文章如何基于协议实现可靠传输拥塞控制流量控制有拥塞控制和流量控制机制保证数据传输的安全性则没有即使网络非常拥堵了也不会影响的发送速率首部开销首部长度较长会有一定的开销首部在没有使用选项字段时是个字节如果使用了选项字段则会变长的首部只有个字节并且是固定不变的开销较小传输方式是流式传输没有边界但保证顺序和可靠是一个包一个包的发送是有边界的但可能会丢包和乱序分片不同的数据大小如果大于大小则会在传输层进行分片目标主机收到后也同样在传输层组装数据包如果中途丢失了一个分片只需要传输丢失的这个分片的数据大小如果大于大小则会在层进行分片目标主机收到后在层组装完数据接着再传给传输层和应用场景由于是面向连接能保证数据的可靠性交付因此经常用于文件传输由于面向无连接它可以随时发送数据再加上本身的处理既简单又高效因此经常用于包总量较少的通信如等视频音频等多媒体通信广播通信实现原理三次握手四次挥手为什么不能改成两次传输控制协议是一种面向连接的可靠的传输协议在建立连接和断开连接时需要进行三次握手和四次挥手三次握手客户端发送客户端向服务器发送一个同步标志的数据包表示客户端请求建立连接服务器发送服务器收到客户端的数据包后会向客户端发送一个同步确认标志的数据包表示服务器收到了客户端的请求并同意建立连接客户端发送客户端收到服务器的数据包后会向服务器发送一个确认标志的数据包表示客户端收到了服务器的确认连接建立成功四次挥手客户端发送当客户端想要断开连接时它向服务器发送一个结束标志的数据包表示客户端不再发送数据了但仍然可以接收数据服务器发送服务器收到客户端的数据包后会向客户端发送一个标志的数据包表示服务器收到了客户端的请求但服务器仍然可以向客户端发送数据服务器发送当服务器准备好断开连接时它向客户端发送一个标志的数据包表示服务器不再发送数据了但仍然可以接收数据客户端发送客户端收到服务器的数据包后会向服务器发送一个标志的数据包表示客户端收到了服务器的请求连接断开成功挥手过程为什么是四次呢这是因为是全双工的即数据可以双向传输在断开连接时需要分别关闭客户端到服务器和服务器到客户端的数据流因此需要分别发送和所以挥手过程是四次这样可以确保数据的完整传输并且在断开连接后双方都不再发送数据两次握手导致的问题可能存在已失效的连接请求假设客户端发送了连接请求但由于某种原因导致该请求在网络中滞留没有到达服务器如果此时服务器接收不到客户端的连接请求它就不会发送回复但客户端并不知道自己的连接请求是否已经到达服务器它可能会误以为连接已经建立成功这样就可能导致客户端和服务器之间出现已失效的连接请求从而造成资源浪费可能出现网络中重复的连接请求假设客户端发送了连接请求但由于某种原因导致客户端没有收到服务器的回复在这种情况下客户端会重新发送连接请求如果之前的连接请求在网络中突然出现并到达服务器而服务器此时又接收到了客户端的新连接请求那么服务器可能会误认为客户端发送了两次连接请求从而建立两个连接这样就可能导致网络中出现重复的连接请求产生混乱和是超文本传输协议是超文本传输安全协议协议是双向协议比传输更加安全的状态码有哪一些表示提示信息表示成功表示重定向表示客户端错误表示服务器错误与有哪些区别是超文本传输协议信息是明文传输存在安全风险的问题则解决不安全的缺陷在和网络层之间加入了安全协议使得报文能够加密传输连接建立相对简单三次握手之后便可进行的报文传输而在三次握手之后还需进行的握手过程才可进入加密报文传输两者的默认端口不一样默认端口号是默认端口号是协议需要向证书权威机构申请数字证书来保证服务器的身份是可信的创建对象中的构造函数发起请求创建对象定义并获取实例和区别底层网络库是一个强大的客户端提供了丰富的功能来处理请求和响应如连接池管理请求重试缓存等轻量级的设计简单体积小巧易于集成到应用中灵活性提供了丰富的和扩展点可以轻松地实现自定义的网络功能和拦截器支持和支持协议和协议可以提供更快的网络请求和实时通讯功能基于注解的声明式客户端是一个基于注解和接口的声明式客户端使得定义和调用变得更加简洁和易于理解与配合使用底层使用来处理网络请求因此继承了的性能优势和功能特性简化网络请求流程封装了网络请求的细节使得网络请求的创建和调用变得更加简单和高效同时支持同步和异步请求支持多种数据转换器支持多种数据格式的转换器如等可以灵活地处理不同格式的数据综上所述和在网络开发中都有着各自的优势通常情况下可以使用作为底层网络库而作为对的高级封装用于简化网络请求的创建和调用这样可以既享受的性能和灵活性又能够通过简化网络请求的编写和维护以键值对的形式存储和检索原始数据类型如整数浮点数布尔值和字符串它提供了一种简单的方式来保存特定于应用程序或在应用程序之间共享的少量持久数据创建或访问您可以使用方法获取的实例需要提供一个偏好文件的名称和模式通常如果数据只能被您的应用程序访问则使用编辑要修改偏好设置您可以使用方法获取一个对象添加数据然后您可以使用等方法将数据添加到编辑器中提交更改完成更改后需要提交以将数据持久化检索数据要从中检索数据您可以使用等方法如果找不到默认值为常用于存储用户偏好设置和其他需要在应用程序重新启动时持久化的轻量级数据但是需要注意的是不应用于存储大量数据或敏感信息因为它不是加密的并且很容易被设备上的其他应用程序访问对于安全或大规模数据存储应考虑其他选项如数据库或加密文件和区别方法是同步的即它会立即将数据写入磁盘并返回写入结果成功或失败因此在调用后会阻塞调用线程直到数据写入完成由于是同步操作如果数据量较大或者磁盘速度较慢可能会导致线程阻塞从而影响用户体验方法是异步的它会将数据写入内存然后在合适的时机通常是在主线程空闲时异步将数据写入磁盘而不会阻塞调用线程由于是异步操作方法不会立即返回写入结果因此无法知道数据是否成功写入这意味着即使写入失败也不会收到通知关键字的作用和原理禁止了指令重排指令重排是指为了提高性能编译器和和处理器通常会对指令进行指令重排序保证了不同线程对这个变量进行操作时的可见性即一个线程修改了某个变量值这个新值对其他线程是立即可见的这就指示这个变量是不稳定的每次使用它都到主存中进行读取不保证原子性原理的原理是在生成的汇编代码中多了一个前缀指令这个前缀指令相当于一个内存屏障这个内存屏障有个作用确保指令重排的时候不会把屏障后的指令排在屏障前确保不会把屏障前的指令排在屏障后将当前处理器缓存行的数据写回到系统内存一个处理器的缓存回写到内存会导致其他处理器的缓存失效关键字的作用修饰实例方法作用于当前对象实例加锁进入同步代码前要获得当前对象实例的锁修饰静态方法也就是给当前类即对象加锁会作用于类的所有对象实例因为静态成员不属于任何一个实例对象是类成员表明这是该类的一个静态资源不管了多少个对象只有一份所以如果一个线程调用一个实例对象的非静态方法而线程需要调用这个实例对象所属类的静态方法是允许的不会发生互斥现象因为访问静态方法占用的锁是当前类的锁而访问非静态方法占用的锁是当前实例对象锁修饰代码块指定加锁对象对给定对象加锁进入同步代码库前要获得给定对象的锁可重入性当一个线程试图操作一个由其他线程持有的对象锁的临界资源时将会处于阻塞状态但当一个线程再次请求自己持有对象锁的临界资源时这种情况属于重入锁请求将会成功的区别值是不可变的这就导致每次对的操作都会产生新的对象效率低下且浪费内存值可变且线程安全值可变但线程不安全速度较更快使用关键字来保护它们的操作以确保在多线程环境中只有一个线程能够访问它们的方法单例模式懒汉式线程不安全懒汉式线程安全饿汉式类加载时就初始化双重检验锁双重检验锁模式是一种使用同步块加锁的方法程序员称其为双重检查锁因为会有两次检查一次是在同步块外一次是在同步块内为什么在同步块内还要再检验一次因为可能会有多个线程一起进入同步块外的如果在同步块内不进行二次检验的话就会生成多个实例了静态内部类枚举发生的原因及其解决办法的全称是是指应用程序未响应系统对于一些事件需要在一定的时间范围内完成如果超过预定时间能未能得到有效响应或者响应时间过长都会造成一般地这时往往会弹出一个提示框告知用户当前未响应用户可选择继续等待或者首先的发生是有条件限制的分为以下三点只有主线程才会产生主线程就是线程必须发生某些输入事件或特定操作比如按键或触屏等输入事件在或的各个生命周期调用函数上述事件响应超时不同的规定的上限时间不同主线程对输入事件秒内没有处理完毕主线程在执行的函数时秒内没有处理完毕主线程在前台的各个生命周期函数时秒内没有处理完毕后台那么导致的根本原因是什么呢简单的总结有以下两点主线程执行了耗时操作比如数据库操作或网络编程操作其他进程就是其他程序占用导致本进程得不到时间片比如其他进程的频繁读写操作可能会导致这个问题那么如何避免的发生呢或者说的解决办法是什么呢避免在主线程执行耗时操作所有耗时操作应新开一个子线程完成然后再在主线程更新要执行耗时操作时应启动一个将耗时操作交给来完成避免在里启动一个因为它会创建一个新的画面并从当前用户正在运行的程序上抢夺焦点如果你的应用程序在响应广播时需要向用户展示什么你应该使用来实现',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-04-26 11:30:02',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.css" /><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.1"></head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><img class="loading-img nolazyload" alt="加载头像" src="https://image.liumingzhi.cn/file/859f0131ef9e8d043e44e.png"/><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.getElementById('loading-box').classList.add("loaded");
+  },
+  initLoading: () => {
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+setTimeout(function(){preloader.endLoading();},10000)
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.10/progress_bar/progress_bar.css"/><script async="async" src="https://cdn.cbd.int/pace-js@1.2.4/pace.min.js" data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}"></script><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><div class="back-home-button"><i class="anzhiyufont anzhiyu-icon-grip-vertical"></i><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" href="https://blog.liumingzhi.cn/" title="博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://qexo.liumingzhi.cn" title="Qexo后台"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.liumingzhi.cn/file/14dbd2629a9b1bb9a85a2.jpg" alt="Qexo后台"/><span class="back-menu-item-text">Qexo后台</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">博客路线</div><div class="back-menu-list"><a class="back-menu-item" href="https://blog.liumingzhi.cn/" title="主路线"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="主路线"/><span class="back-menu-item-text">主路线</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://vercel.liumingzhi.cn/" title="Vercel路线"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.liumingzhi.cn/file/7e8b03d953ce5e9005cb8.jpg" alt="Vercel路线"/><span class="back-menu-item-text">Vercel路线</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://image.liumingzhi.cn" title="图床"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.liumingzhi.cn/file/25ae14abec33eedb1ac32.png" alt="图床"/><span class="back-menu-item-text">图床</span></a></div></div></div></div><a id="site-name" href="/" accesskey="h"><div class="title">心灵涂鸦</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a><div id="he-plugin-simple"></div><script>var WIDGET = {
+  "CONFIG": {
+    "modules": "0124",
+    "background": "2",
+    "tmpColor": "FFFFFF",
+    "tmpSize": "16",
+    "cityColor": "FFFFFF",
+    "citySize": "16",
+    "aqiColor": "E8D87B",
+    "aqiSize": "16",
+    "weatherIconSize": "24",
+    "alertIconSize": "18",
+    "padding": "10px 10px 10px 10px",
+    "shadow": "0",
+    "language": "auto",
+    "borderRadius": "20",
+    "fixed": "true",
+    "vertical": "top",
+    "horizontal": "left",
+    "left": "20",
+    "top": "7.1",
+    "key": "df245676fb434a0691ead1c63341cd94"
+  }
+}
+</script><link rel="stylesheet" href="https://widget.qweather.net/simple/static/css/he-simple.css?v=1.4.0"/><script src="https://widget.qweather.net/simple/static/js/he-simple.js?v=1.4.0"></script></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 友链</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人帐</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/fcircle/"><i class="anzhiyufont anzhiyu-icon-artstation faa-tada" style="font-size: 0.9em;"></i><span> 朋友圈</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/"><i class="anzhiyufont anzhiyu-icon-music faa-tada" style="font-size: 0.9em;"></i><span> 音乐馆</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/bangumis/"><i class="anzhiyufont anzhiyu-icon-bilibili faa-tada" style="font-size: 0.9em;"></i><span> 追番页</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/album/"><i class="anzhiyufont anzhiyu-icon-images faa-tada" style="font-size: 0.9em;"></i><span> 相册集</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/air-conditioner/"><i class="anzhiyufont anzhiyu-icon-fan faa-tada" style="font-size: 0.9em;"></i><span> 小空调</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 游戏厅</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/game/2048"><i class="anzhiyufont anzhiyu-icon-fire faa-tada" style="font-size: 0.9em;"></i><span> 2048</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/game/mf"><i class="anzhiyufont anzhiyu-icon-fire faa-tada" style="font-size: 0.9em;"></i><span> 魔方</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/game/sl"><i class="anzhiyufont anzhiyu-icon-fire faa-tada" style="font-size: 0.9em;"></i><span> 扫雷</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/game/wzq"><i class="anzhiyufont anzhiyu-icon-fire faa-tada" style="font-size: 0.9em;"></i><span> 五子棋</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/game/txz"><i class="anzhiyufont anzhiyu-icon-fire faa-tada" style="font-size: 0.9em;"></i><span> 推箱子</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li></ul></div></div></div><div id="nav-right"><div class="nav-button only-home" id="travellings_button" title="随机前往一个开往项目网站"><a class="site-page" onclick="anzhiyu.totraveling()" title="随机前往一个开往项目网站" href="javascript:void(0);" rel="external nofollow" data-pjax-state="external"><i class="anzhiyufont anzhiyu-icon-train"></i></a></div><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><div class="nav-button" id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" title="搜索🔍" accesskey="s"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span> 搜索</span></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="https://image.liumingzhi.cn/file/1ac25b4ee273216e58887.png" target="_blank"><img class="post-qr-code-img" alt="微信" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.liumingzhi.cn/file/1ac25b4ee273216e58887.png"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://image.liumingzhi.cn/file/0dd29dcb00dff55ddef7b.png" target="_blank"><img class="post-qr-code-img" alt="支付宝" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.liumingzhi.cn/file/0dd29dcb00dff55ddef7b.png"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> 最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/Android/" style="font-size: 1.05rem; color: rgb(189, 84, 113);">Android<sup>4</sup></a><a href="/tags/ArkTS/" style="font-size: 1.05rem; color: rgb(18, 187, 156);">ArkTS<sup>1</sup></a><a href="/tags/Flutter/" style="font-size: 1.05rem; color: rgb(89, 105, 200);">Flutter<sup>2</sup></a><a href="/tags/HarmonyOS/" style="font-size: 1.05rem; color: rgb(182, 147, 197);">HarmonyOS<sup>2</sup></a><a href="/tags/KMP/" style="font-size: 1.05rem; color: rgb(16, 177, 13);">KMP<sup>1</sup></a><a href="/tags/Kotlin/" style="font-size: 1.05rem; color: rgb(95, 65, 146);">Kotlin<sup>2</sup></a><a href="/tags/Router/" style="font-size: 1.05rem; color: rgb(21, 152, 104);">Router<sup>1</sup></a><a href="/tags/java/" style="font-size: 1.05rem; color: rgb(24, 19, 131);">java<sup>1</sup></a><a href="/tags/%E5%AE%9E%E4%B9%A0/" style="font-size: 1.05rem; color: rgb(134, 63, 102);">实习<sup>2</sup></a><a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 1.05rem; color: rgb(129, 38, 139);">网络<sup>1</sup></a><a href="/tags/%E8%AE%A1%E7%BD%91/" style="font-size: 1.05rem; color: rgb(144, 127, 1);">计网<sup>1</sup></a><a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 1.05rem; color: rgb(115, 115, 43);">设计模式<sup>1</sup></a><a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 1.05rem; color: rgb(71, 157, 67);">面试<sup>2</sup></a><a href="/tags/%E9%AB%98%E6%96%B0%E5%85%B4/" style="font-size: 1.05rem; color: rgb(105, 30, 74);">高新兴<sup>2</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="anzhiyufont anzhiyu-icon-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/09/"><span class="card-archive-list-date">九月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/01/"><span class="card-archive-list-date">一月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/12/"><span class="card-archive-list-date">十二月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/09/"><span class="card-archive-list-date">九月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/08/"><span class="card-archive-list-date">八月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/07/"><span class="card-archive-list-date">七月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">4</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/06/"><span class="card-archive-list-date">六月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">7</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/05/"><span class="card-archive-list-date">五月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">5</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div><div class="console-btn-item on" id="consoleCommentBarrage" onclick="anzhiyu.switchCommentBarrage()" title="热评开关"><a class="commentBarrage"><i class="anzhiyufont anzhiyu-icon-message"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="anzhiyu.musicToggle()" title="音乐开关"><a class="music-switch"><i class="anzhiyufont anzhiyu-icon-music"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="article-meta tags"></span></div></div><h1 class="post-title" itemprop="name headline">安卓面试重点</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2024-05-18T11:28:38.000Z" title="发表于 2024-05-18 19:28:38">2024-05-18</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2026-04-26T03:30:02.937Z" title="更新于 2026-04-26 11:30:02">2026-04-26</time></span></div><div class="meta-secondline"><span class="post-meta-separator"></span><span class="post-meta-wordcount"><i class="anzhiyufont anzhiyu-icon-file-word post-meta-icon" title="文章字数"></i><span class="post-meta-label" title="文章字数">字数总计:</span><span class="word-count" title="文章字数">7.8k</span><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-clock post-meta-icon" title="阅读时长"></i><span class="post-meta-label" title="阅读时长">阅读时长:</span><span>25分钟</span></span><span class="post-meta-separator"></span><span class="post-meta-pv-cv" id="" data-flag-title="安卓面试重点"><i class="anzhiyufont anzhiyu-icon-fw-eye post-meta-icon"></i><span class="post-meta-label" title="阅读量">阅读量:</span><span id="busuanzi_value_page_pv"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></span><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为长沙"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>长沙</span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src="https://ts1.cn.mm.bing.net/th/id/R-C.0b19e683f2368e2db8cf45ac77282325?rik=zIO%2bNknVg1pj%2fg&amp;riu=http%3a%2f%2fnextbigtechnology.com%2fwp-content%2fuploads%2f2017%2f12%2fandroid_app_banner.jpg&amp;ehk=gNlPcIh05vyzxbNQRqYXkV08D5d5IC05rJ%2fvOoaI%2f8I%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0"></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container" itemscope itemtype="https://blog.liumingzhi.cn/2024/05/18/%E5%AE%89%E5%8D%93%E9%9D%A2%E8%AF%95%E9%87%8D%E7%82%B9/"><header><h1 id="CrawlerTitle" itemprop="name headline">安卓面试重点</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">曦臣</span><time itemprop="dateCreated datePublished" datetime="2024-05-18T11:28:38.000Z" title="发表于 2024-05-18 19:28:38">2024-05-18</time><time itemprop="dateCreated datePublished" datetime="2026-04-26T03:30:02.937Z" title="更新于 2026-04-26 11:30:02">2026-04-26</time></header><h2 id="1-安卓四大组件"><a href="#1-安卓四大组件" class="headerlink" title="1. 安卓四大组件"></a>1. 安卓四大组件</h2><ul>
+<li>Activity</li>
+<li>service</li>
+<li>broadcast Receiver</li>
+<li>content Provider</li>
+</ul>
+<h2 id="2-Activity的生命周期"><a href="#2-Activity的生命周期" class="headerlink" title="2. Activity的生命周期"></a>2. Activity的生命周期</h2><p>onCreate() &#x3D;&gt; onStart() &#x3D;&gt; onResume()  &#x3D;&gt; onPause() &#x3D;&gt; onStop() &#x3D;&gt;onRestart()&#x3D;&gt; onDestrory()</p>
+<h3 id="按home键返回桌面后再次进入生命周期是什么样的？"><a href="#按home键返回桌面后再次进入生命周期是什么样的？" class="headerlink" title="按home键返回桌面后再次进入生命周期是什么样的？"></a>按home键返回桌面后再次进入生命周期是什么样的？</h3><ol>
+<li>启动：onCreat-&gt;onStart-&gt;onResume</li>
+<li>HOME键的执行顺序：onPause-&gt;onStop-&gt;onRestart-&gt;onStart-&gt;onResume</li>
+</ol>
+<p>下面的不用</p>
+<ol>
+<li>BACK键的顺序： onPause-&gt;onStop-&gt;onDestroy-&gt;onCreate-&gt;onStart-&gt;onResume</li>
+</ol>
+<h3 id="生命周期具体场景示例"><a href="#生命周期具体场景示例" class="headerlink" title="生命周期具体场景示例"></a>生命周期具体场景示例</h3><ol>
+<li>启动Activity：系统会先调用<strong>onCreate</strong>方法，然后调用<strong>onStart</strong>方法，最后调用<strong>onResume</strong>，Activity进入运行状态。</li>
+<li>当前Activity被其他Activity覆盖其上或被锁屏：系统会调用<strong>onPause</strong>方法，暂停当前Activity的执行。</li>
+<li>当前Activity由被覆盖状态回到前台或解锁屏：系统会调用<strong>onResume</strong>方法，再次进入运行状态。</li>
+<li>当前Activity转到新的Activity界面或按Home键回到主屏，自身退居后台：系统会先调用<strong>onPause</strong>方法，然后调用<strong>onStop</strong>方法，进入停滞状态。</li>
+<li>用户后退回到此Activity：系统会先调用<strong>onRestart</strong>方法，然后调用<strong>onStart</strong>方法，最后调用<strong>onResume</strong>方法，再次进入运行状态。</li>
+<li>当前Activity处于被覆盖状态或者后台不可见状态，即第2步和第4步，系统内存不足，杀死当前Activity，而后用户退回当前Activity：再次调用<strong>onCreate</strong>方法、<strong>onStart</strong>方法、<strong>onResume</strong>方法，进入运行状态。</li>
+<li>用户退出当前Activity：系统先调用<strong>onPause</strong>方法，然后调用<strong>onStop</strong>方法，最后调用<strong>onDestory</strong>方法，结束当前Activity</li>
+</ol>
+<h2 id="3-Fragment的生命周期"><a href="#3-Fragment的生命周期" class="headerlink" title="3. Fragment的生命周期"></a>3. Fragment的生命周期</h2><p>onAttach() &#x3D;&gt; oncreate() &#x3D;&gt; onCreateView() &#x3D;&gt; onActivityCreate() &#x3D;&gt; onDestroyView() &#x3D;&gt; onDetach()</p>
+<h2 id="4-service-的生命周期，两种启动方式的区别"><a href="#4-service-的生命周期，两种启动方式的区别" class="headerlink" title="4. service 的生命周期，两种启动方式的区别"></a>4. service 的生命周期，两种启动方式的区别</h2><p><strong>startService</strong> </p>
+<p>onCreate() -&gt; onStartCommand() -&gt; onDestroy()</p>
+<p> <strong>bindService</strong></p>
+<p> onCreate() -&gt; onbind() -&gt; onUnbind()-&gt; onDestroy() </p>
+<p><strong>区别</strong></p>
+<p> <strong>启动</strong> </p>
+<p>如果服务已经开启，多次执行startService不会重复的执行onCreate()， 而是会调用onStart()和 onStartCommand()。</p>
+<p> 如果服务已经开启，多次执行bindService时,onCreate和onBind方法并不会被多次调用 </p>
+<p><strong>销毁</strong></p>
+<p> 当执行stopService时，直接调用onDestroy方法 </p>
+<p>调用者调用unbindService方法或者调用者Context不存在了（如Activity被finish了），Service就会调用 onUnbind-&gt;onDestroy </p>
+<p>使用startService()方法启用服务，调用者与服务之间没有关连，即使调用者退出了，服 务仍然运行。 </p>
+<p>使用bindService()方法启用服务，调用者与服务绑定在了一起，调用者一旦退出，服务也就终止。</p>
+<p> 1、单独使用startService &amp; stopService </p>
+<p>（1）第一次调用startService会执行onCreate、onStartCommand。 </p>
+<p>（2）之后再多次调用startService只执行onStartCommand，不再执行onCreate。 </p>
+<p>（3）调用stopService会执行onDestroy。</p>
+<p>2、单独使用bindService &amp; unbindService </p>
+<p>（1）第一次调用bindService会执行onCreate、onBind。 </p>
+<p>（2）之后再多次调用bindService不会再执行onCreate和onBind。</p>
+<p>（3）调用unbindService会执行onUnbind、onDestroy。</p>
+<h2 id="5-Activity的四种启动模式"><a href="#5-Activity的四种启动模式" class="headerlink" title="5. Activity的四种启动模式"></a>5. Activity的四种启动模式</h2><ul>
+<li><strong>standard（标准模式）</strong>：如果在mainfest中不设置就默认standard。standard就是新建一个Activity就在栈中新建一个activity实例；</li>
+<li><strong>singleTop（栈顶复用模式）</strong>：与standard相比栈顶复用可以有效减少activity重复创建对资源的消耗，但是这要根据具体情况而定，不能一概而论；</li>
+<li><strong>singleTask（栈内单例模式）</strong>：栈内只有一个activity实例，栈内已存activity实例，在其他activity中start这个activity，Android直接把这个实例上面其他activity实例踢出栈GC掉；</li>
+<li><strong>singleInstance（堆内单例）</strong> ：整个手机操作系统里面只有一个实例存在就是内存单例；如APP经常调用的拨打电话、系统通讯录、系统Launcher、锁屏键、来电显示等系统应用。singleInstance适合需要与程序分离开的页面。例如闹铃提醒，将闹铃提醒与闹铃设置分离。</li>
+</ul>
+<p>在singleTop、singleTask、singleInstance 中如果在应用内存在Activity实例，并且再次发生startActivity(Intent intent)回到Activity后,由于并不是重新创建Activity而是复用栈中的实例，因此Activity再获取焦点后并没调用onCreate、onStart，而是直接调用了onNewIntent(Intent intent)函数。</p>
+<h2 id="6-进程，线程，协程的关系"><a href="#6-进程，线程，协程的关系" class="headerlink" title="6. 进程，线程，协程的关系"></a>6. 进程，线程，协程的关系</h2><p>进程（Process）、线程（Thread）和协程（Coroutine）都是计算机科学中用于管理和执行任务的概念，它们之间有一些相似性和区别。</p>
+<ol>
+<li><strong>进程（Process）</strong>：<ul>
+<li>进程是操作系统分配资源的基本单位，每个进程都有独立的内存空间和执行环境。</li>
+<li>进程之间相互独立，彼此之间不能直接访问彼此的内存空间，通信需要通过特定的机制，比如进程间通信（IPC）。</li>
+<li>每个进程都拥有独立的地址空间，包括代码、数据和堆栈，因此进程之间的切换开销相对较大。</li>
+</ul>
+</li>
+<li><strong>线程（Thread）</strong>：<ul>
+<li>线程是进程内的执行单元，多个线程可以共享同一个进程的资源，如内存空间和文件句柄。</li>
+<li>同一进程内的线程之间可以直接访问共享的内存空间，因此线程间通信相对简单，但需要注意同步和互斥。</li>
+<li>线程共享进程的地址空间，因此线程之间的切换开销相对较小。</li>
+</ul>
+</li>
+<li><strong>协程（Coroutine）</strong>：<ul>
+<li>协程是一种用户态的轻量级线程，它可以在执行过程中暂停和恢复，而不是像线程那样被操作系统调度。</li>
+<li>协程可以避免创建大量线程的开销，提高并发程序的性能和可读性。</li>
+<li>协程通常是由程序员显式地控制调度，而不是依赖于操作系统的线程调度器。</li>
+<li>协程通常使用异步编程模式来实现非阻塞的并发操作，例如在 I&#x2F;O 操作中等待结果而不阻塞线程。</li>
+</ul>
+</li>
+</ol>
+<p>关于它们的关系：</p>
+<ul>
+<li>一个进程可以包含多个线程，这些线程共享该进程的资源，但彼此之间相对独立。</li>
+<li>协程通常运行在线程之上，一个线程可以包含多个协程，但协程之间也是相对独立的，它们可以在需要时挂起和恢复。</li>
+</ul>
+<h2 id="7-Handler机制"><a href="#7-Handler机制" class="headerlink" title="7. Handler机制"></a>7. Handler机制</h2><p>说到 Handler，就不得不提与之密切相关的这几个类：Message、MessageQueue，Looper。</p>
+<ul>
+<li><strong>Message</strong>：Message 中有两个成员变量值得关注：target 和 callback。<ul>
+<li>target 其实就是发送消息的 Handler 对象</li>
+<li>callback 是当调用 <code>handler.post(runnable)</code> 时传入的 Runnable 类型的任务。post 事件的本质也是创建了一个 Message，将我们传入的这个 runnable 赋值给创建的Message的 callback 这个成员变量。</li>
+</ul>
+</li>
+<li><strong>MessageQueue</strong>: 消息队列很明显是存放消息的队列，值得关注的是 MessageQueue 中的 <code>next()</code> 方法，它会返回下一个待处理的消息。</li>
+<li><strong>Looper</strong>：Looper 消息轮询器其实是连接 Handler 和消息队列的核心。如果想要在一个线程中创建一个 Handler，首先要通过<code>Looper.prepare()</code>创建 Looper，之后还得调用<code>Looper.loop()</code>开启轮询。<ul>
+<li><strong><code>prepare()</code></strong>： 这个方法做了两件事：首先通过<code>ThreadLocal.get()</code>获取当前线程中的Looper，如果不为空，则会抛出一个RunTimeException，意思是一个线程不能创建2个Looper。如果为null则执行下一步。第二步是创建了一个Looper，并通过 <code>ThreadLocal.set(looper)。</code>将我们创建的Looper与当前线程绑定。这里需要提一下的是消息队列的创建其实就发生在Looper的构造方法中。</li>
+<li><strong><code>loop()</code></strong>： 这个方法开启了整个事件机制的轮询。它的本质是开启了一个死循环，不断的通过 <code>MessageQueue的next()</code>方法获取消息。拿到消息后会调用 <code>msg.target.dispatchMessage()</code>来做处理。其实我们在说到 Message 的时候提到过，<code>msg.target</code> 其实就是发送这个消息的 handler。这句代码的本质就是调用 <code>handler的dispatchMessage()。</code></li>
+</ul>
+</li>
+<li><strong>Handler</strong>：Handler 的分析着重在两个部分：发送消息和处理消息。<ul>
+<li><strong>发送消息</strong>：其实发送消息除了 sendMessage 之外还有 sendMessageDelayed 和 post 以及 postDelayed 等等不同的方式。但它们的本质都是调用了 sendMessageAtTime。在 sendMessageAtTime 这个方法中调用了 enqueueMessage。在 enqueueMessage 这个方法中做了两件事：通过<code>msg.target = this</code>实现了消息与当前 handler 的绑定。然后通过<code>queue.enqueueMessage</code>实现了消息入队。</li>
+<li><strong>处理消息</strong>： 消息处理的核心其实就是<code>dispatchMessage()</code>这个方法。这个方法里面的逻辑很简单，先判断 <code>msg.callback</code> 是否为 null，如果不为空则执行这个 runnable。如果为空则会执行我们的<code>handleMessage</code>方法。</li>
+</ul>
+</li>
+</ul>
+<h2 id="8-MVP、MVC、MVVM-架构模式"><a href="#8-MVP、MVC、MVVM-架构模式" class="headerlink" title="8. MVP、MVC、MVVM 架构模式"></a>8. MVP、MVC、MVVM 架构模式</h2><p>在 Android 开发中，MVP（Model-View-Presenter）、MVC（Model-View-Controller）和 MVVM（Model-View-ViewModel）是常用的架构模式，它们都旨在帮助开发者组织代码、提高代码的可读性和可维护性。以下是它们的简要介绍：</p>
+<ol>
+<li><strong>MVP（Model-View-Presenter）</strong>：<ul>
+<li>MVP 是一种经典的架构模式，将应用程序分为三个主要部分：Model、View 和 Presenter。</li>
+<li>Model 表示数据模型或业务逻辑，View 表示用户界面，Presenter 作为 View 和 Model 之间的中介，负责处理业务逻辑和更新视图。</li>
+<li>在 MVP 中，View 通常是 passively（被动的），它只负责展示数据和将用户输入传递给 Presenter；Presenter 负责处理用户输入、更新 View 和与 Model 进行交互。</li>
+</ul>
+</li>
+<li><strong>MVC（Model-View-Controller）</strong>：<ul>
+<li>MVC 是另一种经典的架构模式，也将应用程序分为三个部分：Model、View 和 Controller。</li>
+<li>Model 表示数据和业务逻辑，View 表示用户界面，Controller 负责处理用户输入、更新 Model 和 View。</li>
+<li>在 Android 中，MVC 的实现方式可能会有所不同，通常是 Activity 或 Fragment 充当 Controller，负责协调 Model 和 View。</li>
+</ul>
+</li>
+<li><strong>MVVM（Model-View-ViewModel）</strong>：<ul>
+<li>MVVM 是一种相对较新的架构模式，它将应用程序分为三个部分：Model、View 和 ViewModel。</li>
+<li>Model 表示数据和业务逻辑，View 表示用户界面，ViewModel 作为 View 和 Model 之间的中介，负责管理视图的状态、处理用户输入和更新 Model。</li>
+<li>ViewModel 通常通过数据绑定库（如 Android Architecture Components 中的 LiveData 和 DataBinding）与 View 进行绑定，使 View 在 ViewModel 的状态变化时自动更新。</li>
+</ul>
+</li>
+</ol>
+<p>每种架构模式都有其优点和适用场景，选择合适的架构模式取决于项目的需求、团队的技术水平和个人偏好。MVP 适合需要测试和解耦的项目，MVC 适用于简单的项目，而 MVVM 则适用于需要利用数据绑定和响应式编程的项目。</p>
+<h2 id="9-RecyclerView"><a href="#9-RecyclerView" class="headerlink" title="9.  RecyclerView"></a>9.  RecyclerView</h2><p>​	1.具有多久缓存机制</p>
+<p>​	2.滑动回收复用机制</p>
+<p>​	3.刷新回收复用机制</p>
+<p>​	4.具有预布局的效果</p>
+<h3 id="ListView-和RecyclerView的区别"><a href="#ListView-和RecyclerView的区别" class="headerlink" title="ListView 和RecyclerView的区别"></a>ListView 和RecyclerView的区别</h3><ol>
+<li><p>布局效果 </p>
+<p>ListView 的布局比较单一，只有一个纵向效果； RecyclerView 的布局效果丰富， 可以在 LayoutMananger 中 设置：线性布局（纵向，横向），表格布局，瀑布流布局</p>
+</li>
+<li><p>局部刷新</p>
+<p>RecyclerView中可以实现局部刷新，例如：notifyItemChanged()； 如果要在ListView实现局部刷新，依然是可以实现的，当一个item数据刷新时，我们可以在Adapter中，实现一 个notifyItemChanged()方法，在方法里面通过这个 item 的 position，刷新这个item的数据</p>
+</li>
+<li><p>缓存区别</p>
+</li>
+</ol>
+<p>​		ListView有两级缓存，在屏幕与非屏幕内。 RecyclerView比ListView多两级缓存 ListView缓存View。 RecyclerView缓存RecyclerView.ViewHolder</p>
+<h3 id="用过listView和recyclerview吗？有什么优化的地方"><a href="#用过listView和recyclerview吗？有什么优化的地方" class="headerlink" title="用过listView和recyclerview吗？有什么优化的地方"></a>用过listView和recyclerview吗？有什么优化的地方</h3><h3 id="优化方面："><a href="#优化方面：" class="headerlink" title="优化方面："></a>优化方面：</h3><ol>
+<li><strong>ListView中的getView方法中复用contentView</strong>：<ul>
+<li>在ListView的getView方法中，可以通过convertView参数来重用已经存在的视图，以减少内存消耗和提高性能。如果convertView不为null，可以直接对其进行重用，而不是每次都创建新的视图。</li>
+</ul>
+</li>
+<li><strong>RecyclerView避免重复创建点击事件</strong>：<ul>
+<li>在RecyclerView中，可以在ViewHolder中为itemView设置点击事件，而不是在每次绑定数据时都创建新的点击事件监听器。这样可以减少内存消耗，并提高性能。</li>
+</ul>
+</li>
+<li><strong>布局优化</strong>：<ul>
+<li>在布局方面，尽量减少嵌套层级，使用相对布局或者约束布局等能够提高布局性能的布局方式。另外，避免使用过多的复杂布局和不必要的视图，可以减少渲染时间和内存消耗。</li>
+</ul>
+</li>
+</ol>
+<h3 id="RecyclerView如何复用itemView："><a href="#RecyclerView如何复用itemView：" class="headerlink" title="RecyclerView如何复用itemView："></a>RecyclerView如何复用itemView：</h3><p>RecyclerView通过ViewHolder模式来复用itemView，这是其性能优势之一。当RecyclerView需要显示新的数据时，它会首先检查是否有可重用的ViewHolder可用，如果有，则会使用这些ViewHolder，而不是创建新的。这样做可以大大减少内存消耗和布局的层级。</p>
+<p>具体来说，RecyclerView在初始化时会创建一定数量的ViewHolder，并在需要时将它们绑定到特定的数据上。当itemView滚出屏幕时，对应的ViewHolder会被标记为可重用，并保留在内存中，以便在需要时进行重用。这样，即使有大量的数据需要显示，也只需创建足够数量的ViewHolder，而不需要为每个数据项都创建一个新的视图。</p>
+<p>这种重用机制使得RecyclerView能够高效地处理大量数据，并在滚动时保持流畅性能，因为它不需要频繁地创建和销毁视图。</p>
+<h2 id="10-TCP-和-UDP-区别"><a href="#10-TCP-和-UDP-区别" class="headerlink" title="10. TCP 和 UDP 区别"></a>10. TCP 和 UDP 区别</h2><p><em>1. 连接</em></p>
+<ul>
+<li>TCP 是面向连接的传输层协议，传输数据前先要建立连接。</li>
+<li>UDP 是不需要连接，即刻传输数据。</li>
+</ul>
+<p><em>2. 服务对象</em></p>
+<ul>
+<li>TCP 是一对一的两点服务，即一条连接只有两个端点。</li>
+<li>UDP 支持一对一、一对多、多对多的交互通信</li>
+</ul>
+<p><em>3. 可靠性</em></p>
+<ul>
+<li>TCP 是可靠交付数据的，数据可以无差错、不丢失、不重复、按序到达。</li>
+<li>UDP 是尽最大努力交付，不保证可靠交付数据。但是我们可以基于 UDP 传输协议实现一个可靠的传输协议，比如 QUIC 协议，具体可以参见这篇文章：<a target="_blank" rel="noopener" href="https://xiaolincoding.com/network/3_tcp/quic.html">如何基于 UDP 协议实现可靠传输？(opens new window)</a></li>
+</ul>
+<p><em>4. 拥塞控制、流量控制</em></p>
+<ul>
+<li>TCP 有拥塞控制和流量控制机制，保证数据传输的安全性。</li>
+<li>UDP 则没有，即使网络非常拥堵了，也不会影响 UDP 的发送速率。</li>
+</ul>
+<p><em>5. 首部开销</em></p>
+<ul>
+<li>TCP 首部长度较长，会有一定的开销，首部在没有使用「选项」字段时是 <code>20</code> 个字节，如果使用了「选项」字段则会变长的。</li>
+<li>UDP 首部只有 8 个字节，并且是固定不变的，开销较小。</li>
+</ul>
+<p><em>6. 传输方式</em></p>
+<ul>
+<li>TCP 是流式传输，没有边界，但保证顺序和可靠。</li>
+<li>UDP 是一个包一个包的发送，是有边界的，但可能会丢包和乱序。</li>
+</ul>
+<p><em>7. 分片不同</em></p>
+<ul>
+<li>TCP 的数据大小如果大于 MSS 大小，则会在传输层进行分片，目标主机收到后，也同样在传输层组装 TCP 数据包，如果中途丢失了一个分片，只需要传输丢失的这个分片。</li>
+<li>UDP 的数据大小如果大于 MTU 大小，则会在 IP 层进行分片，目标主机收到后，在 IP 层组装完数据，接着再传给传输层。</li>
+</ul>
+<p><strong>TCP 和 UDP 应用场景：</strong></p>
+<p>由于 TCP 是面向连接，能保证数据的可靠性交付，因此经常用于：</p>
+<ul>
+<li><code>FTP</code> 文件传输；</li>
+<li>HTTP &#x2F; HTTPS；</li>
+</ul>
+<p>由于 UDP 面向无连接，它可以随时发送数据，再加上 UDP 本身的处理既简单又高效，因此经常用于：</p>
+<ul>
+<li><p>包总量较少的通信，如 <code>DNS</code> 、<code>SNMP</code> 等；</p>
+</li>
+<li><p>视频、音频等多媒体通信；</p>
+</li>
+<li><p>广播通信；</p>
+<h3 id="TCP实现原理（三次握手，四次挥手），为什么不能改成两次"><a href="#TCP实现原理（三次握手，四次挥手），为什么不能改成两次" class="headerlink" title="TCP实现原理（三次握手，四次挥手），为什么不能改成两次"></a>TCP实现原理（三次握手，四次挥手），为什么不能改成两次</h3></li>
+</ul>
+<p> TCP（Transmission Control Protocol，传输控制协议）是一种面向连接的、可靠的传输协议。在建立连接和断开连接时，TCP 需要进行三次握手和四次挥手。</p>
+<h3 id="三次握手（Connection-Establishment）："><a href="#三次握手（Connection-Establishment）：" class="headerlink" title="三次握手（Connection Establishment）："></a>三次握手（Connection Establishment）：</h3><ol>
+<li><strong>客户端发送 SYN</strong>：客户端向服务器发送一个 SYN（同步）标志的数据包，表示客户端请求建立连接。</li>
+<li><strong>服务器发送 SYN-ACK</strong>：服务器收到客户端的 SYN 数据包后，会向客户端发送一个 SYN-ACK（同步-确认）标志的数据包，表示服务器收到了客户端的请求，并同意建立连接。</li>
+<li><strong>客户端发送 ACK</strong>：客户端收到服务器的 SYN-ACK 数据包后，会向服务器发送一个 ACK（确认）标志的数据包，表示客户端收到了服务器的确认，连接建立成功。</li>
+</ol>
+<h3 id="四次挥手（Connection-Termination）："><a href="#四次挥手（Connection-Termination）：" class="headerlink" title="四次挥手（Connection Termination）："></a>四次挥手（Connection Termination）：</h3><ol>
+<li><strong>客户端发送 FIN</strong>：当客户端想要断开连接时，它向服务器发送一个 FIN（结束）标志的数据包，表示客户端不再发送数据了，但仍然可以接收数据。</li>
+<li><strong>服务器发送 ACK</strong>：服务器收到客户端的 FIN 数据包后，会向客户端发送一个 ACK 标志的数据包，表示服务器收到了客户端的请求，但服务器仍然可以向客户端发送数据。</li>
+<li><strong>服务器发送 FIN</strong>：当服务器准备好断开连接时，它向客户端发送一个 FIN 标志的数据包，表示服务器不再发送数据了，但仍然可以接收数据。</li>
+<li><strong>客户端发送 ACK</strong>：客户端收到服务器的 FIN 数据包后，会向服务器发送一个 ACK 标志的数据包，表示客户端收到了服务器的请求，连接断开成功。</li>
+</ol>
+<p>挥手过程为什么是四次呢？这是因为 TCP 是全双工的，即数据可以双向传输。在断开连接时，需要分别关闭客户端到服务器和服务器到客户端的数据流。因此，需要分别发送 FIN 和 ACK，所以挥手过程是四次。这样可以确保数据的完整传输，并且在断开连接后双方都不再发送数据。</p>
+<h4 id="两次握手导致的问题"><a href="#两次握手导致的问题" class="headerlink" title="两次握手导致的问题"></a>两次握手导致的问题</h4><ol>
+<li><strong>可能存在已失效的连接请求</strong>：假设客户端发送了连接请求 SYN，但由于某种原因导致该请求在网络中滞留，没有到达服务器。如果此时服务器接收不到客户端的连接请求，它就不会发送 SYN-ACK 回复。但客户端并不知道自己的连接请求是否已经到达服务器，它可能会误以为连接已经建立成功。这样就可能导致客户端和服务器之间出现已失效的连接请求，从而造成资源浪费。</li>
+<li><strong>可能出现网络中重复的连接请求</strong>：假设客户端发送了连接请求 SYN，但由于某种原因导致客户端没有收到服务器的 SYN-ACK 回复。在这种情况下，客户端会重新发送连接请求 SYN。如果之前的连接请求在网络中突然出现并到达服务器，而服务器此时又接收到了客户端的新连接请求 SYN，那么服务器可能会误认为客户端发送了两次连接请求，从而建立两个连接。这样就可能导致网络中出现重复的连接请求，产生混乱。</li>
+</ol>
+<h2 id="11-HTTP-和-HTTPS"><a href="#11-HTTP-和-HTTPS" class="headerlink" title="11. HTTP 和 HTTPS"></a>11. HTTP 和 HTTPS</h2><p>HTTP是超文本传输协议，HTTPS是超文本传输安全协议。</p>
+<p>HTTP协议是双向协议。</p>
+<p>HTTPS比HTTP传输更加安全。</p>
+<h3 id="HTTP的状态码有哪一些"><a href="#HTTP的状态码有哪一些" class="headerlink" title="HTTP的状态码有哪一些"></a>HTTP的状态码有哪一些</h3><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/HTTP/6-%E4%BA%94%E5%A4%A7%E7%B1%BBHTTP%E7%8A%B6%E6%80%81%E7%A0%81.png" alt=" 五大类 HTTP 状态码 "></p>
+<ul>
+<li>1XX 表示提示信息</li>
+<li>2XX 表示成功</li>
+<li>3XX 表示重定向</li>
+<li>4XX 表示客户端错误</li>
+<li>5XX 表示服务器错误</li>
+</ul>
+<h3 id="HTTP-与-HTTPS-有哪些区别？"><a href="#HTTP-与-HTTPS-有哪些区别？" class="headerlink" title="HTTP 与 HTTPS 有哪些区别？"></a>HTTP 与 HTTPS 有哪些区别？</h3><ul>
+<li>HTTP 是超文本传输协议，信息是明文传输，存在安全风险的问题。HTTPS 则解决 HTTP 不安全的缺陷，在 TCP 和 HTTP 网络层之间加入了 SSL&#x2F;TLS 安全协议，使得报文能够加密传输。</li>
+<li>HTTP 连接建立相对简单， TCP 三次握手之后便可进行 HTTP 的报文传输。而 HTTPS 在 TCP 三次握手之后，还需进行 SSL&#x2F;TLS 的握手过程，才可进入加密报文传输。</li>
+<li>两者的默认端口不一样，HTTP 默认端口号是 80，HTTPS 默认端口号是 443。</li>
+<li>HTTPS 协议需要向 CA（证书权威机构）申请数字证书，来保证服务器的身份是可信的。</li>
+</ul>
+<h2 id="12-OkHttp"><a href="#12-OkHttp" class="headerlink" title="12. OkHttp"></a>12. OkHttp</h2><h3 id="1-创建-OkHttpClient-对象"><a href="#1-创建-OkHttpClient-对象" class="headerlink" title="1.创建 OkHttpClient 对象"></a>1.创建 OkHttpClient 对象</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">OkHttpClient</span> <span class="variable">client</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OkHttpClient</span>();</span><br></pre></td></tr></table></figure>
+
+<p>OkHttpClient中的构造函数：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="title function_">OkHttpClient</span><span class="params">()</span> &#123;</span><br><span class="line">  <span class="built_in">this</span>(<span class="keyword">new</span> <span class="title class_">Builder</span>());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-发起-HTTP-请求"><a href="#2-发起-HTTP-请求" class="headerlink" title="2. 发起 HTTP 请求"></a>2. 发起 HTTP 请求</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">String <span class="title function_">run</span><span class="params">(String url)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">  <span class="type">Request</span> <span class="variable">request</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Request</span>.Builder()</span><br><span class="line">      .url(url)</span><br><span class="line">      .build();</span><br><span class="line"></span><br><span class="line">  <span class="type">Response</span> <span class="variable">response</span> <span class="operator">=</span> client.newCall(request).execute();</span><br><span class="line">  <span class="keyword">return</span> response.body().string();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://blog.piasy.com/img/201607/okhttp_full_process.png" alt="okhttp\_full\_process"></p>
+<h2 id="13-Retrofit"><a href="#13-Retrofit" class="headerlink" title="13. Retrofit"></a>13. Retrofit</h2><h3 id="创建-Retrofit-对象"><a href="#创建-Retrofit-对象" class="headerlink" title="创建 Retrofit 对象"></a>创建 Retrofit 对象</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Retrofit</span> <span class="variable">retrofit</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Retrofit</span>.Builder()</span><br><span class="line">    .baseUrl(<span class="string">&quot;https://api.github.com/&quot;</span>)</span><br><span class="line">    .addConverterFactory(GsonConverterFactory.create())</span><br><span class="line">    .build();</span><br></pre></td></tr></table></figure>
+
+<h3 id="定义-API-并获取-API-实例"><a href="#定义-API-并获取-API-实例" class="headerlink" title="定义 API 并获取 API 实例"></a>定义 API 并获取 API 实例</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public interface GitHubService &#123;</span><br><span class="line">  @GET(&quot;users/&#123;user&#125;/repos&quot;)</span><br><span class="line">  Call&lt;List&lt;Repo&gt;&gt; listRepos(@Path(&quot;user&quot;) String user);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">GitHubService github = retrofit.create(GitHubService.class);</span><br></pre></td></tr></table></figure>
+
+<h3 id="OkHttp和Retrofit区别"><a href="#OkHttp和Retrofit区别" class="headerlink" title="OkHttp和Retrofit区别"></a>OkHttp和Retrofit区别</h3><h3 id="OkHttp："><a href="#OkHttp：" class="headerlink" title="OkHttp："></a>OkHttp：</h3><ol>
+<li><strong>底层网络库</strong>：OkHttp是一个强大的HTTP客户端，提供了丰富的功能来处理HTTP请求和响应，如连接池管理、请求重试、缓存等。</li>
+<li><strong>轻量级</strong>：OkHttp的设计简单，体积小巧，易于集成到Android应用中。</li>
+<li><strong>灵活性</strong>：OkHttp提供了丰富的API和扩展点，可以轻松地实现自定义的网络功能和拦截器。</li>
+<li><strong>支持HTTP&#x2F;2和WebSocket</strong>：OkHttp支持HTTP&#x2F;2协议和WebSocket协议，可以提供更快的网络请求和实时通讯功能。</li>
+</ol>
+<h3 id="Retrofit："><a href="#Retrofit：" class="headerlink" title="Retrofit："></a>Retrofit：</h3><ol>
+<li><strong>基于注解的声明式HTTP客户端</strong>：Retrofit是一个基于注解和接口的声明式HTTP客户端，使得定义和调用HTTP API变得更加简洁和易于理解。</li>
+<li><strong>与OkHttp配合使用</strong>：Retrofit底层使用OkHttp来处理网络请求，因此继承了OkHttp的性能优势和功能特性。</li>
+<li><strong>简化网络请求流程</strong>：Retrofit封装了网络请求的细节，使得网络请求的创建和调用变得更加简单和高效，同时支持同步和异步请求。</li>
+<li><strong>支持多种数据转换器</strong>：Retrofit支持多种数据格式的转换器，如JSON、Protobuf、Gson等，可以灵活地处理不同格式的数据。</li>
+</ol>
+<p>综上所述，OkHttp和Retrofit在Android网络开发中都有着各自的优势。通常情况下，可以使用OkHttp作为底层网络库，而Retrofit作为对OkHttp的高级封装，用于简化网络请求的创建和调用。这样可以既享受OkHttp的性能和灵活性，又能够通过Retrofit简化网络请求的编写和维护</p>
+<h2 id="14-SharedPreferences"><a href="#14-SharedPreferences" class="headerlink" title="14. SharedPreferences"></a>14. SharedPreferences</h2><p>以键值对的形式存储和检索原始数据类型（如整数、浮点数、布尔值和字符串）。它提供了一种简单的方式来保存特定于应用程序或在应用程序之间共享的少量持久数据。</p>
+<ol>
+<li><p><strong>创建或访问 SharedPreferences</strong>：您可以使用 <code>getSharedPreferences()</code> 方法获取 SharedPreferences 的实例，需要提供一个偏好文件的名称和模式（通常如果数据只能被您的应用程序访问，则使用 <code>MODE_PRIVATE</code>）。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SharedPreferences sharedPreferences = getSharedPreferences(&quot;my_prefs&quot;, Context.MODE_PRIVATE);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>编辑 SharedPreferences</strong>：要修改偏好设置，您可以使用 <code>edit()</code> 方法获取一个 SharedPreferences.Editor 对象。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SharedPreferences.Editor editor = sharedPreferences.edit();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>添加数据</strong>：然后，您可以使用 <code>putInt()</code>、<code>putString()</code>、<code>putBoolean()</code> 等方法将数据添加到编辑器中。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">editor.putInt(&quot;score&quot;, 100);</span><br><span class="line">editor.putString(&quot;username&quot;, &quot;JohnDoe&quot;);</span><br><span class="line">editor.putBoolean(&quot;loggedIn&quot;, true);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>提交更改</strong>：完成更改后，需要提交以将数据持久化。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">editor.apply();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>检索数据</strong>：要从 SharedPreferences 中检索数据，您可以使用 <code>getInt()</code>、<code>getString()</code>、<code>getBoolean()</code> 等方法。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int score = sharedPreferences.getInt(&quot;score&quot;, 0); // 如果找不到 &quot;score&quot;，默认值为 0</span><br><span class="line">String username = sharedPreferences.getString(&quot;username&quot;, &quot;&quot;);</span><br><span class="line">boolean loggedIn = sharedPreferences.getBoolean(&quot;loggedIn&quot;, false);</span><br></pre></td></tr></table></figure>
+
+<p>SharedPreferences 常用于存储用户偏好、设置和其他需要在应用程序重新启动时持久化的轻量级数据。但是，需要注意的是，SharedPreferences 不应用于存储大量数据或敏感信息，因为它不是加密的，并且很容易被设备上的其他应用程序访问。对于安全或大规模数据存储，应考虑其他选项，如 SQLite 数据库或加密文件。</p>
+<h3 id="commit-和apply-区别"><a href="#commit-和apply-区别" class="headerlink" title="commit()和apply()区别"></a>commit()和apply()区别</h3><ol>
+<li><strong>commit()</strong>：<ul>
+<li><code>commit()</code> 方法是同步的，即它会立即将数据写入磁盘并返回写入结果（成功或失败）。因此，在调用 <code>commit()</code> 后，会阻塞调用线程直到数据写入完成。</li>
+<li>由于是同步操作，如果数据量较大或者磁盘IO速度较慢，可能会导致UI线程阻塞，从而影响用户体验。</li>
+</ul>
+</li>
+<li><strong>apply()</strong>：<ul>
+<li><code>apply()</code> 方法是异步的，它会将数据写入内存，然后在合适的时机（通常是在主线程空闲时）异步将数据写入磁盘，而不会阻塞调用线程。</li>
+<li>由于是异步操作，<code>apply()</code> 方法不会立即返回写入结果，因此无法知道数据是否成功写入。这意味着，即使写入失败也不会收到通知。</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="15-volatile-关键字的作用和原理"><a href="#15-volatile-关键字的作用和原理" class="headerlink" title="15.volatile 关键字的作用和原理"></a>15.volatile 关键字的作用和原理</h2><ul>
+<li><p>禁止了指令重排（指令重排是指：为了提高性能，编译器和和处理器通常会对指令进行指令重排序）</p>
+</li>
+<li><p>保证了不同线程对这个变量进行操作时的可见性，即一个线程修改了某个变量值，这个新值对其他线程是立即可见的</p>
+<ul>
+<li>这就指示JVM，这个变量是不稳定的，每次使用它都到主存中进行读取</li>
+</ul>
+</li>
+<li><p><strong>不保证原子性</strong></p>
+</li>
+<li><p>原理：volatile的原理是在生成的汇编代码中多了一个lock前缀指令，这个前缀指令相当于一个内存屏障，这个内存屏障有3个作用：</p>
+<ul>
+<li>确保指令重排的时候不会把屏障后的指令排在屏障前，确保不会把屏障前的指令排在屏障后。</li>
+<li>将当前处理器缓存行的数据写回到系统内存</li>
+<li>一个处理器的缓存回写到内存会导致其他处理器的缓存失效</li>
+</ul>
+</li>
+</ul>
+<h2 id="16-synchronized-关键字的作用"><a href="#16-synchronized-关键字的作用" class="headerlink" title="16. synchronized 关键字的作用"></a>16. synchronized 关键字的作用</h2><ul>
+<li>修饰实例方法：作用于<strong>当前对象实例</strong>加锁，进入同步代码前要获得当前对象实例的锁</li>
+<li>修饰静态方法：也就是给当前类（即<strong>XXX.class</strong>对象）加锁，会作用于类的所有对象实例，因为静态成员不属于任何一个实例对象，是类成员（ static 表明这是该类的一个静态资源，不管new了多少个对象，只有一份）。所以如果一个线程A调用一个实例对象的非静态 synchronized 方法，而线程B需要调用这个实例对象所属类的静态 synchronized  方法，是允许的，不会发生互斥现象，因为访问静态 synchronized 方法占用的锁是当前类的锁，而访问非静态 synchronized 方法占用的锁是当前实例对象锁</li>
+<li>修饰代码块：指定加锁对象，对给定对象加锁，进入同步代码库前要获得给定对象的锁</li>
+<li>synchronized <strong>可重入性</strong>（当一个线程试图操作一个由其他线程持有的对象锁的临界资源时，将会处于阻塞状态，但当一个线程再次请求自己持有对象锁的临界资源时，这种情况属于重入锁，请求将会成功）</li>
+</ul>
+<h2 id="17-String、StringBuffer、StringBuilder-的区别"><a href="#17-String、StringBuffer、StringBuilder-的区别" class="headerlink" title="17. String、StringBuffer、StringBuilder 的区别"></a>17. String、StringBuffer、StringBuilder 的区别</h2><ul>
+<li>String：值是不可变的，这就导致每次对String的操作都会产生新的String对象，效率低下且浪费内存</li>
+<li>StringBuffer：值可变且线程安全</li>
+<li>StringBuilder：值可变但线程不安全，速度较StringBuffer更快</li>
+<li>使用<code>synchronized</code>关键字来保护它们的操作，以确保在多线程环境中只有一个线程能够访问它们的方法</li>
+</ul>
+<h2 id="18-单例模式"><a href="#18-单例模式" class="headerlink" title="18. 单例模式"></a>18. 单例模式</h2><ul>
+<li><h5 id="懒汉式，线程不安全"><a href="#懒汉式，线程不安全" class="headerlink" title="懒汉式，线程不安全"></a>懒汉式，线程不安全</h5></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Singleton</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance;</span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">Singleton</span> <span class="params">()</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title function_">getInstance</span><span class="params">()</span> &#123;</span><br><span class="line">     <span class="keyword">if</span> (instance == <span class="literal">null</span>) &#123;</span><br><span class="line">         instance = <span class="keyword">new</span> <span class="title class_">Singleton</span>();</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h5 id="懒汉式，线程安全"><a href="#懒汉式，线程安全" class="headerlink" title="懒汉式，线程安全"></a>懒汉式，线程安全</h5></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> Singleton <span class="title function_">getInstance</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (instance == <span class="literal">null</span>) &#123;</span><br><span class="line">        instance = <span class="keyword">new</span> <span class="title class_">Singleton</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> instance;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h5 id="饿汉式"><a href="#饿汉式" class="headerlink" title="饿汉式"></a>饿汉式</h5></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Singleton</span>&#123;</span><br><span class="line">    <span class="comment">//类加载时就初始化</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Singleton</span> <span class="variable">instance</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Singleton</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">Singleton</span><span class="params">()</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title function_">getInstance</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h5 id="双重检验锁"><a href="#双重检验锁" class="headerlink" title="双重检验锁"></a>双重检验锁</h5></li>
+</ul>
+<p>双重检验锁模式（double checked locking pattern），是一种使用同步块加锁的方法。程序员称其为双重检查锁，因为会有两次检查 instance &#x3D;&#x3D; null，一次是在同步块外，一次是在同步块内。为什么在同步块内还要再检验一次？因为可能会有多个线程一起进入同步块外的 if，如果在同步块内不进行二次检验的话就会生成多个实例了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line">    private volatile static Singleton instance;</span><br><span class="line">    private Singleton()&#123;&#125;</span><br><span class="line">    public static Singleton getInstance()&#123;</span><br><span class="line">        if (instance==null) &#123;</span><br><span class="line">            synchronized (Singleton.class) &#123;</span><br><span class="line">                if (instance==null)&#123;</span><br><span class="line">                    instance=new Singleton();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h5 id="静态内部类"><a href="#静态内部类" class="headerlink" title="静态内部类"></a>静态内部类</h5></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Singleton</span> &#123;  </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">SingletonHolder</span> &#123;  </span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Singleton</span> <span class="variable">INSTANCE</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Singleton</span>();  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">Singleton</span> <span class="params">()</span>&#123;&#125;  </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Singleton <span class="title function_">getInstance</span><span class="params">()</span> &#123;  </span><br><span class="line">        <span class="keyword">return</span> SingletonHolder.INSTANCE; </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h5 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h5></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public enum Singleton &#123;  </span><br><span class="line">    INSTANCE;  </span><br><span class="line">    public void whateverMethod() &#123;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="19-ANR发生的原因及其解决办法"><a href="#19-ANR发生的原因及其解决办法" class="headerlink" title="19. ANR发生的原因及其解决办法"></a>19. ANR发生的原因及其解决办法</h2><p>ANR的全称是application not responding，是指应用程序未响应，Android系统对于一些事件需要在一定的时间范围内完成，如果超过预定时间能未能得到有效响应或者响应时间过长，都会造成ANR。一般地，这时往往会弹出一个提示框，告知用户当前xxx未响应，用户可选择继续等待或者Force Close。</p>
+<p>首先ANR的发生是有条件限制的，分为以下三点：</p>
+<ul>
+<li>只有主线程才会产生ANR，主线程就是UI线程；</li>
+<li>必须发生某些输入事件或特定操作，比如按键或触屏等输入事件，在BroadcastReceiver或Service的各个生命周期调用函数；</li>
+<li>上述事件响应超时，不同的context规定的上限时间不同<ol>
+<li>主线程对输入事件5秒内没有处理完毕</li>
+<li>主线程在执行BroadcastReceiver的onReceive()函数时10秒内没有处理完毕</li>
+<li>主线程在前台Service的各个生命周期函数时20秒内没有处理完毕（后台Service 200s）</li>
+</ol>
+</li>
+</ul>
+<p>那么导致ANR的根本原因是什么呢？简单的总结有以下两点：</p>
+<ul>
+<li>主线程执行了<strong>耗时操作</strong>，比如数据库操作或网络编程，I&#x2F;O操作</li>
+<li>其他进程（就是其他程序）占用CPU导致本进程<strong>得不到CPU时间片</strong>，比如其他进程的频繁读写操作可能会导致这个问题</li>
+</ul>
+<p>那么如何避免ANR的发生呢或者说ANR的解决办法是什么呢？</p>
+<ul>
+<li>避免在主线程执行耗时操作，所有耗时操作应新开一个子线程完成，然后再在主线程更新UI</li>
+<li>BroadcastReceiver要执行耗时操作时应启动一个service，将耗时操作交给service来完成</li>
+<li>避免在Intent Receiver里启动一个Activity，因为它会创建一个新的画面，并从当前用户正在运行的程序上抢夺焦点。如果你的应用程序在响应Intent广播时需要向用户展示什么，你应该使用Notification Manager来实现</li>
+</ul>
+</article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://pic3.zhimg.com/v2-b1951610711c8d80060d509d9b499c72_r.jpg?source=1940ef5c" title="头像" alt="头像"><img class="post-copyright__author_img_front" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://pic3.zhimg.com/v2-b1951610711c8d80060d509d9b499c72_r.jpg?source=1940ef5c" title="头像" alt="头像"></a><div class="post-copyright__author_name">曦臣</div><div class="post-copyright__author_desc">愿世界更美好</div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="https://blog.liumingzhi.cn/2024/05/18/%E5%AE%89%E5%8D%93%E9%9D%A2%E8%AF%95%E9%87%8D%E7%82%B9/">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('https://blog.liumingzhi.cn/2024/05/18/安卓面试重点/')">安卓面试重点</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"><div class="post-reward" onclick="anzhiyu.addRewardMask()"><div class="reward-button button--animated" title="赞赏作者"><i class="anzhiyufont anzhiyu-icon-hand-heart-fill"></i>打赏作者</div><div class="reward-main"><div class="reward-all"><span class="reward-title">感谢你赐予我前进的力量</span><ul class="reward-group"><li class="reward-item"><a href="https://image.liumingzhi.cn/file/1ac25b4ee273216e58887.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.liumingzhi.cn/file/1ac25b4ee273216e58887.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://image.liumingzhi.cn/file/0dd29dcb00dff55ddef7b.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.liumingzhi.cn/file/0dd29dcb00dff55ddef7b.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul><a class="reward-main-btn" href="/about/#about-reward" target="_blank"><div class="reward-text">赞赏者名单</div><div class="reward-dec">因为你们的支持让我意识到写文章的价值🙏</div></a></div></div></div><div id="quit-box" onclick="anzhiyu.removeRewardMask()" style="display: none"></div></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="https://blog.liumingzhi.cn/2024/05/18/%E5%AE%89%E5%8D%93%E9%9D%A2%E8%AF%95%E9%87%8D%E7%82%B9/"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=安卓面试重点&amp;url=https://blog.liumingzhi.cn/2024/05/18/%E5%AE%89%E5%8D%93%E9%9D%A2%E8%AF%95%E9%87%8D%E7%82%B9/&amp;pic=https://ts1.cn.mm.bing.net/th/id/R-C.0b19e683f2368e2db8cf45ac77282325?rik=zIO%2bNknVg1pj%2fg&amp;riu=http%3a%2f%2fnextbigtechnology.com%2fwp-content%2fuploads%2f2017%2f12%2fandroid_app_banner.jpg&amp;ehk=gNlPcIh05vyzxbNQRqYXkV08D5d5IC05rJ%2fvOoaI%2f8I%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><script>function copyCurrentPageUrl() {
+  var currentPageUrl = window.location.href;
+  var input = document.createElement("input");
+  input.setAttribute("value", currentPageUrl);
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://blog.liumingzhi.cn" target="_blank">心灵涂鸦</a>！</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__tag-list"></div></div></div><div class="post_share"><div class="social-share" data-image="https://ktor.kotlincn.net/assets/images/ktor_logo.svg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"/><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer="defer"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/03/20/%E5%AD%97%E8%8A%82%E4%B8%80%E9%9D%A2%E9%9D%A2%E7%BB%8F/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://ts1.cn.mm.bing.net/th/id/R-C.bb12aa48a296335329303d374be1dbc9?rik=0dS8Ej024E%2f4pg&amp;pid=ImgRaw&amp;r=0" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">字节一面面经</div></div></a></div><div class="next-post pull-right"><a href="/2024/05/20/%E9%98%85%E6%96%87%E9%9D%A2%E8%AF%95/"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://tse1-mm.cn.bing.net/th/id/OIP-C.le-aN_esFaiU6aNw1Sl_ywHaEA?rs=1&amp;pid=ImgDetMain" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">阅文面试</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="anzhiyufont anzhiyu-icon-comments"></i><span> 评论</span></div><div class="comment-randomInfo"><a onclick="anzhiyu.addRandomCommentInfo()" href="javascript:void(0)">匿名评论</a><a href="/privacy" style="margin-left: 4px">隐私政策</a></div><div class="comment-tips" id="comment-tips"><span>✅ 你无需删除空行，直接评论以获取最佳展示效果</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div><div class="comment-barrage"></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://pic3.zhimg.com/v2-b1951610711c8d80060d509d9b499c72_r.jpg?source=1940ef5c" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__description">归途也还可爱</div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/"><h1 class="author-info__name">曦臣</h1><div class="author-info__desc">愿世界更美好</div></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/xichenx" target="_blank" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="social-icon faa-parent animated-hover" href="https://blog.csdn.net/qq_60642811?spm=1011.2415.3001.5343" target="_blank" title="CSDN"><i class="anzhiyufont anzhiyu-icon-copyright"></i></a></div></div></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bullhorn anzhiyu-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来看我的博客鸭~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>文章目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%AE%89%E5%8D%93%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6"><span class="toc-number">1.</span> <span class="toc-text">1. 安卓四大组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Activity%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-number">2.</span> <span class="toc-text">2. Activity的生命周期</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89home%E9%94%AE%E8%BF%94%E5%9B%9E%E6%A1%8C%E9%9D%A2%E5%90%8E%E5%86%8D%E6%AC%A1%E8%BF%9B%E5%85%A5%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E6%98%AF%E4%BB%80%E4%B9%88%E6%A0%B7%E7%9A%84%EF%BC%9F"><span class="toc-number">2.1.</span> <span class="toc-text">按home键返回桌面后再次进入生命周期是什么样的？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%85%B7%E4%BD%93%E5%9C%BA%E6%99%AF%E7%A4%BA%E4%BE%8B"><span class="toc-number">2.2.</span> <span class="toc-text">生命周期具体场景示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Fragment%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-number">3.</span> <span class="toc-text">3. Fragment的生命周期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-service-%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%EF%BC%8C%E4%B8%A4%E7%A7%8D%E5%90%AF%E5%8A%A8%E6%96%B9%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">4.</span> <span class="toc-text">4. service 的生命周期，两种启动方式的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Activity%E7%9A%84%E5%9B%9B%E7%A7%8D%E5%90%AF%E5%8A%A8%E6%A8%A1%E5%BC%8F"><span class="toc-number">5.</span> <span class="toc-text">5. Activity的四种启动模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E8%BF%9B%E7%A8%8B%EF%BC%8C%E7%BA%BF%E7%A8%8B%EF%BC%8C%E5%8D%8F%E7%A8%8B%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">6.</span> <span class="toc-text">6. 进程，线程，协程的关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-Handler%E6%9C%BA%E5%88%B6"><span class="toc-number">7.</span> <span class="toc-text">7. Handler机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-MVP%E3%80%81MVC%E3%80%81MVVM-%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F"><span class="toc-number">8.</span> <span class="toc-text">8. MVP、MVC、MVVM 架构模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-RecyclerView"><span class="toc-number">9.</span> <span class="toc-text">9.  RecyclerView</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ListView-%E5%92%8CRecyclerView%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">9.1.</span> <span class="toc-text">ListView 和RecyclerView的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E8%BF%87listView%E5%92%8Crecyclerview%E5%90%97%EF%BC%9F%E6%9C%89%E4%BB%80%E4%B9%88%E4%BC%98%E5%8C%96%E7%9A%84%E5%9C%B0%E6%96%B9"><span class="toc-number">9.2.</span> <span class="toc-text">用过listView和recyclerview吗？有什么优化的地方</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%E6%96%B9%E9%9D%A2%EF%BC%9A"><span class="toc-number">9.3.</span> <span class="toc-text">优化方面：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RecyclerView%E5%A6%82%E4%BD%95%E5%A4%8D%E7%94%A8itemView%EF%BC%9A"><span class="toc-number">9.4.</span> <span class="toc-text">RecyclerView如何复用itemView：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-TCP-%E5%92%8C-UDP-%E5%8C%BA%E5%88%AB"><span class="toc-number">10.</span> <span class="toc-text">10. TCP 和 UDP 区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%EF%BC%88%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%EF%BC%8C%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B%EF%BC%89%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%83%BD%E6%94%B9%E6%88%90%E4%B8%A4%E6%AC%A1"><span class="toc-number">10.1.</span> <span class="toc-text">TCP实现原理（三次握手，四次挥手），为什么不能改成两次</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%EF%BC%88Connection-Establishment%EF%BC%89%EF%BC%9A"><span class="toc-number">10.2.</span> <span class="toc-text">三次握手（Connection Establishment）：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B%EF%BC%88Connection-Termination%EF%BC%89%EF%BC%9A"><span class="toc-number">10.3.</span> <span class="toc-text">四次挥手（Connection Termination）：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%A4%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%AF%BC%E8%87%B4%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">10.3.1.</span> <span class="toc-text">两次握手导致的问题</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-HTTP-%E5%92%8C-HTTPS"><span class="toc-number">11.</span> <span class="toc-text">11. HTTP 和 HTTPS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP%E7%9A%84%E7%8A%B6%E6%80%81%E7%A0%81%E6%9C%89%E5%93%AA%E4%B8%80%E4%BA%9B"><span class="toc-number">11.1.</span> <span class="toc-text">HTTP的状态码有哪一些</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP-%E4%B8%8E-HTTPS-%E6%9C%89%E5%93%AA%E4%BA%9B%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-number">11.2.</span> <span class="toc-text">HTTP 与 HTTPS 有哪些区别？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-OkHttp"><span class="toc-number">12.</span> <span class="toc-text">12. OkHttp</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%88%9B%E5%BB%BA-OkHttpClient-%E5%AF%B9%E8%B1%A1"><span class="toc-number">12.1.</span> <span class="toc-text">1.创建 OkHttpClient 对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%8F%91%E8%B5%B7-HTTP-%E8%AF%B7%E6%B1%82"><span class="toc-number">12.2.</span> <span class="toc-text">2. 发起 HTTP 请求</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-Retrofit"><span class="toc-number">13.</span> <span class="toc-text">13. Retrofit</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA-Retrofit-%E5%AF%B9%E8%B1%A1"><span class="toc-number">13.1.</span> <span class="toc-text">创建 Retrofit 对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89-API-%E5%B9%B6%E8%8E%B7%E5%8F%96-API-%E5%AE%9E%E4%BE%8B"><span class="toc-number">13.2.</span> <span class="toc-text">定义 API 并获取 API 实例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OkHttp%E5%92%8CRetrofit%E5%8C%BA%E5%88%AB"><span class="toc-number">13.3.</span> <span class="toc-text">OkHttp和Retrofit区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OkHttp%EF%BC%9A"><span class="toc-number">13.4.</span> <span class="toc-text">OkHttp：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Retrofit%EF%BC%9A"><span class="toc-number">13.5.</span> <span class="toc-text">Retrofit：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-SharedPreferences"><span class="toc-number">14.</span> <span class="toc-text">14. SharedPreferences</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#commit-%E5%92%8Capply-%E5%8C%BA%E5%88%AB"><span class="toc-number">14.1.</span> <span class="toc-text">commit()和apply()区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-volatile-%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E4%BD%9C%E7%94%A8%E5%92%8C%E5%8E%9F%E7%90%86"><span class="toc-number">15.</span> <span class="toc-text">15.volatile 关键字的作用和原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-synchronized-%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">16.</span> <span class="toc-text">16. synchronized 关键字的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-String%E3%80%81StringBuffer%E3%80%81StringBuilder-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">17.</span> <span class="toc-text">17. String、StringBuffer、StringBuilder 的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#18-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F"><span class="toc-number">18.</span> <span class="toc-text">18. 单例模式</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%87%92%E6%B1%89%E5%BC%8F%EF%BC%8C%E7%BA%BF%E7%A8%8B%E4%B8%8D%E5%AE%89%E5%85%A8"><span class="toc-number">18.1.</span> <span class="toc-text">懒汉式，线程不安全</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%87%92%E6%B1%89%E5%BC%8F%EF%BC%8C%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8"><span class="toc-number">18.2.</span> <span class="toc-text">懒汉式，线程安全</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%A5%BF%E6%B1%89%E5%BC%8F"><span class="toc-number">18.3.</span> <span class="toc-text">饿汉式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%8C%E9%87%8D%E6%A3%80%E9%AA%8C%E9%94%81"><span class="toc-number">18.4.</span> <span class="toc-text">双重检验锁</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E5%86%85%E9%83%A8%E7%B1%BB"><span class="toc-number">18.5.</span> <span class="toc-text">静态内部类</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9E%9A%E4%B8%BE"><span class="toc-number">18.6.</span> <span class="toc-text">枚举</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#19-ANR%E5%8F%91%E7%94%9F%E7%9A%84%E5%8E%9F%E5%9B%A0%E5%8F%8A%E5%85%B6%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="toc-number">19.</span> <span class="toc-text">19. ANR发生的原因及其解决办法</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/09/28/Ktor%20%E5%AD%A6%E4%B9%A0%E4%B8%8E%E5%AE%9E%E8%B7%B5%E6%96%87%E6%A1%A3/" title="Ktor 学习与实践文档"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://ktor.kotlincn.net/assets/images/ktor_logo.svg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Ktor 学习与实践文档"/></a><div class="content"><a class="title" href="/2025/09/28/Ktor%20%E5%AD%A6%E4%B9%A0%E4%B8%8E%E5%AE%9E%E8%B7%B5%E6%96%87%E6%A1%A3/" title="Ktor 学习与实践文档">Ktor 学习与实践文档</a><time datetime="2025-09-28T18:36:20.623Z" title="发表于 2025-09-29 02:36:20">2025-09-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/09/21/Flutter%20-%20AutoRoute/" title="Flutter - AutoRoute"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://raw.githubusercontent.com/Milad-Akarie/auto_route_library/master/art/auto_route_logo.svg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Flutter - AutoRoute"/></a><div class="content"><a class="title" href="/2025/09/21/Flutter%20-%20AutoRoute/" title="Flutter - AutoRoute">Flutter - AutoRoute</a><time datetime="2025-09-21T17:29:14.518Z" title="发表于 2025-09-22 01:29:14">2025-09-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/20/HarmonyOS-%E4%B8%A4%E7%A7%8DPreferencesUtil%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/" title="HarmonyOS-两种PreferencesUtil实现方式"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/default_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="HarmonyOS-两种PreferencesUtil实现方式"/></a><div class="content"><a class="title" href="/2025/01/20/HarmonyOS-%E4%B8%A4%E7%A7%8DPreferencesUtil%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/" title="HarmonyOS-两种PreferencesUtil实现方式">HarmonyOS-两种PreferencesUtil实现方式</a><time datetime="2025-01-20T06:15:16.788Z" title="发表于 2025-01-20 14:15:16">2025-01-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/01/HarmonyOS-@ohos/axios%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82/" title="HarmonyOS-@ohos/axios网络请求"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://i-blog.csdnimg.cn/blog_migrate/325308e06ccb68e3917adef7a5d51b89.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="HarmonyOS-@ohos/axios网络请求"/></a><div class="content"><a class="title" href="/2024/12/01/HarmonyOS-@ohos/axios%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82/" title="HarmonyOS-@ohos/axios网络请求">HarmonyOS-@ohos/axios网络请求</a><time datetime="2024-12-01T01:42:35.296Z" title="发表于 2024-12-01 09:42:35">2024-12-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/09/09/RxJava%20%E9%9D%A2%E8%AF%95%E9%A2%98/" title="RxJava 面试题"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/default_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="RxJava 面试题"/></a><div class="content"><a class="title" href="/2024/09/09/RxJava%20%E9%9D%A2%E8%AF%95%E9%A2%98/" title="RxJava 面试题">RxJava 面试题</a><time datetime="2024-09-09T18:39:54.147Z" title="发表于 2024-09-10 02:39:54">2024-09-10</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div id="footer_deal"><a class="deal_link" href="/3108531642@qq.com" title="email"><i class="anzhiyufont anzhiyu-icon-envelope"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://weibo.com/u/" title="微博"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://www.facebook.com/" title="facebook"><i class="anzhiyufont anzhiyu-icon-facebook1"></i></a><a class="deal_link" href="/atom.xml" title="RSS"><i class="anzhiyufont anzhiyu-icon-rss"></i></a><img class="footer_mini_logo" title="返回顶部" alt="返回顶部" onclick="anzhiyu.scrollToDest(0, 500)" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://pic3.zhimg.com/v2-b1951610711c8d80060d509d9b499c72_r.jpg?source=1940ef5c" size="50px"/><a class="deal_link" target="_blank" rel="noopener" href="https://github.com/xichenx" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://space.bilibili.com/1410474192" title="Bilibili"><i class="anzhiyufont anzhiyu-icon-bilibili"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://v.douyin.com/" title="抖音"><i class="anzhiyufont anzhiyu-icon-tiktok"></i></a><a class="deal_link" href="/copyright" title="CC"><i class="anzhiyufont anzhiyu-icon-copyright-line"></i></a></div><div id="workboard"><img class="workSituationImg boardsign" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@2.0.4/img/badge/安知鱼-上班摸鱼中.svg" alt="距离月入25k也就还差一个大佬带我~" title="距离月入25k也就还差一个大佬带我~"/><div id="runtimeTextTip"></div></div><div id="anzhiyu-footer"><div class="footer-group"><div class="footer-title">服务</div><div class="footer-links"><a class="footer-item" title="51la统计" target="_blank" rel="noopener" href="https://v6.51.la/">51la统计</a><a class="footer-item" title="十年之约" target="_blank" rel="noopener" href="https://www.foreverblog.cn/">十年之约</a><a class="footer-item" title="开往" target="_blank" rel="noopener" href="https://github.com/travellings-link/travellings">开往</a></div></div><div class="footer-group"><div class="footer-title">主题</div><div class="footer-links"><a class="footer-item" title="文档" href="/docs/">文档</a><a class="footer-item" title="源码" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu">源码</a><a class="footer-item" title="更新日志" href="/update/">更新日志</a></div></div><div class="footer-group"><div class="footer-title">导航</div><div class="footer-links"><a class="footer-item" title="即刻短文" href="/essay/">即刻短文</a><a class="footer-item" title="友链文章" href="/fcircle/">友链文章</a><a class="footer-item" title="留言板" href="/comments/">留言板</a></div></div><div class="footer-group"><div class="footer-title">协议</div><div class="footer-links"><a class="footer-item" title="隐私协议" href="/privacy/">隐私协议</a><a class="footer-item" title="Cookies" href="/cookies/">Cookies</a><a class="footer-item" title="版权协议" href="/copyright/">版权协议</a></div></div><div class="footer-group"><div class="footer-title-group"><div class="footer-title">友链</div><a class="random-friends-btn" id="footer-random-friends-btn" href="javascript:addFriendLinksInFooter();" title="换一批友情链接"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right"></i></a></div><div class="footer-links" id="friend-links-in-footer"></div></div></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v5.4.0" title="博客框架为Hexo_v5.4.0"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@2.1.5/img/badge/Frame-Hexo.svg" alt="博客框架为Hexo_v5.4.0"/></a><a class="github-badge" target="_blank" href="https://blog.anheyu.com/" style="margin-inline:5px" data-title="本站使用AnZhiYu主题" title="本站使用AnZhiYu主题"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.9/img/Theme-AnZhiYu-2E67D3.svg" alt="本站使用AnZhiYu主题"/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" data-title="本站项目由Github托管" title="本站项目由Github托管"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@2.1.5/img/badge/Source-Github.svg" alt="本站项目由Github托管"/></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@2.2.0/img/badge/Copyright-BY-NC-SA.svg" alt="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"/></a><a class="github-badge" target="_blank" href="https://beian.miit.gov.cn/" style="margin-inline:5px" data-title="本站已备案" title="本站已备案"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://img.shields.io/badge/%E6%B9%98ICP%E5%A4%87-2024053403%E5%8F%B7-orange.svg" alt="本站已备案"/></a></p></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div id="footer-bar-tips"><div class="copyright">&copy;2024 - 2026 By <a class="footer-bar-link" href="/" title="曦臣" target="_blank">曦臣</a></div></div><div id="footer-type-tips"></div><div class="js-pjax"><script>function subtitleType () {
+  fetch('https://v1.hitokoto.cn')
+    .then(response => response.json())
+    .then(data => {
+      if (true) {
+        const from = '出自 ' + data.from
+        const sub = ["生活明朗&#44; 万物可爱&#44; 人间值得&#44; 未来可期."]
+        sub.unshift(data.hitokoto, from)
+        window.typed = new Typed('#footer-type-tips', {
+          strings: sub,
+          startDelay: 300,
+          typeSpeed: 150,
+          loop: true,
+          backSpeed: 50,
+        })
+      } else {
+        document.getElementById('footer-type-tips').innerHTML = data.hitokoto
+      }
+    })
+}
+
+if (true) {
+  if (typeof Typed === 'function') {
+    subtitleType()
+  } else {
+    getScript('https://cdn.cbd.int/typed.js@2.1.0/dist/typed.umd.js').then(subtitleType)
+  }
+} else {
+  subtitleType()
+}
+</script></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu" title="主题">主题</a><a class="footer-bar-link" target="_blank" rel="noopener" href="https://image.liumingzhi.cn" title="图床">图床</a><a class="footer-bar-link" target="_blank" rel="noopener" href="https://beian.miit.gov.cn/" title="湘ICP备-2024053403号">湘ICP备-2024053403号</a><a class="footer-bar-link cc" href="/copyright" title="CC协议"><i class="anzhiyufont anzhiyu-icon-copyright-line"></i><i class="anzhiyufont anzhiyu-icon-creative-commons-by-line"></i><i class="anzhiyufont anzhiyu-icon-creative-commons-nc-line"></i><i class="anzhiyufont anzhiyu-icon-creative-commons-nd-line"></i></a></div></div></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">文章</div><div class="length-num">27</div></a><a href="/tags/" title="tag"><div class="headline">标签</div><div class="length-num">14</div></a><a href="/categories/" title="category"><div class="headline">分类</div><div class="length-num">6</div></a></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="显示模式"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>显示模式</span></a></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" href="https://blog.liumingzhi.cn/" title="博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://qexo.liumingzhi.cn" title="Qexo后台"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.liumingzhi.cn/file/14dbd2629a9b1bb9a85a2.jpg" alt="Qexo后台"/><span class="back-menu-item-text">Qexo后台</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">博客路线</div><div class="back-menu-list"><a class="back-menu-item" href="https://blog.liumingzhi.cn/" title="主路线"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="主路线"/><span class="back-menu-item-text">主路线</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://vercel.liumingzhi.cn/" title="Vercel路线"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.liumingzhi.cn/file/7e8b03d953ce5e9005cb8.jpg" alt="Vercel路线"/><span class="back-menu-item-text">Vercel路线</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://image.liumingzhi.cn" title="图床"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.liumingzhi.cn/file/25ae14abec33eedb1ac32.png" alt="图床"/><span class="back-menu-item-text">图床</span></a></div></div></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 友链</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人帐</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/fcircle/"><i class="anzhiyufont anzhiyu-icon-artstation faa-tada" style="font-size: 0.9em;"></i><span> 朋友圈</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/"><i class="anzhiyufont anzhiyu-icon-music faa-tada" style="font-size: 0.9em;"></i><span> 音乐馆</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/bangumis/"><i class="anzhiyufont anzhiyu-icon-bilibili faa-tada" style="font-size: 0.9em;"></i><span> 追番页</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/album/"><i class="anzhiyufont anzhiyu-icon-images faa-tada" style="font-size: 0.9em;"></i><span> 相册集</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/air-conditioner/"><i class="anzhiyufont anzhiyu-icon-fan faa-tada" style="font-size: 0.9em;"></i><span> 小空调</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 游戏厅</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/game/2048"><i class="anzhiyufont anzhiyu-icon-fire faa-tada" style="font-size: 0.9em;"></i><span> 2048</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/game/mf"><i class="anzhiyufont anzhiyu-icon-fire faa-tada" style="font-size: 0.9em;"></i><span> 魔方</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/game/sl"><i class="anzhiyufont anzhiyu-icon-fire faa-tada" style="font-size: 0.9em;"></i><span> 扫雷</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/game/wzq"><i class="anzhiyufont anzhiyu-icon-fire faa-tada" style="font-size: 0.9em;"></i><span> 五子棋</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/game/txz"><i class="anzhiyufont anzhiyu-icon-fire faa-tada" style="font-size: 0.9em;"></i><span> 推箱子</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li></ul></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/Android/" style="font-size: 0.88rem;">Android<sup>4</sup></a><a href="/tags/ArkTS/" style="font-size: 0.88rem;">ArkTS<sup>1</sup></a><a href="/tags/Flutter/" style="font-size: 0.88rem;">Flutter<sup>2</sup></a><a href="/tags/HarmonyOS/" style="font-size: 0.88rem;">HarmonyOS<sup>2</sup></a><a href="/tags/KMP/" style="font-size: 0.88rem;">KMP<sup>1</sup></a><a href="/tags/Kotlin/" style="font-size: 0.88rem;">Kotlin<sup>2</sup></a><a href="/tags/Router/" style="font-size: 0.88rem;">Router<sup>1</sup></a><a href="/tags/java/" style="font-size: 0.88rem;">java<sup>1</sup></a><a href="/tags/%E5%AE%9E%E4%B9%A0/" style="font-size: 0.88rem;">实习<sup>2</sup></a><a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 0.88rem;">网络<sup>1</sup></a><a href="/tags/%E8%AE%A1%E7%BD%91/" style="font-size: 0.88rem;">计网<sup>1</sup></a><a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 0.88rem;">设计模式<sup>1</sup></a><a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 0.88rem;">面试<sup>2</sup></a><a href="/tags/%E9%AB%98%E6%96%B0%E5%85%B4/" style="font-size: 0.88rem;">高新兴<sup>2</sup></a></div></div><hr/></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><button id="chat-btn" type="button" title="聊天"><i class="anzhiyufont anzhiyu-icon-comment-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="anzhiyufont anzhiyu-icon-comments"></i></a><a id="switch-commentBarrage" href="javascript:anzhiyu.switchCommentBarrage();" title="开关弹幕"><i class="anzhiyufont anzhiyu-icon-danmu"></i></a><button id="go-up" type="button" title="回到顶部"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="nav-music"><a id="nav-music-hoverTips" onclick="anzhiyu.musicToggle()" accesskey="m">播放音乐</a><div id="console-music-bg"></div><meting-js id="1451608172" server="tencent" type="playlist" mutex="true" preload="none" theme="var(--anzhiyu-main)" data-lrctype="0" order="random" volume="0.7"></meting-js></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="anzhiyufont anzhiyu-icon-xmark"></i></button></nav><div class="is-center" id="loading-database"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-pulse-icon"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://y.qq.com/n/ryqq/playlist/1451608172&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@6.1.6/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/vanilla-lazyload@19.1.3/dist/lazyload.iife.min.js"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("03/15/2024 00:00:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎使用安知鱼!`,
+    `生活明朗, 万物可爱`,
+    `
+        
+       █████╗ ███╗   ██╗███████╗██╗  ██╗██╗██╗   ██╗██╗   ██╗
+      ██╔══██╗████╗  ██║╚══███╔╝██║  ██║██║╚██╗ ██╔╝██║   ██║
+      ███████║██╔██╗ ██║  ███╔╝ ███████║██║ ╚████╔╝ ██║   ██║
+      ██╔══██║██║╚██╗██║ ███╔╝  ██╔══██║██║  ╚██╔╝  ██║   ██║
+      ██║  ██║██║ ╚████║███████╗██║  ██║██║   ██║   ╚██████╔╝
+      ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝
+        
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2024 By 安知鱼 V1.7.1",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
+
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by 安知鱼 %c 你正在访问 曦臣 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async src="/anzhiyu/random.js"></script><script async="async">(function () {
+  var grt = new Date("03/15/2024 00:00:00"); //设置网站上线时间
+  var now = new Date();
+  var dnum;
+  var hnum;
+  var mnum;
+  var snum;
+  var nowHour;
+
+  // 计算并更新天数、小时数、分钟数和秒数
+  function updateTime() {
+    now = new Date(); // 更新 now 的值
+    nowHour = now.getHours(); // 更新 nowHour 的值
+    var days = (now - grt) / 1000 / 60 / 60 / 24;
+    dnum = Math.floor(days);
+    var hours = (now - grt) / 1000 / 60 / 60 - 24 * dnum;
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+      hnum = "0" + hnum;
+    }
+    var minutes = (now - grt) / 1000 / 60 - 24 * 60 * dnum - 60 * hnum;
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+      mnum = "0" + mnum;
+    }
+    var seconds = (now - grt) / 1000 - 24 * 60 * 60 * dnum - 60 * 60 * hnum - 60 * mnum;
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+      snum = "0" + snum;
+    }
+  }
+
+  // 更新网页中显示的网站运行时间
+  function updateHtml() {
+    const footer = document.getElementById("footer");
+    if (!footer) return
+    let currentTimeHtml = "";
+    if (nowHour < 18 && nowHour >= 9) {
+      // 如果是上班时间，默认就是"安知鱼-上班摸鱼中.svg"图片，不需要更改
+      currentTimeHtml = `本站居然运行了 ${dnum} 天<span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span><i class='anzhiyufont anzhiyu-icon-heartbeat' style='color:red'></i>`;
+    } else {
+      // 如果是下班时间，插入"安知鱼-下班啦.svg"图片
+      let img = document.querySelector("#workboard .workSituationImg");
+      if (img != null) {
+        img.src = "https://npm.elemecdn.com/anzhiyu-blog@2.0.4/img/badge/安知鱼-下班啦.svg";
+        img.title = "下班了就该开开心心的玩耍，嘿嘿~";
+        img.alt = "下班了就该开开心心的玩耍，嘿嘿~";
+      }
+
+      currentTimeHtml = `本站居然运行了 ${dnum} 天<span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span><i class='anzhiyufont anzhiyu-icon-heartbeat' style='color:red'></i>`;
+    }
+
+    if (document.getElementById("runtimeTextTip")) {
+      document.getElementById("runtimeTextTip").innerHTML = currentTimeHtml;
+    }
+  }
+
+  setInterval(() => {
+    updateTime();
+    updateHtml();
+  }, 1000);
+})();</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.cbd.int/mermaid@11.12.2/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  anzhiyu.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://martinleo-twikoo.hf.space',
+      region: '',
+      onCommentLoaded: () => {
+        anzhiyu.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(runFn,0)
+    else getScript('https://cdn.cbd.int/twikoo@1.6.44/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://martinleo-twikoo.hf.space',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const runFn = () => {
+    init();
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) anzhiyu.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else {
+      loadTwikoo()
+    }
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script><input type="hidden" name="page-type" id="page-type" value="post"><script async src="/js/anzhiyu/comment_barrage.js"></script></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getComment = () => {
+    const runTwikoo = () => {
+      twikoo.getRecentComments({
+        envId: 'https://martinleo-twikoo.hf.space',
+        region: '',
+        pageSize: 6,
+        includeReply: true
+      }).then(function (res) {
+        const twikooArray = res.map(e => {
+          return {
+            'content': changeContent(e.comment),
+            'avatar': e.avatar,
+            'nick': e.nick,
+            'url': e.url + '#' + e.id,
+            'date': new Date(e.created).toISOString()
+          }
+        })
+
+        saveToLocal.set('twikoo-newest-comments', JSON.stringify(twikooArray), 10/(60*24))
+        generateHtml(twikooArray)
+      }).catch(function (err) {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.textContent= "无法获取评论，请确认相关配置是否正确"
+      })
+    }
+
+    if (typeof twikoo === 'object') {
+      runTwikoo()
+    } else {
+      getScript('https://cdn.cbd.int/twikoo@1.6.44/dist/twikoo.all.min.js').then(runTwikoo)
+    }
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'data-lazy-src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'><div class='name'><span>${array[i].nick} </span></div></a>`
+        }
+        
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <time datetime="${array[i].date}">${anzhiyu.diffDate(array[i].date, true)}</time></div>
+        </div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom && ($dom.innerHTML= result)
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('twikoo-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script>var visitorMail = "visitor@anheyu.com";
+</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://cdn.cbd.int/qrcodejs@1.0.0/qrcode.min.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/dist/canvas-fluttering-ribbon.min.js"></script><script>(() => {
+  const isChatBtn = true
+  const isChatHideShow = true
+
+  if (isChatBtn) {
+    const close = () => {
+      Chatra('minimizeWidget')
+      Chatra('hide')
+    }
+
+    const open = () => {
+      Chatra('openChat', true)
+      Chatra('show')
+    }
+
+    window.ChatraSetup = {
+      startHidden: true
+    }
+  
+    window.chatBtnFn = () => {
+      const isShow = document.getElementById('chatra').classList.contains('chatra--expanded')
+      isShow ? close() : open()
+    }
+  } else if (isChatHideShow) {
+    window.chatBtn = {
+      hide: () => {
+        Chatra('hide')
+      },
+      show: () => {
+        Chatra('show')
+      }
+    }
+  }
+
+  (function(d, w, c) {
+    w.ChatraID = ''
+    var s = d.createElement('script')
+    w[c] = w[c] || function() {
+        (w[c].q = w[c].q || []).push(arguments)
+    }
+    s.async = true
+    s.src = 'https://call.chatra.io/chatra.js'
+    if (d.head) d.head.appendChild(s)
+  })(document, window, 'Chatra')
+
+})()</script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://npm.elemecdn.com/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script src="https://cdn.cbd.int/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","meta[property=\"og:type\"]","meta[property=\"og:site_name\"]","meta[property=\"og:description\"]","head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  anzhiyu.removeGlobalFnEvent('pjax')
+  anzhiyu.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div><!-- hexo injector body_end start -->
+  <script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/hexo-github-calendar@1.16/hexo_githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://calendar.liumingzhi.cn/api/?user=xichenx";
+            var git_color =['#ebedf0', '#fdcdec', '#fc9bd9', '#fa6ac5', '#f838b2', '#f5089f', '#c4067e', '#92055e', '#540336', '#48022f', '#30021f'];
+            var git_user ="xichenx";
+            var parent_div_git = document.getElementById('recent-posts');
+            var git_div_html = '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><div id="github_loading" style="height:100%;display: flex;align-items: center;justify-content: center;"><svg style="height:50px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div>';
+            if(parent_div_git && location.pathname =='/'){
+                console.log("已挂载hexo-github-calendar https://github.com/Barry-Flynn/hexo-github-calendar");
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('recent-posts')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:280px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><script data-pjax>
+  function butterfly_clock_anzhiyu_injector_config(){
+    var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+    var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img class="entered loading" id="card-clock-loading" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading"/></div></div></div></div></div>';
+    console.log('已挂载butterfly_clock_anzhiyu')
+    if(parent_div_git) {
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var qweather_key = '8585f2ef2043406faed9c976db6effce';
+  var qweather_api_host = 'nj6r6pm8pt.re.qweatherapi.com';
+  var ip_api_key = 'Kq1pRjB3WyDja7rhKcWV9f5QU8';
+  var gaud_map_key = 'c424c6bc430399b7b84c56a392b0096c';
+  var baidu_ak_key = 'undefined';
+  var flag = 0;
+  var clock_rectangle = '112.982279,28.19409';
+  var clock_default_rectangle_enable = 'false';
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  </script><script data-pjax src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"scale":1,"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true,"scale":0.5},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
