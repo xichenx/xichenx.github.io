@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<meta name="viewport" content="initial-scale=1">
+	<meta name="keywords" content="扫雷, HTML游戏">
+	<meta name="description" content="本站提供了经典扫雷游戏，并略作改进，在电脑或手机上打开网页就可以玩，无需下载安装。增加了满屏级别，自适应屏幕大小。成绩榜实时显示大家的扫雷成绩。">
+	<title>扫雷 | 名侦探柯基</title>
+	<link rel="icon" type="image/png" href="/favicon.png">
+	<style>
+		input{
+			height:1.5rem;
+			font-size:1.1rem;
+			width:4rem;
+		}
+		#face{
+			border:2px solid #808080;
+			border-left-color: #fff;
+			border-top-color: #fff;
+			width:21px;
+			height:21px;
+		}
+		#face:active{
+			border:2px solid #808080;
+			border-bottom:1px solid #808080; 
+			border-right:1px solid #808080; 
+
+		}
+		table{
+		border-collapse:collapse;
+		}
+		.pad{
+		border:2px solid #808080;
+		border-right-color: #fff;
+		border-bottom-color: #fff;
+		}
+	</style>
+	<base target="_top">
+</head>  
+<body bgcolor="f7f7f0" style="margin:0;" onload="start()">
+	&emsp;[<a href="../">前往娱乐总部</a>]
+	<center>
+		<div style="margin-top:0.8rem;">
+			<b>在线扫雷游戏</b> 
+			<small>
+				→
+				<a href="about.html">
+					说明
+				</a>
+			</small>
+		</div>
+		<div style="margin-top:0.8rem;">
+			<a href="javascript:_123(1)">基础</a>
+			&nbsp;
+			<a href="javascript:_123(2)">中级</a>
+			&nbsp;
+			<a href="javascript:_123(3)">专家</a>
+			&nbsp;
+			<a href="javascript:_123(4)">满屏</a>
+			&nbsp;
+			<a href="javascript:_123(5)">自定义</a>
+			&nbsp;
+			<a href="javascript:_45()">这把重开</a>
+		</div>
+		<div id="custom" style="display:none">
+			横向：<input id="hm" type="number" value="40">
+			竖向：<input id="vm" type="number" value="24">
+			雷数：<input id="mm" type="number" value="199">
+			<input type="button" onclick="udf()" value="确定">
+		</div>
+		<table style="margin-top:0.8rem;border-radius:6px;background:#cccccc">
+			<tr>
+				<td style="padding:9px;">
+					<table id="p42" class="pad" style="height:34px">
+						<tr>
+							<td width="50%">
+								<canvas id="rm" height="23" width="39"></canvas>
+								<!--img><img><img-->
+							</td>
+							<td align="center">
+								<img onmouseup="_45()" id="face">
+							</td>
+							<td width="50%" align="right">
+								<canvas id="es" height="23" width="39"></canvas>
+								<!--img><img><img-->
+							</td>
+						</tr>
+					</table>
+					<!--table style="margin-top:6px;" class=pad id=paf></table-->
+					<canvas id="paf" class="pad" style="margin-top:6px;" width="0" height="0"></canvas>
+				</td>
+			</tr>
+			<tr><td align="right"></td></tr>
+		</table>
+		<div style="margin-top:2rem;"></div>
+		<div style="width:90%;text-align:left;margin-top:3rem;">
+			初始已自动翻开一片区域。格子里的数字表示它周围有几个雷。游戏目标是在最短的时间内找出所有雷。“触雷”则输。点击表情重新开始。
+			<br><br>
+			<b>电脑：</b>鼠标右键点击原始方块，以小旗标记为雷，再点去除标记。标记的雷数和数字匹配时，点击数字（左右键均可）翻开周围的安全区域。鼠标左键点击无标记方块则直接打开。<a href="mouse2.html">设置</a>
+			<br><br>
+			<b>手机或平板：</b>在触屏上点击方块即标记为雷，再点去除标记。标记的雷数和数字匹配时，点击数字翻开周围的安全区域。长按方块直接打开，可改为点击三次。触击可改为直接打开。<a href="touch2.html">设置</a>
+			<br><br>
+			扫雷游戏起源于1973年的"方块"游戏。1992年微软发布的Windows 3.1中加入该游戏，从此风靡全世界。玩扫雷游戏，可以锻炼观察和推理能力，培养细心和耐心。
+		</div>
+		<!-- <div id="zz" style="margin-top:4rem;"></div>
+		<div style="margin-top:5rem;">
+			<br>
+			<span id="uid" style="color:#f7f7f0"></span>
+		</div> -->
+		<script src="static/js/gfs.js"></script>
+		<script src="static/js/ms3.5.js"></script>
+		<script src="static/js/zz4.js"></script>
+		<div style="margin-top:2rem;">
+			<hr width="90%">
+			<br>
+			在线HTML扫雷游戏
+			<br>
+			<br>
+			<br>
+		</div>
+	</center>
+</body>
+</html>

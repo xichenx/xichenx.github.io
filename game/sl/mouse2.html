@@ -1,0 +1,122 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width">
+
+<title>设置鼠标 | 名侦探柯基</title>
+<link rel="icon" type="image/png" href="/favicon.png">
+
+<style>
+body{background:#f7f7f0;}
+table{border-collapse:collapse;cursor:default;}
+#foo{border-top:solid 1px #cccccc;padding-top:2rem;margin-top:6rem;width:90%;text-align:center}
+</style>
+
+
+
+<base target="_top">
+</head>
+
+<body>
+
+
+
+
+[<a href="./">返回游戏</a>]
+
+<center>
+
+<br><br>
+
+
+鼠标起效时间点
+<br>
+<br>
+<br>
+<i>左键</i>
+<br>
+<br>
+
+
+<input type="radio" name="mp1" value="0" checked="" onclick="save('mp1',0);">点下
+<input type="radio" name="mp1" value="1" onclick="save('mp1',1);">松开
+<input type="radio" name="mp1" value="2" onclick="save('mp1',2);">两次
+<br>
+<br>
+
+
+
+
+
+<br>
+<br>
+
+<i>右键</i>
+<br>
+<br>
+
+
+<input type="radio" name="mp2" value="0" checked="" onclick="save('mp2',0);">点下
+<input type="radio" name="mp2" value="1" onclick="save('mp2',1);">松开
+<input type="radio" name="mp2" value="2" onclick="save('mp2',2);">两次
+<br>
+<br>
+<br>
+<br>
+<br>
+<small>“两次”：点下和松开在不同的格子上</small>
+
+
+<script>
+
+function $(id){return document.getElementById(id);}
+
+function load(rname)
+{
+var rv=localStorage.getItem(rname);
+if(rv==null) rv=0;
+
+var robj=document.getElementsByName(rname);
+for(i=0;i<robj.length;i++){
+if(robj[i].value==rv){
+ robj[i].checked=true;
+}
+}
+return rv;
+}
+
+
+function save(rname,rv)
+{
+if(rv==0){
+localStorage.removeItem(rname);
+}
+else{
+localStorage.setItem(rname,rv);
+}
+}
+
+
+
+load("mp1");
+load("mp2");
+
+
+
+</script>
+
+
+
+
+
+
+<div id="foo">
+在线扫雷游戏
+</div>
+
+</center>
+<br><br>
+</div>
+
+</body>
+</html>
