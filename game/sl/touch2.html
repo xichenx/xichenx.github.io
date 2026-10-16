@@ -1,0 +1,131 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width">
+
+<title>设置触屏 | 名侦探柯基</title>
+<link rel="icon" type="image/png" href="/favicon.png">
+
+<style>
+body{background:#f7f7f0;}
+table{border-collapse:collapse;cursor:default;}
+#foo{border-top:solid 1px #cccccc;padding-top:2rem;margin-top:6rem;width:90%;text-align:center}
+</style>
+
+
+
+<base target="_top">
+</head>
+
+<body>
+
+
+
+
+[<a href="./">返回游戏</a>]
+
+<center>
+
+<br><br>
+
+<br>
+
+<i>触击模式</i>
+<br>
+<br>
+<input type="radio" name="tpn" value="0" checked="" onclick="save('tpn',0);more(0);">标记
+<input type="radio" name="tpn" value="1" onclick="save('tpn',1);more(1);">直开
+
+<br><br>
+<br>
+
+<div id="hint" style="display:none;">
+<i>直开模式下的标记方法</i>
+<br>
+<br>
+长按
+</div>
+
+<div id="open" style="display:none;">
+
+<i>标记模式下的打开方法</i>
+<br>
+<br>
+<input type="radio" name="opn" value="0" checked="" onclick="save('opn',0)">长按
+<input type="radio" name="opn" value="1" onclick="save('opn',1)">快点三次
+</div>
+<br>
+<br>
+
+
+
+
+<script>
+
+function $(id){return document.getElementById(id);}
+
+function load(rname)
+{
+var rv=localStorage.getItem(rname);
+if(rv==null) rv=0;
+
+var robj=document.getElementsByName(rname);
+for(i=0;i<robj.length;i++){
+if(robj[i].value==rv){
+ robj[i].checked=true;
+}
+}
+return rv;
+}
+
+
+function save(rname,rv)
+{
+if(rv==0){
+localStorage.removeItem(rname);
+}
+else{
+localStorage.setItem(rname,rv);
+}
+}
+
+
+
+var rv=load("tpn");
+load("opn");
+
+
+more(rv);
+
+
+
+
+function more(v)
+{
+if(v==0){
+$("open").style.display="block";
+$("hint").style.display="none";
+}
+else{
+$("hint").style.display="block";
+$("open").style.display="none";
+}
+
+}
+
+</script>
+
+
+
+
+
+
+<div id="foo">
+在线扫雷游戏
+</div>
+
+</center>
+<br><br>
+</div>
+</body>
+</html>
