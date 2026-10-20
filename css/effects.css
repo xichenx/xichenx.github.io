@@ -1,0 +1,58 @@
+/* Decorative layers never receive input or alter content dimensions. */
+body:has(.morii-atmosphere) { isolation: isolate; }
+body:has(.morii-atmosphere) > .site-shell { position: relative; z-index: 1; }
+.morii-atmosphere { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; contain: strict; }
+.morii-atmosphere[data-aurora='on']::before, .morii-atmosphere[data-aurora='on']::after { content: ''; position: absolute; width: 95vw; height: 90vh; border-radius: 50%; opacity: .65; }
+.morii-atmosphere[data-aurora='on']::before { top: -30vh; left: -25vw; background: radial-gradient(ellipse, #8c84ff24, #7adbd81a 35%, transparent 68%); }
+.morii-atmosphere[data-aurora='on']::after { bottom: -30vh; right: -30vw; background: radial-gradient(ellipse, #b09aff26, #82b9ff18 35%, transparent 68%); }
+#morii-particles { width: 100%; height: 100%; display: block; opacity: .65; }
+html[data-theme='dark'] .morii-atmosphere::before, html[data-theme='dark'] .morii-atmosphere::after { opacity: 1; }
+html[data-theme='dark'] .morii-atmosphere[data-aurora='on']::before { background: radial-gradient(ellipse, #8c84ff38, #7adbd81c 35%, transparent 68%); }
+html[data-theme='dark'] .morii-atmosphere[data-aurora='on']::after { background: radial-gradient(ellipse, #b09aff38, #82b9ff20 35%, transparent 68%); }
+@supports (backdrop-filter: blur(12px)) or (-webkit-backdrop-filter: blur(12px)) {
+  html[data-glass='on'] .site-header { background: color-mix(in srgb, var(--surface) 74%, transparent); -webkit-backdrop-filter: blur(24px) saturate(155%); backdrop-filter: blur(24px) saturate(155%); box-shadow: 0 1px 0 #ffffff18, 0 8px 32px #17213b05; }
+  html[data-glass='on'] :is(.feature-card, .selected-card, .discovery-card, .side-card) { background-color: color-mix(in srgb, var(--surface) 82%, transparent); -webkit-backdrop-filter: blur(14px) saturate(125%); backdrop-filter: blur(14px) saturate(125%); }
+  html[data-glass='on'] :is(.search-dialog, .navigation-dialog, .social-dialog) { background: color-mix(in srgb, var(--surface) 92%, transparent); -webkit-backdrop-filter: blur(22px); backdrop-filter: blur(22px); }
+  html[data-glass='on'] dialog::backdrop { -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+}
+.morii-spotlight { position: relative; isolation: isolate; }
+.morii-card-light { position: absolute; inset: 0; z-index: 2; border-radius: inherit; pointer-events: none; opacity: 0; background: radial-gradient(340px circle at var(--light-x, 50%) var(--light-y, 50%), color-mix(in srgb, var(--accent) 14%, transparent), transparent 72%); }
+.morii-ripple-host { position: relative; overflow: hidden; }
+.morii-ripple { position: absolute; border-radius: 50%; background: currentColor; pointer-events: none; z-index: 3; }
+html[data-effects='on'][data-glass='off'] .site-header { background: var(--surface); -webkit-backdrop-filter: none; backdrop-filter: none; }
+html[data-effects='on'][data-glass='off'] dialog::backdrop { -webkit-backdrop-filter: none; backdrop-filter: none; }
+:root[data-theme-reveal='on']::view-transition-old(root), :root[data-theme-reveal='on']::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+:root[data-theme-reveal='on']::view-transition { pointer-events: none; }
+:root[data-theme-reveal='on']::view-transition-old(root) { z-index: 1; }
+:root[data-theme-reveal='on']::view-transition-new(root) { z-index: 2; }
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  html[data-motion='on'] .morii-card-light { transition: opacity .28s ease; }
+  html[data-motion='on'] .morii-spotlight[data-light-active] > .morii-card-light { opacity: 1; }
+  html[data-motion='on'] .morii-spotlight[data-light-active] { border-color: color-mix(in srgb, var(--accent) 35%, var(--line)); }
+  html[data-motion='on'] .morii-tilt { transition: transform .25s cubic-bezier(.22,1,.36,1), border-color .25s, box-shadow .25s; }
+  html[data-motion='on'] .morii-tilt[data-light-active] { transform: perspective(900px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) translateY(-3px); }
+  html[data-motion='on'] .hero__main { box-shadow: 0 18px 55px #5568f62b; }
+  html[data-motion='on'] .hero__main .button { position: relative; overflow: hidden; }
+  html[data-motion='on'] .hero__main .button::after { content: ''; position: absolute; top: -50%; left: -80%; width: 45%; height: 200%; background: linear-gradient(90deg, transparent, #ffffff88, transparent); transform: skewX(-22deg); pointer-events: none; }
+  html[data-motion='on'] .hero__main .button:hover::after { animation: morii-sheen .7s ease-out; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  html[data-motion='on'] .morii-atmosphere::before { animation: morii-aurora 24s ease-in-out infinite alternate; }
+  html[data-motion='on'] .morii-atmosphere::after { animation: morii-aurora 30s ease-in-out -10s infinite alternate-reverse; }
+}
+html[data-effects-paused] .morii-atmosphere::before, html[data-effects-paused] .morii-atmosphere::after { animation-play-state: paused !important; }
+@keyframes morii-aurora { to { transform: translate(12vw, 10vh) rotate(12deg) scale(1.12); } }
+@keyframes morii-sheen { to { left: 150%; } }
+@media (max-width: 767px) {
+  /* Keep backdrop sampling inexpensive on phones. */
+  html[data-glass='on'] :is(.feature-card, .selected-card, .discovery-card, .side-card) { -webkit-backdrop-filter: none; backdrop-filter: none; }
+}
+@media (prefers-reduced-motion: reduce), (prefers-contrast: more), (forced-colors: active) {
+  #morii-particles, .morii-card-light, .morii-ripple { display: none; }
+  .morii-atmosphere::before, .morii-atmosphere::after { animation: none !important; }
+}
+@media (prefers-contrast: more), (forced-colors: active) {
+  .morii-atmosphere { display: none; }
+  html[data-glass='on'] :is(.site-header, .side-card, .feature-card, .selected-card, .discovery-card, .hero-mini, dialog) { background: var(--surface); backdrop-filter: none; }
+}
+@media print { .morii-atmosphere, .morii-card-light, .morii-ripple { display: none !important; } html[data-glass='on'] .site-header { backdrop-filter: none; } }

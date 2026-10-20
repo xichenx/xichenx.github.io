@@ -1,0 +1,35 @@
+/* Motion never sets baseline opacity: content remains readable without JavaScript. */
+@media (prefers-reduced-motion: no-preference) {
+  html[data-motion='on'] .hero__main::before { animation: morii-orbit 18s ease-in-out infinite alternate; animation-play-state: var(--morii-ambient-state, paused); }
+  html[data-motion='on'] .hero__main::after { animation: morii-orbit 14s ease-in-out -4s infinite alternate-reverse; animation-play-state: var(--morii-ambient-state, paused); }
+  html[data-motion='on'] .hero__main .eyebrow__dot { animation: morii-dot 3.5s ease-in-out infinite; animation-play-state: var(--morii-ambient-state, paused); }
+  html[data-motion-paused] .hero__main::before, html[data-motion-paused] .hero__main::after, html[data-motion-paused] .eyebrow__dot { animation-play-state: paused !important; }
+  html[data-motion='on'] :is(.button, .icon-button, .site-nav a, .pagination a, .directory-filters button) { transition: transform .22s ease, background-color .22s, border-color .22s, box-shadow .22s, color .22s; }
+  html[data-motion='on'] :is(.button, .icon-button, .pagination a, .directory-filters button):active { transform: scale(.95); }
+  html[data-motion='on'] .site-nav a { position: relative; }
+  html[data-motion='on'] .site-nav a::after { content: ''; position: absolute; left: 12px; right: 12px; bottom: 4px; height: 2px; border-radius: 2px; background: currentColor; transform: scaleX(0); transform-origin: center; transition: transform .24s ease; pointer-events: none; }
+  html[data-motion='on'] .site-nav a:hover::after, html[data-motion='on'] .site-nav a:focus-visible::after { transform: scaleX(1); }
+  html[data-motion='on'] #theme-toggle { transition: rotate .4s cubic-bezier(.22, 1, .36, 1), background-color .2s; }
+  html[data-motion='on'] #theme-toggle[aria-pressed='true'] { rotate: 180deg; }
+  html[data-motion='on'] :is(.feature-card__icon, .feature-card__arrow, .text-link > span, .quick-links b, .profile-card__avatar, .brand__mark) { transition: transform .35s cubic-bezier(.22, 1, .36, 1); }
+  html[data-motion='on'] dialog[open] { animation: morii-dialog-in .28s cubic-bezier(.22, 1, .36, 1); }
+  html[data-motion='on'] dialog[open]::backdrop { animation: morii-backdrop-in .24s ease-out; }
+  html[data-motion='on'] .moment-item:not([hidden]) { animation: morii-content-in .36s ease-out; }
+  html[data-motion='on'] .back-to-top:not([hidden]) { animation: morii-content-in .28s ease-out; }
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  html[data-motion='on'] .feature-card:hover .feature-card__icon { transform: translateY(-3px) rotate(-8deg) scale(1.08); }
+  html[data-motion='on'] .feature-card:hover .feature-card__arrow { transform: translate(3px, -3px); }
+  html[data-motion='on'] :is(.text-link:hover > span, .quick-links a:hover b) { transform: translateX(4px); }
+  html[data-motion='on'] .brand:hover .brand__mark { transform: rotate(-8deg) scale(1.06); }
+  html[data-motion='on'] .profile-card__avatar:hover { transform: rotate(5deg) scale(1.04); }
+  html[data-motion='on'] :is(.selected-card, .taxonomy-card, .related-card, .photo-card, .discovery-card) { transition: transform .28s cubic-bezier(.22, 1, .36, 1), border-color .28s, box-shadow .28s; }
+  html[data-motion='on'] :is(.selected-card, .taxonomy-card, .related-card, .photo-card, .discovery-card):hover { transform: translateY(-4px); box-shadow: 0 12px 28px #252c4814; }
+  html[data-motion='on'] .icon-button:hover { transform: translateY(-2px); }
+}
+@keyframes morii-orbit { from { transform: translate(0, 0) scale(1); } to { transform: translate(-22px, 18px) scale(1.07); } }
+@keyframes morii-dot { 0%, 100% { box-shadow: 0 0 0 0 #bceeff00; } 50% { box-shadow: 0 0 0 6px #bceeff22; } }
+@keyframes morii-dialog-in { from { opacity: 0; translate: 0 12px; scale: .98; } to { opacity: 1; translate: 0 0; scale: 1; } }
+@keyframes morii-backdrop-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes morii-content-in { from { opacity: 0; translate: 0 8px; } to { opacity: 1; translate: 0 0; } }
+@media print { html[data-motion='on'] *, html[data-motion='on'] *::before, html[data-motion='on'] *::after { animation: none !important; transition: none !important; } }
