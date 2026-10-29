@@ -1,0 +1,203 @@
+/* A single card surface; the launcher remains a stable drag anchor. */
+.hexo-reader {
+  --hr-accent: var(--hexo-reader-accent, var(--anzhiyu-main, var(--efu-main, var(--brand-color, var(--theme-color, var(--color-primary, var(--primary-color, var(--color-link, #6269d9))))))));
+  --hr-bg: var(--hexo-reader-background, #fff);
+  --hr-ink: var(--hexo-reader-text, #242731);
+  --hr-muted: #898d99;
+  --hr-line: #ececf1;
+  --hr-soft: #f4f4f8;
+  --hr-play: #292c38;
+  --hr-play-ink: #fff;
+  --hr-shadow: 0 16px 48px -12px rgba(30, 34, 57, .23), 0 3px 10px rgba(30, 34, 57, .04);
+  position: fixed;
+  z-index: 9999;
+  width: 48px;
+  height: 48px;
+  color: var(--hr-ink);
+  font: 400 13px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  text-align: left;
+  letter-spacing: normal;
+}
+.hexo-reader *, .hexo-reader *::before, .hexo-reader *::after { box-sizing: border-box; }
+.hexo-reader button, .hexo-reader input { font: inherit; margin: 0; }
+.hexo-reader button { display: inline-flex; align-items: center; justify-content: center; padding: 0; border: 0; cursor: pointer; text-transform: none; letter-spacing: normal; box-shadow: none; }
+.hexo-reader svg { display: block; flex: none; }
+.hexo-reader [hidden] { display: none !important; }
+.hexo-reader button:focus-visible, .hexo-reader__seek:focus-visible { outline: 2px solid var(--hr-accent); outline-offset: 3px; }
+
+@media (prefers-color-scheme: dark) {
+  .hexo-reader:not([data-reader-theme="light"]) {
+    --hr-bg: var(--hexo-reader-background, #252630);
+    --hr-ink: var(--hexo-reader-text, #f0f0f5);
+    --hr-muted: #9294a4;
+    --hr-line: #3b3c48;
+    --hr-soft: #32333f;
+    --hr-play: #eeeef7;
+    --hr-play-ink: #262733;
+    --hr-accent: var(--hexo-reader-accent, #a3a6f4);
+    --hr-shadow: 0 20px 50px -12px rgba(0, 0, 0, .5), 0 2px 8px rgba(0, 0, 0, .15);
+  }
+}
+.hexo-reader[data-reader-theme="dark"],
+[data-theme="dark"] .hexo-reader:not([data-reader-theme="light"]),
+.dark .hexo-reader:not([data-reader-theme="light"]) {
+  --hr-bg: var(--hexo-reader-background, #252630);
+  --hr-ink: var(--hexo-reader-text, #f0f0f5);
+  --hr-muted: #9294a4;
+  --hr-line: #3b3c48;
+  --hr-soft: #32333f;
+  --hr-play: #eeeef7;
+  --hr-play-ink: #262733;
+  --hr-accent: var(--hexo-reader-accent, #a3a6f4);
+  --hr-shadow: 0 20px 50px -12px rgba(0, 0, 0, .5), 0 2px 8px rgba(0, 0, 0, .15);
+}
+.hexo-reader[data-position="bottom-right"] { right: max(24px, env(safe-area-inset-right)); bottom: max(24px, env(safe-area-inset-bottom)); }
+.hexo-reader[data-position="bottom-left"] { left: max(24px, env(safe-area-inset-left)); bottom: max(24px, env(safe-area-inset-bottom)); }
+.hexo-reader[data-position="top-right"] { right: max(24px, env(safe-area-inset-right)); top: max(24px, env(safe-area-inset-top)); }
+.hexo-reader[data-position="top-left"] { left: max(24px, env(safe-area-inset-left)); top: max(24px, env(safe-area-inset-top)); }
+
+.hexo-reader .hexo-reader__launcher {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--hr-line);
+  border-radius: 16px;
+  background: var(--hr-bg);
+  color: var(--hr-accent);
+  box-shadow: 0 5px 18px rgba(32, 36, 60, .12);
+  touch-action: none;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity .18s ease, transform .24s cubic-bezier(.22, 1, .36, 1), background .18s ease, visibility 0s;
+}
+.hexo-reader__launcher:hover { transform: translateY(-2px); }
+.hexo-reader__launcher:active { transform: scale(.96); }
+/* Keep the anchor's dimensions for dragging and restoring its position. */
+.hexo-reader.is-expanded > .hexo-reader__launcher,
+.hexo-reader.is-drag-expanded > .hexo-reader__launcher {
+  opacity: 0;
+  transform: scale(.88);
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .12s ease, transform .18s ease, visibility 0s .12s;
+}
+.hexo-reader__activity { position: absolute; right: 8px; top: 8px; width: 5px; height: 5px; background: var(--hr-accent); border-radius: 50%; opacity: 0; }
+.hexo-reader.is-playing .hexo-reader__activity { opacity: 1; }
+
+.hexo-reader__panel {
+  --hr-enter-y: 8px;
+  --hr-origin-x: right;
+  --hr-origin-y: bottom;
+  display: block;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  position: absolute;
+  bottom: 62px;
+  right: 0;
+  width: min(328px, calc(100vw - 32px));
+  padding: 20px;
+  border: 1px solid var(--hr-line);
+  border-radius: 22px;
+  background: var(--hr-bg);
+  box-shadow: var(--hr-shadow);
+  transform-origin: var(--hr-origin-x) var(--hr-origin-y);
+  transform: translate(var(--hr-shift-x, 0px), var(--hr-shift-y, 0px)) translateY(var(--hr-enter-y)) scale(.96);
+  transition: opacity .18s ease, transform .22s cubic-bezier(.22, 1, .36, 1), visibility 0s .22s;
+}
+.hexo-reader[data-position^="top"] .hexo-reader__panel { top: 62px; bottom: auto; --hr-enter-y: -8px; --hr-origin-y: top; }
+.hexo-reader[data-position$="left"] .hexo-reader__panel { left: 0; right: auto; --hr-origin-x: left; }
+.hexo-reader.is-floating.is-grow-left .hexo-reader__panel { right: 0; left: auto; --hr-origin-x: right; }
+.hexo-reader.is-floating.is-grow-right .hexo-reader__panel { left: 0; right: auto; --hr-origin-x: left; }
+.hexo-reader.is-floating.is-pin-top .hexo-reader__panel { top: 62px; bottom: auto; --hr-enter-y: -8px; --hr-origin-y: top; }
+.hexo-reader.is-floating.is-pin-bottom .hexo-reader__panel { bottom: 62px; top: auto; --hr-enter-y: 8px; --hr-origin-y: bottom; }
+.hexo-reader.is-expanded .hexo-reader__panel,
+.hexo-reader.is-drag-expanded .hexo-reader__panel {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translate(var(--hr-shift-x, 0px), var(--hr-shift-y, 0px)) translateY(0) scale(1);
+  transition: opacity .2s ease, transform .28s cubic-bezier(.22, 1, .36, 1), visibility 0s;
+}
+.hexo-reader__header { display: flex; align-items: center; min-height: 38px; gap: 11px; cursor: grab; touch-action: none; }
+.hexo-reader__heading { display: flex; flex: 1; flex-direction: column; gap: 3px; min-width: 0; }
+.hexo-reader__status { color: var(--hr-muted); font-size: 10px; line-height: 1.3; letter-spacing: .035em; }
+.hexo-reader.is-playing .hexo-reader__status { color: var(--hr-accent); }
+.hexo-reader__title { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-size: 14px; font-weight: 600; line-height: 1.4; }
+.hexo-reader .hexo-reader__collapse { flex: none; width: 28px; height: 32px; margin-right: -6px; border-radius: 8px; color: var(--hr-muted); background: transparent; }
+.hexo-reader__collapse:hover { color: var(--hr-ink); background: var(--hr-soft); }
+
+.hexo-reader__progress { margin-top: 18px; }
+.hexo-reader__seek {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  height: 16px;
+  padding: 0;
+  border: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+.hexo-reader__seek::-webkit-slider-runnable-track {
+  height: 3px;
+  border-radius: 3px;
+  background: linear-gradient(to right, var(--hr-accent) var(--hr-progress, 0%), var(--hr-line) var(--hr-progress, 0%));
+}
+.hexo-reader__seek::-moz-range-track { height: 3px; border-radius: 3px; background: var(--hr-line); }
+.hexo-reader__seek::-moz-range-progress { height: 3px; border-radius: 3px; background: var(--hr-accent); }
+.hexo-reader__seek::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 9px;
+  height: 9px;
+  margin-top: -3px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--hr-accent);
+  transition: transform .15s ease;
+}
+.hexo-reader__seek::-moz-range-thumb { width: 9px; height: 9px; border: 0; border-radius: 50%; background: var(--hr-accent); }
+.hexo-reader__seek:hover::-webkit-slider-thumb { transform: scale(1.3); }
+.hexo-reader__time { display: flex; justify-content: space-between; margin-top: 3px; color: var(--hr-muted); font-size: 10px; font-variant-numeric: tabular-nums; line-height: 1.4; }
+.hexo-reader__elapsed { color: var(--hr-ink); }
+.hexo-reader.is-error .hexo-reader__status { color: #d36b71; }
+
+.hexo-reader__controls { display: flex; align-items: center; justify-content: space-between; margin-top: 16px; }
+.hexo-reader__transport { display: flex; align-items: center; gap: 9px; margin-left: -6px; }
+.hexo-reader .hexo-reader__skip { width: 36px; height: 40px; border-radius: 10px; color: var(--hr-muted); background: transparent; transition: color .15s ease, background .15s ease; }
+.hexo-reader__skip:hover { color: var(--hr-ink); background: var(--hr-soft); }
+.hexo-reader .hexo-reader__play { width: 44px; height: 44px; border-radius: 50%; background: var(--hr-play); color: var(--hr-play-ink); transition: transform .18s ease; }
+.hexo-reader__play:hover { transform: scale(1.06); }
+.hexo-reader__play:active { transform: scale(.94); }
+.hexo-reader__icon-play { margin-left: 1px; }
+.hexo-reader .hexo-reader__icon-pause { display: none; }
+.hexo-reader__play.is-playing .hexo-reader__icon-play { display: none; }
+.hexo-reader__play.is-playing .hexo-reader__icon-pause { display: block; }
+.hexo-reader__speed-picker { position: relative; }
+.hexo-reader .hexo-reader__speed-toggle { gap: 5px; min-width: 60px; height: 36px; padding: 0 9px; border-radius: 10px; background: transparent; color: var(--hr-muted); font-size: 12px; font-weight: 600; font-variant-numeric: tabular-nums; transition: color .15s ease, background .15s ease; }
+.hexo-reader .hexo-reader__speed-toggle:hover,
+.hexo-reader .hexo-reader__speed-toggle:focus-visible { color: var(--hr-ink); background: var(--hr-soft); }
+.hexo-reader__speed-toggle svg { color: var(--hr-muted); }
+.hexo-reader .hexo-reader__speed-toggle[aria-expanded="true"] { color: var(--hr-accent); background: var(--hr-soft); }
+.hexo-reader__rates { position: absolute; right: 0; bottom: 46px; width: 242px; padding: 12px; border: 1px solid var(--hr-line); border-radius: 13px; background: var(--hr-bg); box-shadow: var(--hr-shadow); z-index: 2; }
+.hexo-reader__speed-label { display: block; padding: 0 3px 9px; color: var(--hr-muted); font-size: 10px; }
+.hexo-reader__rate-options { display: flex; gap: 3px; }
+.hexo-reader .hexo-reader__rate { flex: 1; height: 32px; border-radius: 7px; background: transparent; color: var(--hr-ink); font-size: 11px; font-variant-numeric: tabular-nums; }
+.hexo-reader__rate:hover { background: var(--hr-soft); }
+.hexo-reader__rate[aria-pressed="true"] { color: var(--hr-play-ink); background: var(--hr-play); }
+
+.hexo-reader.is-dragging, .hexo-reader.is-dragging * { cursor: grabbing !important; user-select: none; -webkit-user-select: none; }
+.hexo-reader.is-dragging .hexo-reader__panel { transition: none; }
+@media (max-width: 380px) {
+  .hexo-reader__panel { padding: 18px; }
+  .hexo-reader__rates { width: 226px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hexo-reader *, .hexo-reader *::before, .hexo-reader *::after { animation: none !important; transition: none !important; }
+}
+@media (prefers-contrast: more) {
+  .hexo-reader__panel, .hexo-reader .hexo-reader__launcher { border-color: currentColor; }
+  .hexo-reader__status, .hexo-reader__time { color: inherit; }
+}

@@ -1,0 +1,753 @@
+<!DOCTYPE html><html lang="zh-CN" style="--brand-color:#5568f6;--brand-color-dark:#8c9aff;" data-motion="on" data-glass="on" data-effects="on" data-theme-transition="on"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#5568f6"><meta name="description" content="Java 面经 一、Java 基础 1、final 关键字的作用 修饰引用：该引用为常量，其值无法修改 修饰方法：该方法为最终方法，无法被子类重写 修饰类：该类为最终类，无法被继承 2、String、StringBuffer、StringBuilder 的区别 String：值是不可变的，这就导致每次对Strin..."><title>Java面经 · 心灵涂鸦</title><link rel="canonical" href="https://blog.liumingzhi.cn/2024/05/21/Java%E9%9D%A2%E7%BB%8F/"><meta property="og:title" content="Java面经"><meta property="og:description" content="Java 面经 一、Java 基础 1、final 关键字的作用 修饰引用：该引用为常量，其值无法修改 修饰方法：该方法为最终方法，无法被子类重写 修饰类：该类为最终类，无法被继承 2、String、StringBuffer、StringBuilder 的区别 String：值是不可变的，这就导致每次对Strin..."><meta property="og:site_name" content="心灵涂鸦"><meta property="og:type" content="article"><meta property="og:url" content="https://blog.liumingzhi.cn/2024/05/21/Java%E9%9D%A2%E7%BB%8F/"><meta property="og:image" content="https://unpkg.com/image-hosting-service/img/consulting-blog-09.webp"><meta property="article:published_time" content="2024-05-21T00:19:00.000Z"><meta property="article:modified_time" content="2026-10-29T10:12:52.523Z"><link rel="icon" href="/icons/brand/favicon.ico?v=6fa12bb"><script src="/js/theme-init.js?v=1.0.1"></script><link rel="stylesheet" href="/css/style.css?v=1.0.1"><link rel="stylesheet" href="/css/media.css?v=1.0.1"><link rel="stylesheet" href="/css/search.css?v=1.0.1" media="print" data-deferred-style><link rel="stylesheet" href="/css/effects.css?v=1.0.1"><link rel="stylesheet" href="/css/motion.css?v=1.0.1" media="print" data-deferred-style><link rel="stylesheet" href="/css/music.css?v=1.0.1" media="print" data-deferred-style><link rel="stylesheet" href="/css/reading.css?v=1.0.1"><link id="article-print-style" rel="stylesheet" href="/css/print.css?v=1.0.1" media="print"><!-- hexo injector head_end start --><link rel="stylesheet" href="/assets/hexo-reader/reader.css" data-hexo-reader-css><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head><body class="is-reading"><div class="morii-atmosphere" aria-hidden="true" data-aurora="on"><canvas id="morii-particles" data-density="48"></canvas></div><a class="skip-link" href="#main">跳转到正文</a><section class="print-toolbar" id="article-print-toolbar" hidden aria-label="打印预览操作"><div><strong>打印预览</strong><p id="print-status" role="status">代码与折叠内容已展开。在打印窗口中可选择“另存为 PDF”。</p></div><div class="print-toolbar__actions"><button class="reading-preference-button" id="print-article" type="button">打印 / 保存 PDF</button><button class="reading-preference-button" id="exit-print-preview" type="button">返回阅读</button></div></section><div class="site-shell"><header class="site-header"><div class="site-header__inner"><a class="brand" href="/" aria-label="返回首页"><span class="brand__mark brand__mark--image" aria-hidden="true"><img src="/icons/brand/logo.png?v=20261027-heart" alt="" width="38" height="38"></span><span class="brand__copy"><strong class="brand__text">心灵涂鸦</strong><small class="brand__tagline">记录技术，也记录生活。</small></span></a><nav class="site-nav" id="site-nav" aria-label="主导航"><a href="/">首页</a><a class="site-nav__item--active" href="/archives/" aria-current="page">文章</a><a href="/categories/">分类</a><a href="/essay/">即刻</a><a href="/album/">相册</a><a href="/link/">友链</a><a href="/about/">关于</a></nav><div class="header-actions"><button class="icon-button" id="navigation-open" type="button" aria-label="全站快捷导航" title="全站快捷导航（?）" aria-haspopup="dialog" aria-controls="navigation-dialog" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect></svg></button><button class="icon-button header-search" id="search-open" type="button" aria-label="搜索文章" title="搜索文章（⌘/Ctrl + K）"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 4.5 4.5"></path></svg><span class="header-search__label">搜索</span></button><button class="icon-button" id="theme-toggle" type="button" aria-label="切换深色模式" title="切换深色模式"><svg class="theme-icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M20.4 15.6A8.5 8.5 0 0 1 8.4 3.6 8.5 8.5 0 1 0 20.4 15.6Z"></path></svg><svg class="theme-icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg></button><button class="icon-button mobile-only" id="menu-toggle" type="button" aria-label="打开菜单" aria-controls="site-nav" aria-expanded="false"><svg class="menu-icon--open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg><svg class="menu-icon--close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5 5 19"></path></svg></button></div></div><div class="reading-progress" role="progressbar" aria-label="阅读进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="reading-progress__bar"></div></div></header><main id="main"><header class="article-header post-hero has-cover"><img class="article-cover" src="https://unpkg.com/image-hosting-service/img/consulting-blog-09.webp" alt="" aria-hidden="true" fetchpriority="high"><div class="post-hero-inner"><div class="article-kicker"><a class="article-type" href="/archives/">文章</a></div><h1>Java面经</h1><div class="article-meta"><span>发布于 <time datetime="2024-05-21T00:19:00.000Z">2024-05-21</time></span><span>更新于 <time datetime="2026-10-29T10:12:52.523Z">2026-10-29</time></span><span>约 50 分钟阅读</span></div></div></header><div class="wrap reading-layout"><article class="article-card"><div class="article-toolbar"><div class="article-save-tools"><button class="reading-preference-button" type="button" data-save-post="/2024/05/21/Java%E9%9D%A2%E7%BB%8F/" aria-pressed="false" hidden>加入稍后阅读 ☆</button><a class="text-link" href="/reading-list/">查看清单 →</a></div><p id="reading-list-message" role="status" aria-live="polite"></p><details class="reading-settings" hidden><summary>阅读设置</summary><div class="reading-settings__panel"><div class="reading-settings__row"><span>正文字号</span><div class="reading-font-controls" role="group" aria-label="正文字号"><button class="reading-preference-button" id="reading-font-smaller" type="button" aria-label="缩小正文字号">A−</button><output id="reading-font-value" aria-live="polite">17 px</output><button class="reading-preference-button" id="reading-font-larger" type="button" aria-label="放大正文字号">A＋</button></div></div><div class="reading-settings__row"><button class="reading-preference-button" id="reading-focus-toggle" type="button" aria-pressed="false">专注阅读</button><button class="reading-preference-button" id="reading-settings-reset" type="button">恢复默认</button></div><p id="reading-settings-status" role="status" aria-live="polite">设置仅保存在当前浏览器。</p><button class="reading-preference-button" type="button" data-preview-print hidden>打印 / 导出 PDF</button></div></details></div><div class="reading-resume" id="reading-resume" data-updated="2026-10-29T10:12:52.523Z" hidden><div class="reading-resume__copy"><strong>继续上次阅读</strong><p id="reading-resume-description"></p></div><div class="reading-resume__actions"><button class="reading-preference-button" id="reading-resume-continue" type="button">继续阅读 →</button><button class="reading-preference-button" id="reading-resume-clear" type="button">清除本篇记录</button></div></div><aside class="outdated-notice" data-updated="2026-10-29T10:12:52.523Z" data-days-limit="365" hidden aria-label="文章时效提醒"><span class="outdated-notice__icon" aria-hidden="true">◷</span><div><strong>阅读提示</strong><p>距离上次更新已过去 <span data-outdated-days>0</span> 天，文中的版本、链接与操作方式可能已变化，请结合当前环境核对。</p></div></aside><details class="mobile-toc"><summary>本文目录</summary><div class="toc-content"><a href="#Java-面经">Java 面经</a><a href="#一、Java-基础">一、Java  基础</a><a class="toc-sub" href="#1、final-关键字的作用">1、final 关键字的作用</a><a class="toc-sub" href="#2、String、StringBuffer、StringBuilder-的区别">2、String、StringBuffer、StringBuilder 的区别</a><a class="toc-sub" href="#3、String为什么要设计成不可变的">3、String为什么要设计成不可变的</a><a class="toc-sub" href="#4、抽象类和接口的区别">4、抽象类和接口的区别</a><a class="toc-sub" href="#5、static-关键字的作用">5、static 关键字的作用</a><a class="toc-sub" href="#6、多态是什么">6、多态是什么</a><a class="toc-sub" href="#7、Exception-和-Error-的区别">7、Exception 和 Error 的区别</a><a class="toc-sub" href="#8、什么是反射机制？反射机制的应用场景有哪些？">8、什么是反射机制？反射机制的应用场景有哪些？</a><a class="toc-sub" href="#9、为什么重写-equals-还要重写-hashCode-？">9、为什么重写 equals 还要重写 hashCode ？</a><a class="toc-sub" href="#10、Java-泛型类型擦除和其局限性">10、Java 泛型类型擦除和其局限性</a><a class="toc-sub" href="#11、Java中引用类型的区别，具体的使用场景">11、Java中引用类型的区别，具体的使用场景</a><a class="toc-sub" href="#12、单例模式">12、单例模式</a><a class="toc-sub" href="#13、类加载过程">13、类加载过程</a><a class="toc-sub" href="#14、双亲委派模型">14、双亲委派模型</a><a class="toc-sub" href="#15、new一个对象要经历哪些过程">15、new一个对象要经历哪些过程</a><a href="#二、Java-数据结构">二、Java 数据结构</a><a class="toc-sub" href="#1、HashMap-和-Hashtable-的区别">1、HashMap 和 Hashtable 的区别</a><a class="toc-sub" href="#2、HashMap-底层原理">2、HashMap 底层原理</a><a class="toc-sub" href="#3、HashMap-的扩容过程">3、HashMap 的扩容过程</a><a class="toc-sub" href="#4、为什么-HashMap-使用红黑树而不用二叉平衡树（AVL）">4、为什么 HashMap 使用红黑树而不用二叉平衡树（AVL）</a><a class="toc-sub" href="#5、TreeMap-底层原理">5、TreeMap 底层原理</a><a class="toc-sub" href="#6、Hashtable-怎么保证线程安全的">6、Hashtable 怎么保证线程安全的</a><a class="toc-sub" href="#7、ConcurrentHashMap-原理">7、ConcurrentHashMap 原理</a><a class="toc-sub" href="#8、ConcurrentHashMap-读操作为什么不需要加锁？">8、ConcurrentHashMap 读操作为什么不需要加锁？</a><a class="toc-sub" href="#9、怎么解决hash冲突">9、怎么解决hash冲突</a><a href="#三、Java-多线程">三、Java 多线程</a><a class="toc-sub" href="#1、进程和线程的区别">1、进程和线程的区别</a><a class="toc-sub" href="#2、什么是上下文切换">2、什么是上下文切换</a><a class="toc-sub" href="#3、并发和并行的区别">3、并发和并行的区别</a><a class="toc-sub" href="#4、线程有哪几种状态">4、线程有哪几种状态</a><a class="toc-sub" href="#5、volatile-关键字的作用和原理">5、volatile 关键字的作用和原理</a><a class="toc-sub" href="#6、synchronized-关键字的作用">6、synchronized 关键字的作用</a><a class="toc-sub" href="#7、synchronized-和-ReentrantLock的区别">7、synchronized 和 ReentrantLock的区别</a><a class="toc-sub" href="#8、synchronized-原理">8、synchronized 原理</a><a class="toc-sub" href="#9、synchronized锁升级策略">9、synchronized锁升级策略</a><a class="toc-sub" href="#10、ReentrantLock原理">10、ReentrantLock原理</a><a class="toc-sub" href="#11、公平锁与非公平锁">11、公平锁与非公平锁</a><a class="toc-sub" href="#12、乐观锁和悲观锁">12、乐观锁和悲观锁</a><a class="toc-sub" href="#13、sleep-和-wait-的区别">13、sleep 和 wait 的区别</a><a class="toc-sub" href="#14、join、yield、interrupt、notify和notifyAll的作用">14、join、yield、interrupt、notify和notifyAll的作用</a><a class="toc-sub" href="#15、ThreadLocal的作用">15、ThreadLocal的作用</a><a class="toc-sub" href="#16、ThreadLocal的原理">16、ThreadLocal的原理</a><a class="toc-sub" href="#17、什么是死锁？死锁产生的原因？">17、什么是死锁？死锁产生的原因？</a><a class="toc-sub" href="#18、自己写代码时如何有效避免死锁">18、自己写代码时如何有效避免死锁</a><a class="toc-sub" href="#19、atomic-原理">19、atomic 原理</a><a class="toc-sub" href="#20、线程池构造函数">20、线程池构造函数</a><a class="toc-sub" href="#21、线程池原理">21、线程池原理</a><a href="#四、JVM">四、JVM</a><a class="toc-sub" href="#1、JVM内存区域的划分">1、JVM内存区域的划分</a><a class="toc-sub" href="#2、JVM-哪些区域会发生-OOM">2、JVM 哪些区域会发生 OOM</a><a class="toc-sub" href="#3、GC（垃圾回收）机制">3、GC（垃圾回收）机制</a><a class="toc-sub" href="#4、Java-内存泄漏的原因">4、Java 内存泄漏的原因</a><a class="toc-sub" href="#5、Java-对象模型">5、Java 对象模型</a><a class="toc-sub" href="#6、一个空对象占用多少字节">6、一个空对象占用多少字节</a><a class="toc-sub" href="#7、什么是内存对齐">7、什么是内存对齐</a><a class="toc-sub" href="#8、什么是指针压缩（64位才支持）">8、什么是指针压缩（64位才支持）</a></div></details><div class="article-body" data-code-collapse="true" data-code-lines="18"><h1 id="Java-面经"><a href="#Java-面经" class="headerlink" title="Java 面经"></a>Java 面经</h1><h2 id="一、Java-基础"><a href="#一、Java-基础" class="headerlink" title="一、Java  基础"></a>一、Java  基础</h2><h3 id="1、final-关键字的作用"><a href="#1、final-关键字的作用" class="headerlink" title="1、final 关键字的作用"></a>1、final 关键字的作用</h3><ul>
+<li>修饰引用：该引用为常量，其值无法修改</li>
+<li>修饰方法：该方法为最终方法，无法被子类重写</li>
+<li>修饰类：该类为最终类，无法被继承</li>
+</ul>
+<h3 id="2、String、StringBuffer、StringBuilder-的区别"><a href="#2、String、StringBuffer、StringBuilder-的区别" class="headerlink" title="2、String、StringBuffer、StringBuilder 的区别"></a>2、String、StringBuffer、StringBuilder 的区别</h3><ul>
+<li>String：值是不可变的，这就导致每次对String的操作都会产生新的String对象，效率低下且浪费内存</li>
+<li>StringBuffer：值可变且线程安全</li>
+<li>StringBuilder：值可变但线程不安全，速度较StringBuffer更快</li>
+</ul>
+<h3 id="3、String为什么要设计成不可变的"><a href="#3、String为什么要设计成不可变的" class="headerlink" title="3、String为什么要设计成不可变的"></a>3、String为什么要设计成不可变的</h3><ul>
+<li>防止被篡改，保证信息数据的安全性</li>
+<li>不变的对象和值是线程安全的</li>
+<li>哈希值的唯一性来提高性能</li>
+<li>提高常量池的可用性</li>
+</ul>
+<h3 id="4、抽象类和接口的区别"><a href="#4、抽象类和接口的区别" class="headerlink" title="4、抽象类和接口的区别"></a>4、抽象类和接口的区别</h3><ul>
+<li>抽象类是半抽象的，有构造方法，只允许出现常量和抽象方法。类和类之间只能单继承，一个抽象类只能继承一个类（单继承），多个功能的集成部分，可用抽象类（抽象类提供简单方法）</li>
+<li>接口是完全抽象的，没有构造方法，接口和接口之间支持多继承，一个类可以同时实现多个接口</li>
+</ul>
+<h3 id="5、static-关键字的作用"><a href="#5、static-关键字的作用" class="headerlink" title="5、static 关键字的作用"></a>5、static 关键字的作用</h3><ul>
+<li>修饰方法：静态方法不依赖于任何对象就可以进行访问，在静态方法中不能访问类的非静态成员变量和非静态成员方法</li>
+<li>修饰变量：静态变量被所有的对象所共享，在内存中只有一个副本，它当且仅当在类初次加载时会被初始化</li>
+<li>修饰代码块：在类初次被加载的时候，会按照static块的顺序来执行每个static块，并且只会执行一次</li>
+</ul>
+<h3 id="6、多态是什么"><a href="#6、多态是什么" class="headerlink" title="6、多态是什么"></a>6、多态是什么</h3><ul>
+<li>多态分为两种：<ul>
+<li>编译时多态(设计时多态)：方法重载</li>
+<li>运行时多态：JAVA运行时系统根据调用该方法的实例的类型来决定选择调用哪个方法则被称为运行时多态</li>
+</ul>
+</li>
+<li>多态存在的三个必要条件：<ul>
+<li>要有继承(包括接口的实现)</li>
+<li>要有重写</li>
+<li>父类引用指向子类对象（向上转型）</li>
+</ul>
+</li>
+</ul>
+<h3 id="7、Exception-和-Error-的区别"><a href="#7、Exception-和-Error-的区别" class="headerlink" title="7、Exception 和 Error 的区别"></a>7、Exception 和 Error 的区别</h3><ul>
+<li>Exception 是程序正常运行中，可以预料的意外情况，可能并且应该被捕获，进行相应的处理</li>
+<li>Error 是指在正常情况下，不大可能出现的情况，绝大部分 Error 都会使程序处于非正常、不可恢复的状态。既然是非正常，所以不便于也不需要捕获，常见的 OutOfMemoryError 就是 Error 的子类</li>
+</ul>
+<h3 id="8、什么是反射机制？反射机制的应用场景有哪些？"><a href="#8、什么是反射机制？反射机制的应用场景有哪些？" class="headerlink" title="8、什么是反射机制？反射机制的应用场景有哪些？"></a>8、什么是反射机制？反射机制的应用场景有哪些？</h3><ul>
+<li>对于任意一个类，都能够获得这个类的所有属性和方法，对于任意一个对象都能够调用它的任意一个属性和方法。这种在运行时动态的获取信息以及动态调用对象的方法的功能称为Java 的反射机制</li>
+<li>应用场景：<ul>
+<li>工厂模式</li>
+<li>注解</li>
+<li>json解析</li>
+<li>动态代理</li>
+</ul>
+</li>
+</ul>
+<h3 id="9、为什么重写-equals-还要重写-hashCode-？"><a href="#9、为什么重写-equals-还要重写-hashCode-？" class="headerlink" title="9、为什么重写 equals 还要重写 hashCode ？"></a>9、为什么重写 equals 还要重写 hashCode ？</h3><p>hashCode 和 equals 两个方法是用来协同判断两个对象是否相等的，采用这种方式的原因是可以提高程序插入和查询的速度，如果在重写 equals 时，不重写 hashCode，就会导致在某些场景下，例如将两个相等的自定义对象存储在 Set 集合时，就会出现程序执行的异常，为了保证程序的正常执行，所以我们就需要在重写 equals 时，也一并重写 hashCode 方法才行</p>
+<h3 id="10、Java-泛型类型擦除和其局限性"><a href="#10、Java-泛型类型擦除和其局限性" class="headerlink" title="10、Java 泛型类型擦除和其局限性"></a>10、Java 泛型类型擦除和其局限性</h3><ul>
+<li><p>Java的泛型是伪泛型，Java的泛型基本上都是在编译器这个层次上实现的，在生成的字节码中是不包含泛型中的类型信息的，使用泛型的时候加上类型参数，在编译器编译的时候会去掉，这个过程称为类型擦除</p>
+</li>
+<li><p>局限性：</p>
+<ul>
+<li><p><strong>运行时类型查询只适用于原始类型</strong></p>
+<p>查询一个对象是否属于某个泛型类型时，倘若使用 <code>instanceof</code> 会得到一个编译器错误， 如果使用强制类型转换会得到一个警告</p>
+</li>
+<li><p><strong>不能用基本类型实例化类型参数</strong></p>
+<p>不能用类型参数代替基本类型。因此， 没有 <code>Pair&lt;int&gt;</code>, 只 有 <code>Pair&lt;Integer&gt;</code>。 当然,其原因是类型擦除。擦除之后， Pair 类含有 Object 类型的域， 而 Object 不能存储 int值</p>
+</li>
+<li><p><strong>不能实例化类型变量</strong></p>
+<p>不能使用像 new T(…)、 newT[…] 或 T.class 这样的表达式中的类型变量</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Singleton</span>&lt;T&gt; &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> T singlelnstance;        <span class="comment">// Error</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">T</span> <span class="title function_">getSinglelnstance</span><span class="params">()</span> &#123;   <span class="comment">// Error</span></span><br><span class="line">        <span class="keyword">if</span> (singleinstance == <span class="literal">null</span>) construct <span class="keyword">new</span> <span class="title class_">instance</span> of T</span><br><span class="line">        <span class="keyword">return</span> singlelnstance; </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>不能抛出或捕获泛型类的实例</strong></p>
+<p>实际上， 甚至泛型类扩展 <strong>Throwable</strong> 都是不合法的；</p>
+<p><strong>catch</strong> 子句中不能使用类型变量。例如， 以下方法将不能编译：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T <span class="keyword">extends</span> <span class="title class_">Throwable</span>&gt; <span class="type">void</span> <span class="title function_">doWork</span><span class="params">(Class&lt;T&gt; t)</span> &#123;</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        <span class="keyword">do</span> work</span><br><span class="line">    &#125; <span class="keyword">catch</span> (T e) &#123;     <span class="comment">// Error can &#x27;t catch type variable</span></span><br><span class="line">        Logger,global.info(...) </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>不能创建参数化类型的数组</strong></p>
+<p>例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Pair</span>&lt;String&gt;[] <span class="variable">table</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Pair</span>&lt;String&gt;[<span class="number">10</span>];</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h3 id="11、Java中引用类型的区别，具体的使用场景"><a href="#11、Java中引用类型的区别，具体的使用场景" class="headerlink" title="11、Java中引用类型的区别，具体的使用场景"></a>11、Java中引用类型的区别，具体的使用场景</h3><ul>
+<li><p><strong>强引用：</strong> 强引用指的是通过 new 对象创建的引用。</p>
+<ul>
+<li>正常创建的对象，只要引用存在，永远不会被GC回收，即使OOM</li>
+<li>如果要中断强引用和某个对象的关联，为其赋值null，这样GC就会在合适的时候回收对象</li>
+<li>Vector类的clear()方法就是通过赋值null进行清除</li>
+</ul>
+</li>
+<li><p><strong>软引用：</strong> 软引用是通过 SoftRefrence 实现的，它的生命周期比强引用短，在内存不足，抛出 OOM 之前，垃圾回收器会回收软引用引用的对象。软引用常见的使用场景是存储一些内存敏感的缓存，当内存不足时会被回收。</p>
+<ul>
+<li>在内存足够的情况下进行缓存，提升速度，内存不足时JVM自动回收</li>
+<li>可以和引用队列ReferenceQueue联合使用，如果软引用所引用的对象被JVM回收，这个软引用就会被加入到与之关联的引用队列中</li>
+</ul>
+</li>
+<li><p><strong>弱引用：</strong> 弱引用是通过 WeakRefrence 实现的，它的生命周期比软引用还短，GC 只要扫描到弱引用的对象就会回收。弱引用常见的使用场景也是存储一些内存敏感的缓存。</p>
+<ul>
+<li>ThreadLocalMap防止内存泄漏 </li>
+<li>监控对象是否将要被回收</li>
+</ul>
+</li>
+<li><p><strong>虚引用：</strong> 虚引用是通过 FanttomRefrence 实现的，它的生命周期最短，随时可能被回收。如果一个对象只被虚引用引用，我们无法通过虚引用来访问这个对象的任何属性和方法。它的作用仅仅是保证对象在 finalize 后，做某些事情。虚引用常见的使用场景是跟踪对象被垃圾回收的活动，当一个虚引用关联的对象被垃圾回收器回收之前会收到一条系统通知。</p>
+<ul>
+<li>程序可以通过判断引用队列中是否已经加入了虚引用，来了解被引用的对象是否将要被垃圾回收。如果程序发现某个虚引用已经被加入到引用队列，那么就可以在所引用的对象的内存被回收之前采取必要的行动</li>
+</ul>
+</li>
+</ul>
+<h3 id="12、单例模式"><a href="#12、单例模式" class="headerlink" title="12、单例模式"></a>12、单例模式</h3><ul>
+<li>双重检查单例模式</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Singleton</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> Singleton instance;</span><br><span class="line">    <span class="type">private</span> <span class="title function_">Singleton</span><span class="params">()</span>&#123;&#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">Singleton</span> <span class="title function_">getInstance</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (instance==<span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (Singleton.class) &#123;</span><br><span class="line">                <span class="keyword">if</span> (instance==<span class="literal">null</span>)&#123;</span><br><span class="line">                    instance=<span class="keyword">new</span> <span class="title class_">Singleton</span>();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>第一次校验</strong>：</p>
+<p>也就是第一个if（singleton&#x3D;&#x3D;null），这个是为了代码提高代码执行效率，由于单例模式只要一次创建实例即可，所以当创建了一个实例之后，再次调用getInstance方法就不必要进入同步代码块，不用竞争锁。直接返回前面创建的实例即可。</p>
+<p><strong>第二次校验</strong>：</p>
+<p>也就是第二个if（singleton&#x3D;&#x3D;null），这个校验是防止二次创建实例，假如有一种情况，当singleton还未被创建时，线程t1调用getInstance方法，由于第一次判断singleton&#x3D;&#x3D;null，此时线程t1准备继续执行，但是由于资源被线程t2抢占了，此时t2页调用getInstance方法，同样的，由于singleton并没有实例化，t2同样可以通过第一个if，然后继续往下执行，同步代码块，第二个if也通过，然后t2线程创建了一个实例singleton。此时t2线程完成任务，资源又回到t1线程，t1此时也进入同步代码块，如果没有这个第二个if，那么，t1就也会创建一个singleton实例，那么，就会出现创建多个实例的情况，但是加上第二个if，就可以完全避免这个多线程导致多次创建实例的问题。</p>
+<ul>
+<li>静态内部类单例模式</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">在内部类被加载和初始化时，才创建INSTANCE</span></span><br><span class="line"><span class="comment">静态类不会自动随着外部类的加载和初始化而初始化的，它是要单独去加载和初始化的。</span></span><br><span class="line"><span class="comment">因为是在内部类加载和初始化时，创建的，因此是线程安全的</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Singleton</span> &#123;</span><br><span class="line">    <span class="type">private</span> <span class="title function_">Singleton</span><span class="params">()</span>&#123;&#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">Inner</span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Singleton</span> <span class="variable">instance</span> <span class="operator">=</span><span class="keyword">new</span> <span class="title class_">Singleton</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">Singleton</span> <span class="title function_">getInstance</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Inner.instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="13、类加载过程"><a href="#13、类加载过程" class="headerlink" title="13、类加载过程"></a>13、类加载过程</h3><p>Java 中类加载分为 3 个步骤：加载、链接、初始化。</p>
+<ul>
+<li><p><strong>加载</strong>： 由类加载器负责根据一个类的全限定名来读取此类的二进制字节流到JVM内部，并存储在运行时内存区的方法区，然后将其转换为一个与目标类型对应的java.lang.Class对象实例。数据源可以是 Jar 文件、Class 文件等等。如果数据的格式并不是 ClassFile 的结构，则会报 ClassFormatError</p>
+</li>
+<li><p><strong>链接</strong>：链接是类加载的核心部分，这一步分为 3 个步骤：验证、准备、解析</p>
+<ul>
+<li><strong>验证</strong>： 验证是保证JVM安全的重要步骤。JVM需要校验字节信息是否符合规范，避免恶意信息和不规范数据危害JVM运行安全。如果验证出错，则会报VerifyError<ul>
+<li>格式验证：验证是否符合class文件规范。</li>
+<li>语义验证：检查一个被标记为final的类型是否包含子类；检查一个类中的final方法是否被子类进行重写；确保父类和子类之间没有不兼容的一些方法声明（比如方法签名相同，但方法的返回值不同）</li>
+<li>操作验证：在操作数栈中的数据必须进行正确的操作，对常量池中的各种符号引用执行验证（通常在解析阶段执行，检查是否可以通过符号引用中描述的全限定名定位到指定类型上，以及类成员信息的访问修饰符是否允许访问等）</li>
+</ul>
+</li>
+<li><strong>准备</strong>： 这一步会创建静态变量，并为静态变量开辟内存空间，并为其设置一个初始值（由于还没有产生对象，实例变量不在此操作范围内），被final修饰的static变量（常量），会直接赋值</li>
+<li><strong>解析</strong>： 这一步会将符号引用替换为直接引用。解析动作主要针对类或接口、字段、类方法、接口方法、方法类型、方法句柄和调用点限定符7类符号引用进行。符号引用就是一组符号来描述目标，可以是任何字面量。直接引用就是直接指向目标的指针、相对偏移量或一个间接定位到目标的句柄</li>
+</ul>
+</li>
+<li><p><strong>初始化（先父后子）</strong>： 初始化会为静态变量赋值，并执行静态代码块中的逻辑</p>
+<ul>
+<li><p>如果是多线程需要同时初始化一个类，仅仅只能允许其中一个线程对其执行初始化操作，其余线程必须等待，只有在活动线程执行完对类的初始化操作之后，才会通知正在等待的其他线程。</p>
+<p>因为子类存在对父类的依赖，所以类的加载顺序是先加载父类后加载子类，初始化也一样。不过，父类初始化时，子类静态变量的值也有有的，是默认值。</p>
+<img src="C:\Users\zzp\AppData\Roaming\Typora\typora-user-images\image-20230315205319406.png" alt="image-20230315205319406" style="zoom:80%;" /></li>
+</ul>
+</li>
+</ul>
+<h3 id="14、双亲委派模型"><a href="#14、双亲委派模型" class="headerlink" title="14、双亲委派模型"></a>14、双亲委派模型</h3><p>类加载器大致分为3类：启动类加载器、扩展类加载器、应用程序类加载器。</p>
+<ul>
+<li>启动类加载器主要加载 <code>jre/lib</code>下的<code>jar</code>文件。</li>
+<li>扩展类加载器主要加载 <code>jre/lib/ext</code> 下的<code>jar</code>文件。</li>
+<li>应用程序类加载器主要加载 <code>classpath</code> 下的文件。</li>
+</ul>
+<p>所谓的双亲委派模型就是当加载一个类时，会优先使用父类加载器加载，当父类加载器无法加载时才会使用子类加载器去加载。这么做的目的是为了避免类的重复加载。</p>
+<h3 id="15、new一个对象要经历哪些过程"><a href="#15、new一个对象要经历哪些过程" class="headerlink" title="15、new一个对象要经历哪些过程"></a>15、new一个对象要经历哪些过程</h3><ul>
+<li><p>首先Java在new一个对象的时候，会先查看对象所属的类有没有被加载到内存，如果没有的话，就会先通过类的全限定名将对象所属的.class文件加载到内存中。加载并初始化类完成后，再进行对象的创建工作。</p>
+</li>
+<li><p>初始化类完成后，就是创建对象</p>
+<ol>
+<li><p><strong>在堆区分配对象需要的内存</strong></p>
+<p>分配的内存包括本类和父类的所有实例变量，但不包括任何静态变量。</p>
+</li>
+<li><p><strong>对所有实例变量赋默认值</strong></p>
+<p>将方法区内对实例变量的定义拷贝一份到堆区，然后赋默认值。</p>
+</li>
+<li><p><strong>执行实例初始化代码</strong></p>
+<p>初始化顺序是先初始化父类再初始化子类，初始化时先执行实例代码块然后是构造方法。</p>
+</li>
+<li><p>如果有类似于<code>Child c = new Child()</code>形式的c引用的话，在栈区定义Child类型引用变量c，然后将堆区对象的地址赋值给它需要注意的是，每个子类对象持有父类对象的引用，可在内部通过super关键字来调用父类对象，但在外部不可访问。</p>
+</li>
+<li><p>补充：通过实例引用调用实例方法的时候，先从方法区中对象的实际类型信息找，找不到的话再去父类类型信息中找。</p>
+<p>如果继承的层次比较深，要调用的方法位于比较上层的父类，则调用的效率是比较低的，因为每次调用都要经过很多次查找。这时候大多系统会采用一种称为虚方法表的方法来优化调用的效率。</p>
+<p>所谓虚方法表，就是在类加载的时候，为每个类创建一个表，这个表包括该类的对象所有动态绑定的方法及其地址，包括父类的方法，但一个方法只有一条记录，子类重写了父类方法后只会保留子类的。当通过对象动态绑定方法的时候，只需要查找这个表就可以了，而不需要挨个查找每个父类。</p>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="二、Java-数据结构"><a href="#二、Java-数据结构" class="headerlink" title="二、Java 数据结构"></a>二、Java 数据结构</h2><h3 id="1、HashMap-和-Hashtable-的区别"><a href="#1、HashMap-和-Hashtable-的区别" class="headerlink" title="1、HashMap 和 Hashtable 的区别"></a>1、HashMap 和 Hashtable 的区别</h3><ul>
+<li>HashMap是线程不安全的，效率高；Hashtable是线程安全的，效率低；</li>
+<li>HashMap可以存储null键和null值；Hashtable不可以存储null键和null值；</li>
+</ul>
+<h3 id="2、HashMap-底层原理"><a href="#2、HashMap-底层原理" class="headerlink" title="2、HashMap 底层原理"></a>2、HashMap 底层原理</h3><ul>
+<li>HashMap由数组（键值对entry组成的数组主干）+ 链表（元素太多时为解决哈希冲突数组的一个元素上多个entry组成的链表）+ 红黑树（当链表的元素个数达到8链表存储改为红黑树存储）进行数据的存储</li>
+<li>在JDK1.7之前，HashMap采用数组+链表实现，即使用链表处理冲突，同一hash值的链表都存储在一个链表里。但是当位于一个数组中的元素较多，即hash值相等的元素较多时，通过key值依次查找的效率较低。而JDK1.8中，HashMap采用数组+链表+红黑树实现，当链表长度超过阈值（8）时，将链表转换为红黑树，这样大大减少了查找时间。</li>
+</ul>
+<h3 id="3、HashMap-的扩容过程"><a href="#3、HashMap-的扩容过程" class="headerlink" title="3、HashMap 的扩容过程"></a>3、HashMap 的扩容过程</h3><p>默认的负载因子大小为0.75，也就是说，当一个map填满了75%的bucket时候，和其它集合类(如ArrayList等)一样，将会创建原来HashMap大小的两倍的bucket数组，来重新调整map的大小，并将原来的对象放入新的bucket数组中。这个过程叫作rehashing，因为它调用hash方法找到新的bucket位置。这个值只可能在两个地方，一个是原下标的位置，另一种是在下标为&lt;原下标+原容量&gt;的位置</p>
+<h3 id="4、为什么-HashMap-使用红黑树而不用二叉平衡树（AVL）"><a href="#4、为什么-HashMap-使用红黑树而不用二叉平衡树（AVL）" class="headerlink" title="4、为什么 HashMap 使用红黑树而不用二叉平衡树（AVL）"></a>4、为什么 HashMap 使用红黑树而不用二叉平衡树（AVL）</h3><ul>
+<li>红黑树虽然不是严格的平衡树，但是其依旧是平衡树，查找效率是 <strong>O(logn)</strong>；AVL也是 <strong>O(logn)</strong></li>
+<li>红黑树舍去了严格的平衡，使其插入，删除，查找的效率稳定在 <strong>O(logn)</strong>；反观 AVL 树，查找没问题 <strong>O(logn)</strong>，但是为了保证高度平衡，动态插入和删除的代价也随之增加，综合效率肯定达不到 <strong>O(logn)</strong></li>
+<li>在进行大量插入，删除操作时，红黑树更优一些</li>
+</ul>
+<h3 id="5、TreeMap-底层原理"><a href="#5、TreeMap-底层原理" class="headerlink" title="5、TreeMap 底层原理"></a>5、TreeMap 底层原理</h3><p>TreeMap底层通过红黑树实现，可保证在**O(logn)**完成get、put和remove操作，效率很高</p>
+<h3 id="6、Hashtable-怎么保证线程安全的"><a href="#6、Hashtable-怎么保证线程安全的" class="headerlink" title="6、Hashtable 怎么保证线程安全的"></a>6、Hashtable 怎么保证线程安全的</h3><p>使用synchronized关键字修饰public方法保证线程安全</p>
+<h3 id="7、ConcurrentHashMap-原理"><a href="#7、ConcurrentHashMap-原理" class="headerlink" title="7、ConcurrentHashMap 原理"></a>7、ConcurrentHashMap 原理</h3><ul>
+<li><p>在 JDK7 中，ConcurrentHashMap 使用“分段锁”机制实现线程安全，数据结构可以看成是”Segment数组+HashEntry数组+链表”，一个 ConcurrentHashMap 实例中包含若干个 Segment 实例组成的数组，每个 Segment 实例又包含由若干个桶，每个桶中都是由若干个 HashEntry 对象链接起来的链表。因为<strong>Segment 类继承 ReentrantLock 类</strong>，所以能充当锁的角色，通过 segment 段将 ConcurrentHashMap 划分为不同的部分，就可以使用不同的锁来控制对哈希表不同部分的修改，从而允许多个写操作并发进行，默认支持 16 个线程执行并发写操作，及任意数量线程的读操作。</p>
+<img src="C:\Users\zzp\AppData\Roaming\Typora\typora-user-images\image-20230313113723907.png" alt="image-20230313113723907" style="zoom:80%;" />
+</li>
+<li><p>put过程：</p>
+<ol>
+<li>对key进行第1次hash，通过hash值确定Segment的位置</li>
+<li>在Segment内进行操作，获取锁</li>
+<li>获取当前Segment的HashEntry数组后对key进行第2次hash，通过hash值确定在HashEntry数组的索引位置（头部）</li>
+<li>通过继承ReentrantLock的tryLock方法尝试去获取锁，如果获取成功就直接插入相应的位置，如果已经有线程获取该Segment的锁，那当前线程会以自旋的方式去继续的调用tryLock方法去获取锁，超过指定次数就挂起，等待唤醒</li>
+<li>然后对当前索引的HashEntry链进行遍历，如果有重复的key，则替换；如果没有重复的，则插入到链头</li>
+<li>释放锁</li>
+</ol>
+</li>
+<li><p>get操作</p>
+<p>和put操作类似，也是要两次hash。但是get操作的ConcurrentHashMap不需要加锁，原因是存储元素都标记了volatile</p>
+</li>
+<li><p>size操作</p>
+<ul>
+<li>size操作就是遍历两次所有的Segments，每次记录Segment的modCount值，然后将两次的modCount进行比较</li>
+<li>如果相同，则表示期间没有发生过写入操作，就将原先遍历的结果返回。<br>如果经判断发现两次统计出的modCount并不一致，要全部Segment加锁来进行count的获取和统计。在此期间每个Segement都被锁住，无法进行其他操作，统计出的count自然很准确。</li>
+</ul>
+</li>
+</ul>
+<h3 id="8、ConcurrentHashMap-读操作为什么不需要加锁？"><a href="#8、ConcurrentHashMap-读操作为什么不需要加锁？" class="headerlink" title="8、ConcurrentHashMap 读操作为什么不需要加锁？"></a>8、ConcurrentHashMap 读操作为什么不需要加锁？</h3><ul>
+<li>在 HashEntry 类中，key，hash 和 next 域都被声明为 final 的，value 域被 volatile 所修饰，因此 HashEntry 对象几乎是不可变的，通过 HashEntry 对象的不变性来降低读操作对加锁的需求<ul>
+<li>next 域被声明为 final，意味着不能从hash链的中间或尾部添加或删除节点，因为这需要修改 next 引用值，因此所有的节点的修改只能从头部开始。但是对于 remove 操作，需要将要删除节点的前面所有节点整个复制一遍，最后一个节点指向要删除结点的下一个结点。</li>
+</ul>
+</li>
+<li>用 volatile 变量协调读写线程间的内存可见性；</li>
+<li>若读时发生指令重排序现象（也就是读到 value 域的值为 null 的时候），则加锁重读；</li>
+</ul>
+<h3 id="9、怎么解决hash冲突"><a href="#9、怎么解决hash冲突" class="headerlink" title="9、怎么解决hash冲突"></a>9、怎么解决hash冲突</h3><ul>
+<li><p><strong>链地址法</strong>：对于相同的哈希值，使用链表进行连接。（<strong>HashMap使用此法</strong>）</p>
+<ul>
+<li><p>优点：</p>
+<ol>
+<li>处理冲突简单，无堆积现象。即非同义词决不会发生冲突，因此平均查找长度较短。</li>
+<li>适合总数经常变化的情况。（因为拉链法中各链表上的结点空间是动态申请的）</li>
+<li>占空间小。装填因子可取α≥1，且结点较大时，拉链法中增加的指针域可忽略不计。</li>
+<li>删除结点的操作易于实现。只要简单地删去链表上相应的结点即可。</li>
+</ol>
+</li>
+<li><p>缺点</p>
+<ol>
+<li>查询时效率较低。（存储是动态的，查询时跳转需要更多的时间）</li>
+<li>在key-value可以预知，以及没有后续增改操作时候，开放定址法性能优于链地址法。</li>
+<li>不容易序列化。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p><strong>再哈希法</strong>：提供多个哈希函数，如果第一个哈希函数计算出来的key的哈希值冲突了，则使用第二个哈希函数计算key的哈希值。</p>
+<ul>
+<li>优点：不易产生聚集</li>
+<li>缺点：增加了计算时间</li>
+</ul>
+</li>
+<li><p><strong>建立公共溢出区</strong>：将哈希表分为基本表和溢出表两部分，凡是和基本表发生冲突的元素，一律填入溢出表。</p>
+</li>
+<li><p><strong>开放定址法</strong>：当关键字key的哈希地址p &#x3D;H（key）出现冲突时，以p为基础，产生另一个哈希地址p1，若p1仍然冲突，再以p为基础，产生另一个哈希地址p2，…，直到找出一个不冲突的哈希地址pi ，将相应元素存入其中。</p>
+</li>
+</ul>
+<h2 id="三、Java-多线程"><a href="#三、Java-多线程" class="headerlink" title="三、Java 多线程"></a>三、Java 多线程</h2><h3 id="1、进程和线程的区别"><a href="#1、进程和线程的区别" class="headerlink" title="1、进程和线程的区别"></a>1、进程和线程的区别</h3><ul>
+<li>根本区别：进程是操作系统进行资源分配的最小单元，是操作系统对一个正在运行的程序的一种抽象，可以把进程看作程序运行的一次运行过程；线程是操作系统进行运算调度的最小单元</li>
+<li>进程中包含了线程，线程属于进程</li>
+<li>进程的创建、销毁和切换的开销都远大于线程</li>
+<li>每个进程有自己的内存和资源，一个进程中的线程会共享这些内存和资源</li>
+<li>子进程无法影响父进程，而子线程可以影响父线程，如果主线程发生异常会影响其所在进程和子线程</li>
+<li>进程的CPU利用率较低，因为上下文切换开销较大，而线程的CPU的利用率较高，上下文的切换速度快</li>
+<li>进程的操纵者一般是操作系统，线程的操纵者一般是编程人员</li>
+</ul>
+<h3 id="2、什么是上下文切换"><a href="#2、什么是上下文切换" class="headerlink" title="2、什么是上下文切换"></a>2、什么是上下文切换</h3><ul>
+<li>即使是单核处理器也支持多线程执行代码，CPU通过给每个线程分配CPU时间片来实现这个机制。时间片是CPU分配给各个线程的时间，因为时间片非常短，所以CPU通过不停地切换线程执行，让我们感觉多个线程是同时执行的，时间片一般是几十毫秒（ms）。 CPU通过时间片分配算法来循环执行任务，当前任务执行一个时间片后会切换到下一个 任务。但是，在切换前会保存上一个任务的状态，以便下次切换回这个任务时，可以再加载这 个任务的状态。所以<strong>任务从保存到再加载的过程就是一次上下文切换</strong>。</li>
+</ul>
+<h3 id="3、并发和并行的区别"><a href="#3、并发和并行的区别" class="headerlink" title="3、并发和并行的区别"></a>3、并发和并行的区别</h3><ul>
+<li>并发：在操作系统中，是指一个时间段中有几个程序都处于已启动运行到运行完毕之间，且这几个程序都是在同一个处理机上运行</li>
+<li>并行：当系统有一个以上CPU时，当一个CPU执行一个进程时，另一个CPU可以执行另一个进程，两个进程互不抢占CPU资源，可以同时进行</li>
+</ul>
+<h3 id="4、线程有哪几种状态"><a href="#4、线程有哪几种状态" class="headerlink" title="4、线程有哪几种状态"></a>4、线程有哪几种状态</h3><ul>
+<li><strong>初始(NEW)</strong>：新创建了一个线程对象，但还没有调用start()方法</li>
+<li><strong>运行(RUNNABLE)</strong>：Java线程中将就绪（ready）和运行中（running）两种状态笼统的称为“运行”。<br>线程对象创建后，其他线程(比如main线程）调用了该对象的start()方法。该状态的线程位于可运行线程池中，等待被线程调度选中，获取CPU的使用权，此时处于就绪状态（ready）。就绪状态的线程在获得CPU时间片后变为运行中状态（running）</li>
+<li><strong>阻塞(BLOCKED)</strong>：表示线程阻塞于锁</li>
+<li><strong>等待(WAITING)</strong>：进入该状态的线程需要等待其他线程做出一些特定动作（通知或中断）</li>
+<li><strong>超时等待(TIMED_WAITING)</strong>：该状态不同于WAITING，它可以在指定的时间后自行返回</li>
+<li><strong>终止(TERMINATED)</strong>：表示该线程已经执行完毕</li>
+</ul>
+<h3 id="5、volatile-关键字的作用和原理"><a href="#5、volatile-关键字的作用和原理" class="headerlink" title="5、volatile 关键字的作用和原理"></a>5、volatile 关键字的作用和原理</h3><ul>
+<li><p>禁止了指令重排（指令重排是指：为了提高性能，编译器和和处理器通常会对指令进行指令重排序）</p>
+</li>
+<li><p>保证了不同线程对这个变量进行操作时的可见性，即一个线程修改了某个变量值，这个新值对其他线程是立即可见的</p>
+<ul>
+<li>这就指示JVM，这个变量是不稳定的，每次使用它都到主存中进行读取</li>
+</ul>
+</li>
+<li><p><strong>不保证原子性</strong></p>
+</li>
+<li><p>原理：volatile的原理是在生成的汇编代码中多了一个lock前缀指令，这个前缀指令相当于一个内存屏障，这个内存屏障有3个作用：</p>
+<ul>
+<li>确保指令重排的时候不会把屏障后的指令排在屏障前，确保不会把屏障前的指令排在屏障后。</li>
+<li>将当前处理器缓存行的数据写回到系统内存</li>
+<li>一个处理器的缓存回写到内存会导致其他处理器的缓存失效</li>
+</ul>
+</li>
+</ul>
+<h3 id="6、synchronized-关键字的作用"><a href="#6、synchronized-关键字的作用" class="headerlink" title="6、synchronized 关键字的作用"></a>6、synchronized 关键字的作用</h3><ul>
+<li>修饰实例方法：作用于<strong>当前对象实例</strong>加锁，进入同步代码前要获得当前对象实例的锁</li>
+<li>修饰静态方法：也就是给当前类（即<strong>XXX.class</strong>对象）加锁，会作用于类的所有对象实例，因为静态成员不属于任何一个实例对象，是类成员（ static 表明这是该类的一个静态资源，不管new了多少个对象，只有一份）。所以如果一个线程A调用一个实例对象的非静态 synchronized 方法，而线程B需要调用这个实例对象所属类的静态 synchronized  方法，是允许的，不会发生互斥现象，因为访问静态 synchronized 方法占用的锁是当前类的锁，而访问非静态 synchronized 方法占用的锁是当前实例对象锁</li>
+<li>修饰代码块：指定加锁对象，对给定对象加锁，进入同步代码库前要获得给定对象的锁</li>
+<li>synchronized <strong>可重入性</strong>（当一个线程试图操作一个由其他线程持有的对象锁的临界资源时，将会处于阻塞状态，但当一个线程再次请求自己持有对象锁的临界资源时，这种情况属于重入锁，请求将会成功）</li>
+</ul>
+<h3 id="7、synchronized-和-ReentrantLock的区别"><a href="#7、synchronized-和-ReentrantLock的区别" class="headerlink" title="7、synchronized 和 ReentrantLock的区别"></a>7、synchronized 和 ReentrantLock的区别</h3><ul>
+<li>用法不同：synchronized 可以用来修饰普通方法、静态方法和代码块，而 ReentrantLock 只能用于代码块</li>
+<li>获取锁和释放锁的机制不同：synchronized 是自动加锁和释放锁的，而 ReentrantLock 需要手动加锁和释放锁</li>
+<li>锁类型不同：synchronized 是非公平锁，而 ReentrantLock 默认为非公平锁，也可以手动指定为公平锁</li>
+<li>响应中断不同：ReentrantLock 可以响应中断，解决死锁的问题，而 synchronized 不能响应中断</li>
+<li>底层实现不同：synchronized 是 JVM 层面通过监视器实现的，而 ReentrantLock 是基于 AQS 实现的</li>
+</ul>
+<h3 id="8、synchronized-原理"><a href="#8、synchronized-原理" class="headerlink" title="8、synchronized 原理"></a>8、synchronized 原理</h3><ul>
+<li>Java 虚拟机中的同步(Synchronization)基于进入和退出管程(<strong>Monitor</strong>)对象实现， 无论是显式同步(有明确的 monitorenter 和 monitorexit 指令,即同步代码块)还是隐式同步都是如此。</li>
+<li>synchronized 修饰的代码块：使用<strong>monitorenter</strong> 和 <strong>monitorexit</strong> 指令来实现同步的。原理：<ul>
+<li>我们通过解析synchronized修饰的代码块的字节码发现：同步语句块的实现使用的是monitorenter 和 monitorexit 指令。也就是在代码块的开始位置会添加一个monitorenter指令，在结束位置会添加一个monitorexit指令。</li>
+<li>当执行monitorenter指令时，当前线程将试图获取 objectref(即对象锁) 所对应的 monitor（对象监听器：每个对象都会对应一个monitor） 的持有权，当 objectref 的 monitor 的进入计数器为 0，那线程可以成功取得 monitor，并将计数器值设置为 1，取锁成功。如果当前线程已经拥有 objectref 的 monitor 的持有权，那它可以重入这个 monitor (关于重入性稍后会分析)，重入时计数器的值也会加 1。</li>
+<li>倘若其他线程已经拥有 objectref 的 monitor 的所有权，那当前线程将被阻塞，直到正在执行线程执行完毕，即monitorexit指令被执行，执行线程将释放 monitor(锁)并设置计数器值为0 ，其他线程将有机会持有 monitor 。</li>
+<li>值得注意的是编译器将会确保无论方法通过何种方式完成，方法中调用过的每条 monitorenter 指令都有执行其对应 monitorexit 指令，而无论这个方法是正常结束还是异常结束。为了保证在方法异常完成时 monitorenter 和 monitorexit 指令依然可以正确配对执行，编译器会自动产生一个异常处理器，这个异常处理器声明可处理所有的异常，它的目的就是用来执行 monitorexit 指令。从字节码中也可以看出多了一个monitorexit指令，它就是异常结束时被执行的释放monitor 的指令。</li>
+<li>总的来说，synchronized修饰代码块同步的底层原理就是在代码块的前后位置使用monitorenter和monitorexit 指令。monitorenter会判断是否可以获取当前对象锁的对象监听器，如果可以获取将就将其锁计数器加1。此时其他线程要获取该对象锁的对象监听器的时候就会被阻塞。直到当前线程执行monitorexit 指令，进行对象监听器的释放，同时将锁计数器减1。</li>
+</ul>
+</li>
+<li>synchronized 修饰的同步方法：同步方法 并不是由 monitorenter 和 monitorexit 指令来实现同步的，而是由方法调用指令读取运行时常量池中方法的 ACC_SYNCHRONIZED 标志来隐式实现的。原理：<ul>
+<li>方法级的同步是隐式的，即无需通过字节码指令来控制的，它实现在方法调用和返回操作之中。JVM可以从方法常量池中的方法表结构(method_info Structure) 中的 ACC_SYNCHRONIZED 访问标志区分一个方法是否同步方法。</li>
+<li>当方法调用时，调用指令将会检查方法的 ACC_SYNCHRONIZED 访问标志是否被设置，如果设置了，执行线程将先持有monitor（虚拟机规范中用的是管程一词）， 然后再执行方法，最后再方法完成(无论是正常完成还是非正常完成)时释放monitor。</li>
+<li>在方法执行期间，执行线程持有了monitor，其他任何线程都无法再获得同一个monitor。如果一个同步方法执行期间抛 出了异常，并且在方法内部无法处理此异常，那这个同步方法所持有的monitor将在异常抛到同步方法之外时自动释放。</li>
+</ul>
+</li>
+</ul>
+<h3 id="9、synchronized锁升级策略"><a href="#9、synchronized锁升级策略" class="headerlink" title="9、synchronized锁升级策略"></a>9、synchronized锁升级策略</h3><p>前言： 我们刚刚所提到的synchronized是通过获取monitor（对象监听器）实现的，监视器锁（monitor）是依赖于底层的操作系统的Mutex Lock来实现的，这种实现方式导致synchronized属于重量级锁。意思就是这种锁比较消耗系统内核资源，所以Java 6之后Java官方对从JVM层面对synchronized进行了优化，也就是所说的synchronized锁升级策略。</p>
+<ul>
+<li><p>偏向锁：</p>
+<ul>
+<li>偏向锁它是一种针对加锁操作的优化手段，经过研究发现，在大多数情况下，锁不仅不存在多线程竞争，而且总是由同一线程多次获得，因此为了减少同一线程获取锁(会涉及到一些CAS操作,耗时)的代价而引入偏向锁。</li>
+<li>偏向锁的核心思想是，如果一个线程获得了锁，那么锁就进入偏向模式，当这个线程再次请求锁时，无需再做任何同步操作，即获取锁的过程，这样就省去了大量有关锁申请的操作，从而也就提供程序的性能。</li>
+<li>所以，对于没有锁竞争的场合，偏向锁有很好的优化效果，毕竟极有可能连续多次是同一个线程申请相同的锁。但是对于锁竞争比较激烈的场合，偏向锁就失效了，因为这样场合极有可能每次申请锁的线程都是不相同的，因此这种场合下不应该使用偏向锁，否则会得不偿失，需要注意的是，偏向锁失败后，并不会立即膨胀为重量级锁，而是先升级为轻量级锁。下面我们接着了解轻量级锁。</li>
+</ul>
+</li>
+<li><p>轻量级锁：</p>
+<ul>
+<li>倘若偏向锁失败，虚拟机并不会立即升级为重量级锁，它还会尝试使用一种称为轻量级锁的优化手段(1.6之后加入的)。轻量级锁能够提升程序性能的依据是“对绝大部分的锁，在整个同步周期内都不存在竞争”，注意这是经验数据。需要了解的是，轻量级锁所适应的场景是线程交替执行同步块的场合，如果存在同一时间访问同一锁的场合，就会导致轻量级锁膨胀为重量级锁。</li>
+</ul>
+</li>
+<li><p>自旋锁：</p>
+<ul>
+<li>轻量级锁失败后，虚拟机为了避免线程真实地在操作系统层面挂起，还会进行一项称为自旋锁的优化手段。这是基于在大多数情况下，线程持有锁的时间都不会太长，如果直接挂起操作系统层面的线程可能会得不偿失，毕竟操作系统实现线程之间的切换时需要从用户态转换到核心态，这个状态之间的转换需要相对比较长的时间，时间成本相对较高，因此自旋锁会假设在不久将来，当前的线程可以获得锁，因此虚拟机会让当前想要获取锁的线程做几个空循环(这也是称为自旋的原因)，一般不会太久，可能是50个循环或100循环，在经过若干次循环后，如果得到锁，就顺利进入临界区。如果还不能获得锁，那就会将线程在操作系统层面挂起，这就是自旋锁的优化方式，这种方式确实也是可以提升效率的。最后没办法也就只能升级为重量级锁了。</li>
+</ul>
+</li>
+<li><p>重量级锁：</p>
+<ul>
+<li>当自旋锁失败之后，就会升级成重量级锁了，也就是我们刚刚一直在讲述的synchronized的底层实现原理。</li>
+</ul>
+</li>
+<li><p>消除锁：</p>
+<ul>
+<li>消除锁是虚拟机另外一种锁的优化，这种优化更彻底，Java虚拟机在JIT编译时(可以简单理解为当某段代码即将第一次被执行时进行编译，又称即时编译)，通过对运行上下文的扫描，去除不可能存在共享资源竞争的锁，通过这种方式消除没有必要的锁，可以节省毫无意义的请求锁时间，如下StringBuffer的append是一个同步方法，但是在add方法中的StringBuffer属于一个局部变量，并且不会被其他线程所使用，因此StringBuffer不可能存在共享资源竞争的情景，JVM会自动将其锁消除。</li>
+</ul>
+</li>
+<li><p>锁升级策略概述：</p>
+<ul>
+<li>偏向锁：<ul>
+<li>当锁对象第一次被线程获取的时候，线程使用CAS操作把这个锁的线程ID记录在对象头之中，同时置偏向标志位1。以后该线程在进入和退出同步块时不需要进行CAS操作来加锁和解锁，只需要简单地测试一下对象头的Mark Word里是否存储着指当前线程的偏向锁。如果测试成功，表示线程已经获得了锁。</li>
+<li>如果线程使用CAS操作时失败则表示该锁对象上存在竞争并且这个时候另外一个线程获得偏向锁的所有权。当到达全局安全点（safepoint，这个时间点上没有正在执行的字节码）时获得偏向锁的线程被挂起，膨胀为轻量级锁。也就是说：当有另外一个线程去尝试获取这个锁时，偏向模式就宣告结束</li>
+</ul>
+</li>
+<li>轻量级锁：<ul>
+<li>当前线程使用CAS将对象头的mark Word锁标记位替换为锁记录指针,如果成功,当前线程获得锁。</li>
+<li>如果失败，表示其他线程竞争锁,当前线程尝试通过自旋获取锁</li>
+<li>如果自旋成功则依然处于轻量级状态</li>
+<li>如果自旋失败,升级为重量级锁</li>
+</ul>
+</li>
+<li>重量级锁： 此时就升级到重量级锁了</li>
+</ul>
+</li>
+</ul>
+<h3 id="10、ReentrantLock原理"><a href="#10、ReentrantLock原理" class="headerlink" title="10、ReentrantLock原理"></a>10、ReentrantLock原理</h3><ul>
+<li><p>CAS操作：</p>
+<ul>
+<li>CAS是一种无锁算法。有3个操作数：内存值V、旧的预期值A、要修改的新值B。</li>
+<li>当我们要修改内存值的时候要进行判断，当且仅当预期值A和内存值V相同时，将内存值V修改为B，否则什么都不做。</li>
+</ul>
+</li>
+<li><p>AQS队列</p>
+<ul>
+<li>AQS是一个用于构建锁和同步容器的框架。</li>
+<li>AQS使用一个FIFO的队列（也叫CLH队列，是CLH锁的一种变形， 底层通过双向链表实现），表示排队等待锁的线程。队列头节点称作“哨兵节点”或者“哑节点”，它不与任何线程关联。其他的节点与等待线程关联，每个节点维护一个等待状态waitStatus。</li>
+</ul>
+</li>
+<li><p>ReentrantLock的锁流程</p>
+<ul>
+<li>ReentrantLock先通过CAS尝试获取锁，如果获取了就将锁状态state设置为1</li>
+<li>如果此时锁已经被占用，<ul>
+<li>被自己占用：判断当前的锁是否是自己占用了，如果是的话就锁计数器会state++（可重入性）</li>
+<li>被其他线程占用：该线程加入AQS队列并wait()</li>
+</ul>
+</li>
+<li>当前驱线程的锁被释放，一直到state&#x3D;&#x3D;0，挂在CLH队列为首的线程就会被notify()，然后继续CAS尝试获取锁，此时：<ul>
+<li>非公平锁，如果有其他线程尝试lock()，有可能被其他刚好申请锁的线程抢占</li>
+<li>公平锁，只有在CLH队列头的线程才可以获取锁，新来的线程只能插入到队尾。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="11、公平锁与非公平锁"><a href="#11、公平锁与非公平锁" class="headerlink" title="11、公平锁与非公平锁"></a>11、公平锁与非公平锁</h3><ul>
+<li>如果在绝对时间上，先对锁进行获取的请求一定先被满足，也就是等待时间最长的线程最优先获取锁，也可以说锁获取是顺序的。那么这个锁是公平的，反之，是不公平的</li>
+<li>公平锁是严格的以FIFO的方式进行锁的竞争，但是非公平锁是无序的锁竞争，刚释放锁的线程很大程度上能比较快的获取到锁，队列中的线程只能等待，所以非公平锁可能会有“饥饿”的问题。但是重复的锁获取能减小线程之间的切换，而公平锁则是严格的线程切换，这样对操作系统的影响是比较大的，所以非公平锁的吞吐量是大于公平锁的，这也是为什么JDK将非公平锁作为默认的实现。<br>ReentrantLock既可以是公平锁又可以是非公平锁，synchronized 是非公平锁</li>
+</ul>
+<h3 id="12、乐观锁和悲观锁"><a href="#12、乐观锁和悲观锁" class="headerlink" title="12、乐观锁和悲观锁"></a>12、乐观锁和悲观锁</h3><ul>
+<li>乐观锁：乐观锁在操作数据时非常乐观，认为别人不会同时修改数据。因此乐观锁不会上锁，只是在执行更新的时候判断一下在此期间别人是否修改了数据：如果别人修改了数据则放弃操作，否则执行操作</li>
+<li>悲观锁：悲观锁在操作数据时比较悲观，认为别人会同时修改数据。因此操作数据时直接把数据锁住，直到操作完成后才会释放锁；上锁期间其他人不能修改数据</li>
+</ul>
+<h3 id="13、sleep-和-wait-的区别"><a href="#13、sleep-和-wait-的区别" class="headerlink" title="13、sleep 和 wait 的区别"></a>13、sleep 和 wait 的区别</h3><ul>
+<li>sleep 方法是 Thread 类中的静态方法，wait 是Object类中的方法</li>
+<li>sleep 并不会释放同步锁，而 wait 会释放同步锁</li>
+<li>sleep 可以在任何地方使用，而 wait 只能在同步方法或同步代码块中使用</li>
+<li>sleep 中必须传入时间，而 wait 可以传，也可以不传，不穿时间的话只有 notify 或者notifyAll 才能唤醒，传时间的话在时间之后才会唤醒</li>
+</ul>
+<h3 id="14、join、yield、interrupt、notify和notifyAll的作用"><a href="#14、join、yield、interrupt、notify和notifyAll的作用" class="headerlink" title="14、join、yield、interrupt、notify和notifyAll的作用"></a>14、join、yield、interrupt、notify和notifyAll的作用</h3><ul>
+<li>join：当前线程里调用其它线程thread的join方法，当前线程进入WAITING&#x2F;TIMED_WAITING状态，当前线程不会释放已经持有的对象锁。线程thread执行完毕或者millis时间到，当前线程进入就绪状态</li>
+<li>yield：当前线程调用此方法，当前线程放弃获取的CPU时间片，但不释放锁资源，由运行状态变为就绪状态，让OS再次选择线程</li>
+<li>interrupt：当前线程里调用其它线程thread的interrupt()方法,中断指定的线程。如果指定线程调用了wait()方法或者join方法在阻塞状态，那么指定线程会抛出InterruptedException</li>
+<li>notify：唤醒在此对象监视器（锁对象）上等待的单个线程，选择是任意性的</li>
+<li>notifyAll：唤醒在此对象监视器（锁对象）上等待的所有线程</li>
+</ul>
+<h3 id="15、ThreadLocal的作用"><a href="#15、ThreadLocal的作用" class="headerlink" title="15、ThreadLocal的作用"></a>15、ThreadLocal的作用</h3><p>ThreadLocal的作用是提供线程内的局部变量，说白了，就是在各线程内部创建一个变量的副本，相比于使用各种锁机制访问变量，ThreadLocal的思想就是用空间换时间，使各线程都能访问属于自己这一份的变量副本，变量值不互相干扰，减少同一个线程内的多个函数或者组件之间一些公共变量传递的复杂度</p>
+<h3 id="16、ThreadLocal的原理"><a href="#16、ThreadLocal的原理" class="headerlink" title="16、ThreadLocal的原理"></a>16、ThreadLocal的原理</h3><p>每个Thread对象都有一个ThreadLocalMap，ThreadLoalMap中初始化了一个大小16的Entry数组，Entry对象用来保存每一个key-value键值对。当创建一个ThreadLocal的时候，就会将该ThreadLocal对象添加到该Map中，其中键就是ThreadLocal，值可以是任意类型，键值对以Entry类存储。</p>
+<p><img src="C:\Users\zzp\AppData\Roaming\Typora\typora-user-images\image-20230312174042823.png" alt="image-20230312174042823"></p>
+<h3 id="17、什么是死锁？死锁产生的原因？"><a href="#17、什么是死锁？死锁产生的原因？" class="headerlink" title="17、什么是死锁？死锁产生的原因？"></a>17、什么是死锁？死锁产生的原因？</h3><p>多个线程同时被阻塞，它们中的一个或者全部都在等待某个资源被释放。由于线程被无限期地阻塞，因此程序不可能正常终止</p>
+<p>原因：</p>
+<ul>
+<li>互斥条件：一个资源只能被一个线程占有，当这个资源被占有后其他线程就只能等待</li>
+<li>不可剥夺条件：当一个线程不主动释放资源时，此资源一直被拥有线程占有</li>
+<li>请求和保持条件：线程已经拥有了一个资源后，又尝试请求新的资源</li>
+<li>环路等待条件：产生死锁一定是发生了线程资源环形链</li>
+</ul>
+<h3 id="18、自己写代码时如何有效避免死锁"><a href="#18、自己写代码时如何有效避免死锁" class="headerlink" title="18、自己写代码时如何有效避免死锁"></a>18、自己写代码时如何有效避免死锁</h3><ul>
+<li><strong>设置超时时间</strong>：使用JUC包中的Lock接口提供的**<code>tryLock</code>**方法。该方法在获取锁的时候, 可以设置超时时间, 如果超过了这个时间还没拿到这把锁, 那么就可以做其他的事情, 而不是像<code>synchronized</code>如果没有拿到锁会一直等待下去</li>
+<li><strong>多使用JUC包提供的并发类,而不是自己设计锁</strong>：JDK1.5后, 有JUC包提供并发类, 而不需要自己用wait 和notify来进行线程间的通信操作 , 这些成熟的并发类已经考虑的场景很完备了, 比自己设计锁更加安全。JUC中的并发类，例如 ConcurrentHashMap、ConcurrentLinkedQueue、AtomicBoolean 等等；实际应用中java.util.concurrent.atomic 包中提供的类使用广泛, 简单方便, 并且效率比Lock更高</li>
+<li><strong>尽量降低锁的使用粒度</strong>：用不同的锁 ,而不是同一个锁。整个类如果使用一个锁来保护的话, 那么效率会很低, 而且有死锁的风险, 很多线程都来用这把锁的话, 就容易造成死锁。锁的使用范围, 只要能满足业务要求, 范围越小越好</li>
+<li><strong>尽量使用同步代码块 而不是同步方法</strong>：<ul>
+<li>同步方法是把整个方法给加上锁给同步了，范围较大，造成性能低下，使用同步代码块范围小，性能高</li>
+<li>使用同步代码块, 可以自己指定锁的对象, 这样有了锁的控制权, 这样也能避免发生死锁</li>
+</ul>
+</li>
+<li><strong>给线程起有意义的名字</strong></li>
+<li><strong>避免锁的嵌套</strong></li>
+<li><strong>分配锁资源之前先看能不能收回来资源</strong>：银行家算法</li>
+<li><strong>专锁专用</strong></li>
+</ul>
+<h3 id="19、atomic-原理"><a href="#19、atomic-原理" class="headerlink" title="19、atomic 原理"></a>19、atomic 原理</h3><p>Atomic包的类的实现绝大调用Unsafe的方法，而Unsafe底层实际上是调用C代码，C代码调用汇编，最后生成出一条CPU指令cmpxchg，完成操作（<strong>CAS</strong>）。这也就为啥CAS是原子性的，因为它是一条CPU指令，不会被打断。</p>
+<h3 id="20、线程池构造函数"><a href="#20、线程池构造函数" class="headerlink" title="20、线程池构造函数"></a>20、线程池构造函数</h3><ul>
+<li><p><strong>corePoolSize：核心线程数</strong></p>
+<ul>
+<li>线程池维护的最小线程数量，核心线程创建后不会被回收（注意：设置 <code>allowCoreThreadTimeout = true</code> 后，空闲的核心线程超过存活时间也会被回收）</li>
+<li>大于核心线程数的线程，在空闲时间超过keepAliveTime后会被回收</li>
+<li>线程池刚创建时，里面没有一个线程，当调用 <code>execute()</code> 方法添加一个任务时，如果正在运行的线程数量小于corePoolSize，则马上创建新线程并运行这个任务</li>
+</ul>
+</li>
+<li><p><strong>maximumPoolSize：最大线程数</strong></p>
+<ul>
+<li>线程池允许创建的最大线程数量。当添加一个任务时，核心线程数已满，工作队列已满的情况下，线程池还没达到最大线程数，并且没有空闲线程，创建一个新线程，然后从工作队列的头部取出一个任务交由新线程来处理，而将刚提交的任务放入工作队列尾部</li>
+</ul>
+</li>
+<li><p><strong>keepAliveTime：空闲线程存活时间</strong></p>
+<ul>
+<li>当一个可被回收的线程的空闲时间大于<code>keepAliveTime</code>，就会被回收</li>
+<li>可被回收的线程：<ol>
+<li>设置<code>allowCoreThreadTimeout = true</code>的核心线程</li>
+<li>大于核心线程数的线程（非核心线程）</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p><strong>unit：时间单位</strong></p>
+<ul>
+<li>TimeUnit.NANOSECONDS    &#x2F;&#x2F; 纳秒</li>
+<li>TimeUnit.MICROSECONDS    &#x2F;&#x2F; 微秒</li>
+<li>TimeUnit.MILLISECONDS    &#x2F;&#x2F; 毫秒</li>
+<li>TimeUnit.SECONDS        &#x2F;&#x2F; 秒</li>
+<li>TimeUnit.MINUTES        &#x2F;&#x2F; 分钟</li>
+<li>TimeUnit.HOURS            &#x2F;&#x2F; 小时</li>
+<li>TimeUnit.DAYS</li>
+</ul>
+</li>
+<li><p><strong>workQueue：工作队列</strong></p>
+<ul>
+<li><strong>作用</strong>：存放待执行任务的队列。当提交的任务数超过核心线程数大小后，再提交的任务就存放在工作队列，任务调度时再从队列中取出任务。它仅仅用来存放被 execute() 方法提交的 Runnable 任务。工作队列实现了 <strong>BlockingQueue</strong> 接口</li>
+<li>JDK默认的工作队列有五种<ul>
+<li><strong>ArrayBlockingQueue</strong>：数组型阻塞队列。<strong>数组结构，初始化时传入大小（有界），FIFO（先进先出策略）</strong>。使用一个重入锁（ReentrantLock），默认使用非公平锁，入队和出队共用一个锁，互斥</li>
+<li><strong>LinkedBlockingQueue</strong>：链表型阻塞队列。<strong>链表结构，默认初始化大小为Integer.MAX_VALUE，有界（近似无界），FIFO（先进先出策略）</strong>。使用两个重入锁分别控制元素的入队和出队，用 Condition 进行线程间的唤醒和等待</li>
+<li><strong>SynchronousQueue</strong>：同步移交队列。<strong>容量为0</strong>，添加任务必须等待取出任务，这个队列相当于通道，<strong>不存储元素</strong></li>
+<li><strong>PriorityBlockingQueue</strong>：优先级阻塞队列。<strong>无界，在 put 的时候会tryGrow，要说它有界也没问题，因为界是 Integer.MAX_VALUE</strong>，但其实上这个队列应该是无界的。默认采用元素自然顺序升序排列（可以自定义Comparator）。使用一个重入锁分别控制元素的入队和出队</li>
+<li><strong>DelayQueue</strong>：延时队列。<strong>无界，队列中的元素有过期时间，过期的元素才能被取出</strong>。使用一个重入锁分别控制元素的入队和出队，用 Condition 进行线程间的唤醒和等待。任务调度时候可以使用</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>threadFactory：线程工厂</strong></p>
+<ul>
+<li>创建线程的工厂，可以设定线程名、线程编号等</li>
+<li>默认创建的线程工厂，通过<code>Executors.defaultThreadFactory()</code>获取</li>
+</ul>
+</li>
+<li><p><strong>handler：拒绝策略</strong></p>
+<ul>
+<li>当线程池线程数已满，并且工作队列达到限制，新提交的任务使用拒绝策略处理。可以自定义拒绝策略，拒绝策略需要实现 <strong>RejectedExecutionHandler</strong> 接口</li>
+<li>JDK默认的拒绝策有四种<ul>
+<li><strong>AbortPolicy</strong>：丢弃任务并抛出 RejectedExecutionException 异常（默认拒绝策略）</li>
+<li><strong>DiscardPolicy</strong>：丢弃任务，但是不抛出异常。可能导致无法发现系统的异常状态</li>
+<li><strong>DiscardOldestPolicy</strong>：丢弃队列最前面的任务，然后重新提交被拒绝的任务</li>
+<li><strong>CallerRunsPolicy</strong>：由调用线程处理该任务</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="21、线程池原理"><a href="#21、线程池原理" class="headerlink" title="21、线程池原理"></a>21、线程池原理</h3><img src="C:\Users\zzp\AppData\Roaming\Typora\typora-user-images\image-20230314093259155.png" alt="image-20230314093259155" style="zoom:80%;" />
+
+<h2 id="四、JVM"><a href="#四、JVM" class="headerlink" title="四、JVM"></a>四、JVM</h2><h3 id="1、JVM内存区域的划分"><a href="#1、JVM内存区域的划分" class="headerlink" title="1、JVM内存区域的划分"></a>1、JVM内存区域的划分</h3><p>JVM 的内存区域可以分为两类：线程私有和区域和线程共有的区域。线程私有的区域：程序计数器、JVM 虚拟机栈、本地方法栈。线程共有的区域：堆、方法区、运行时常量池</p>
+<ul>
+<li><p><strong>程序计数器</strong> ：每个线程有有一个私有的程序计数器，任何时间一个线程都只会有一个方法正在执行，也就是所谓的当前方法。程序计数器存放的就是这个当前方法的JVM指令地址</p>
+</li>
+<li><p><strong>JVM虚拟机栈</strong>：创建线程的时候会创建线程内的虚拟机栈，栈中存放着一个个的栈帧，对应着一个个方法的调用。JVM 虚拟机栈有两种操作，分别是压栈和出栈。栈帧中存放着局部变量表、方法返回值和方法的正常或异常退出的定义等等</p>
+</li>
+<li><p><strong>本地方法栈</strong>：跟 JVM 虚拟机栈比较类似，只不过它支持的是 Native 方法</p>
+</li>
+<li><p><strong>堆</strong>：堆是java内存中最大的一块，被所有线程共享，在虚拟机创建时创建，堆的唯一目的就是存放对象实例。<br>java堆是垃圾收集器管理的主要区域，所以又被叫为GC堆，现在收集器基本都是采用分代收集算法，所以java堆很可以细分新生代和老年代；新生代再细致一点的有Eden空间、From Survivor空间、To Survivor空间</p>
+</li>
+<li><p><strong>方法区</strong>：方法区是所有线程共享内存区域，它主要是被用来储存java虚拟机加载过类的类信息、常量、静态变量即编译器编译后的代码数据</p>
+</li>
+<li><p><strong>常量池</strong>：</p>
+<ul>
+<li>静态常量池(Class文件常量池)<br>静态常量池主要是存放编译后的字面量和符号引用，字面量相当于java语言层面的常量概念，如文本字符串，声明为final的常量值，符号引用则属于编译原理的内容，主要为：类和接口的全限定名、字段名称和描述符、方法名称和描述符。描述符的作用是用来描述字段的数据类型、方法的参数列表(包括数量、类型以及顺序)和返回值。</li>
+<li>动态常量池(运行时常量池)<br>动态常量池是jvm虚拟机在完成类装载的操作后将静态常量池的常量保存在方法区中，动态常量池对比静态常量池具有动态性，并非Class文件常量池中的常量才能进入运行时常量池，运行期间也可以将新的常量放入池中，这种特性主要在String类中的inter()运用。</li>
+</ul>
+<img src="C:\Users\zzp\AppData\Roaming\Typora\typora-user-images\image-20230315212135170.png" alt="image-20230315212135170" style="zoom:67%;" /></li>
+</ul>
+<h3 id="2、JVM-哪些区域会发生-OOM"><a href="#2、JVM-哪些区域会发生-OOM" class="headerlink" title="2、JVM 哪些区域会发生 OOM"></a>2、JVM 哪些区域会发生 OOM</h3><p>除了程序计数器，其他的部分都会发生 OOM</p>
+<ul>
+<li><strong>堆内存</strong>，堆内存不足是最常见的发送OOM的原因之一。<br>如果在堆中没有内存完成对象实例的分配，并且堆无法再扩展时，将抛出OutOfMemoryError异常，抛出的错误信息是“java.lang.OutOfMemoryError:Java heap space”</li>
+<li><strong>Java虚拟机栈和本地方法栈</strong>，这两个区域的区别不过是虚拟机栈为虚拟机执行Java方法服务，而本地方法栈则为虚拟机使用到的Native方法服务，在内存分配异常上是相同的。<br>在JVM规范中，对Java虚拟机栈规定了两种异常：<br>a. 如果线程请求的栈大于所分配的栈大小，则抛出StackOverFlowError错误，比如进行了一个不会停止的递归调用；<br>b. 如果虚拟机栈是可以动态拓展的，拓展时无法申请到足够的内存，则抛出OutOfMemoryError错误</li>
+<li>除了程序计数器，其他的部分都会发生 OOM</li>
+</ul>
+<h3 id="3、GC（垃圾回收）机制"><a href="#3、GC（垃圾回收）机制" class="headerlink" title="3、GC（垃圾回收）机制"></a>3、GC（垃圾回收）机制</h3><ul>
+<li><p>内存标记算法：在内存被回收前，系统必须标记哪些内存已经没有人使用可以释放，这个工作就由内存标记算法的来完成，在Java各版本中，使用过如下几种标记算法。</p>
+<ul>
+<li><strong>引用计数法（Reference Counting）：</strong> 每个堆中分配的对象都有一个引用计数器，当一个对象被引用时，它的引用计数器会加一，垃圾回收时会清理掉引用计数为0的对象。但这种方法有一个问题，比方说有两个对象 A 和 B，A 引用了 B，B 又引用了 A，除此之外没有别的对象引用 A 和 B，那么 A 和 B 在我们看来已经是垃圾对象，需要被回收，但它们的引用计数不为 0，没有达到回收的条件。正因为这个循环引用的问题，Java 并没有采用引用计数法。</li>
+<li><strong>可达性分析法（Reference Counting）：</strong> 又称跟踪算法（Tracing），算法引入了图论，把所有对象间的关系看成一张图，内存标记从一组根节点（GC Root Set）开始，通过递归搜索，建立对象的引用关系图，当搜索完毕后，图外的对象就是可回收对象。这是目前Java中使用的内存标记算法。根级对象一般包括 <strong>Java 虚拟机栈中的对象</strong>、<strong>本地方法栈中的对象</strong>、<strong>方法区中的静态对象</strong>和<strong>常量池中的常量</strong>。</li>
+</ul>
+</li>
+<li><p>内存回收方式：</p>
+<ul>
+<li><p><strong>复制算法</strong>： 复制算法是将存活的对象复制到另一块内存区域中，并做相应的内存整理工作。复制算法的优点是可以避免内存碎片化，缺点也显而易见，它需要两倍的内存。</p>
+</li>
+<li><p><strong>标记-清除算法（Mark and Sweep）</strong>：</p>
+<p>采用跟踪算法标记内存对象后，再扫描堆内存中未被标记的对象，进行回收。此算法不移动对象，仅对不存活对象进行回收，在存活对象占比高的情况下处理效率高，但不移动对象会引起内存碎片。</p>
+</li>
+<li><p><strong>标记-整理算法（Compacting）</strong>：<br>此方法和标记-清理算法使用相同标记算法，但在对不存活对象回收时，会把存活对象向内存前部空闲区域移动，同时更新对象的指针。此方法在清理的基础上，会对对象进行移动，执行成本较高，但可解决内存碎片问题。基于此算法的内存回收实现，一般会增加句柄和句柄表。</p>
+</li>
+<li><p><strong>分代回收策略</strong>：<br>JDK8中，堆中移除了永生代区域，堆内存主要由新生代和老年代两部分组成。其中新生代由一个伊甸园（Eden）和两个幸存者Survivor From和Survivor To 3部分组成，新创建对象首先保存在Eden中，当Eden中对象达到一定数量时，JVM触发Minor GC，GC时，先把Eden和From中的存活对象拷贝到Survivor To区，再清除Eden和From两个区域的数据，最后From和To互换身份，完成一次内存回收。新生代区域对象数量大，存活时间短，一般采用复制算法，通过这种结构和回收方式来提高垃圾回收效率，减少内存碎片。<br>经过若干（默认15）次后还存活的对象，将进入老年代区，当老年代数据满时，会触发Major GC（又称Full GC），此时新生代、老年代、元区域、直接内存区域都会执行GC操作。（<strong>大对象会直接进入老年代区</strong>，例如图片、很长的字符串及数组）</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="4、Java-内存泄漏的原因"><a href="#4、Java-内存泄漏的原因" class="headerlink" title="4、Java 内存泄漏的原因"></a>4、Java 内存泄漏的原因</h3><ul>
+<li><strong>静态集合类</strong>。如HashMap、LinkedList等等。如果这些容器为静态的，那么它们的生命周期与程序一致，则容器中的对象在程序结束之前将不能被释放，从而造成内存泄漏。简单而言，长生命周期的对象持有短生命周期对象的引用，尽管短生命周期的对象不再使用，但是因为长生命周期对象持有它的引用而导致不能被回收。</li>
+<li><strong>单例模式</strong>。和静态集合导致内存泄漏原因类似，因为单例的静态特性，它的生命周期和 JVM 的生命周期一样长，所以如果单例对象持有外部对象引用，那么这个外部对象也不会被回收，那么就会发生内存泄漏。<strong>要注意！！！！单例对象如果持有Context，那么很容易引发内存泄漏，此时需要注意传递给单例对象的Context最好是Application Context。</strong></li>
+<li><strong>未关闭的资源类：如数据库连接、网络连接和IO连接等</strong>。在对数据库进行操作的过程中，首先需要建立与数据库的连接，当不再使用时，需要调用close方法来释放与数据库的连接。只有连接被关闭后，垃圾回收器才会回收对应的对象。否则，如果在访问数据库的过程中，对Connection、Statement或ResultSet不显性地关闭，将会造成大量的对象无法被回收，从而引起内存泄漏。</li>
+<li><strong>变量不合理的作用域</strong>。一般而言，一个变量的定义的作用范围大于其使用范围，很有可能会造成内存泄漏。另一方面，如果没有及时地把对象设置为null，很有可能导致内存泄漏的发生。</li>
+<li>**非静态内部类持有外部类的引用。**如果有地方引用了这个非静态内部类，会导致外部类也被引用。这个内部类对象被长期引用了，即使那个外部类实例对象不再被使用，但由于内部类持有外部类的实例对象，这个外部类对象将不会被垃圾回收，这也会造成内存泄露。</li>
+<li><strong>改变哈希值</strong>。当一个对象被存储进HashSet集合中以后，就不能修改这个对象中的那些参与计算哈希值的字段了，否则，对象修改后的哈希值与最初存储进HashSet集合中时的哈希值就不同了，在这种情况下，即使在contains方法使用该对象的当前引用作为的参数去HashSet集合中检索对象，也将返回找不到对象的结果，这也会导致无法从HashSet集合中单独删除当前对象，造成内存泄露。</li>
+<li><strong>缓存泄漏</strong>。内存泄漏的另一个常见来源是缓存，一旦你把对象引用放入到缓存中，他就很容易遗忘，对于这个问题，可以使用WeakHashMap代表缓存，此种Map的特点是，当除了自身有对key的引用外，此key没有其他引用那么此map会自动丢弃此值。</li>
+<li><strong>监听器和回调</strong>。内存泄漏还有一个常见来源是监听器和其他回调，如果客户端在实现的API中注册回调，却没有显示的取消，那么就会积聚。需要确保回调立即被当作垃圾回收的最佳方法是只保存他的弱引用，例如将他们保存成为WeakHashMap中的键。</li>
+</ul>
+<h3 id="5、Java-对象模型"><a href="#5、Java-对象模型" class="headerlink" title="5、Java 对象模型"></a>5、Java 对象模型</h3><p>在Hotspot虚拟机中，对象在内存中的存储布局分为 3 块区域：对象头（Header）、实例数据（Instance Data）和对齐填充（Padding）。</p>
+<img src="C:\Users\zzp\AppData\Roaming\Typora\typora-user-images\image-20230312165224851.png" alt="image-20230312165224851" style="zoom:70%;" />
+
+<ul>
+<li>对象头，又包括三部分：<strong>Mark Word</strong>、<strong>Klass Word</strong>（元数据指针）、<strong>数组长度</strong><ul>
+<li><strong>Mark Word</strong>：用于存储对象运行时的数据，比如HashCode、锁状态标志、GC分代年龄等。这部分在64位操作系统下，占8字节（64bit），在32位操作系统下，占4字节（32bit）。</li>
+<li><strong>Klass Word</strong>：对象指向它的类元数据的指针，虚拟机通过这个指针来确定这个对象是哪个类的实例。这部分就涉及到一个指针压缩的概念，在开启指针压缩的情况下，占4字节（32bit），未开启情况下，占8字节（64bit），现在JVM在1.6之后，在64位操作系统下都是默认开启的。</li>
+<li><strong>数组长度</strong>：这部分只有是数组对象才有，如果是非数组对象，就没这部分了，这部分占4字节（32bit）。</li>
+</ul>
+</li>
+</ul>
+<h3 id="6、一个空对象占用多少字节"><a href="#6、一个空对象占用多少字节" class="headerlink" title="6、一个空对象占用多少字节"></a>6、一个空对象占用多少字节</h3><p>只要是Java对象，那么就肯定会包括对象头，也就是说这部分内存占用是避免不了的。所以，在64位虚拟机，Jdk1.8（开启了指针压缩）的环境下，任何一个对象，啥也不做，只要声明一个类，那么它的内存占用就至少是96bits，也就是至少12字节，加上<strong>内存对齐</strong>填充的6字节，总共占用16字节。而不开启指针压缩情况下，则占用16字节。在32位虚拟机，一个空对象占用8字节（对象头）。</p>
+<h3 id="7、什么是内存对齐"><a href="#7、什么是内存对齐" class="headerlink" title="7、什么是内存对齐"></a>7、什么是内存对齐</h3><p>CPU 并不会以一个一个字节去读取和写入内存。相反，CPU 读取内存是一块一块读取的，块的大小可以为 2、4、6、8、16 字节等大小。块大小我们称其为内存访问粒度。假设一个32位平台的 CPU，那它就会以4字节为粒度去读取内存块，64位平台的 CPU则会以8字节为粒度去读取内存块。那为什么需要内存对齐呢？主要有两个原因：</p>
+<ul>
+<li><strong>平台（移植性）原因</strong>：不是所有的硬件平台都能够访问任意地址上的任意数据。例如：特定的硬件平台只允许在特定地址获取特定类型的数据，否则会导致异常情况。</li>
+<li><strong>性能原因</strong>：若访问未对齐的内存，将会导致 CPU 进行两次内存访问，并且要花费额外的时钟周期来处理对齐及运算。而本身就对齐的内存仅需要一次访问就可以完成读取动作。</li>
+</ul>
+<h3 id="8、什么是指针压缩（64位才支持）"><a href="#8、什么是指针压缩（64位才支持）" class="headerlink" title="8、什么是指针压缩（64位才支持）"></a>8、什么是指针压缩（64位才支持）</h3><p>当我们启用了<code>-XX:+UseCompressedOops</code>之后，我们原本的OOP（Ordinary Object Pointer，普通对象指针）就会被压缩，当然也不是所有的对象都会被压缩，只有 以下几种的对象才会被压缩：</p>
+<ul>
+<li>对象的全局静态变量（类属性）</li>
+<li>对象头中Klass Word信息</li>
+<li>对象的引用类型</li>
+<li>对象数组类型</li>
+</ul>
+<p>而以下几种对象则不能被压缩：</p>
+<ul>
+<li>指向PermGen的Class对象指针</li>
+<li>局部变量</li>
+<li>传参</li>
+<li>返回值</li>
+<li>NULL指针</li>
+</ul>
+<p>指针压缩的大概原理： 通过对齐，还有偏移量将64位指针压缩成32位。零基压缩是针对压缩解压动作的进一步优化。 它通过改变正常指针的随机地址分配特性，强制堆地址从零开始分配。</p>
+
+<div class="hexo-reader" lang="zh" data-position="top-right" data-audio="/audio/dea0bf65cfb54d3ad1a8ed79d01e7420f868e98f.mp3" data-title="Java面经" data-label-play="朗读本文" data-label-pause="暂停朗读" data-label-ready="准备播放" data-label-playing="正在朗读" data-label-paused="已暂停" data-label-ended="播放完成" data-label-failed="播放失败" data-label-load-failed="音频加载失败">
+  <button type="button" class="hexo-reader__launcher" aria-label="文章朗读播放器" aria-expanded="false"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14v-3a8 8 0 0 1 16 0v3"/><rect x="3" y="12" width="4" height="8" rx="2"/><rect x="17" y="12" width="4" height="8" rx="2"/></svg><span class="hexo-reader__activity" aria-hidden="true"></span></button>
+  <div class="hexo-reader__panel" role="group" aria-label="文章朗读播放器">
+    <div class="hexo-reader__body">
+      <div class="hexo-reader__header">
+        <span class="hexo-reader__heading">
+          <span class="hexo-reader__status" aria-live="polite">准备播放</span>
+          <span class="hexo-reader__title" title="Java面经">Java面经</span>
+        </span>
+        <button type="button" class="hexo-reader__collapse" aria-label="收起播放器" title="收起播放器"><svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="m5 8 5 5 5-5"/></svg></button>
+      </div>
+      <div class="hexo-reader__progress">
+        <input type="range" class="hexo-reader__seek" min="0" max="1000" value="0" step="1" aria-label="播放进度" />
+        <span class="hexo-reader__time" aria-live="off"><span class="hexo-reader__elapsed">0:00</span><span class="hexo-reader__duration">0:00</span></span>
+      </div>
+      <div class="hexo-reader__controls">
+        <div class="hexo-reader__transport">
+          <button type="button" class="hexo-reader__skip" data-skip="-10" aria-label="快退 10 秒" title="快退 10 秒"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g><path d="M5 7a8 8 0 1 1-1 9M5 3v4h4"/></g><text x="12" y="15" fill="currentColor" stroke="none" text-anchor="middle" font-size="8" font-weight="600" font-family="sans-serif">10</text></svg></button>
+          <button type="button" class="hexo-reader__play" aria-label="朗读本文" aria-keyshortcuts="Space Enter">
+            <svg class="hexo-reader__icon-play" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M8 5.8a.8.8 0 0 1 1.2-.7l9.5 6.2a.8.8 0 0 1 0 1.4l-9.5 6.2a.8.8 0 0 1-1.2-.7Z"/></svg>
+            <svg class="hexo-reader__icon-pause" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="7" y="5" width="3.5" height="14" rx="1" fill="currentColor"/><rect x="13.5" y="5" width="3.5" height="14" rx="1" fill="currentColor"/></svg>
+          </button>
+          <button type="button" class="hexo-reader__skip" data-skip="10" aria-label="快进 10 秒" title="快进 10 秒"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g transform="translate(24 0) scale(-1 1)"><path d="M5 7a8 8 0 1 1-1 9M5 3v4h4"/></g><text x="12" y="15" fill="currentColor" stroke="none" text-anchor="middle" font-size="8" font-weight="600" font-family="sans-serif">10</text></svg></button>
+        </div>
+        <div class="hexo-reader__speed-picker">
+          <button type="button" class="hexo-reader__speed-toggle" aria-label="播放速度" aria-expanded="false"><span class="hexo-reader__rate-value">1×</span><svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="m5 6 3 3 3-3"/></svg></button>
+          <div class="hexo-reader__rates" role="group" aria-label="播放速度" hidden>
+            <span class="hexo-reader__speed-label">播放速度</span>
+            <div class="hexo-reader__rate-options"><button type="button" class="hexo-reader__rate" data-rate="0.75" aria-pressed="false">0.75×</button><button type="button" class="hexo-reader__rate" data-rate="1" aria-pressed="true">1×</button><button type="button" class="hexo-reader__rate" data-rate="1.25" aria-pressed="false">1.25×</button><button type="button" class="hexo-reader__rate" data-rate="1.5" aria-pressed="false">1.5×</button><button type="button" class="hexo-reader__rate" data-rate="2" aria-pressed="false">2×</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <audio class="hexo-reader__audio" preload="metadata" src="/audio/dea0bf65cfb54d3ad1a8ed79d01e7420f868e98f.mp3"></audio>
+  </div>
+</div></div><div class="article-end"><span>✦</span><p>感谢读到这里</p></div><div class="article-tools"><button class="button service-button" type="button" data-share-article aria-haspopup="dialog" aria-controls="article-share-dialog" hidden>分享文章 ↗</button><button class="button service-button" id="copy-article-link" type="button">复制文章链接 ↗</button><button class="button service-button" type="button" data-preview-print hidden>打印 / 导出 PDF</button></div><div class="print-source"><p>心灵涂鸦 · 曦臣</p><p>原文：<a href="https://blog.liumingzhi.cn/2024/05/21/Java%E9%9D%A2%E7%BB%8F/">https://blog.liumingzhi.cn/2024/05/21/Java%E9%9D%A2%E7%BB%8F/</a></p></div><nav class="article-navigation" aria-label="相邻文章"><a class="article-navigation__item" href="/2024/05/21/Android%E9%9D%A2%E7%BB%8F/" rel="prev"><span>← 上一篇</span><strong>Android面经</strong></a><a class="article-navigation__item" href="/2024/05/20/%E9%98%85%E6%96%87%E9%9D%A2%E8%AF%95/" rel="next"><span>下一篇 →</span><strong>阅文面试</strong></a></nav><section class="comments-card" aria-labelledby="comments-heading"><h2 id="comments-heading">留下你的想法</h2><div id="comment-service" data-env="https://twikoo.liumingzhi.cn/" data-script="/vendor/twikoo/2.0.17/twikoo.min.js" aria-busy="false"><p class="comment-status" role="status">与路过的朋友聊聊这篇内容。</p><button class="button service-button" id="comments-load" type="button">加载评论</button><div id="twikoo"></div></div></section></article><aside class="reading-aside"><section class="side-card profile-card"><div class="profile-card__cover"></div><img class="profile-card__avatar" src="https://pic3.zhimg.com/v2-b1951610711c8d80060d509d9b499c72_r.jpg?source=1940ef5c" alt="曦臣" loading="lazy"><h2>曦臣</h2><p>归途也还可爱</p><nav class="social-links" aria-label="关注作者"><div class="social-entry"><a class="social-link social-link--github" href="https://github.com/xichenx" target="_blank" rel="noopener noreferrer me" title="在 GitHub 关注我" aria-label="在 GitHub 关注我"><span class="social-link__badge" aria-hidden="true"><span class="social-brand-icon"></span></span><span>GitHub</span></a></div><div class="social-entry"><a class="social-link social-link--csdn" href="https://blog.csdn.net/qq_60642811" target="_blank" rel="noopener noreferrer me" title="在 CSDN 关注我" aria-label="在 CSDN 关注我"><span class="social-link__badge" aria-hidden="true"><img class="social-brand-image" src="/icons/social/csdn.ico" alt="" width="18" height="18"></span><span>CSDN</span></a></div></nav><div class="profile-card__links"><a href="/about/">认识我</a><a href="/link/">友情链接</a></div></section><div class="reading-aside-sticky"><div class="side-card toc-card"><div class="reading-toc-heading"><h2>本文目录</h2><span data-reading-percent aria-hidden="true">0%</span></div><nav aria-label="文章章节"><div class="toc-content"><a href="#Java-面经">Java 面经</a><a href="#一、Java-基础">一、Java  基础</a><a class="toc-sub" href="#1、final-关键字的作用">1、final 关键字的作用</a><a class="toc-sub" href="#2、String、StringBuffer、StringBuilder-的区别">2、String、StringBuffer、StringBuilder 的区别</a><a class="toc-sub" href="#3、String为什么要设计成不可变的">3、String为什么要设计成不可变的</a><a class="toc-sub" href="#4、抽象类和接口的区别">4、抽象类和接口的区别</a><a class="toc-sub" href="#5、static-关键字的作用">5、static 关键字的作用</a><a class="toc-sub" href="#6、多态是什么">6、多态是什么</a><a class="toc-sub" href="#7、Exception-和-Error-的区别">7、Exception 和 Error 的区别</a><a class="toc-sub" href="#8、什么是反射机制？反射机制的应用场景有哪些？">8、什么是反射机制？反射机制的应用场景有哪些？</a><a class="toc-sub" href="#9、为什么重写-equals-还要重写-hashCode-？">9、为什么重写 equals 还要重写 hashCode ？</a><a class="toc-sub" href="#10、Java-泛型类型擦除和其局限性">10、Java 泛型类型擦除和其局限性</a><a class="toc-sub" href="#11、Java中引用类型的区别，具体的使用场景">11、Java中引用类型的区别，具体的使用场景</a><a class="toc-sub" href="#12、单例模式">12、单例模式</a><a class="toc-sub" href="#13、类加载过程">13、类加载过程</a><a class="toc-sub" href="#14、双亲委派模型">14、双亲委派模型</a><a class="toc-sub" href="#15、new一个对象要经历哪些过程">15、new一个对象要经历哪些过程</a><a href="#二、Java-数据结构">二、Java 数据结构</a><a class="toc-sub" href="#1、HashMap-和-Hashtable-的区别">1、HashMap 和 Hashtable 的区别</a><a class="toc-sub" href="#2、HashMap-底层原理">2、HashMap 底层原理</a><a class="toc-sub" href="#3、HashMap-的扩容过程">3、HashMap 的扩容过程</a><a class="toc-sub" href="#4、为什么-HashMap-使用红黑树而不用二叉平衡树（AVL）">4、为什么 HashMap 使用红黑树而不用二叉平衡树（AVL）</a><a class="toc-sub" href="#5、TreeMap-底层原理">5、TreeMap 底层原理</a><a class="toc-sub" href="#6、Hashtable-怎么保证线程安全的">6、Hashtable 怎么保证线程安全的</a><a class="toc-sub" href="#7、ConcurrentHashMap-原理">7、ConcurrentHashMap 原理</a><a class="toc-sub" href="#8、ConcurrentHashMap-读操作为什么不需要加锁？">8、ConcurrentHashMap 读操作为什么不需要加锁？</a><a class="toc-sub" href="#9、怎么解决hash冲突">9、怎么解决hash冲突</a><a href="#三、Java-多线程">三、Java 多线程</a><a class="toc-sub" href="#1、进程和线程的区别">1、进程和线程的区别</a><a class="toc-sub" href="#2、什么是上下文切换">2、什么是上下文切换</a><a class="toc-sub" href="#3、并发和并行的区别">3、并发和并行的区别</a><a class="toc-sub" href="#4、线程有哪几种状态">4、线程有哪几种状态</a><a class="toc-sub" href="#5、volatile-关键字的作用和原理">5、volatile 关键字的作用和原理</a><a class="toc-sub" href="#6、synchronized-关键字的作用">6、synchronized 关键字的作用</a><a class="toc-sub" href="#7、synchronized-和-ReentrantLock的区别">7、synchronized 和 ReentrantLock的区别</a><a class="toc-sub" href="#8、synchronized-原理">8、synchronized 原理</a><a class="toc-sub" href="#9、synchronized锁升级策略">9、synchronized锁升级策略</a><a class="toc-sub" href="#10、ReentrantLock原理">10、ReentrantLock原理</a><a class="toc-sub" href="#11、公平锁与非公平锁">11、公平锁与非公平锁</a><a class="toc-sub" href="#12、乐观锁和悲观锁">12、乐观锁和悲观锁</a><a class="toc-sub" href="#13、sleep-和-wait-的区别">13、sleep 和 wait 的区别</a><a class="toc-sub" href="#14、join、yield、interrupt、notify和notifyAll的作用">14、join、yield、interrupt、notify和notifyAll的作用</a><a class="toc-sub" href="#15、ThreadLocal的作用">15、ThreadLocal的作用</a><a class="toc-sub" href="#16、ThreadLocal的原理">16、ThreadLocal的原理</a><a class="toc-sub" href="#17、什么是死锁？死锁产生的原因？">17、什么是死锁？死锁产生的原因？</a><a class="toc-sub" href="#18、自己写代码时如何有效避免死锁">18、自己写代码时如何有效避免死锁</a><a class="toc-sub" href="#19、atomic-原理">19、atomic 原理</a><a class="toc-sub" href="#20、线程池构造函数">20、线程池构造函数</a><a class="toc-sub" href="#21、线程池原理">21、线程池原理</a><a href="#四、JVM">四、JVM</a><a class="toc-sub" href="#1、JVM内存区域的划分">1、JVM内存区域的划分</a><a class="toc-sub" href="#2、JVM-哪些区域会发生-OOM">2、JVM 哪些区域会发生 OOM</a><a class="toc-sub" href="#3、GC（垃圾回收）机制">3、GC（垃圾回收）机制</a><a class="toc-sub" href="#4、Java-内存泄漏的原因">4、Java 内存泄漏的原因</a><a class="toc-sub" href="#5、Java-对象模型">5、Java 对象模型</a><a class="toc-sub" href="#6、一个空对象占用多少字节">6、一个空对象占用多少字节</a><a class="toc-sub" href="#7、什么是内存对齐">7、什么是内存对齐</a><a class="toc-sub" href="#8、什么是指针压缩（64位才支持）">8、什么是指针压缩（64位才支持）</a></div></nav></div><section class="side-card weather-clock" data-weather-clock data-timezone="Asia/Shanghai" data-weather-url="https://api.open-meteo.com/v1/forecast?latitude=28.19&amp;longitude=112.98&amp;current=temperature_2m,relative_humidity_2m,weather_code,wind_direction_10m&amp;timeformat=unixtime&amp;timezone=Asia%2FShanghai" aria-label="时钟与天气 · 长沙市"><div class="weather-clock__top"><span data-clock-date>----.--.--</span><span class="weather-clock__weather"><span data-weather-icon aria-hidden="true">☁</span> <span data-weather-condition>天气</span> <span data-weather-temperature>—</span> °C</span><span class="weather-clock__humidity">💧<span data-weather-humidity>—</span>%</span></div><time class="weather-clock__time" data-clock-time aria-label="当前时间" aria-live="off"><span class="clock-digit" data-clock-digit="0" aria-hidden="true"><i class="clock-segment clock-segment--a"></i><i class="clock-segment clock-segment--b"></i><i class="clock-segment clock-segment--c"></i><i class="clock-segment clock-segment--d"></i><i class="clock-segment clock-segment--e"></i><i class="clock-segment clock-segment--f"></i><i class="clock-segment clock-segment--g"></i></span><span class="clock-digit" data-clock-digit="0" aria-hidden="true"><i class="clock-segment clock-segment--a"></i><i class="clock-segment clock-segment--b"></i><i class="clock-segment clock-segment--c"></i><i class="clock-segment clock-segment--d"></i><i class="clock-segment clock-segment--e"></i><i class="clock-segment clock-segment--f"></i><i class="clock-segment clock-segment--g"></i></span><span class="clock-colon" aria-hidden="true"></span><span class="clock-digit" data-clock-digit="0" aria-hidden="true"><i class="clock-segment clock-segment--a"></i><i class="clock-segment clock-segment--b"></i><i class="clock-segment clock-segment--c"></i><i class="clock-segment clock-segment--d"></i><i class="clock-segment clock-segment--e"></i><i class="clock-segment clock-segment--f"></i><i class="clock-segment clock-segment--g"></i></span><span class="clock-digit" data-clock-digit="0" aria-hidden="true"><i class="clock-segment clock-segment--a"></i><i class="clock-segment clock-segment--b"></i><i class="clock-segment clock-segment--c"></i><i class="clock-segment clock-segment--d"></i><i class="clock-segment clock-segment--e"></i><i class="clock-segment clock-segment--f"></i><i class="clock-segment clock-segment--g"></i></span><span class="clock-colon" aria-hidden="true"></span><span class="clock-digit" data-clock-digit="0" aria-hidden="true"><i class="clock-segment clock-segment--a"></i><i class="clock-segment clock-segment--b"></i><i class="clock-segment clock-segment--c"></i><i class="clock-segment clock-segment--d"></i><i class="clock-segment clock-segment--e"></i><i class="clock-segment clock-segment--f"></i><i class="clock-segment clock-segment--g"></i></span><span class="clock-digit" data-clock-digit="0" aria-hidden="true"><i class="clock-segment clock-segment--a"></i><i class="clock-segment clock-segment--b"></i><i class="clock-segment clock-segment--c"></i><i class="clock-segment clock-segment--d"></i><i class="clock-segment clock-segment--e"></i><i class="clock-segment clock-segment--f"></i><i class="clock-segment clock-segment--g"></i></span></time><div class="weather-clock__bottom"><span data-weather-wind>风向 —</span><strong>长沙市</strong><span data-clock-period>AM</span></div><div class="weather-clock__footer"><span data-weather-status role="status">正在获取天气…</span><button type="button" data-weather-refresh aria-label="刷新天气" title="刷新天气">↻</button></div><a class="weather-clock__credit" href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">天气数据：Open-Meteo</a><noscript><p>开启 JavaScript 后显示时钟与天气。</p></noscript></section></div></aside></div></main><footer class="site-footer"><div class="footer-top"><div><strong>心灵涂鸦</strong><p>记录技术，也记录生活。</p></div><a href="/archives/">继续探索 <span>→</span></a></div><div class="footer-bottom"><span>© 2026 曦臣</span><nav class="footer-explore" aria-label="更多探索"><a href="/music/">音乐馆</a><a href="/cinema/">电影院</a><a href="/fcircle/">朋友圈</a><a href="/comments/">留言板</a><a href="/game/">游戏厅</a><a href="/air-conditioner/">小空调</a><a href="/reading-list/">稍后阅读</a></nav><span>用 Hexo 与 Morii Theme 构建</span></div><div class="footer-meta"><p class="footer-runtime" data-site-start="2024-03-14T16:00:00.000Z"><span>本站居然运行了</span><span data-runtime-value>958 天 18 小时 17 分 58 秒</span><span class="footer-runtime__heart" aria-hidden="true">♥</span></p><div class="footer-filing" aria-label="网站备案信息"><a class="footer-filing__item" href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" aria-label="ICP 备案：湘ICP备-2024053403号"><span class="footer-filing__badge" aria-hidden="true">备</span><span>湘ICP备-2024053403号</span><span class="footer-filing__arrow" aria-hidden="true">↗</span></a></div></div></footer></div><dialog class="navigation-dialog" id="navigation-dialog" aria-labelledby="navigation-heading"><div class="navigation-dialog__header"><div><span class="section-kicker">EXPLORE MORII</span><h2 id="navigation-heading">去哪里逛逛</h2><p>技术笔记、生活片段，还有一点小乐趣。</p></div><button class="icon-button" id="navigation-close" type="button" aria-label="关闭快捷导航">×</button></div><nav class="navigation-grid" aria-label="全站快捷导航"><a class="navigation-card" href="/"><span class="navigation-card__icon ui-icon ui-icon--home" aria-hidden="true"></span><div><strong>首页</strong><small>回到首页，发现新的内容</small></div></a><a class="navigation-card" href="/archives/"><span class="navigation-card__icon ui-icon ui-icon--archive" aria-hidden="true"></span><div><strong>文章</strong><small>按时间翻阅所有文章</small></div></a><a class="navigation-card" href="/categories/"><span class="navigation-card__icon ui-icon ui-icon--categories" aria-hidden="true"></span><div><strong>分类</strong><small>按主题寻找技术笔记</small></div></a><a class="navigation-card" href="/essay/"><span class="navigation-card__icon ui-icon ui-icon--essay" aria-hidden="true"></span><div><strong>即刻</strong><small>生活片段与随手记录</small></div></a><a class="navigation-card" href="/album/"><span class="navigation-card__icon ui-icon ui-icon--album" aria-hidden="true"></span><div><strong>相册</strong><small>收藏值得记住的瞬间</small></div></a><a class="navigation-card" href="/link/"><span class="navigation-card__icon ui-icon ui-icon--link" aria-hidden="true"></span><div><strong>友链</strong><small>去朋友们的博客坐坐</small></div></a><a class="navigation-card" href="/about/"><span class="navigation-card__icon ui-icon ui-icon--about" aria-hidden="true"></span><div><strong>关于</strong><small>认识这个小站和作者</small></div></a><a class="navigation-card" href="/tags/"><span class="navigation-card__icon ui-icon ui-icon--tags" aria-hidden="true"></span><div><strong>标签</strong><small>从关键词出发探索</small></div></a><a class="navigation-card" href="/music/"><span class="navigation-card__icon ui-icon ui-icon--music" aria-hidden="true"></span><div><strong>音乐馆</strong><small>给日常留一点旋律</small></div></a><a class="navigation-card" href="/cinema/"><span class="navigation-card__icon ui-icon ui-icon--cinema" aria-hidden="true"></span><div><strong>电影院</strong><small>挑一部电影、剧集或动漫</small></div></a><a class="navigation-card" href="/fcircle/"><span class="navigation-card__icon ui-icon ui-icon--friends" aria-hidden="true"></span><div><strong>朋友圈</strong><small>看看朋友们的新文章</small></div></a><a class="navigation-card" href="/comments/"><span class="navigation-card__icon ui-icon ui-icon--comments" aria-hidden="true"></span><div><strong>留言板</strong><small>留下你的想法与问候</small></div></a><a class="navigation-card" href="/game/"><span class="navigation-card__icon ui-icon ui-icon--game" aria-hidden="true"></span><div><strong>游戏厅</strong><small>玩一会儿，再继续探索</small></div></a><a class="navigation-card" href="/air-conditioner/"><span class="navigation-card__icon ui-icon ui-icon--snowflake" aria-hidden="true"></span><div><strong>小空调</strong><small>一个可以操作的网页小玩具</small></div></a><a class="navigation-card" href="/reading-list/"><span class="navigation-card__icon ui-icon ui-icon--bookmark" aria-hidden="true"></span><div><strong>稍后阅读</strong><small>接着读你收藏的文章</small></div></a></nav><div class="navigation-shortcuts"><button class="navigation-search" type="button" data-open-search>搜索文章 <kbd>⌘ / Ctrl + K</kbd></button><p><kbd>?</kbd> 打开快捷导航 · <kbd>Esc</kbd> 关闭弹窗</p></div></dialog><button class="reading-toc-trigger" type="button" data-reading-toc aria-haspopup="dialog" aria-controls="reading-toc-dialog" hidden>目录 <span data-reading-percent aria-hidden="true">0%</span></button><dialog class="reading-toc-dialog" id="reading-toc-dialog" aria-labelledby="reading-toc-title"><div class="reading-toc-heading"><h2 id="reading-toc-title">本文目录</h2><button class="icon-button" id="reading-toc-close" type="button" aria-label="关闭文章目录">×</button></div><nav aria-label="文章章节"><div class="toc-content"><a href="#Java-面经">Java 面经</a><a href="#一、Java-基础">一、Java  基础</a><a class="toc-sub" href="#1、final-关键字的作用">1、final 关键字的作用</a><a class="toc-sub" href="#2、String、StringBuffer、StringBuilder-的区别">2、String、StringBuffer、StringBuilder 的区别</a><a class="toc-sub" href="#3、String为什么要设计成不可变的">3、String为什么要设计成不可变的</a><a class="toc-sub" href="#4、抽象类和接口的区别">4、抽象类和接口的区别</a><a class="toc-sub" href="#5、static-关键字的作用">5、static 关键字的作用</a><a class="toc-sub" href="#6、多态是什么">6、多态是什么</a><a class="toc-sub" href="#7、Exception-和-Error-的区别">7、Exception 和 Error 的区别</a><a class="toc-sub" href="#8、什么是反射机制？反射机制的应用场景有哪些？">8、什么是反射机制？反射机制的应用场景有哪些？</a><a class="toc-sub" href="#9、为什么重写-equals-还要重写-hashCode-？">9、为什么重写 equals 还要重写 hashCode ？</a><a class="toc-sub" href="#10、Java-泛型类型擦除和其局限性">10、Java 泛型类型擦除和其局限性</a><a class="toc-sub" href="#11、Java中引用类型的区别，具体的使用场景">11、Java中引用类型的区别，具体的使用场景</a><a class="toc-sub" href="#12、单例模式">12、单例模式</a><a class="toc-sub" href="#13、类加载过程">13、类加载过程</a><a class="toc-sub" href="#14、双亲委派模型">14、双亲委派模型</a><a class="toc-sub" href="#15、new一个对象要经历哪些过程">15、new一个对象要经历哪些过程</a><a href="#二、Java-数据结构">二、Java 数据结构</a><a class="toc-sub" href="#1、HashMap-和-Hashtable-的区别">1、HashMap 和 Hashtable 的区别</a><a class="toc-sub" href="#2、HashMap-底层原理">2、HashMap 底层原理</a><a class="toc-sub" href="#3、HashMap-的扩容过程">3、HashMap 的扩容过程</a><a class="toc-sub" href="#4、为什么-HashMap-使用红黑树而不用二叉平衡树（AVL）">4、为什么 HashMap 使用红黑树而不用二叉平衡树（AVL）</a><a class="toc-sub" href="#5、TreeMap-底层原理">5、TreeMap 底层原理</a><a class="toc-sub" href="#6、Hashtable-怎么保证线程安全的">6、Hashtable 怎么保证线程安全的</a><a class="toc-sub" href="#7、ConcurrentHashMap-原理">7、ConcurrentHashMap 原理</a><a class="toc-sub" href="#8、ConcurrentHashMap-读操作为什么不需要加锁？">8、ConcurrentHashMap 读操作为什么不需要加锁？</a><a class="toc-sub" href="#9、怎么解决hash冲突">9、怎么解决hash冲突</a><a href="#三、Java-多线程">三、Java 多线程</a><a class="toc-sub" href="#1、进程和线程的区别">1、进程和线程的区别</a><a class="toc-sub" href="#2、什么是上下文切换">2、什么是上下文切换</a><a class="toc-sub" href="#3、并发和并行的区别">3、并发和并行的区别</a><a class="toc-sub" href="#4、线程有哪几种状态">4、线程有哪几种状态</a><a class="toc-sub" href="#5、volatile-关键字的作用和原理">5、volatile 关键字的作用和原理</a><a class="toc-sub" href="#6、synchronized-关键字的作用">6、synchronized 关键字的作用</a><a class="toc-sub" href="#7、synchronized-和-ReentrantLock的区别">7、synchronized 和 ReentrantLock的区别</a><a class="toc-sub" href="#8、synchronized-原理">8、synchronized 原理</a><a class="toc-sub" href="#9、synchronized锁升级策略">9、synchronized锁升级策略</a><a class="toc-sub" href="#10、ReentrantLock原理">10、ReentrantLock原理</a><a class="toc-sub" href="#11、公平锁与非公平锁">11、公平锁与非公平锁</a><a class="toc-sub" href="#12、乐观锁和悲观锁">12、乐观锁和悲观锁</a><a class="toc-sub" href="#13、sleep-和-wait-的区别">13、sleep 和 wait 的区别</a><a class="toc-sub" href="#14、join、yield、interrupt、notify和notifyAll的作用">14、join、yield、interrupt、notify和notifyAll的作用</a><a class="toc-sub" href="#15、ThreadLocal的作用">15、ThreadLocal的作用</a><a class="toc-sub" href="#16、ThreadLocal的原理">16、ThreadLocal的原理</a><a class="toc-sub" href="#17、什么是死锁？死锁产生的原因？">17、什么是死锁？死锁产生的原因？</a><a class="toc-sub" href="#18、自己写代码时如何有效避免死锁">18、自己写代码时如何有效避免死锁</a><a class="toc-sub" href="#19、atomic-原理">19、atomic 原理</a><a class="toc-sub" href="#20、线程池构造函数">20、线程池构造函数</a><a class="toc-sub" href="#21、线程池原理">21、线程池原理</a><a href="#四、JVM">四、JVM</a><a class="toc-sub" href="#1、JVM内存区域的划分">1、JVM内存区域的划分</a><a class="toc-sub" href="#2、JVM-哪些区域会发生-OOM">2、JVM 哪些区域会发生 OOM</a><a class="toc-sub" href="#3、GC（垃圾回收）机制">3、GC（垃圾回收）机制</a><a class="toc-sub" href="#4、Java-内存泄漏的原因">4、Java 内存泄漏的原因</a><a class="toc-sub" href="#5、Java-对象模型">5、Java 对象模型</a><a class="toc-sub" href="#6、一个空对象占用多少字节">6、一个空对象占用多少字节</a><a class="toc-sub" href="#7、什么是内存对齐">7、什么是内存对齐</a><a class="toc-sub" href="#8、什么是指针压缩（64位才支持）">8、什么是指针压缩（64位才支持）</a></div></nav></dialog><dialog class="article-share-dialog" id="article-share-dialog" aria-labelledby="article-share-heading"><div class="article-share-top"><h2 id="article-share-heading">分享这篇文章</h2><button class="icon-button" id="article-share-close" type="button" aria-label="关闭文章分享">×</button></div><p class="article-share-title" id="article-share-title"></p><label for="article-share-content">复制内容</label><textarea id="article-share-content" rows="3" readonly spellcheck="false"></textarea><div class="article-share-actions"><button class="button service-button" id="article-share-copy" type="button">复制链接</button><button class="button service-button" id="article-share-markdown" type="button">复制 Markdown</button><button class="button service-button" id="article-share-native" type="button" hidden>系统分享 ↗</button></div><p class="article-share-status" id="article-share-status" role="status" aria-live="polite"></p></dialog><dialog class="search-dialog" id="search-dialog" aria-labelledby="search-heading" data-search-index="/morii-search.json" data-page-size="10"><div class="search-header"><div class="search-dialog__top"><div><span class="section-kicker">SEARCH MORII</span><h2 id="search-heading">发现字里行间</h2></div><button class="icon-button" id="search-close" type="button" aria-label="关闭搜索" title="关闭（Esc）">×</button></div><label class="sr-only" for="search-input">搜索关键词</label><div class="search-input-row"><span class="search-input-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 4.5 4.5"></path></svg></span><input id="search-input" type="search" placeholder="搜索标题、正文、分类或标签…" autocomplete="off" maxlength="200" aria-controls="search-results" aria-describedby="search-keyboard-help"><button id="search-clear" type="button" aria-label="清空搜索关键词" hidden>清空</button></div><div class="search-scope" role="group" aria-label="搜索范围"><button type="button" data-search-scope="all" aria-pressed="true">全部内容</button><button type="button" data-search-scope="title" aria-pressed="false">仅标题</button><button type="button" data-search-scope="topics" aria-pressed="false">分类与标签</button></div><div class="search-suggestions" aria-label="快速查找"><span>快速查找</span><button type="button" data-search-term="Android"># Android</button><button type="button" data-search-term="Flutter"># Flutter</button><button type="button" data-search-term="Kotlin"># Kotlin</button><button type="button" data-search-term="HarmonyOS"># HarmonyOS</button><button type="button" data-search-term="面试"># 面试</button></div></div><div class="search-scroll"><div class="search-results-heading"><strong id="search-results-heading">最近文章</strong><p id="search-status" role="status" aria-live="polite">共 33 篇文章</p></div><div class="search-empty" hidden><span class="search-empty-icon" aria-hidden="true">⌕</span><strong>没有找到相关文章</strong><p>换个关键词，或切换到“全部内容”试试。</p></div><ul id="search-results" aria-labelledby="search-results-heading"><li data-search="hexostudio 1.0：给自己的 hexo 博客做一个管理后台 hexostudio 首个正式版本发布，支持网页与桌面端，让 hexo 博客的写作、配置和 git 管理更方便。" data-topics="项目分享 Hexo HexoStudio 开源项目" data-protected="false"><a href="/2026/10/27/hexostudio-1-0/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">HexoStudio 1.0：给自己的 Hexo 博客做一个管理后台</strong><p class="search-result-summary">HexoStudio 首个正式版本发布，支持网页与桌面端，让 Hexo 博客的写作、配置和 Git 管理更方便。</p><small>2026.10.27</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-search="端侧 ai 与客户端工程：从大模型接入到端云协同架构实践 " data-topics="" data-protected="false"><a href="/2026/10/27/%E7%AB%AF%E4%BE%A7-ai-%E4%B8%8E%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%B7%A5%E7%A8%8B-%E4%BB%8E%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A5%E5%85%A5%E5%88%B0%E7%AB%AF%E4%BA%91%E5%8D%8F%E5%90%8C%E6%9E%B6%E6%9E%84%E5%AE%9E%E8%B7%B5/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">端侧 AI 与客户端工程：从大模型接入到端云协同架构实践</strong><p class="search-result-summary">端侧 AI 与客户端工程：从大模型接入到端云协同架构实践 一、引言：AI 正在重塑客户端交互 过去，客户端应用主要通过按钮、菜单和表单响应用户操作。如今，大语言模型（LLM）让自然语言逐渐成为新的交互入口：用户可以直接描述目标，由 AI 助手理解意图、生成内容，甚至协助完成一系列任务。 对客户...</p><small>2026.10.27</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-search="android 17 全面解读：开发者与用户都该知道的变化 " data-topics="Android" data-protected="false"><a href="/2026/06/18/Android%2017%20%E5%85%A8%E9%9D%A2%E8%A7%A3%E8%AF%BB%EF%BC%9A%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8E%E7%94%A8%E6%88%B7%E9%83%BD%E8%AF%A5%E7%9F%A5%E9%81%93%E7%9A%84%E5%8F%98%E5%8C%96/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">Android 17 全面解读：开发者与用户都该知道的变化</strong><p class="search-result-summary">Android 17 全面解读：开发者与用户都该知道的变化 版本信息：Android 17 / API Level 37稳定版发布日期：2026 年 6 月 16 日首批适配：Pixel 6 ~ Pixel 10 系列（含 Pixel 10 Pro Fold、Pixel Fold、Pixel ...</p><small>2026.06.18</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-search="ai 技术项目深度速递 · 2026-06-11 " data-topics="ai github" data-protected="false"><a href="/2026/06/10/AI%20%E6%8A%80%E6%9C%AF%E9%A1%B9%E7%9B%AE%E6%B7%B1%E5%BA%A6%E9%80%9F%E9%80%92%20%C2%B7%202026-06-11/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">AI 技术项目深度速递 · 2026-06-11</strong><p class="search-result-summary">AI 技术项目深度速递 · 2026-06-11 自动采集自 GitHub Search API 与 Trending,共 20 个项目,按 star 排序。每个项目包含:解决的问题 / 核心原理 / 技术亮点 / 适用场景 / 可学习点。 目录 alibaba/open-code-revie...</p><small>2026.06.11</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-search="tauri 完整学习路线 " data-topics="tauri" data-protected="false"><a href="/2026/06/03/Tauri%20%E5%AE%8C%E6%95%B4%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">Tauri 完整学习路线</strong><p class="search-result-summary">Tauri 完整学习路线（从零到产出工具） 作者定制版 · 适用画像：有移动端开发经验 + 目标 Windows 自用工具 + 零 Rust 基础预计周期：8-12 周（每天 1-2 小时投入）最后更新：2026-05 📚 文档结构 本学习包含以下模块（建议按顺序阅读）： 序号 文件 内容 ...</p><small>2026.06.04</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-search="多模态端侧推理 sdk " data-topics="" data-protected="false"><a href="/2026/05/26/%E5%A4%9A%E6%A8%A1%E6%80%81%E7%AB%AF%E4%BE%A7%E6%8E%A8%E7%90%86%20SDK/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">多模态端侧推理 SDK</strong><p class="search-result-summary">多模态端侧推理 SDK — 开源项目技术方案 一、核心定位 一句话： 让移动端 APP 开发者用 3 行代码获得离线多模态 AI 能力（文本/视觉/语音）。 二、整体架构 三、核心模块详细设计 模块 1：Pipeline Orchestrator（管线编排器） 这是 SDK 的灵魂 — 把多个...</p><small>2026.05.27</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-search="ktor 学习与实践文档 " data-topics="KMP Kotlin" data-protected="false"><a href="/2025/09/28/Ktor%20%E5%AD%A6%E4%B9%A0%E4%B8%8E%E5%AE%9E%E8%B7%B5%E6%96%87%E6%A1%A3/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">Ktor 学习与实践文档</strong><p class="search-result-summary">Kotlin Multiplatform (KMP) + Ktor 学习与实践文档 一、概述 Kotlin Multiplatform (KMP) 是 JetBrains 提供的跨平台开发方案，核心思想是逻辑层代码共享，UI 层保持原生。在 KMP 中，网络层通常使用 Ktor，这是一个由 J...</p><small>2025.09.29</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-search="flutter - autoroute " data-topics="Flutter Router" data-protected="false"><a href="/2025/09/21/Flutter%20-%20AutoRoute/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">Flutter - AutoRoute</strong><p class="search-result-summary">介绍 What is AutoRoute? 它是一个 Flutter 导航包，支持强类型参数传递、轻松的深度链接，并使用代码生成来简化路由设置。也就是说，它只需要极少量的代码即可生成应用内部导航所需的一切。 Why AutoRoute? 如果您的应用需要深层链接、受保护的路由，或者只是需要简洁...</p><small>2025.09.22</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-search="harmonyos-两种preferencesutil实现方式 " data-topics="" data-protected="false"><a href="/2025/01/20/HarmonyOS-%E4%B8%A4%E7%A7%8DPreferencesUtil%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">HarmonyOS-两种PreferencesUtil实现方式</strong><p class="search-result-summary">代码笔记 · 打开全文查看完整示例。</p><small>2025.01.20</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-search="harmonyos-@ohos/axios网络请求 " data-topics="HarmonyOS 网络" data-protected="false"><a href="/2024/12/01/HarmonyOS-@ohos/axios%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">HarmonyOS-@ohos/axios网络请求</strong><p class="search-result-summary">由于HarmonyOS官方提供的网络请求比较复杂，不太适用于项目管理，需要进行网络框架的封装。 主要使用较广的第三方网络请求框架有 @ohos/axios 和 @ohos/retrofit @ohos/axios 主要偏向前端，和前端的axios很相似，对于前端开发者能够很快上手 @ohos/...</p><small>2024.12.01</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-search="rxjava 面试题 " data-topics="" data-protected="false"><a href="/2024/09/09/RxJava%20%E9%9D%A2%E8%AF%95%E9%A2%98/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">RxJava 面试题</strong><p class="search-result-summary">1.RxJava基本概念和原理是什么？ 答案：RxJava 是一个用于响应式编程的库，通过 Observable（可观察对象）来发射数据流，并通过 Observer（观察者）来消费数据流。它使用操作符（Operators）来对数据流进行变换、过滤、合并等操作，允许我们以声明式的方式编写异步代码...</p><small>2024.09.10</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-search="高新兴实习第三周 " data-topics="" data-protected="false"><a href="/2024/08/11/%E9%AB%98%E6%96%B0%E5%85%B4%E5%AE%9E%E4%B9%A0%E7%AC%AC%E4%B8%89%E5%91%A8/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">高新兴实习第三周</strong><p class="search-result-summary">暂未提供摘要，点击查看文章。</p><small>2024.08.12</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-search="高新兴实习第二周 " data-topics="实习 高新兴" data-protected="false"><a href="/2024/08/11/%E9%AB%98%E6%96%B0%E5%85%B4%E5%AE%9E%E4%B9%A0%E7%AC%AC%E4%BA%8C%E5%91%A8/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">高新兴实习第二周</strong><p class="search-result-summary">实习第6天 2024-7-29 帮助部门进行测试包转发，查看学习大疆SDK开发者文档。 实习第7天 2024-7-30 基本大致了解完大疆开发者文档，熟悉大疆SDK接口的调用流程。学习EventBus框架，熟悉订阅者模式 实习第8天 2024-7-31 无人机的主要功能大致已经有所了解 实习第...</p><small>2024.08.12</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-search="android-eventbus " data-topics="" data-protected="false"><a href="/2024/07/29/Android-EventBus/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">Android-EventBus</strong><p class="search-result-summary">EventBus线程模式 EventBus支持订阅者和发布者在不同的线程中调用。可以使用线程模式来指定调用订阅者方法的线程。EventBus支持5种线程模式。 ThreadMode.POSRING ThreadMode.MAIN ThreadMode.MAIN_ORDERED ThreadMo...</p><small>2024.07.30</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-search="rxjava-函数响应式编程 " data-topics="Android java" data-protected="false"><a href="/2024/07/25/RxJava-%E5%87%BD%E6%95%B0%E5%93%8D%E5%BA%94%E5%BC%8F%E7%BC%96%E7%A8%8B/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">RxJava-函数响应式编程</strong><p class="search-result-summary">函数响应式编程概述 函数式编程是面向数学的抽象，把计算描述为一种表达式求值，函数可以在任何地方定义，并且可以对函数进行组合。 响应式编程是一种面向数据流和变化传播的编程范式，数据更新是相关联的。把函数式编程里的一套思路和响应式编程组合起来就是函数响应式编程。 函数响应式编程可以简化项目，特别是...</p><small>2024.07.25</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-search="高新兴实习第一周 " data-topics="实习 高新兴" data-protected="false"><a href="/2024/07/21/%E9%AB%98%E6%96%B0%E5%85%B4%E5%AE%9E%E4%B9%A0%E7%AC%AC%E4%B8%80%E5%91%A8/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">高新兴实习第一周</strong><p class="search-result-summary">实习第一天 2024-7-21 今天进行了入职报道，去到了人力资源部递交了一些入职材料，然后在会议室里签署了个人资料，实习协议书，保密协议，以及薪资条款。之后HR给我们讲解了一些工作注意事项，包括打卡等，然后再在HR的帮助下加入了工作的钉钉群。 之后，在部门的HRBP的带领下回到自己所在的部门...</p><small>2024.07.22</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-search="harmonyos-arkts语法 " data-topics="HarmonyOS ArkTS" data-protected="false"><a href="/2024/07/03/HarmonyOS-ArkTS%E8%AF%AD%E6%B3%95/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">HarmonyOS-ArkTS语法</strong><p class="search-result-summary">ArkTS在TypeScript(简称TS)生态基础上做了进一步扩展，保持了TS的基本风格，同时通过规范定义强化开发期静态检查和分析，提升程序执行稳定性和性能。 在UI开发框架中，ArkTS主要扩展了如下能力： 基本语法：ArkTS定义了声明式UI描述、自定义组件和动态扩展UI元素的能力，再配...</p><small>2024.07.03</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-search="android三种动画学习 " data-topics="Android" data-protected="false"><a href="/2024/06/18/Android%E4%B8%89%E7%A7%8D%E5%8A%A8%E7%94%BB%E5%AD%A6%E4%B9%A0/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">Android三种动画学习</strong><p class="search-result-summary">Android的动画分为了三种， 分别是 帧动画、View动画（补间动画）、属性动画。 1、帧动画 帧动画就是顺序播放一组预先定义好的图片，就类似于我们观看视频，就是一张一张的图片连续播放。 帧动画的使用很简单，总共就两个步骤： 1、在res/drawable目录下定义一个XML文件，根节点为...</p><small>2024.06.19</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-search="设计模式 " data-topics="设计模式" data-protected="false"><a href="/2024/06/18/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">设计模式</strong><p class="search-result-summary">一共23种设计模式，三种类型模式：创建型模式（5），结构型模式（7），行为型模式（11）。 创建型模式，共五种：工厂方法模式、抽象工厂模式、单例模式、建造者模式、原型模式。 结构型模式，共七种：适配器模式、装饰器模式、代理模式、外观模式、桥接模式、组合模式、享元模式。 行为型模式，共十一种：策...</p><small>2024.06.18</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-search="glide - 一个好用的图片加载库 " data-topics="Android Kotlin" data-protected="false"><a href="/2024/06/17/Glide%20-%20%E4%B8%80%E4%B8%AA%E5%A5%BD%E7%94%A8%E7%9A%84%E5%9B%BE%E7%89%87%E5%8A%A0%E8%BD%BD%E5%BA%93/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">Glide - 一个好用的图片加载库</strong><p class="search-result-summary">关于 Glide Glide是一个快速高效的Android图片加载库，注重于平滑的滚动。Glide提供了易用的API，高性能、可扩展的图片解码管道（decode pipeline），以及自动的资源池技术。 Glide 支持拉取，解码和展示视频快照，图片，和GIF动画。Glide的Api是如此的...</p><small>2024.06.17</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-search="编译原理名词解释 " data-topics="编译原理" data-protected="false"><a href="/2024/06/10/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">编译原理名词解释</strong><p class="search-result-summary">名词解释： 准备播放 编译原理名词解释 0:000:00 10 10 1× 播放速度 0.75×1×1.25×1.5×2×</p><small>2024.06.10</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-search="flutter " data-topics="Flutter" data-protected="false"><a href="/2024/06/10/Flutter/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">Flutter</strong><p class="search-result-summary">1. Flutter 开发文档参考 Flutter官方文档Flutter官方文档flutter官方↗ Flutter实战第二版Flutter实战第二版flutter实战↗ 我们首先可以根据官方文档按照不同的开发平台搭建自己的学习开放环境 2. Flutter 开发语言 : Dart 要想学习好...</p><small>2024.06.10</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-search="图床 " data-topics="" data-protected="false"><a href="/2024/06/10/%E5%9B%BE%E5%BA%8A/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">图床</strong><p class="search-result-summary">暂未提供摘要，点击查看文章。</p><small>2024.06.10</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-search="主题配置 " data-topics="" data-protected="false"><a href="/2024/06/10/%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">主题配置</strong><p class="search-result-summary">暂未提供摘要，点击查看文章。</p><small>2024.06.10</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-search="recyclerview底层实现原理 " data-topics="Android" data-protected="false"><a href="/2024/05/26/RecyclerView%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">RecyclerView底层实现原理</strong><p class="search-result-summary">RecyclerView 的底层实现原理涉及到一些重要的概念和机制： ViewHolder 模式：RecyclerView 使用 ViewHolder 模式来缓存列表项的视图对象，以便在滚动列表时能够快速重用视图，减少内存消耗和视图创建的开销。ViewHolder 是一个简单的 Java 对象...</p><small>2024.05.26</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-search="android面经 " data-topics="Android" data-protected="false"><a href="/2024/05/21/Android%E9%9D%A2%E7%BB%8F/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">Android面经</strong><p class="search-result-summary">Android面经 一、四大组件 1、Activity的生命周期 启动Activity：系统会先调用onCreate方法，然后调用onStart方法，最后调用onResume，Activity进入运行状态。 当前Activity被其他Activity覆盖其上或被锁屏：系统会调用onPause方...</p><small>2024.05.21</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-search="java面经 " data-topics="" data-protected="false"><a href="/2024/05/21/Java%E9%9D%A2%E7%BB%8F/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">Java面经</strong><p class="search-result-summary">Java 面经 一、Java 基础 1、final 关键字的作用 修饰引用：该引用为常量，其值无法修改 修饰方法：该方法为最终方法，无法被子类重写 修饰类：该类为最终类，无法被继承 2、String、StringBuffer、StringBuilder 的区别 String：值是不可变的，这就...</p><small>2024.05.21</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-search="阅文面试 " data-topics="" data-protected="true"><a href="/2024/05/20/%E9%98%85%E6%96%87%E9%9D%A2%E8%AF%95/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">阅文面试</strong><p class="search-result-summary">这是一篇加密文章，输入密码后可以继续阅读。</p><small>2024.05.20</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-search="安卓面试重点 " data-topics="" data-protected="false"><a href="/2024/05/18/%E5%AE%89%E5%8D%93%E9%9D%A2%E8%AF%95%E9%87%8D%E7%82%B9/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">安卓面试重点</strong><p class="search-result-summary">1. 安卓四大组件 Activity service broadcast Receiver content Provider 2. Activity的生命周期 onCreate() =&gt; onStart() =&gt; onResume() =&gt; onPause() =&gt; onStop() =&gt;on...</p><small>2024.05.18</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-search="字节一面面经 " data-topics="" data-protected="false"><a href="/2024/03/20/%E5%AD%97%E8%8A%82%E4%B8%80%E9%9D%A2%E9%9D%A2%E7%BB%8F/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">字节一面面经</strong><p class="search-result-summary">1.自我介绍 2.询问你一些简历上的基本信息 3.开始拷打提问 (1) Android的四大基本组件：Activity,Service,Content Provider,Broadcast Receive (2) Activity的生命周期：onCreate,onRestart,onStart...</p><small>2024.03.20</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-search="kotlin常见面试知识点 " data-topics="" data-protected="false"><a href="/2024/03/19/Kotlin%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E7%9F%A5%E8%AF%86%E7%82%B9/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">Kotlin常见面试知识点</strong><p class="search-result-summary">一.Kotlin 与 Java 对比 Kotlin 和 Java 都是针对 JVM 的编程语言。它们有一些相似之处，比如都支持面向对象编程、静态类型和垃圾回收等。但是 Kotlin 和 Java 也有很多不同之处。以下是一些 Kotlin 和 Java 的比较： 代码量：Kotlin 比 Ja...</p><small>2024.03.19</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-search="网络编程面试题 " data-topics="面试 计网" data-protected="false"><a href="/2024/03/19/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E9%9D%A2%E8%AF%95%E9%A2%98/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">网络编程面试题</strong><p class="search-result-summary">描述TCP三次握手与四次挥手的过程与意义 考生如何回答 TCP/IP协议定义了计算机在网络中如何发送数据、数据格式如何定义、发出消息后在网络中如何寻址找到目标计算机，最后目标计算机又如何检验收到消息的正确性、对数据拆解最后得到消息内容的一套处理标准。 有了这些标准后生产提供TCP/IP服务的软...</p><small>2024.03.19</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-search="hello world " data-topics="" data-protected="false"><a href="/2024/03/18/hello-world/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">Hello World</strong><p class="search-result-summary">Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer ...</p><small>2024.03.18</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li></ul><button class="button service-button" id="search-more" type="button" hidden>展示更多结果</button></div><div class="search-footer"><div class="search-service"><p id="search-service-status" role="status" aria-live="polite">多个关键词用空格分隔</p><button id="search-retry" type="button" hidden>重试</button></div><p id="search-keyboard-help"><span><kbd>↑</kbd> <kbd>↓</kbd> 选择</span><span><kbd>Enter</kbd> 打开</span><span><kbd>Esc</kbd> 关闭</span></p></div></dialog><dialog class="lightbox" id="image-dialog" aria-label="图片预览"><div class="lightbox-header"><strong>图片预览</strong><button class="icon-button" id="image-close" type="button" aria-label="关闭图片预览">×</button></div><figure><div class="lightbox-stage" id="image-stage" tabindex="0" role="group" aria-label="图片查看区域" aria-describedby="image-help"><img id="image-preview" alt="" draggable="false"><div class="lightbox-feedback" id="image-feedback" hidden><span class="lightbox-feedback-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="5" width="24" height="22" rx="5"></rect><circle cx="12" cy="12" r="2"></circle><path d="m5 23 7-7 5 5 4-4 6 6"></path></svg></span><strong id="image-state-title">正在加载图片</strong><p id="image-status" role="status" aria-live="polite"></p><button class="button service-button" id="image-retry" type="button" hidden>重新加载图片</button></div></div><figcaption id="image-caption"></figcaption></figure><div class="lightbox-zoom" role="group" aria-label="图片缩放"><button class="icon-button" id="image-zoom-out" type="button" aria-label="缩小图片" title="缩小（−）">−</button><output id="image-scale" aria-label="当前缩放倍数">1.0×</output><button class="icon-button" id="image-zoom-in" type="button" aria-label="放大图片" title="放大（+）">+</button><button class="button service-button" id="image-reset" type="button" title="重置缩放（0）">适应窗口</button></div><p class="lightbox-help" id="image-help">滚轮 / 双指缩放 · 放大后拖拽 · 左右滑动切图 · Esc 关闭</p><div class="lightbox-controls"><button class="icon-button" id="image-previous" type="button" aria-label="上一张图片">←</button><span id="image-counter" aria-live="polite"></span><button class="icon-button" id="image-next" type="button" aria-label="下一张图片">→</button><a class="text-link" id="image-original" target="_blank" rel="noopener noreferrer">打开原图 ↗</a></div></dialog><button class="icon-button back-to-top" id="back-to-top" type="button" aria-label="返回顶部" hidden>↑</button><div class="sr-only" id="theme-announcement" role="status" aria-live="polite"></div><div id="morii-audio-hub" data-music-config="{&quot;remote&quot;:{&quot;api&quot;:&quot;https://api.injahow.cn/meting/?server=:server&amp;type=:type&amp;id=:id&amp;r=:r&quot;,&quot;id&quot;:&quot;1451608172&quot;,&quot;server&quot;:&quot;tencent&quot;,&quot;type&quot;:&quot;playlist&quot;},&quot;volume&quot;:0.7,&quot;title&quot;:&quot;我的音乐收藏&quot;,&quot;description&quot;:&quot;给日常留一点旋律，边听边逛。&quot;,&quot;playlist&quot;:&quot;https://y.qq.com/n/ryqq/playlist/1451608172&quot;,&quot;playlistLabel&quot;:&quot;在 QQ 音乐收听&quot;,&quot;embed&quot;:&quot;&quot;,&quot;tracks&quot;:[]}" data-music-page="/music/"><audio id="music-player" preload="none" aria-label="音乐播放器"></audio><div class="music-float" hidden aria-label="悬浮音乐播放器"><div class="music-capsule"><span class="music-capsule-progress" aria-hidden="true"></span><button class="music-ball" type="button" data-music-action="toggle" aria-label="播放音乐"><img class="music-ball-cover" alt="" hidden><span class="music-ball-note" aria-hidden="true">♫</span><span class="music-ball-state" aria-hidden="true">▶</span></button><button class="music-float-track" type="button" aria-expanded="false" aria-controls="music-capsule-lyrics" title="点击歌名展开或收起歌词"><span data-music-title>未选择音乐</span></button><p id="music-capsule-lyrics" data-music-mini-lyric aria-hidden="true">让音乐陪你继续探索。</p><div class="music-float-actions"><button type="button" data-music-action="previous" aria-label="上一首">⏮</button><button type="button" data-music-action="next" aria-label="下一首">⏭</button><a href="/music/" aria-label="打开音乐馆" title="打开完整音乐馆">♫</a></div><button class="music-float-resume" type="button" data-music-action="toggle">播放音乐</button></div><p class="sr-only" data-music-status role="status"></p></div></div><script src="/js/theme.js?v=1.0.1" defer></script><script src="/js/music.js?v=1.0.1" defer></script><script src="/js/effects.js?v=1.0.1" defer data-spotlight="on" data-tilt="on" data-ripple="on"></script><script src="/js/motion.js?v=1.0.1" defer></script><script src="/js/runtime.js?v=1.0.1" defer></script><script src="/js/search.js?v=1.0.1" defer></script><script src="/js/navigation.js?v=1.0.1" defer></script><script src="/js/media.js?v=1.0.1" defer></script><script src="/js/clock.js?v=1.0.1" defer></script><script src="/js/reading-list.js?v=1.0.1" defer></script><script src="/js/reading.js?v=1.0.1" defer></script><script src="/js/reading-resume.js?v=1.0.1" defer></script><script src="/js/share.js?v=1.0.1" defer></script><script src="/js/print.js?v=1.0.1" defer></script><script src="/js/reading-preferences.js?v=1.0.1" defer></script><script src="/js/services.js?v=1.0.1" defer></script><!-- hexo injector body_end start --><script data-pjax src="/assets/hexo-reader/reader.js" data-hexo-reader-js></script><script data-pjax>if(window.hexoReaderBoot){window.hexoReaderBoot();}</script><!-- hexo injector body_end end --></body></html>
