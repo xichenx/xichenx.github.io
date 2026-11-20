@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" width="960" height="480" font-family="system-ui, -apple-system, 'Segoe UI', 'Microsoft YaHei', sans-serif">
+  <rect width="960" height="480" fill="#ffffff"/>
+  <text x="32" y="42" font-size="21" font-weight="700" fill="#1b2333">图 7　自回归 vs 块扩散：串行"打字机"与并行"印刷机"</text>
+  <text x="32" y="68" font-size="14" fill="#7a8499">2026 年最值得关注的变化：把单用户解码从带宽受限搬到算力受限</text>
+
+  <!-- AR lane -->
+  <rect x="32" y="92" width="896" height="140" rx="12" fill="#fff8f8" stroke="#f3d7dc" stroke-width="2"/>
+  <text x="52" y="122" font-size="16" font-weight="700" fill="#e2566d">自回归（AR）　一次前向 = 1 个 token</text>
+  <g fill="#e2566d">
+    <rect x="52" y="140" width="72" height="38" rx="6" opacity="0.95"/>
+    <rect x="134" y="140" width="72" height="38" rx="6" opacity="0.82"/>
+    <rect x="216" y="140" width="72" height="38" rx="6" opacity="0.68"/>
+    <rect x="298" y="140" width="72" height="38" rx="6" opacity="0.55"/>
+    <rect x="380" y="140" width="72" height="38" rx="6" opacity="0.42"/>
+    <rect x="462" y="140" width="72" height="38" rx="6" opacity="0.3"/>
+    <rect x="544" y="140" width="72" height="38" rx="6" opacity="0.2"/>
+  </g>
+  <g font-size="12" fill="#7a8499" text-anchor="middle">
+    <text x="88" y="196">前向 1</text><text x="170" y="196">前向 2</text><text x="252" y="196">前向 3</text><text x="334" y="196">前向 4</text><text x="416" y="196">前向 5</text><text x="498" y="196">前向 6</text><text x="580" y="196">前向 7</text>
+  </g>
+  <text x="644" y="158" font-size="14" font-weight="600" fill="#e2566d">8 个 token = 8 次权重搬运</text>
+  <text x="644" y="184" font-size="13" fill="#7a8499">GPU/NPU 大量时间空等带宽</text>
+  <text x="644" y="208" font-size="13" fill="#7a8499">瓶颈：内存带宽</text>
+
+  <!-- diffusion lane -->
+  <rect x="32" y="246" width="896" height="176" rx="12" fill="#f0fdf9" stroke="#bfe9e3" stroke-width="2"/>
+  <text x="52" y="276" font-size="16" font-weight="700" fill="#0e8f88">块扩散（DiffusionGemma 思路）　一次前向 = 256 token 的画布</text>
+
+  <rect x="52" y="296" width="248" height="52" rx="8" fill="#e5e9f5"/>
+  <g fill="#c3cbe0">
+    <rect x="62" y="306" width="26" height="32" rx="4"/><rect x="96" y="306" width="26" height="32" rx="4"/><rect x="130" y="306" width="26" height="32" rx="4"/><rect x="164" y="306" width="26" height="32" rx="4"/><rect x="198" y="306" width="26" height="32" rx="4"/><rect x="232" y="306" width="26" height="32" rx="4"/><rect x="266" y="306" width="26" height="32" rx="4"/>
+  </g>
+  <text x="176" y="368" font-size="13" fill="#7a8499" text-anchor="middle">噪声画布（全部位置并行）</text>
+
+  <path d="M312 322 H356" stroke="#0ea5a4" stroke-width="3" marker-end="url(#da)"/>
+  <rect x="368" y="296" width="248" height="52" rx="8" fill="#d7f3ee"/>
+  <g fill="#7fd4c6">
+    <rect x="378" y="306" width="26" height="32" rx="4"/><rect x="412" y="306" width="26" height="32" rx="4"/><rect x="446" y="306" width="26" height="32" rx="4"/><rect x="480" y="306" width="26" height="32" rx="4"/><rect x="514" y="306" width="26" height="32" rx="4"/><rect x="548" y="306" width="26" height="32" rx="4"/><rect x="582" y="306" width="26" height="32" rx="4"/>
+  </g>
+  <text x="492" y="368" font-size="13" fill="#7a8499" text-anchor="middle">迭代去噪 · 双向注意力 · 自纠正</text>
+  <path d="M628 322 H672" stroke="#0ea5a4" stroke-width="3" marker-end="url(#da)"/>
+  <rect x="684" y="296" width="222" height="52" rx="8" fill="#0ea5a4"/>
+  <text x="795" y="328" font-size="14" font-weight="600" fill="#ffffff" text-anchor="middle">整块文本一次成形</text>
+
+  <text x="52" y="402" font-size="13" fill="#5b6478">块内每个位置都能看到彼此，天然适合插入式编辑、代码补全、结构化/非线性文本</text>
+
+  <text x="32" y="452" font-size="13" fill="#7a8499">代价：输出质量目前低于同规模自回归模型；需要专用内核与低比特格式；实验性定位，不宜直接替换生产链路</text>
+
+  <defs>
+    <marker id="da" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#0ea5a4"/></marker>
+  </defs>
+</svg>

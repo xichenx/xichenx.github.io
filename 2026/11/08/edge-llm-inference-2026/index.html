@@ -1,0 +1,905 @@
+<!DOCTYPE html><html lang="zh-CN" style="--brand-color:#5568f6;--brand-color-dark:#8c9aff;" data-motion="on" data-glass="on" data-effects="on" data-theme-transition="on"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#5568f6"><meta name="description" content="从带宽瓶颈的第一性原理出发，逐层拆解量化、KV Cache、投机解码、运行时编译与扩散语言模型，并给出端云混合路由的工程决策框架。"><title>从内存墙到并行生成：2026 端侧大模型推理技术全景 · 心灵涂鸦</title><link rel="canonical" href="https://blog.liumingzhi.cn/2026/11/08/edge-llm-inference-2026/"><meta property="og:title" content="从内存墙到并行生成：2026 端侧大模型推理技术全景"><meta property="og:description" content="从带宽瓶颈的第一性原理出发，逐层拆解量化、KV Cache、投机解码、运行时编译与扩散语言模型，并给出端云混合路由的工程决策框架。"><meta property="og:site_name" content="心灵涂鸦"><meta property="og:type" content="article"><meta property="og:url" content="https://blog.liumingzhi.cn/2026/11/08/edge-llm-inference-2026/"><meta property="og:image" content="https://blog.liumingzhi.cn/images/edge-llm-2026/cover.svg"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="从内存墙到并行生成：2026 端侧大模型推理技术全景"><meta name="twitter:description" content="从带宽瓶颈的第一性原理出发，逐层拆解量化、KV Cache、投机解码、运行时编译与扩散语言模型，并给出端云混合路由的工程决策框架。"><meta name="twitter:image" content="https://blog.liumingzhi.cn/images/edge-llm-2026/cover.svg"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://blog.liumingzhi.cn/#website","url":"https://blog.liumingzhi.cn/","name":"心灵涂鸦","inLanguage":"zh-CN"},{"@type":"BlogPosting","headline":"从内存墙到并行生成：2026 端侧大模型推理技术全景","description":"从带宽瓶颈的第一性原理出发，逐层拆解量化、KV Cache、投机解码、运行时编译与扩散语言模型，并给出端云混合路由的工程决策框架。","url":"https://blog.liumingzhi.cn/2026/11/08/edge-llm-inference-2026/","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.liumingzhi.cn/2026/11/08/edge-llm-inference-2026/"},"author":{"@type":"Person","name":"曦臣"},"datePublished":"2026-11-08T11:30:00.000Z","dateModified":"2026-11-08T11:30:00.000Z","inLanguage":"zh-CN","image":["https://blog.liumingzhi.cn/images/edge-llm-2026/cover.svg"]}]}</script><meta property="article:published_time" content="2026-11-08T11:30:00.000Z"><meta property="article:modified_time" content="2026-11-08T11:30:00.000Z"><link rel="icon" href="/icons/brand/favicon.ico?v=6fa12bb"><script src="/js/theme-init.d3caadab74ea.js?v=1.1.0" data-diagnostics-src="/js/diagnostics.aacc98542d02.js"></script><link rel="stylesheet" href="/css/style.a83de583224c.css?v=1.1.0"><link rel="stylesheet" href="/css/media.78fc4fe7d273.css?v=1.1.0"><link rel="stylesheet" href="/css/search.cee494d75819.css?v=1.1.0" media="print" data-deferred-style><link rel="stylesheet" href="/css/effects.f150dba932d7.css?v=1.1.0"><link rel="stylesheet" href="/css/motion.f3a8de0c4885.css?v=1.1.0" media="print" data-deferred-style><link rel="stylesheet" href="/css/music.aaadfe78c663.css?v=1.1.0" media="print" data-deferred-style><link rel="stylesheet" href="/css/reading.f1092312d6f7.css?v=1.1.0"><link rel="stylesheet" href="/css/code.1e789ef4146e.css?v=1.1.0"><link id="article-print-style" rel="stylesheet" href="/css/print.856b2cd39783.css?v=1.1.0" media="print"><!-- hexo injector head_end start --><link rel="stylesheet" href="/assets/hexo-reader/reader.css" data-hexo-reader-css><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head><body class="is-reading" data-page-loading="正在打开页面…"><div class="morii-atmosphere" aria-hidden="true" data-aurora="on"><canvas id="morii-particles" data-density="48"></canvas></div><a class="skip-link" href="#main">跳转到正文</a><section class="print-toolbar" id="article-print-toolbar" hidden aria-label="打印预览操作"><div><strong>打印预览</strong><p id="print-status" role="status">代码与折叠内容已展开。在打印窗口中可选择“另存为 PDF”。</p></div><div class="print-toolbar__actions"><button class="reading-preference-button" id="print-article" type="button">打印 / 保存 PDF</button><button class="reading-preference-button" id="exit-print-preview" type="button">返回阅读</button></div></section><div class="site-shell"><header class="site-header" data-header-top><div class="site-header__inner"><a class="brand" href="/" aria-label="返回首页"><span class="brand__mark brand__mark--image" aria-hidden="true"><img src="/icons/brand/logo.png?v=20261027-heart" alt="" width="38" height="38"></span><span class="brand__copy"><strong class="brand__text">心灵涂鸦</strong><small class="brand__tagline">记录技术，也记录生活。</small></span></a><nav class="site-nav" id="site-nav" aria-label="主导航"><a href="/">首页</a><a class="site-nav__item--active" href="/archives/" aria-current="page">文章</a><a href="/categories/">分类</a><a href="/essay/">即刻</a><a href="/album/">相册</a><a href="/link/">友链</a><a href="/about/">关于</a></nav><div class="header-actions"><button class="icon-button" id="navigation-open" type="button" aria-label="全站快捷导航" title="全站快捷导航（?）" aria-haspopup="dialog" aria-controls="navigation-dialog" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect></svg></button><button class="icon-button header-search" id="search-open" type="button" aria-label="搜索文章" title="搜索文章（⌘/Ctrl + K）"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 4.5 4.5"></path></svg><span class="header-search__label">搜索</span></button><button class="icon-button" id="theme-toggle" type="button" aria-label="切换深色模式" title="切换深色模式"><svg class="theme-icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M20.4 15.6A8.5 8.5 0 0 1 8.4 3.6 8.5 8.5 0 1 0 20.4 15.6Z"></path></svg><svg class="theme-icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg></button><button class="icon-button mobile-only" id="menu-toggle" type="button" aria-label="打开菜单" aria-controls="site-nav" aria-expanded="false"><svg class="menu-icon--open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg><svg class="menu-icon--close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5 5 19"></path></svg></button></div></div><div class="reading-progress" role="progressbar" aria-label="阅读进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="reading-progress__bar"></div></div></header><main id="main"><header class="article-header post-hero has-cover" data-header-backdrop="inverse" data-cover-frame=""><img class="article-cover" src="/images/edge-llm-2026/cover.svg" width="1200" height="675" alt="" aria-hidden="true" fetchpriority="high" decoding="async"><div class="post-hero-inner"><nav class="article-breadcrumb" aria-label="面包屑导航"><a href="/">首页</a><span aria-hidden="true">/</span><a href="/archives/">文章</a><span aria-hidden="true">/</span><span aria-current="page">从内存墙到并行生成：2026 端侧大模型推理技术全景</span></nav><div class="article-kicker"><a class="article-type" href="/archives/">文章</a><a href="/categories/AI/">AI</a><a class="article-hero-tag" href="/tags/Android/"># Android</a><a class="article-hero-tag" href="/tags/%E7%AB%AF%E4%BE%A7AI/"># 端侧AI</a><a class="article-hero-tag" href="/tags/LLM%E6%8E%A8%E7%90%86/"># LLM推理</a></div><h1>从内存墙到并行生成：2026 端侧大模型推理技术全景</h1><p class="article-description">从带宽瓶颈的第一性原理出发，逐层拆解量化、KV Cache、投机解码、运行时编译与扩散语言模型，并给出端云混合路由的工程决策框架。</p><div class="article-meta"><div class="article-meta__group"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="4" y="6" width="16" height="14" rx="3"></rect><path d="M8 4v4m8-4v4M4 11h16"></path></svg><div class="article-meta__items"><span>发布于 <time datetime="2026-11-08T11:30:00.000Z">2026-11-08</time></span><span>更新于 <time datetime="2026-11-08T11:30:00.000Z">2026-11-08</time></span></div></div><div class="article-meta__group"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6c-2.5-1.7-5.7-2-9-1v14c3-1 6.5-.7 9 1 2.5-1.7 6-2 9-1V5c-3-.9-6.5-.7-9 1zM12 6v14"></path></svg><div class="article-meta__items"><span>约 24 分钟阅读</span></div></div></div></div></header><div class="wrap reading-layout"><article class="article-card"><div class="article-toolbar"><div class="article-save-tools"><button class="reading-preference-button" type="button" data-save-post="/2026/11/08/edge-llm-inference-2026/" aria-pressed="false" hidden>加入稍后阅读 ☆</button><a class="text-link" href="/reading-list/">查看清单 →</a></div><p id="reading-list-message" role="status" aria-live="polite"></p><details class="reading-settings" hidden><summary>阅读设置</summary><div class="reading-settings__panel"><div class="reading-settings__row"><span>正文字号</span><div class="reading-font-controls" role="group" aria-label="正文字号"><button class="reading-preference-button" id="reading-font-smaller" type="button" aria-label="缩小正文字号">A−</button><output id="reading-font-value" aria-live="polite">17 px</output><button class="reading-preference-button" id="reading-font-larger" type="button" aria-label="放大正文字号">A＋</button></div></div><div class="reading-settings__row"><button class="reading-preference-button" id="reading-focus-toggle" type="button" aria-pressed="false">专注阅读</button><button class="reading-preference-button" id="reading-settings-reset" type="button">恢复默认</button></div><p id="reading-settings-status" role="status" aria-live="polite">设置仅保存在当前浏览器。</p><button class="reading-preference-button" type="button" data-preview-print hidden>打印 / 导出 PDF</button></div></details></div><div class="reading-resume" id="reading-resume" data-updated="2026-11-08T11:30:00.000Z" hidden><div class="reading-resume__copy"><strong>继续上次阅读</strong><p id="reading-resume-description"></p></div><div class="reading-resume__actions"><button class="reading-preference-button" id="reading-resume-continue" type="button">继续阅读 →</button><button class="reading-preference-button" id="reading-resume-clear" type="button">清除本篇记录</button></div></div><aside class="outdated-notice" data-updated="2026-11-08T11:30:00.000Z" data-days-limit="365" hidden aria-label="文章时效提醒"><span class="outdated-notice__icon" aria-hidden="true">◷</span><div><strong>阅读提示</strong><p>距离上次更新已过去 <span data-outdated-days>12</span> 天，文中的版本、链接与操作方式可能已变化，请结合当前环境核对。</p></div></aside><details class="mobile-toc"><summary>本文目录</summary><div class="toc-filter" data-toc-filter hidden><label><span class="sr-only">筛选章节</span><input type="search" data-toc-query placeholder="筛选章节" autocomplete="off"></label><p class="toc-filter__status" role="status" hidden>没有匹配的章节</p></div><div class="toc-content"><a href="#引子：一条能串起所有技术的主线">引子：一条能串起所有技术的主线</a><a href="#1-第一性原理：解码慢，不是算力不够，是带宽不够">1. 第一性原理：解码慢，不是算力不够，是带宽不够</a><a class="toc-sub" href="#1-1-同样是前向，Prefill-和-Decode-是两种-workload">1.1 同样是前向，Prefill 和 Decode 是两种 workload</a><a class="toc-sub" href="#1-2-用-Roofline-把它画出来">1.2 用 Roofline 把它画出来</a><a class="toc-sub" href="#1-3-一个可以自己按计算器的估算">1.3 一个可以自己按计算器的估算</a><a class="toc-sub" href="#1-4-把优化拆成三个变量">1.4 把优化拆成三个变量</a><a href="#2-第一层：压缩-W-——-量化的数学与工程">2. 第一层：压缩 W —— 量化的数学与工程</a><a class="toc-sub" href="#2-1-仿射量化到底做了什么">2.1 仿射量化到底做了什么</a><a class="toc-sub" href="#2-2-2026-年的低比特格式，不止-INT4">2.2 2026 年的低比特格式，不止 INT4</a><a class="toc-sub" href="#2-3-量化解决不了什么">2.3 量化解决不了什么</a><a href="#3-第二层：压缩-S-——-KV-Cache-才是长对话的隐性杀手">3. 第二层：压缩 S —— KV Cache 才是长对话的隐性杀手</a><a class="toc-sub" href="#3-1-为什么必须有-KV-Cache">3.1 为什么必须有 KV Cache</a><a class="toc-sub" href="#3-2-四条削减路线">3.2 四条削减路线</a><a class="toc-sub" href="#3-3-2026-年的工程进展（官方口径）">3.3 2026 年的工程进展（官方口径）</a><a class="toc-sub" href="#3-4-三个真实会踩的坑">3.4 三个真实会踩的坑</a><a href="#4-第三层：压缩-N-——-投机解码与「无损」加速">4. 第三层：压缩 N —— 投机解码与「无损」加速</a><a class="toc-sub" href="#4-1-draft-then-verify-三步">4.1 draft-then-verify 三步</a><a class="toc-sub" href="#4-2-为什么敢叫「无损」">4.2 为什么敢叫「无损」</a><a class="toc-sub" href="#4-3-加速比怎么算">4.3 加速比怎么算</a><a class="toc-sub" href="#4-4-变体对比：草稿从哪来">4.4 变体对比：草稿从哪来</a><a class="toc-sub" href="#4-5-什么时候不赚">4.5 什么时候不赚</a><a class="toc-sub" href="#4-6-在-Android-上打开它">4.6 在 Android 上打开它</a><a href="#5-第四层：把硬件喂饱-——-运行时、编译与调度">5. 第四层：把硬件喂饱 —— 运行时、编译与调度</a><a class="toc-sub" href="#5-1-四层栈">5.1 四层栈</a><a class="toc-sub" href="#5-2-运行时怎么选">5.2 运行时怎么选</a><a class="toc-sub" href="#5-3-编译器替你做的四件事">5.3 编译器替你做的四件事</a><a class="toc-sub" href="#5-4-设备分层与动态降级">5.4 设备分层与动态降级</a><a class="toc-sub" href="#5-5-四个必须盯的指标">5.5 四个必须盯的指标</a><a href="#6-第五层：换范式-——-当生成不再逐-token">6. 第五层：换范式 —— 当生成不再逐 token</a><a class="toc-sub" href="#6-1-一个真实的硬新闻：DiffusionGemma">6.1 一个真实的硬新闻：DiffusionGemma</a><a class="toc-sub" href="#6-2-机制：瓶颈从带宽搬到了算力">6.2 机制：瓶颈从带宽搬到了算力</a><a class="toc-sub" href="#6-3-两种范式的正面对比">6.3 两种范式的正面对比</a><a class="toc-sub" href="#6-4-边界与另一条线">6.4 边界与另一条线</a><a href="#7-落地：一个可执行的决策框架">7. 落地：一个可执行的决策框架</a><a class="toc-sub" href="#7-1-端云混合路由要显式设计">7.1 端云混合路由要显式设计</a><a class="toc-sub" href="#7-2-Android-侧落地清单">7.2 Android 侧落地清单</a><a class="toc-sub" href="#7-3-常见误区速查">7.3 常见误区速查</a><a href="#8-小结：一张表收束全文">8. 小结：一张表收束全文</a><a href="#参考资料">参考资料</a></div></details><div class="article-body" data-code-style="classic" data-code-theme="dark" data-code-word-wrap="false" data-code-collapse="true" data-code-lines="18"><blockquote>
+<p>本文讨论的是<strong>推理</strong>，不是训练。所有数字凡标注「示意」「官方口径」者，请勿直接当作你手头设备的实测值。截至 2026 年 11 月。</p>
+</blockquote>
+<h2 id="引子：一条能串起所有技术的主线"><a href="#引子：一条能串起所有技术的主线" class="headerlink" title="引子：一条能串起所有技术的主线"></a>引子：一条能串起所有技术的主线</h2><p>2026 年 AI 的重心，已经从「把模型做大」转到「把推理做省」。InfoQ 的 2026 趋势报告预计，推理将占全年 AI 算力支出约三分之二；Google、Meta、高通、联发科不约而同把资源押在同一件事上：<strong>让模型在有限的内存带宽与功耗预算里，更快地吐出 token</strong>。</p>
+<p>但端侧推理的资料有个通病：一上来就甩给你一堆名词——QAT、AWQ、GQA、PagedAttention、MTP、EAGLE、NVFP4、块扩散……彼此是什么关系？为什么有的省内存，有的省时间，有的两者都不省却依然变快了？</p>
+<p>这篇文章只讲一条主线：</p>
+<blockquote>
+<p>生成一个 token 的开销 ≈ <strong>每次要搬运的字节数 × 串行执行次数</strong>。<br>所有优化，要么减少每次搬运的字节（权重 W、状态 S），要么减少串行步数 N，要么干脆改写「一次前向只能出 1 个 token」这个前提。</p>
+</blockquote>
+<p>全文分五层推进，每层先给直觉，再给公式或算例，最后给工程边界。读完后，你应该能自己判断：某篇论文宣称「提速 3 倍」，它动的到底是 W、S 还是 N。</p>
+<table>
+<thead>
+<tr>
+<th>如果你想先弄明白</th>
+<th>直接看</th>
+<th>核心问题</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>为什么旗舰芯片跑小模型还是慢</td>
+<td>第 1 章</td>
+<td>瓶颈在哪</td>
+</tr>
+<tr>
+<td>4-bit 到底省了什么</td>
+<td>第 2 章</td>
+<td>压缩 W</td>
+</tr>
+<tr>
+<td>为什么聊久了就 OOM</td>
+<td>第 3 章</td>
+<td>压缩 S</td>
+</tr>
+<tr>
+<td>不改模型怎么提速 2～3 倍</td>
+<td>第 4 章</td>
+<td>压缩 N</td>
+</tr>
+<tr>
+<td>LiteRT &#x2F; ExecuTorch 该选谁</td>
+<td>第 5 章</td>
+<td>工程落地</td>
+</tr>
+<tr>
+<td>2026 年最值得关注的新方向</td>
+<td>第 6 章</td>
+<td>换范式</td>
+</tr>
+<tr>
+<td>明天就要写进需求文档</td>
+<td>第 7 章</td>
+<td>决策框架</td>
+</tr>
+</tbody></table>
+<p><img src="/images/edge-llm-2026/cover.svg" alt="封面：从内存墙到并行生成"></p>
+<h2 id="1-第一性原理：解码慢，不是算力不够，是带宽不够"><a href="#1-第一性原理：解码慢，不是算力不够，是带宽不够" class="headerlink" title="1. 第一性原理：解码慢，不是算力不够，是带宽不够"></a>1. 第一性原理：解码慢，不是算力不够，是带宽不够</h2><h3 id="1-1-同样是前向，Prefill-和-Decode-是两种-workload"><a href="#1-1-同样是前向，Prefill-和-Decode-是两种-workload" class="headerlink" title="1.1 同样是前向，Prefill 和 Decode 是两种 workload"></a>1.1 同样是前向，Prefill 和 Decode 是两种 workload</h3><p>大模型生成一段回答分两个阶段：</p>
+<ul>
+<li><strong>Prefill（预填充）</strong>：把整段 prompt 一次性送进网络，所有位置并行计算，产出第一个 token，同时把每一层的 Key &#x2F; Value 写进缓存。</li>
+<li><strong>Decode（解码）</strong>：之后每生成一个 token，都要再跑一遍完整网络，但这一次<strong>只算 1 个位置</strong>。</li>
+</ul>
+<p><img loading="lazy" src="/images/edge-llm-2026/fig1-prefill-decode.svg" alt="图 1：Prefill 与 Decode 的瓶颈差异"></p>
+<p>差别是本质性的：Prefill 是「读一次权重，算 T 个位置」的大矩阵乘，算力吃得很满；Decode 是「读一次权重，只算 1 个位置」的矩阵向量乘，计算单元大部分时间在<strong>等内存把权重送过来</strong>。生成 200 个 token，就要把整套权重从 DRAM 搬 200 遍。</p>
+<h3 id="1-2-用-Roofline-把它画出来"><a href="#1-2-用-Roofline-把它画出来" class="headerlink" title="1.2 用 Roofline 把它画出来"></a>1.2 用 Roofline 把它画出来</h3><p>定义<strong>算术强度</strong> I &#x3D; FLOPs &#x2F; Bytes（每读 1 字节能做多少次运算），硬件可达性能满足：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">P ≤ min( π , β × I )</span><br><span class="line"></span><br><span class="line">π：峰值算力（TOPS）      β：内存带宽（GB/s）</span><br><span class="line">I 小 → 落在斜线段 β×I，带宽受限</span><br><span class="line">I 大 → 落在平台段 π，算力受限</span><br></pre></td></tr></table></figure>
+
+<p><img loading="lazy" src="/images/edge-llm-2026/fig2-roofline.svg" alt="图 2：Roofline 视角下的解码"></p>
+<p>单用户 Decode 的 I 约等于 1，牢牢钉在斜线段左侧。于是有两个反直觉但极其重要的结论：</p>
+<ol>
+<li><strong>给端侧堆 TOPS，对单用户解码几乎没用</strong>。峰值算力是平台高度，而你在斜线上。</li>
+<li>想快，只有三条路：<strong>降低字节数</strong>（量化 &#x2F; 缓存优化）、<strong>提高带宽利用率</strong>（更好的数据布局与内核）、<strong>提高算术强度</strong>（一次前向多算几个 token —— 这正是投机解码与块扩散的立足点）。</li>
+</ol>
+<p>这也解释了为什么云端的经验不能直接搬过来：服务端靠大 batch 把 I 抬上去，而手机上永远只有 1 个用户、1 条请求。</p>
+<h3 id="1-3-一个可以自己按计算器的估算"><a href="#1-3-一个可以自己按计算器的估算" class="headerlink" title="1.3 一个可以自己按计算器的估算"></a>1.3 一个可以自己按计算器的估算</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">单 token 耗时  t ≈ W_bytes / BW_effective</span><br><span class="line">理论上限 TPS  ≈ BW_effective / W_bytes</span><br></pre></td></tr></table></figure>
+
+<p>取一组<strong>示意参数</strong>：3B 参数模型、INT4 权重（约 0.5 Byte&#x2F;参数）→ W ≈ 1.5 GB；移动 LPDDR5X 有效带宽按 60 GB&#x2F;s 估：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">t   ≈ 1.5 / 60 = 0.025 s = 25 ms</span><br><span class="line">TPS ≈ 40 token/s</span><br></pre></td></tr></table></figure>
+
+<p>40 token&#x2F;s 已经接近「读起来不卡」的门槛。但注意这是<strong>纯权重流的理论上限</strong>，KV Cache 读写、反量化、采样、内核启动开销、以及持续推理后的热降频都会再打折，真机往往更低。</p>
+<p>两个立刻能用的推论：</p>
+<ul>
+<li>想把 TPS 翻倍：要么把 W 减半（第 2 章），要么把有效带宽翻倍（换硬件 &#x2F; 改数据布局）。</li>
+<li><strong>别用 TOPS 选芯片</strong>。同样标称 50 TOPS 的两颗 SoC，若内存带宽差一倍，单用户解码速度就差一倍。选型时先问带宽，再问算子覆盖度，最后才看 TOPS。</li>
+</ul>
+<h3 id="1-4-把优化拆成三个变量"><a href="#1-4-把优化拆成三个变量" class="headerlink" title="1.4 把优化拆成三个变量"></a>1.4 把优化拆成三个变量</h3><table>
+<thead>
+<tr>
+<th>变量</th>
+<th>含义</th>
+<th>对应技术</th>
+<th>本文</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>W</strong></td>
+<td>每步必须搬运的权重字节</td>
+<td>量化、低比特格式、MoE 的专家卸载</td>
+<td>第 2 章</td>
+</tr>
+<tr>
+<td><strong>S</strong></td>
+<td>每步必须读写的缓存状态</td>
+<td>GQA &#x2F; MQA &#x2F; MLA、滑窗、KV 量化、分页、前缀缓存</td>
+<td>第 3 章</td>
+</tr>
+<tr>
+<td><strong>N</strong></td>
+<td>串行前向次数</td>
+<td>投机解码、MTP、Medusa、EAGLE</td>
+<td>第 4 章</td>
+</tr>
+<tr>
+<td>前提</td>
+<td>一次前向只出 1 token</td>
+<td>块扩散、非自回归生成</td>
+<td>第 6 章</td>
+</tr>
+</tbody></table>
+<p>下面四章，就是沿着 W → S → N → 硬件调度，一层层把瓶颈往后推。</p>
+<h2 id="2-第一层：压缩-W-——-量化的数学与工程"><a href="#2-第一层：压缩-W-——-量化的数学与工程" class="headerlink" title="2. 第一层：压缩 W —— 量化的数学与工程"></a>2. 第一层：压缩 W —— 量化的数学与工程</h2><p><strong>一句话直觉</strong>：既然每生成一个 token 都要把权重读一遍，那把权重从 16 bit 压到 4 bit，理论上就能快 4 倍、省 4 倍内存。</p>
+<h3 id="2-1-仿射量化到底做了什么"><a href="#2-1-仿射量化到底做了什么" class="headerlink" title="2.1 仿射量化到底做了什么"></a>2.1 仿射量化到底做了什么</h3><p><img loading="lazy" src="/images/edge-llm-2026/fig3-quantization.svg" alt="图 3：量化与权重内存"></p>
+<p>以 INT4（值域 -8 ~ 7）为例：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s = max(|W|) / 7                      缩放因子</span><br><span class="line">q = clip( round(W / s), -8, 7 )       4-bit 整数</span><br><span class="line">Ŵ = s · q                             计算前反量化还原</span><br></pre></td></tr></table></figure>
+
+<p>误差主要来自两处：<strong>截断 &#x2F; 舍入</strong>，以及 <strong>s 的粒度</strong>。一张权重矩阵里往往有少量幅值极大的离群通道，若整张矩阵共用一个 s（per-tensor），这些离群值会把 s 撑大，导致大量小权重被压成 0。于是工程上按粒度递进：</p>
+<table>
+<thead>
+<tr>
+<th>粒度</th>
+<th>s 的范围</th>
+<th>额外存储</th>
+<th>典型用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>per-tensor</td>
+<td>整个张量 1 个</td>
+<td>极小</td>
+<td>激活量化、极致轻量</td>
+</tr>
+<tr>
+<td>per-channel</td>
+<td>每个输出通道 1 个</td>
+<td>小</td>
+<td>INT8 权重量化常用</td>
+</tr>
+<tr>
+<td>group-wise</td>
+<td>每 32 &#x2F; 128 个权重 1 个</td>
+<td>中等</td>
+<td>INT4 &#x2F; FP4 主流选择</td>
+</tr>
+</tbody></table>
+<p><strong>PTQ vs QAT</strong>：PTQ（训练后量化）拿一小批校准数据统计数值范围，便宜但对 4 bit 以下较敏感；QAT（量化感知训练）在训练时就把量化噪声注入前向，让权重自己学会适应低精度，低比特下质量明显更稳，代价是需要训练资源。2026 年面向端侧发布的模型普遍同时提供 QAT 检查点，这不是巧合——<strong>低比特的收益要靠训练侧配合才能兑现</strong>。</p>
+<p>至于 AWQ 与 GPTQ 这类经典 PTQ 方法，差别在「保护谁」：AWQ 依据激活分布识别显著权重通道并单独保护，GPTQ 用近似二阶信息逐列量化、把误差补偿到后续未量化的权重上。端侧自回归生成对激活分布敏感，因此 W4A16（权重 4 bit、激活保持 16 bit）常被视为<strong>甜点配置</strong>：省的是最贵的权重带宽，又不在激活上继续叠加误差。</p>
+<h3 id="2-2-2026-年的低比特格式，不止-INT4"><a href="#2-2-2026-年的低比特格式，不止-INT4" class="headerlink" title="2.2 2026 年的低比特格式，不止 INT4"></a>2.2 2026 年的低比特格式，不止 INT4</h3><table>
+<thead>
+<tr>
+<th>格式</th>
+<th>每权重</th>
+<th>相对 FP16</th>
+<th>质量风险</th>
+<th>硬件 &#x2F; 生态状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FP16 &#x2F; BF16</td>
+<td>16 bit</td>
+<td>1×</td>
+<td>基准</td>
+<td>通用，端侧 LLM  seldom 直接用</td>
+</tr>
+<tr>
+<td>INT8</td>
+<td>8 bit</td>
+<td>2×</td>
+<td>很小</td>
+<td>视觉模型默认档，算子覆盖最好</td>
+</tr>
+<tr>
+<td>INT4（group-wise）</td>
+<td>4 bit + scale</td>
+<td>≈4×</td>
+<td>可控（QAT 更稳）</td>
+<td>端侧 LLM 主流</td>
+</tr>
+<tr>
+<td>FP8</td>
+<td>8 bit</td>
+<td>2×</td>
+<td>小，动态范围优于 INT8</td>
+<td>云端与新一代 NPU 逐步铺开</td>
+</tr>
+<tr>
+<td>NVFP4 &#x2F; MXFP4</td>
+<td>4 bit 浮点 + 块级 scale</td>
+<td>≈4×</td>
+<td>依赖块尺度设计</td>
+<td>Blackwell 等新架构原生支持</td>
+</tr>
+</tbody></table>
+<p>Google DeepMind 在 DiffusionGemma 的官方说明里明确提到：模型原生支持 NVIDIA 的 <strong>NVFP4</strong>，在 Blackwell GPU 上以近乎无损的精度换来更高的计算吞吐。这标志着低比特从「部署时不得已的压缩」变成了「模型设计时就考虑的数值格式」。</p>
+<blockquote>
+<p>顺带辨析一个常见误解：<strong>MoE 不等于省内存</strong>。MoE 减少的是单步激活的计算量（26B 总参数只激活 3.8B），但推理时全部专家权重仍需驻留内存，权重带宽 W 并没有按激活比例下降——除非你额外做专家卸载 &#x2F; 换入换出，而那又会把瓶颈转移到存储 IO。</p>
+</blockquote>
+<h3 id="2-3-量化解决不了什么"><a href="#2-3-量化解决不了什么" class="headerlink" title="2.3 量化解决不了什么"></a>2.3 量化解决不了什么</h3><ul>
+<li><strong>KV Cache 照样随对话增长</strong>（第 3 章）；</li>
+<li><strong>串行 N 次前向一次没少</strong>（第 4 章）；</li>
+<li>反量化本身有开销，且必须有对应低比特 GEMM 内核，否则只能「省了内存没提速」；</li>
+<li>数学、代码、长链推理等任务对低比特更敏感，上线前必须按<strong>任务类别</strong>分别评测，而不是只看一个平均困惑度。</li>
+</ul>
+<h2 id="3-第二层：压缩-S-——-KV-Cache-才是长对话的隐性杀手"><a href="#3-第二层：压缩-S-——-KV-Cache-才是长对话的隐性杀手" class="headerlink" title="3. 第二层：压缩 S —— KV Cache 才是长对话的隐性杀手"></a>3. 第二层：压缩 S —— KV Cache 才是长对话的隐性杀手</h2><p><strong>一句话直觉</strong>：权重是常量，状态却跟着对话一起膨胀。很多 App 不是「第一轮就慢」，而是「聊到第七轮突然 OOM」。</p>
+<h3 id="3-1-为什么必须有-KV-Cache"><a href="#3-1-为什么必须有-KV-Cache" class="headerlink" title="3.1 为什么必须有 KV Cache"></a>3.1 为什么必须有 KV Cache</h3><p>自回归解码时，第 T 个 token 的注意力要用到前面所有 T-1 个位置的 Key &#x2F; Value。若每次重算，复杂度是 O(T²)。把历史的 K &#x2F; V 缓存下来，每步只新增一组，就降为 O(T)——典型的<strong>空间换时间</strong>。</p>
+<p>代价是这个空间会线性增长：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">M_KV = 2 × L × n_kv × d_head × T × bytes</span><br><span class="line">       │      │       │        │     └─ 每元素字节（FP16=2, INT8=1）</span><br><span class="line">       │      │       │        └─ 上下文长度</span><br><span class="line">       │      │       └─ 每个头的维度</span><br><span class="line">       │      └─ KV 头数（GQA/MQA 就是压这个）</span><br><span class="line">       └─ K / V 两份 × 层数 L</span><br></pre></td></tr></table></figure>
+
+<p><strong>代入一个真会遇到的算例</strong>：L &#x3D; 24 层，GQA 后 n_kv &#x3D; 8，d_head &#x3D; 128，T &#x3D; 4096，FP16：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">M = 2 × 24 × 8 × 128 × 4096 × 2 ≈ 402 MB</span><br><span class="line">若退回 MHA（n_kv = 32）→ ≈ 1.6 GB</span><br></pre></td></tr></table></figure>
+
+<p>一个「才 3B、INT4 只要 1.5 GB」的模型，光 KV Cache 就又吃掉近 400 MB；若不做 GQA、上下文开到 8K，状态内存甚至可能超过权重本身。<strong>这就是 2026 年大家把 KV Cache 称为「推理内存墙主战场」的原因</strong>——云端 vLLM &#x2F; SGLang 在做多层缓存卸载与缓存感知路由，端侧在做动态增长与量化，本质是同一个问题。</p>
+<p><img loading="lazy" src="/images/edge-llm-2026/fig4-kv-cache.svg" alt="图 4：KV Cache 增长曲线与四条削减路线"></p>
+<h3 id="3-2-四条削减路线"><a href="#3-2-四条削减路线" class="headerlink" title="3.2 四条削减路线"></a>3.2 四条削减路线</h3><table>
+<thead>
+<tr>
+<th>路线</th>
+<th>代表方法</th>
+<th>动了公式里的谁</th>
+<th>收益</th>
+<th>代价 &#x2F; 注意点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>结构</strong></td>
+<td>MQA &#x2F; GQA &#x2F; MLA</td>
+<td>n_kv ↓</td>
+<td>4～8× 甚至更多，且零运行时开销</td>
+<td>需要模型本身支持，属于选型问题</td>
+</tr>
+<tr>
+<td><strong>时间</strong></td>
+<td>滑动窗口、局部注意力、驱逐策略</td>
+<td>T ↓ &#x2F; 封顶</td>
+<td>内存不再随对话无限涨</td>
+<td>会丢早期信息，摘要类、长文问答需验证</td>
+</tr>
+<tr>
+<td><strong>精度</strong></td>
+<td>KV INT8 &#x2F; INT4 &#x2F; 2-bit</td>
+<td>bytes ↓</td>
+<td>2～4×，可与结构叠加</td>
+<td>长上下文下误差累积，需按层&#x2F;按头做敏感区保护</td>
+</tr>
+<tr>
+<td><strong>管理</strong></td>
+<td>PagedAttention 分页、按需动态增长、前缀缓存</td>
+<td>峰值 ↓、复用 ↑</td>
+<td>消除碎片、避免预分配浪费</td>
+<td>运行时复杂度上升，需要引擎支持</td>
+</tr>
+</tbody></table>
+<p>这四条<strong>可以叠乘</strong>：GQA 把 n_kv 降 4 倍，KV INT8 再降 2 倍，滑窗把 T 封顶——组合起来能把长对话状态从 GB 级压到百 MB 级。</p>
+<h3 id="3-3-2026-年的工程进展（官方口径）"><a href="#3-3-2026-年的工程进展（官方口径）" class="headerlink" title="3.3 2026 年的工程进展（官方口径）"></a>3.3 2026 年的工程进展（官方口径）</h3><p>Google AI Edge 的 LiteRT-LM 近期版本里，这一层的改动非常集中：</p>
+<ul>
+<li>v0.17 优化了 <strong>Local Attention</strong> 的内存开销，并支持更长上下文；</li>
+<li>v0.18 在 <strong>NPU 上启用按需动态 KV Cache 增长</strong>，同时加入 GPU 侧的 attention mask 剪枝；</li>
+<li><code>litert-lm serve</code> 引入<strong>无状态前缀缓存</strong>：对话历史命中时直接跳过重复 prefill，把多轮对话的 TTFT 打下来；</li>
+<li>新增 <code>ModelInfo</code> &#x2F; <code>litert-lm describe</code>，在加载模型<strong>之前</strong>就能读到元数据、能力与运行时需求——这对「先查设备再决定加载哪档模型」的路由逻辑很关键。</li>
+</ul>
+<h3 id="3-4-三个真实会踩的坑"><a href="#3-4-三个真实会踩的坑" class="headerlink" title="3.4 三个真实会踩的坑"></a>3.4 三个真实会踩的坑</h3><ol>
+<li><strong>OOM 有延迟性</strong>：第一轮好好的，第七轮炸。压测必须覆盖多轮长对话，而不是单条 prompt。</li>
+<li><strong>截断对用户不可见</strong>：滑窗把早期指令挤出去后，模型会「突然忘设定」。要么在 UI 上提示，要么做上下文摘要压缩。</li>
+<li><strong>热与内存联动</strong>：持续解码会触发热降频，此时内存压力也最大。降级策略要一起考虑（见 5.4）。</li>
+</ol>
+<h2 id="4-第三层：压缩-N-——-投机解码与「无损」加速"><a href="#4-第三层：压缩-N-——-投机解码与「无损」加速" class="headerlink" title="4. 第三层：压缩 N —— 投机解码与「无损」加速"></a>4. 第三层：压缩 N —— 投机解码与「无损」加速</h2><p><strong>一句话直觉</strong>：大部分 token 并不难——标点、常见搭配、固定句式，一个小模型就能猜对。让小模型先猜一串，大模型一次批量验收，猜对的部分等于白赚。</p>
+<h3 id="4-1-draft-then-verify-三步"><a href="#4-1-draft-then-verify-三步" class="headerlink" title="4.1 draft-then-verify 三步"></a>4.1 draft-then-verify 三步</h3><p><img loading="lazy" src="/images/edge-llm-2026/fig5-speculative.svg" alt="图 5：投机解码时序"></p>
+<ol>
+<li><strong>Draft</strong>：轻量草稿模型自回归地提出 γ 个候选 token（比如 4 个），每步很便宜；</li>
+<li><strong>Verify</strong>：目标大模型跑<strong>一次</strong>前向，同时给出这 γ 个位置以及下一个位置的分布；</li>
+<li><strong>Accept</strong>：从左到右逐位校验，接受概率 min(1, p(x)&#x2F;q(x))；第一个拒绝处停止，从修正分布重采样一个 token，进入下一轮。</li>
+</ol>
+<p>关键在第 2 步：Transformer 本来就能并行处理多个位置，<strong>验证 4 个候选与生成 1 个 token，权重都只读一遍</strong>。在带宽受限区，多出来的算力几乎是免费的——这正是图 2 里「I 提升 γ 倍、点向右移动」的含义。</p>
+<h3 id="4-2-为什么敢叫「无损」"><a href="#4-2-为什么敢叫「无损」" class="headerlink" title="4.2 为什么敢叫「无损」"></a>4.2 为什么敢叫「无损」</h3><p>这不是启发式近似，而是可证明的采样等价。设目标分布为 p、草稿分布为 q，则单个位置的平均接受率：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">β = Σ_x min( p(x), q(x) )        α = 各位置 β 的均值</span><br></pre></td></tr></table></figure>
+
+<p>接受时按 q 采样并按 min(1, p&#x2F;q) 保留；拒绝时从残差分布重新采样：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p_residual(x) = max(0, p(x) − q(x)) / Σ max(0, p − q)</span><br></pre></td></tr></table></figure>
+
+<p>两部分合起来恰好还原 p。举个具体数字：p &#x3D; (0.45, 0.30, 0.15, 0.10)，q &#x3D; (0.30, 0.45, 0.20, 0.05)，则 min(p,q) &#x3D; (0.30, 0.30, 0.15, 0.05)，β &#x3D; 0.80；拒绝的 0.20 概率从残差 (0.75, 0, 0, 0.25) 补回，最终边缘分布仍严格等于 p。<strong>所以投机解码不改变输出分布，只改变得到它的路径。</strong></p>
+<h3 id="4-3-加速比怎么算"><a href="#4-3-加速比怎么算" class="headerlink" title="4.3 加速比怎么算"></a>4.3 加速比怎么算</h3><p>Leviathan 等人（ICML 2023）给出的经典结果，设草稿与目标单次耗时比为 c：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">E[每轮产出 token 数] = (1 − α^(γ+1)) / (1 − α)</span><br><span class="line">加速比 S            = E / (γ·c + 1)</span><br></pre></td></tr></table></figure>
+
+<p>代入 α &#x3D; 0.8、γ &#x3D; 4、c &#x3D; 0.05：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">E ≈ 3.36 token / 轮</span><br><span class="line">S ≈ 3.36 / (4×0.05 + 1) ≈ 2.8×</span><br></pre></td></tr></table></figure>
+
+<p>公式里藏着三个工程结论：</p>
+<ul>
+<li><strong>α 是命门</strong>：草稿与目标分布越对齐，收益越大；跨领域、高温度采样、创意写作会显著拉低 α。</li>
+<li><strong>c 必须足够小</strong>：草稿模型若不够轻，γ·c 会吃掉全部收益。</li>
+<li><strong>γ 有最优值</strong>：α 低时把草稿拉长反而更慢，因为多跑的草稿步都白费。</li>
+</ul>
+<h3 id="4-4-变体对比：草稿从哪来"><a href="#4-4-变体对比：草稿从哪来" class="headerlink" title="4.4 变体对比：草稿从哪来"></a>4.4 变体对比：草稿从哪来</h3><table>
+<thead>
+<tr>
+<th>方案</th>
+<th>草稿来源</th>
+<th>额外内存</th>
+<th>典型接受率区间</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>独立小模型</td>
+<td>同族蒸馏小模型</td>
+<td>一个模型</td>
+<td>中～高</td>
+<td>最直观，但要常驻一份权重</td>
+</tr>
+<tr>
+<td>n-gram &#x2F; 提示查找</td>
+<td>上下文里的重复片段</td>
+<td>几乎为零</td>
+<td>低～中</td>
+<td>长上下文、代码、模板文本特别有效</td>
+</tr>
+<tr>
+<td>Medusa 多头</td>
+<td>目标模型上挂多个预测头</td>
+<td>少量参数</td>
+<td>中</td>
+<td>无需独立草稿模型</td>
+</tr>
+<tr>
+<td>EAGLE 系列</td>
+<td>目标特征层上的浅层草稿</td>
+<td>很小</td>
+<td>高</td>
+<td>论文口径收益高，实现复杂</td>
+</tr>
+<tr>
+<td><strong>MTP 原生多头</strong></td>
+<td>模型训练时就带多 token 预测头</td>
+<td>极小</td>
+<td>高</td>
+<td>2026 端侧最值得关注的方向</td>
+</tr>
+</tbody></table>
+<p>数字上要谨慎：Leviathan 等在 T5-XXL 上报告约 <strong>2～3×</strong>；EAGLE-3 论文报告最高约 6.5×；Google AI Edge 官方博客称 Gemma 4 的 <strong>MTP drafters 最高约 3×</strong>。这些数字来自不同模型、硬件与采样设置，<strong>不能横向比较</strong>，但方向一致：把稀疏的空闲算力换成吞吐。</p>
+<h3 id="4-5-什么时候不赚"><a href="#4-5-什么时候不赚" class="headerlink" title="4.5 什么时候不赚"></a>4.5 什么时候不赚</h3><table>
+<thead>
+<tr>
+<th>场景</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>batch 已经很大</td>
+<td>算术强度本来就在平台段，没有「免费算力」可用；实测 batch 128 时收益会大幅衰减</td>
+</tr>
+<tr>
+<td>草稿模型本身很贵</td>
+<td>c 变大，分母吃掉分子</td>
+</tr>
+<tr>
+<td>端侧内存吃紧</td>
+<td>多常驻一份草稿权重，可能不如直接换更小的目标模型</td>
+</tr>
+<tr>
+<td>追求逐字节确定性</td>
+<td>「分布无损」≠「输出逐字节相同」，采样实现与数值精度会带来差异</td>
+</tr>
+<tr>
+<td>长上下文且缓存压力大</td>
+<td>验证需要额外的 KV 槽位，与第 3 章的优化目标冲突</td>
+</tr>
+</tbody></table>
+<h3 id="4-6-在-Android-上打开它"><a href="#4-6-在-Android-上打开它" class="headerlink" title="4.6 在 Android 上打开它"></a>4.6 在 Android 上打开它</h3><p>LiteRT-LM 已把投机解码做成开关（官方 CLI 示例）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">litert-lm run \</span><br><span class="line">  --from-huggingface-repo=litert-community/gemma-4-E4B-it-litert-lm \</span><br><span class="line">  gemma-4-E4B-it.litertlm \</span><br><span class="line">  --backend=gpu \</span><br><span class="line">  --speculative-decoding=on \</span><br><span class="line">  --prompt=<span class="string">&quot;What is the capital of France?&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>Kotlin 侧的落地形态大致是：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 示意伪代码：真实 API 以官方 SDK 文档为准</span></span><br><span class="line"><span class="keyword">val</span> modelInfo = LiteRtLm.describe(modelPath)   <span class="comment">// 先读元数据与运行时需求</span></span><br><span class="line"><span class="keyword">if</span> (!device.supports(modelInfo)) <span class="keyword">return</span> routeToCloud(request)</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> session = LiteRtLm.Session(</span><br><span class="line">    model = modelPath,</span><br><span class="line">    backend = Backend.GPU,          <span class="comment">// 由设备档位决定 NPU / GPU / CPU</span></span><br><span class="line">    maxContextTokens = <span class="number">4096</span>,</span><br><span class="line">    kvCache = KvCacheConfig.Quantized(bits = <span class="number">8</span>, dynamicGrowth = <span class="literal">true</span>),</span><br><span class="line">    speculativeDecoding = enabled   <span class="comment">// 仅在 baseline 通过 QA 后再打开</span></span><br><span class="line">)</span><br><span class="line">session.generate(request, onToken = ::renderStreaming)</span><br></pre></td></tr></table></figure>
+
+<p>注意顺序：<strong>先把 baseline 跑通并测出 TTFT&#x2F;TPS，再开投机解码做 A&#x2F;B</strong>。一上来就叠满优化，出问题很难定位是哪一层。</p>
+<h2 id="5-第四层：把硬件喂饱-——-运行时、编译与调度"><a href="#5-第四层：把硬件喂饱-——-运行时、编译与调度" class="headerlink" title="5. 第四层：把硬件喂饱 —— 运行时、编译与调度"></a>5. 第四层：把硬件喂饱 —— 运行时、编译与调度</h2><p><strong>一句话直觉</strong>：前面三章改的是「要算什么」，这一章决定「这些计算到底能不能落到 NPU 上、有没有被无谓的拷贝浪费掉」。</p>
+<h3 id="5-1-四层栈"><a href="#5-1-四层栈" class="headerlink" title="5.1 四层栈"></a>5.1 四层栈</h3><p><img loading="lazy" src="/images/edge-llm-2026/fig6-runtime-stack.svg" alt="图 6：端侧推理四层栈"></p>
+<table>
+<thead>
+<tr>
+<th>层</th>
+<th>职责</th>
+<th>2026 年代表</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>应用 API</td>
+<td>业务能直接调用的能力</td>
+<td>ML Kit GenAI、MediaPipe Tasks、AI Edge Gallery、业务自研 SDK</td>
+</tr>
+<tr>
+<td>运行时 &#x2F; 引擎</td>
+<td>KV 管理、调度、投机解码、前缀缓存</td>
+<td>LiteRT &#x2F; LiteRT-LM、ExecuTorch、MLC-LLM、llama.cpp、ONNX Runtime Mobile、Core ML</td>
+</tr>
+<tr>
+<td>编译器 &#x2F; 硬件抽象</td>
+<td>算子融合、图切分与委托、内存规划</td>
+<td>QNN、Vulkan &#x2F; OpenCL、Metal、XNNPACK、各类 NPU SDK</td>
+</tr>
+<tr>
+<td>模型 &#x2F; 数值格式</td>
+<td>决定 W 大小与可用内核</td>
+<td><code>.litertlm</code> &#x2F; <code>.pte</code> &#x2F; GGUF &#x2F; <code>.tflite</code>；INT4、FP8、NVFP4、MXFP4</td>
+</tr>
+</tbody></table>
+<h3 id="5-2-运行时怎么选"><a href="#5-2-运行时怎么选" class="headerlink" title="5.2 运行时怎么选"></a>5.2 运行时怎么选</h3><table>
+<thead>
+<tr>
+<th>运行时</th>
+<th>生态倾向</th>
+<th>典型加速后端</th>
+<th>LLM 支持</th>
+<th>什么时候选它</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>LiteRT &#x2F; LiteRT-LM</strong></td>
+<td>Google &#x2F; Android 第一方</td>
+<td>Hexagon、联发科 &#x2F; Exynos NPU、GPU、CPU</td>
+<td>完整（KV、投机解码、多模态、工具调用）</td>
+<td>Android 主力、想用官方 GenAI API、需要 Kotlin &#x2F; Flutter SDK</td>
+</tr>
+<tr>
+<td><strong>ExecuTorch</strong></td>
+<td>PyTorch 原生</td>
+<td>QNN、Vulkan、ANE、ARM</td>
+<td>完整（含多模态 LLM）</td>
+<td>模型与训练管线在 PyTorch，希望导出链路最短</td>
+</tr>
+<tr>
+<td><strong>MLC-LLM</strong></td>
+<td>编译派</td>
+<td>跨 GPU 后端（Vulkan &#x2F; Metal &#x2F; CUDA &#x2F; WebGPU）</td>
+<td>完整</td>
+<td>一套模型多端复用、含浏览器场景</td>
+</tr>
+<tr>
+<td><strong>llama.cpp &#x2F; GGUF</strong></td>
+<td>社区最活跃</td>
+<td>CPU 为底、多种后端插件</td>
+<td>完整</td>
+<td>快速验证、桌面 &#x2F; 本地实验</td>
+</tr>
+<tr>
+<td><strong>ONNX Runtime Mobile &#x2F; GenAI</strong></td>
+<td>跨厂商</td>
+<td>QNN、DirectML、WebGPU</td>
+<td>完整</td>
+<td>已有 ONNX 资产、Windows &#x2F; 跨芯片优先</td>
+</tr>
+<tr>
+<td><strong>Core ML</strong></td>
+<td>Apple 独占</td>
+<td>ANE</td>
+<td>完整</td>
+<td>iOS &#x2F; macOS，需要吃满神经引擎</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>版本迭代很快，具体能力请以各项目官方 release notes 为准。一个稳妥原则：<strong>优先选与目标平台第一方维护的运行时</strong>，因为 NPU 算子覆盖、量化格式支持、热管理接口这些「脏活」通常只有平台方跟得上。</p>
+</blockquote>
+<h3 id="5-3-编译器替你做的四件事"><a href="#5-3-编译器替你做的四件事" class="headerlink" title="5.3 编译器替你做的四件事"></a>5.3 编译器替你做的四件事</h3><ol>
+<li><strong>算子融合</strong>：把 LayerNorm &#x2F; RoPE &#x2F; Softmax 等小算子并进 Attention 主内核，减少中间结果来回读写内存；</li>
+<li><strong>图切分与委托</strong>：把 NPU 不支持的算子留在 CPU&#x2F;GPU，其余整段交给 NPU——切分点越少越好，跨后端的数据搬运很贵；</li>
+<li><strong>内存对齐与规划</strong>：NPU 对张量地址对齐敏感（常见 64 Byte），没对齐时驱动会偷偷做一次「copy-on-input」，每步多出若干毫秒；</li>
+<li><strong>低比特内核</strong>：INT4 &#x2F; FP4 GEMM 是否有原生指令支持，决定量化到底省的是「内存」还是「内存 + 时间」。</li>
+</ol>
+<h3 id="5-4-设备分层与动态降级"><a href="#5-4-设备分层与动态降级" class="headerlink" title="5.4 设备分层与动态降级"></a>5.4 设备分层与动态降级</h3><p>不要按旗舰机设计产品，要按「地板」设计：</p>
+<table>
+<thead>
+<tr>
+<th>档位</th>
+<th>典型硬件能力</th>
+<th>建议策略</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>旗舰</td>
+<td>NPU + 高带宽 LPDDR5X，可常驻 2～4B INT4</td>
+<td>本地 LLM、多模态、投机解码、较长上下文</td>
+</tr>
+<tr>
+<td>中端</td>
+<td>GPU 可用，NPU 覆盖不全</td>
+<td>小模型 + GPU delegate、短上下文、关闭投机解码</td>
+</tr>
+<tr>
+<td>入门 &#x2F; 老机型</td>
+<td>CPU 为唯一可靠后端</td>
+<td>只跑轻量视觉 &#x2F; 语音 &#x2F; 嵌入模型，LLM 走云端</td>
+</tr>
+</tbody></table>
+<p>持续推理会触发热降频。工程上应监听系统热状态回调，在温度进入告警档时<strong>主动降级</strong>：切到更小模型、提高量化档、缩短 max_context、或把请求转云。等温度回落再恢复。这比被系统杀进程后重新加载 1.5 GB 权重要体面得多。</p>
+<h3 id="5-5-四个必须盯的指标"><a href="#5-5-四个必须盯的指标" class="headerlink" title="5.5 四个必须盯的指标"></a>5.5 四个必须盯的指标</h3><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>含义</th>
+<th>为什么重要</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>TTFT</strong></td>
+<td>首 token 延迟</td>
+<td>决定「点下去有没有反应」，主要受 prefill 与模型加载影响</td>
+</tr>
+<tr>
+<td><strong>TPS</strong></td>
+<td>稳态生成速度</td>
+<td>决定「读起来卡不卡」，约 30+ token&#x2F;s 体感可用</td>
+</tr>
+<tr>
+<td><strong>峰值内存</strong></td>
+<td>权重 + KV + 运行时开销</td>
+<td>决定会不会被系统回收，必须按多轮长对话测</td>
+</tr>
+<tr>
+<td><strong>J &#x2F; token</strong></td>
+<td>每 token 能耗</td>
+<td>决定能不能「常驻 &#x2F; 随时在线」，比峰值 TOPS 更能预测真实体验</td>
+</tr>
+</tbody></table>
+<h2 id="6-第五层：换范式-——-当生成不再逐-token"><a href="#6-第五层：换范式-——-当生成不再逐-token" class="headerlink" title="6. 第五层：换范式 —— 当生成不再逐 token"></a>6. 第五层：换范式 —— 当生成不再逐 token</h2><p>前四层都在优化自回归解码，但都接受了一个前提：一次前向产出 1 个 token。2026 年最值得关注的变化，是有人开始动这个前提本身。</p>
+<h3 id="6-1-一个真实的硬新闻：DiffusionGemma"><a href="#6-1-一个真实的硬新闻：DiffusionGemma" class="headerlink" title="6.1 一个真实的硬新闻：DiffusionGemma"></a>6.1 一个真实的硬新闻：DiffusionGemma</h3><p>2026 年 6 月 10 日，Google DeepMind 以 Apache 2.0 发布 <strong>DiffusionGemma</strong>（实验性开放模型），官方给出的关键信息：</p>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>官方口径</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>架构</td>
+<td>26B MoE，单步仅激活约 3.8B 参数</td>
+</tr>
+<tr>
+<td>生成方式</td>
+<td>离散文本扩散：以 <strong>256 token 为一块</strong>并行去噪，而非从左到右</td>
+</tr>
+<tr>
+<td>速度</td>
+<td>单张 H100 <strong>1000+ token&#x2F;s</strong>，RTX 5090 <strong>700+ token&#x2F;s</strong>，最高约 <strong>4×</strong></td>
+</tr>
+<tr>
+<td>显存</td>
+<td>量化后约 18 GB，落在高端消费级 GPU 范围内</td>
+</tr>
+<tr>
+<td>特殊能力</td>
+<td>双向注意力、迭代自纠正，天然擅长内联编辑 &#x2F; 代码补全 &#x2F; 填空</td>
+</tr>
+<tr>
+<td>数值格式</td>
+<td>Blackwell 上原生支持 NVFP4</td>
+</tr>
+<tr>
+<td>明确定位</td>
+<td><strong>输出质量低于标准 Gemma 4</strong>，实验性，不建议直接替换生产链路</td>
+</tr>
+</tbody></table>
+<h3 id="6-2-机制：瓶颈从带宽搬到了算力"><a href="#6-2-机制：瓶颈从带宽搬到了算力" class="headerlink" title="6.2 机制：瓶颈从带宽搬到了算力"></a>6.2 机制：瓶颈从带宽搬到了算力</h3><p><img loading="lazy" src="/images/edge-llm-2026/fig7-ar-vs-diffusion.svg" alt="图 7：自回归与块扩散的生成方式对比"></p>
+<p>块扩散把 256 个位置当成一张「噪声画布」，用若干轮迭代同时去噪、逐步收敛成文本。因为块内每个位置都能双向看到彼此，模型还能在后续迭代里<strong>回头修正前面写错的地方</strong>——这是自回归结构根本做不到的。</p>
+<p>从 Roofline 的角度看，这才是最有意思的部分：一次前向同时处理 256 个位置，算术强度 I 提高约两个数量级，工作点从斜线段<strong>移动到平台段</strong>。官方措辞很准确——「把解码瓶颈从内存带宽转移到计算」。换句话说，它不是把「搬字节」做得更快，而是让<strong>同一批搬进来的字节干更多的活</strong>，正好是图 2 中最右侧那条路径。</p>
+<h3 id="6-3-两种范式的正面对比"><a href="#6-3-两种范式的正面对比" class="headerlink" title="6.3 两种范式的正面对比"></a>6.3 两种范式的正面对比</h3><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>自回归（AR）</th>
+<th>块扩散（DiffusionGemma 类）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>生成单位</td>
+<td>1 token &#x2F; 前向</td>
+<td>256 token 块 &#x2F; 多轮去噪</td>
+</tr>
+<tr>
+<td>硬件瓶颈</td>
+<td>内存带宽</td>
+<td>计算吞吐</td>
+</tr>
+<tr>
+<td>单用户吞吐</td>
+<td>受带宽上限约束</td>
+<td>官方口径最高约 4×</td>
+</tr>
+<tr>
+<td>首块 &#x2F; 首 token</td>
+<td>首 token 快，逐字流式</td>
+<td>需等整块收敛，流式体验不同</td>
+</tr>
+<tr>
+<td>输出质量</td>
+<td>当前更优</td>
+<td>官方承认低于同规模 AR</td>
+</tr>
+<tr>
+<td>编辑 &#x2F; 填空</td>
+<td>需专门训练</td>
+<td>双向注意力天然适配</td>
+</tr>
+<tr>
+<td>生态成熟度</td>
+<td>运行时、内核、评测齐全</td>
+<td>实验阶段，需专用内核与格式</td>
+</tr>
+<tr>
+<td>适合场景</td>
+<td>生产对话、推理、长文</td>
+<td>实时草稿、内联改写、快速迭代、结构化文本</td>
+</tr>
+</tbody></table>
+<h3 id="6-4-边界与另一条线"><a href="#6-4-边界与另一条线" class="headerlink" title="6.4 边界与另一条线"></a>6.4 边界与另一条线</h3><p>要冷静看待：4× 是<strong>单用户、专用 GPU</strong> 上的口径，不会自动变成「云端更便宜」或在手机上复现；质量回退意味着它更适合做「快草稿」，旁边仍要配一个质量优先的模型；而「整块出稿」也改变了流式交互的产品形态。</p>
+<p>另一条值得留意的研究线是 <strong>SSM &#x2F; Mamba 类线性注意力</strong>：用固定大小的状态替代随 T 线性增长的 KV Cache，从公式层面把 S 消掉。目前更多是研究方向，能否在通用语言任务上达到与 Transformer 相当的质量仍需验证——<strong>不要把它写进今年的排期，但值得放进技术雷达</strong>。</p>
+<h2 id="7-落地：一个可执行的决策框架"><a href="#7-落地：一个可执行的决策框架" class="headerlink" title="7. 落地：一个可执行的决策框架"></a>7. 落地：一个可执行的决策框架</h2><h3 id="7-1-端云混合路由要显式设计"><a href="#7-1-端云混合路由要显式设计" class="headerlink" title="7.1 端云混合路由要显式设计"></a>7.1 端云混合路由要显式设计</h3><p><img loading="lazy" src="/images/edge-llm-2026/fig8-routing.svg" alt="图 8：端云混合路由"></p>
+<p>把路由写成一个函数，在请求真正执行<strong>之前</strong>决策，而不是「本地失败了再兜底上云」：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">r(x, d, s, p) → &#123; 本地执行 | 上云 | 延后 / 拒绝 &#125;</span><br><span class="line"></span><br><span class="line">x：任务类别与复杂度        d：数据敏感等级</span><br><span class="line">s：设备状态（模型是否就绪、可用内存、温度、电量、网络）</span><br><span class="line">p：版本化产品策略（灰度、合规、成本上限）</span><br></pre></td></tr></table></figure>
+
+<p>路由结果要连着观测指标回流：真机上测到的 TTFT &#x2F; TPS &#x2F; 峰值内存 &#x2F; 温度曲线，回写设备画像与降级阈值。没有指标就没有路由，只能拍脑袋。</p>
+<h3 id="7-2-Android-侧落地清单"><a href="#7-2-Android-侧落地清单" class="headerlink" title="7.2 Android 侧落地清单"></a>7.2 Android 侧落地清单</h3><table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>动作</th>
+<th>验收</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>按任务分类，明确哪些必须本地（隐私 &#x2F; 离线）、哪些可上云</td>
+<td>有一张任务 × 数据等级表</td>
+</tr>
+<tr>
+<td>2</td>
+<td>按设备档位选模型与量化档，用 ModelInfo 类接口在加载前校验</td>
+<td>低端机不触发大模型加载</td>
+</tr>
+<tr>
+<td>3</td>
+<td>打通 baseline：INT4 权重 + GQA + KV 量化，测四项指标</td>
+<td>多轮长对话无 OOM</td>
+</tr>
+<tr>
+<td>4</td>
+<td>加前缀缓存，压 TTFT</td>
+<td>多轮对话 TTFT 明显下降</td>
+</tr>
+<tr>
+<td>5</td>
+<td>A&#x2F;B 打开投机解码</td>
+<td>按任务类别分别看 TPS 提升，α 低的场景回退</td>
+</tr>
+<tr>
+<td>6</td>
+<td>接热状态回调与降级策略</td>
+<td>高温下不崩、不白屏、可恢复</td>
+</tr>
+<tr>
+<td>7</td>
+<td>建立回归评测集（按任务类别，而非平均分）</td>
+<td>每次模型 &#x2F; 运行时升级可对比</td>
+</tr>
+</tbody></table>
+<h3 id="7-3-常见误区速查"><a href="#7-3-常见误区速查" class="headerlink" title="7.3 常见误区速查"></a>7.3 常见误区速查</h3><table>
+<thead>
+<tr>
+<th>误区</th>
+<th>更正</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>「TOPS 越高，端侧 LLM 越快」</td>
+<td>单用户解码是带宽受限，先看内存带宽与算子覆盖</td>
+</tr>
+<tr>
+<td>「INT4 一定提速 4 倍」</td>
+<td>只有存在原生低比特内核时才成立，否则可能只省内存</td>
+</tr>
+<tr>
+<td>「MoE 激活 3.8B，所以只要 3.8B 内存」</td>
+<td>全部专家权重仍需驻留，省的是计算不是权重带宽</td>
+</tr>
+<tr>
+<td>「投机解码是近似，会掉质量」</td>
+<td>采样分布可证明等价，但需留意数值实现差异</td>
+</tr>
+<tr>
+<td>「扩散 LLM 要取代自回归」</td>
+<td>当前是质量换速度的实验性补充，适合草稿与编辑场景</td>
+</tr>
+<tr>
+<td>「长上下文开大就行」</td>
+<td>KV Cache 线性增长，先做 GQA &#x2F; 滑窗 &#x2F; KV 量化再谈 8K、32K</td>
+</tr>
+</tbody></table>
+<h2 id="8-小结：一张表收束全文"><a href="#8-小结：一张表收束全文" class="headerlink" title="8. 小结：一张表收束全文"></a>8. 小结：一张表收束全文</h2><table>
+<thead>
+<tr>
+<th>技术</th>
+<th>动的变量</th>
+<th>典型收益</th>
+<th>主要代价</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>量化 &#x2F; 低比特</td>
+<td>W</td>
+<td>内存 2～4×，带宽同比例下降</td>
+<td>精度风险、需要对应内核</td>
+</tr>
+<tr>
+<td>GQA &#x2F; KV 量化 &#x2F; 滑窗 &#x2F; 分页</td>
+<td>S</td>
+<td>长对话状态 4～8×</td>
+<td>可能丢早期上下文</td>
+</tr>
+<tr>
+<td>投机解码 &#x2F; MTP</td>
+<td>N</td>
+<td>2～3×（条件合适时更高）</td>
+<td>额外草稿开销、依赖接受率</td>
+</tr>
+<tr>
+<td>编译融合 &#x2F; 委托 &#x2F; 热降级</td>
+<td>有效带宽与利用率</td>
+<td>消除隐藏拷贝与降频</td>
+<td>平台适配成本</td>
+</tr>
+<tr>
+<td>块扩散</td>
+<td>改变前提</td>
+<td>官方口径最高约 4×</td>
+<td>质量回退、生态不成熟、流式形态变化</td>
+</tr>
+</tbody></table>
+<p>回到最初那条主线：<strong>端侧推理的每一次进步，都是把「每 token 要搬多少字节、要串行多少次」再往下压一格</strong>。量化压 W，KV 优化压 S，投机解码压 N，编译器让这些理论收益真正落到硅片上，而块扩散试图直接换掉游戏规则。理解了这个框架，再看到新论文或新芯片宣传时，你就能第一时间问出最关键的那句：<strong>它动的到底是哪一个变量？</strong></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://deepmind.google/blog/diffusiongemma-4x-faster-text-generation">Google DeepMind：DiffusionGemma — 4x faster text generation</a>（2026-06）</li>
+<li><a target="_blank" rel="noopener" href="https://deepmind.google/models/gemma/diffusiongemma/">Google DeepMind：DiffusionGemma 模型页</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/google-ai-edge/LiteRT-LM">Google AI Edge：LiteRT-LM 官方仓库与 release notes</a></li>
+<li><a target="_blank" rel="noopener" href="https://developers.googleblog.com/gemma-4-12b-the-developer-guide">Google Developers Blog：Gemma 4 12B Developer Guide</a></li>
+<li><a target="_blank" rel="noopener" href="https://developers.googleblog.com/bringing-gemma-4-12b-to-your-laptop-unlocking-local-agentic-workflows-with-google-ai-edge/">Google Developers Blog：Bringing Gemma 4 12B to your Laptop</a></li>
+<li><a target="_blank" rel="noopener" href="https://openreview.net/forum?id=C9NEblP8vS">Leviathan et al., Fast Inference from Transformers via Speculative Decoding, ICML 2023</a></li>
+<li><a target="_blank" rel="noopener" href="https://techgig.com/amp/news/ai/infoq-report-details-2026-ai-ml-data-engineering-trends/135381578">InfoQ 2026 AI&#x2F;ML&#x2F;Data Engineering Trends Report 报道</a></li>
+<li><a target="_blank" rel="noopener" href="https://aaai.latere.ai/en/practice/edge-on-device">AAAI 实践资料：Edge and On-Device Deployment</a></li>
+</ul>
+<blockquote>
+<p>本文中标注「示意」的计算与曲线用于说明量级和趋势；涉及具体产品能力、版本与性能数字，请以各项目官方文档与实机评测为准。</p>
+</blockquote>
+
+<div class="hexo-reader" lang="zh" data-position="top-right" data-audio="/audio/4cd1a17a72455d95c0cea19586c3121bc06e4cf2.mp3" data-title="从内存墙到并行生成：2026 端侧大模型推理技术全景" data-label-play="朗读本文" data-label-pause="暂停朗读" data-label-ready="准备播放" data-label-playing="正在朗读" data-label-paused="已暂停" data-label-ended="播放完成" data-label-failed="播放失败" data-label-load-failed="音频加载失败">
+  <button type="button" class="hexo-reader__launcher" aria-label="文章朗读播放器" aria-expanded="false"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14v-3a8 8 0 0 1 16 0v3"/><rect x="3" y="12" width="4" height="8" rx="2"/><rect x="17" y="12" width="4" height="8" rx="2"/></svg><span class="hexo-reader__activity" aria-hidden="true"></span></button>
+  <div class="hexo-reader__panel" role="group" aria-label="文章朗读播放器">
+    <div class="hexo-reader__body">
+      <div class="hexo-reader__header">
+        <span class="hexo-reader__heading">
+          <span class="hexo-reader__status" aria-live="polite">准备播放</span>
+          <span class="hexo-reader__title" title="从内存墙到并行生成：2026 端侧大模型推理技术全景">从内存墙到并行生成：2026 端侧大模型推理技术全景</span>
+        </span>
+        <button type="button" class="hexo-reader__collapse" aria-label="收起播放器" title="收起播放器"><svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="m5 8 5 5 5-5"/></svg></button>
+      </div>
+      <div class="hexo-reader__progress">
+        <input type="range" class="hexo-reader__seek" min="0" max="1000" value="0" step="1" aria-label="播放进度" />
+        <span class="hexo-reader__time" aria-live="off"><span class="hexo-reader__elapsed">0:00</span><span class="hexo-reader__duration">0:00</span></span>
+      </div>
+      <div class="hexo-reader__controls">
+        <div class="hexo-reader__transport">
+          <button type="button" class="hexo-reader__skip" data-skip="-10" aria-label="快退 10 秒" title="快退 10 秒"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g><path d="M5 7a8 8 0 1 1-1 9M5 3v4h4"/></g><text x="12" y="15" fill="currentColor" stroke="none" text-anchor="middle" font-size="8" font-weight="600" font-family="sans-serif">10</text></svg></button>
+          <button type="button" class="hexo-reader__play" aria-label="朗读本文" aria-keyshortcuts="Space Enter">
+            <svg class="hexo-reader__icon-play" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M8 5.8a.8.8 0 0 1 1.2-.7l9.5 6.2a.8.8 0 0 1 0 1.4l-9.5 6.2a.8.8 0 0 1-1.2-.7Z"/></svg>
+            <svg class="hexo-reader__icon-pause" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="7" y="5" width="3.5" height="14" rx="1" fill="currentColor"/><rect x="13.5" y="5" width="3.5" height="14" rx="1" fill="currentColor"/></svg>
+          </button>
+          <button type="button" class="hexo-reader__skip" data-skip="10" aria-label="快进 10 秒" title="快进 10 秒"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g transform="translate(24 0) scale(-1 1)"><path d="M5 7a8 8 0 1 1-1 9M5 3v4h4"/></g><text x="12" y="15" fill="currentColor" stroke="none" text-anchor="middle" font-size="8" font-weight="600" font-family="sans-serif">10</text></svg></button>
+        </div>
+        <div class="hexo-reader__speed-picker">
+          <button type="button" class="hexo-reader__speed-toggle" aria-label="播放速度" aria-expanded="false"><span class="hexo-reader__rate-value">1×</span><svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="m5 6 3 3 3-3"/></svg></button>
+          <div class="hexo-reader__rates" role="group" aria-label="播放速度" hidden>
+            <span class="hexo-reader__speed-label">播放速度</span>
+            <div class="hexo-reader__rate-options"><button type="button" class="hexo-reader__rate" data-rate="0.75" aria-pressed="false">0.75×</button><button type="button" class="hexo-reader__rate" data-rate="1" aria-pressed="true">1×</button><button type="button" class="hexo-reader__rate" data-rate="1.25" aria-pressed="false">1.25×</button><button type="button" class="hexo-reader__rate" data-rate="1.5" aria-pressed="false">1.5×</button><button type="button" class="hexo-reader__rate" data-rate="2" aria-pressed="false">2×</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <audio class="hexo-reader__audio" preload="metadata" src="/audio/4cd1a17a72455d95c0cea19586c3121bc06e4cf2.mp3"></audio>
+  </div>
+</div></div><div class="article-tags"><a href="/tags/Android/"># Android</a><a href="/tags/%E7%AB%AF%E4%BE%A7AI/"># 端侧AI</a><a href="/tags/LLM%E6%8E%A8%E7%90%86/"># LLM推理</a><a href="/tags/%E9%87%8F%E5%8C%96/"># 量化</a><a href="/tags/KV-Cache/"># KV Cache</a><a href="/tags/%E6%8A%95%E6%9C%BA%E8%A7%A3%E7%A0%81/"># 投机解码</a></div><div class="article-end"><span>✦</span><p>感谢读到这里</p></div><div class="article-tools"><button class="button service-button" type="button" data-share-article aria-haspopup="dialog" aria-controls="article-share-dialog" hidden>分享文章 ↗</button><button class="button service-button" id="copy-article-link" type="button">复制文章链接 ↗</button><button class="button service-button" type="button" data-preview-print hidden>打印 / 导出 PDF</button></div><div class="print-source"><p>心灵涂鸦 · 曦臣</p><p>原文：<a href="https://blog.liumingzhi.cn/2026/11/08/edge-llm-inference-2026/">https://blog.liumingzhi.cn/2026/11/08/edge-llm-inference-2026/</a></p></div><nav class="article-navigation" aria-label="相邻文章"><a class="article-navigation__item" href="/2026/11/18/geoai-%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86%E4%B8%8E%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6-%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BB%BA%E6%A8%A1-%E6%97%B6%E7%A9%BA%E6%8E%A8%E7%90%86%E4%B8%8E-gis-%E7%AE%A1%E7%BA%BF/" rel="prev"><span>← 上一篇</span><strong>GeoAI 底层原理与运行运行机制机制：空间数据建模、时空推理与 GIS 管线</strong></a><a class="article-navigation__item" href="/2026/10/27/hexostudio-1-0/" rel="next"><span>下一篇 →</span><strong>HexoStudio 1.0：给自己的 Hexo 博客做一个管理后台</strong></a></nav><section class="related-section" aria-labelledby="related-heading"><div class="section-heading"><div><span class="section-kicker">KEEP EXPLORING</span><h2 id="related-heading">你可能还想读</h2></div></div><div class="related-grid"><a class="related-card" href="/2026/06/18/Android%2017%20%E5%85%A8%E9%9D%A2%E8%A7%A3%E8%AF%BB%EF%BC%9A%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8E%E7%94%A8%E6%88%B7%E9%83%BD%E8%AF%A5%E7%9F%A5%E9%81%93%E7%9A%84%E5%8F%98%E5%8C%96/"><span class="related-card__reason">共同标签 · Android</span><h3>Android 17 全面解读：开发者与用户都该知道的变化</h3><p>Android 17 全面解读：开发者与用户都该知道的变化 版本信息：Android 17 / API Level 37稳定版发布日期：2026 ...</p><span class="related-card__date"><time datetime="2026-06-18T06:59:04.977Z">2026.06.18</time> · 阅读文章 ↗</span></a><a class="related-card" href="/2024/07/25/RxJava-%E5%87%BD%E6%95%B0%E5%93%8D%E5%BA%94%E5%BC%8F%E7%BC%96%E7%A8%8B/"><span class="related-card__reason">共同标签 · Android</span><h3>RxJava-函数响应式编程</h3><p>函数响应式编程概述 函数式编程是面向数学的抽象，把计算描述为一种表达式求值，函数可以在任何地方定义，并且可以对函数进行组合。 响应式编程是一种面向...</p><span class="related-card__date"><time datetime="2024-07-25T00:52:12.196Z">2024.07.25</time> · 阅读文章 ↗</span></a><a class="related-card" href="/2024/06/18/Android%E4%B8%89%E7%A7%8D%E5%8A%A8%E7%94%BB%E5%AD%A6%E4%B9%A0/"><span class="related-card__reason">共同标签 · Android</span><h3>Android三种动画学习</h3><p>Android的动画分为了三种， 分别是 帧动画、View动画（补间动画）、属性动画。 1、帧动画 帧动画就是顺序播放一组预先定义好的图片，就类似...</p><span class="related-card__date"><time datetime="2024-06-18T16:43:27.323Z">2024.06.19</time> · 阅读文章 ↗</span></a></div></section><section class="comments-card" aria-labelledby="comments-heading"><h2 id="comments-heading">留下你的想法</h2><div id="comment-service" data-provider="twikoo" data-load-mode="viewport" data-env="https://twikoo.liumingzhi.cn/" data-server="" data-script="/vendor/twikoo/2.0.17/twikoo.min.js" aria-busy="false"><p class="comment-status" role="status">与路过的朋友聊聊这篇内容。</p><button class="button service-button" id="comments-load" type="button">加载评论</button><div id="twikoo"></div></div></section></article><aside class="reading-aside"><section class="side-card profile-card"><div class="profile-card__cover"></div><img class="profile-card__avatar" src="https://pic3.zhimg.com/v2-b1951610711c8d80060d509d9b499c72_r.jpg?source=1940ef5c" alt="曦臣" loading="lazy"><h2>曦臣</h2><p>归途也还可爱</p><nav class="social-links" aria-label="关注作者"><div class="social-entry"><a class="social-link social-link--github" href="https://github.com/xichenx" target="_blank" rel="noopener noreferrer me" title="在 GitHub 关注我" aria-label="在 GitHub 关注我"><span class="social-link__badge" aria-hidden="true"><span class="social-brand-icon"></span></span><span>GitHub</span></a></div><div class="social-entry"><a class="social-link social-link--csdn" href="https://blog.csdn.net/qq_60642811" target="_blank" rel="noopener noreferrer me" title="在 CSDN 关注我" aria-label="在 CSDN 关注我"><span class="social-link__badge" aria-hidden="true"><img class="social-brand-image" src="/icons/social/csdn.ico" alt="" width="18" height="18"></span><span>CSDN</span></a></div></nav><div class="profile-card__links"><a href="/about/">认识我</a><a href="/link/">友情链接</a></div></section><div class="reading-aside-sticky"><div class="side-card toc-card"><div class="reading-toc-heading"><h2>本文目录</h2><span data-reading-percent aria-hidden="true">0%</span></div><nav aria-label="文章章节"><div class="toc-filter" data-toc-filter hidden><label><span class="sr-only">筛选章节</span><input type="search" data-toc-query placeholder="筛选章节" autocomplete="off"></label><p class="toc-filter__status" role="status" hidden>没有匹配的章节</p></div><div class="toc-content"><a href="#引子：一条能串起所有技术的主线">引子：一条能串起所有技术的主线</a><a href="#1-第一性原理：解码慢，不是算力不够，是带宽不够">1. 第一性原理：解码慢，不是算力不够，是带宽不够</a><a class="toc-sub" href="#1-1-同样是前向，Prefill-和-Decode-是两种-workload">1.1 同样是前向，Prefill 和 Decode 是两种 workload</a><a class="toc-sub" href="#1-2-用-Roofline-把它画出来">1.2 用 Roofline 把它画出来</a><a class="toc-sub" href="#1-3-一个可以自己按计算器的估算">1.3 一个可以自己按计算器的估算</a><a class="toc-sub" href="#1-4-把优化拆成三个变量">1.4 把优化拆成三个变量</a><a href="#2-第一层：压缩-W-——-量化的数学与工程">2. 第一层：压缩 W —— 量化的数学与工程</a><a class="toc-sub" href="#2-1-仿射量化到底做了什么">2.1 仿射量化到底做了什么</a><a class="toc-sub" href="#2-2-2026-年的低比特格式，不止-INT4">2.2 2026 年的低比特格式，不止 INT4</a><a class="toc-sub" href="#2-3-量化解决不了什么">2.3 量化解决不了什么</a><a href="#3-第二层：压缩-S-——-KV-Cache-才是长对话的隐性杀手">3. 第二层：压缩 S —— KV Cache 才是长对话的隐性杀手</a><a class="toc-sub" href="#3-1-为什么必须有-KV-Cache">3.1 为什么必须有 KV Cache</a><a class="toc-sub" href="#3-2-四条削减路线">3.2 四条削减路线</a><a class="toc-sub" href="#3-3-2026-年的工程进展（官方口径）">3.3 2026 年的工程进展（官方口径）</a><a class="toc-sub" href="#3-4-三个真实会踩的坑">3.4 三个真实会踩的坑</a><a href="#4-第三层：压缩-N-——-投机解码与「无损」加速">4. 第三层：压缩 N —— 投机解码与「无损」加速</a><a class="toc-sub" href="#4-1-draft-then-verify-三步">4.1 draft-then-verify 三步</a><a class="toc-sub" href="#4-2-为什么敢叫「无损」">4.2 为什么敢叫「无损」</a><a class="toc-sub" href="#4-3-加速比怎么算">4.3 加速比怎么算</a><a class="toc-sub" href="#4-4-变体对比：草稿从哪来">4.4 变体对比：草稿从哪来</a><a class="toc-sub" href="#4-5-什么时候不赚">4.5 什么时候不赚</a><a class="toc-sub" href="#4-6-在-Android-上打开它">4.6 在 Android 上打开它</a><a href="#5-第四层：把硬件喂饱-——-运行时、编译与调度">5. 第四层：把硬件喂饱 —— 运行时、编译与调度</a><a class="toc-sub" href="#5-1-四层栈">5.1 四层栈</a><a class="toc-sub" href="#5-2-运行时怎么选">5.2 运行时怎么选</a><a class="toc-sub" href="#5-3-编译器替你做的四件事">5.3 编译器替你做的四件事</a><a class="toc-sub" href="#5-4-设备分层与动态降级">5.4 设备分层与动态降级</a><a class="toc-sub" href="#5-5-四个必须盯的指标">5.5 四个必须盯的指标</a><a href="#6-第五层：换范式-——-当生成不再逐-token">6. 第五层：换范式 —— 当生成不再逐 token</a><a class="toc-sub" href="#6-1-一个真实的硬新闻：DiffusionGemma">6.1 一个真实的硬新闻：DiffusionGemma</a><a class="toc-sub" href="#6-2-机制：瓶颈从带宽搬到了算力">6.2 机制：瓶颈从带宽搬到了算力</a><a class="toc-sub" href="#6-3-两种范式的正面对比">6.3 两种范式的正面对比</a><a class="toc-sub" href="#6-4-边界与另一条线">6.4 边界与另一条线</a><a href="#7-落地：一个可执行的决策框架">7. 落地：一个可执行的决策框架</a><a class="toc-sub" href="#7-1-端云混合路由要显式设计">7.1 端云混合路由要显式设计</a><a class="toc-sub" href="#7-2-Android-侧落地清单">7.2 Android 侧落地清单</a><a class="toc-sub" href="#7-3-常见误区速查">7.3 常见误区速查</a><a href="#8-小结：一张表收束全文">8. 小结：一张表收束全文</a><a href="#参考资料">参考资料</a></div></nav></div><section class="side-card weather-clock" data-weather-clock data-timezone="Asia/Shanghai" data-weather-url="https://api.open-meteo.com/v1/forecast?latitude=28.19&amp;longitude=112.98&amp;current=temperature_2m,relative_humidity_2m,weather_code,wind_direction_10m&amp;timeformat=unixtime&amp;timezone=Asia%2FShanghai" aria-label="时钟与天气 · 长沙市"><div class="weather-clock__top"><span data-clock-date>----.--.--</span><span class="weather-clock__weather"><span data-weather-icon aria-hidden="true">☁</span> <span data-weather-condition>天气</span> <span data-weather-temperature>—</span> °C</span><span class="weather-clock__humidity">💧<span data-weather-humidity>—</span>%</span></div><time class="weather-clock__time" data-clock-time aria-label="当前时间" aria-live="off"><span class="clock-digit" data-clock-digit="0" aria-hidden="true"><i class="clock-segment clock-segment--a"></i><i class="clock-segment clock-segment--b"></i><i class="clock-segment clock-segment--c"></i><i class="clock-segment clock-segment--d"></i><i class="clock-segment clock-segment--e"></i><i class="clock-segment clock-segment--f"></i><i class="clock-segment clock-segment--g"></i></span><span class="clock-digit" data-clock-digit="0" aria-hidden="true"><i class="clock-segment clock-segment--a"></i><i class="clock-segment clock-segment--b"></i><i class="clock-segment clock-segment--c"></i><i class="clock-segment clock-segment--d"></i><i class="clock-segment clock-segment--e"></i><i class="clock-segment clock-segment--f"></i><i class="clock-segment clock-segment--g"></i></span><span class="clock-colon" aria-hidden="true"></span><span class="clock-digit" data-clock-digit="0" aria-hidden="true"><i class="clock-segment clock-segment--a"></i><i class="clock-segment clock-segment--b"></i><i class="clock-segment clock-segment--c"></i><i class="clock-segment clock-segment--d"></i><i class="clock-segment clock-segment--e"></i><i class="clock-segment clock-segment--f"></i><i class="clock-segment clock-segment--g"></i></span><span class="clock-digit" data-clock-digit="0" aria-hidden="true"><i class="clock-segment clock-segment--a"></i><i class="clock-segment clock-segment--b"></i><i class="clock-segment clock-segment--c"></i><i class="clock-segment clock-segment--d"></i><i class="clock-segment clock-segment--e"></i><i class="clock-segment clock-segment--f"></i><i class="clock-segment clock-segment--g"></i></span><span class="clock-colon" aria-hidden="true"></span><span class="clock-digit" data-clock-digit="0" aria-hidden="true"><i class="clock-segment clock-segment--a"></i><i class="clock-segment clock-segment--b"></i><i class="clock-segment clock-segment--c"></i><i class="clock-segment clock-segment--d"></i><i class="clock-segment clock-segment--e"></i><i class="clock-segment clock-segment--f"></i><i class="clock-segment clock-segment--g"></i></span><span class="clock-digit" data-clock-digit="0" aria-hidden="true"><i class="clock-segment clock-segment--a"></i><i class="clock-segment clock-segment--b"></i><i class="clock-segment clock-segment--c"></i><i class="clock-segment clock-segment--d"></i><i class="clock-segment clock-segment--e"></i><i class="clock-segment clock-segment--f"></i><i class="clock-segment clock-segment--g"></i></span></time><div class="weather-clock__bottom"><span data-weather-wind>风向 —</span><strong>长沙市</strong><span data-clock-period>AM</span></div><div class="weather-clock__footer"><span data-weather-status role="status">正在获取天气…</span><button type="button" data-weather-refresh aria-label="刷新天气" title="刷新天气">↻</button></div><a class="weather-clock__credit" href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">天气数据：Open-Meteo</a><noscript><p>开启 JavaScript 后显示时钟与天气。</p></noscript></section></div></aside></div></main><footer class="site-footer"><div class="footer-top"><div><strong>心灵涂鸦</strong><p>记录技术，也记录生活。</p></div><a href="/archives/">继续探索 <span>→</span></a></div><div class="footer-bottom"><span>© 2026 曦臣</span><nav class="footer-explore" aria-label="更多探索"><a href="/music/">音乐馆</a><a href="/cinema/">电影院</a><a href="/fcircle/">朋友圈</a><a href="/comments/">留言板</a><a href="/game/">游戏厅</a><a href="/air-conditioner/">小空调</a><a href="/reading-list/">稍后阅读</a></nav><span>用 Hexo 与 Morii Theme 构建</span></div><div class="footer-meta"><p class="footer-runtime" data-site-start="2024-03-14T16:00:00.000Z"><span>本站居然运行了</span><span data-runtime-value>981 天 0 小时 4 分 51 秒</span><span class="footer-runtime__heart" aria-hidden="true">♥</span></p><div class="footer-filing" aria-label="网站备案信息"><a class="footer-filing__item" href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" aria-label="ICP 备案：湘ICP备-2024053403号"><span class="footer-filing__badge" aria-hidden="true">备</span><span>湘ICP备-2024053403号</span><span class="footer-filing__arrow" aria-hidden="true">↗</span></a></div></div></footer></div><dialog class="navigation-dialog" id="navigation-dialog" aria-labelledby="navigation-heading"><div class="navigation-dialog__header"><div><span class="section-kicker">EXPLORE MORII</span><h2 id="navigation-heading">去哪里逛逛</h2><p>技术笔记、生活片段，还有一点小乐趣。</p></div><button class="icon-button" id="navigation-close" type="button" aria-label="关闭快捷导航">×</button></div><section class="navigation-tools" aria-label="阅读中控台"><div class="navigation-tool-actions"><button type="button" data-control="theme-toggle" aria-pressed="false">深色模式</button><button type="button" data-control="reading-font-smaller">A−</button><output data-control-font>17 px</output><button type="button" data-control="reading-font-larger">A＋</button><button type="button" data-control="reading-focus-toggle" aria-pressed="false">专注阅读</button><button type="button" data-control-bookmark>收藏本文</button></div><div class="navigation-tool-music"><button type="button" data-control-music disabled>播放音乐</button><span data-control-track>未选择音乐</span></div></section><nav class="navigation-grid" aria-label="全站快捷导航"><a class="navigation-card" href="/"><span class="navigation-card__icon ui-icon ui-icon--home" aria-hidden="true"></span><div><strong>首页</strong><small>回到首页，发现新的内容</small></div></a><a class="navigation-card" href="/archives/"><span class="navigation-card__icon ui-icon ui-icon--archive" aria-hidden="true"></span><div><strong>文章</strong><small>按时间翻阅所有文章</small></div></a><a class="navigation-card" href="/categories/"><span class="navigation-card__icon ui-icon ui-icon--categories" aria-hidden="true"></span><div><strong>分类</strong><small>按主题寻找技术笔记</small></div></a><a class="navigation-card" href="/essay/"><span class="navigation-card__icon ui-icon ui-icon--essay" aria-hidden="true"></span><div><strong>即刻</strong><small>生活片段与随手记录</small></div></a><a class="navigation-card" href="/album/"><span class="navigation-card__icon ui-icon ui-icon--album" aria-hidden="true"></span><div><strong>相册</strong><small>收藏值得记住的瞬间</small></div></a><a class="navigation-card" href="/link/"><span class="navigation-card__icon ui-icon ui-icon--link" aria-hidden="true"></span><div><strong>友链</strong><small>去朋友们的博客坐坐</small></div></a><a class="navigation-card" href="/about/"><span class="navigation-card__icon ui-icon ui-icon--about" aria-hidden="true"></span><div><strong>关于</strong><small>认识这个小站和作者</small></div></a><a class="navigation-card" href="/tags/"><span class="navigation-card__icon ui-icon ui-icon--tags" aria-hidden="true"></span><div><strong>标签</strong><small>从关键词出发探索</small></div></a><a class="navigation-card" href="/music/"><span class="navigation-card__icon ui-icon ui-icon--music" aria-hidden="true"></span><div><strong>音乐馆</strong><small>给日常留一点旋律</small></div></a><a class="navigation-card" href="/cinema/"><span class="navigation-card__icon ui-icon ui-icon--cinema" aria-hidden="true"></span><div><strong>电影院</strong><small>挑一部电影、剧集或动漫</small></div></a><a class="navigation-card" href="/fcircle/"><span class="navigation-card__icon ui-icon ui-icon--friends" aria-hidden="true"></span><div><strong>朋友圈</strong><small>看看朋友们的新文章</small></div></a><a class="navigation-card" href="/comments/"><span class="navigation-card__icon ui-icon ui-icon--comments" aria-hidden="true"></span><div><strong>留言板</strong><small>留下你的想法与问候</small></div></a><a class="navigation-card" href="/game/"><span class="navigation-card__icon ui-icon ui-icon--game" aria-hidden="true"></span><div><strong>游戏厅</strong><small>玩一会儿，再继续探索</small></div></a><a class="navigation-card" href="/air-conditioner/"><span class="navigation-card__icon ui-icon ui-icon--snowflake" aria-hidden="true"></span><div><strong>小空调</strong><small>一个可以操作的网页小玩具</small></div></a><a class="navigation-card" href="/reading-list/"><span class="navigation-card__icon ui-icon ui-icon--bookmark" aria-hidden="true"></span><div><strong>稍后阅读</strong><small>接着读你收藏的文章</small></div></a></nav><div class="navigation-shortcuts"><button class="navigation-search" type="button" data-open-search>搜索文章 <kbd>⌘ / Ctrl + K</kbd></button><p><kbd>?</kbd> 打开快捷导航 · <kbd>Esc</kbd> 关闭弹窗</p></div></dialog><button class="reading-toc-trigger" type="button" data-reading-toc aria-haspopup="dialog" aria-controls="reading-toc-dialog" hidden>目录<span data-reading-percent aria-hidden="true">0%</span></button><dialog class="reading-toc-dialog" id="reading-toc-dialog" aria-labelledby="reading-toc-title"><div class="reading-toc-heading"><h2 id="reading-toc-title">本文目录</h2><button class="icon-button" id="reading-toc-close" type="button" aria-label="关闭文章目录">×</button></div><nav aria-label="文章章节"><div class="toc-filter" data-toc-filter hidden><label><span class="sr-only">筛选章节</span><input type="search" data-toc-query placeholder="筛选章节" autocomplete="off"></label><p class="toc-filter__status" role="status" hidden>没有匹配的章节</p></div><div class="toc-content"><a href="#引子：一条能串起所有技术的主线">引子：一条能串起所有技术的主线</a><a href="#1-第一性原理：解码慢，不是算力不够，是带宽不够">1. 第一性原理：解码慢，不是算力不够，是带宽不够</a><a class="toc-sub" href="#1-1-同样是前向，Prefill-和-Decode-是两种-workload">1.1 同样是前向，Prefill 和 Decode 是两种 workload</a><a class="toc-sub" href="#1-2-用-Roofline-把它画出来">1.2 用 Roofline 把它画出来</a><a class="toc-sub" href="#1-3-一个可以自己按计算器的估算">1.3 一个可以自己按计算器的估算</a><a class="toc-sub" href="#1-4-把优化拆成三个变量">1.4 把优化拆成三个变量</a><a href="#2-第一层：压缩-W-——-量化的数学与工程">2. 第一层：压缩 W —— 量化的数学与工程</a><a class="toc-sub" href="#2-1-仿射量化到底做了什么">2.1 仿射量化到底做了什么</a><a class="toc-sub" href="#2-2-2026-年的低比特格式，不止-INT4">2.2 2026 年的低比特格式，不止 INT4</a><a class="toc-sub" href="#2-3-量化解决不了什么">2.3 量化解决不了什么</a><a href="#3-第二层：压缩-S-——-KV-Cache-才是长对话的隐性杀手">3. 第二层：压缩 S —— KV Cache 才是长对话的隐性杀手</a><a class="toc-sub" href="#3-1-为什么必须有-KV-Cache">3.1 为什么必须有 KV Cache</a><a class="toc-sub" href="#3-2-四条削减路线">3.2 四条削减路线</a><a class="toc-sub" href="#3-3-2026-年的工程进展（官方口径）">3.3 2026 年的工程进展（官方口径）</a><a class="toc-sub" href="#3-4-三个真实会踩的坑">3.4 三个真实会踩的坑</a><a href="#4-第三层：压缩-N-——-投机解码与「无损」加速">4. 第三层：压缩 N —— 投机解码与「无损」加速</a><a class="toc-sub" href="#4-1-draft-then-verify-三步">4.1 draft-then-verify 三步</a><a class="toc-sub" href="#4-2-为什么敢叫「无损」">4.2 为什么敢叫「无损」</a><a class="toc-sub" href="#4-3-加速比怎么算">4.3 加速比怎么算</a><a class="toc-sub" href="#4-4-变体对比：草稿从哪来">4.4 变体对比：草稿从哪来</a><a class="toc-sub" href="#4-5-什么时候不赚">4.5 什么时候不赚</a><a class="toc-sub" href="#4-6-在-Android-上打开它">4.6 在 Android 上打开它</a><a href="#5-第四层：把硬件喂饱-——-运行时、编译与调度">5. 第四层：把硬件喂饱 —— 运行时、编译与调度</a><a class="toc-sub" href="#5-1-四层栈">5.1 四层栈</a><a class="toc-sub" href="#5-2-运行时怎么选">5.2 运行时怎么选</a><a class="toc-sub" href="#5-3-编译器替你做的四件事">5.3 编译器替你做的四件事</a><a class="toc-sub" href="#5-4-设备分层与动态降级">5.4 设备分层与动态降级</a><a class="toc-sub" href="#5-5-四个必须盯的指标">5.5 四个必须盯的指标</a><a href="#6-第五层：换范式-——-当生成不再逐-token">6. 第五层：换范式 —— 当生成不再逐 token</a><a class="toc-sub" href="#6-1-一个真实的硬新闻：DiffusionGemma">6.1 一个真实的硬新闻：DiffusionGemma</a><a class="toc-sub" href="#6-2-机制：瓶颈从带宽搬到了算力">6.2 机制：瓶颈从带宽搬到了算力</a><a class="toc-sub" href="#6-3-两种范式的正面对比">6.3 两种范式的正面对比</a><a class="toc-sub" href="#6-4-边界与另一条线">6.4 边界与另一条线</a><a href="#7-落地：一个可执行的决策框架">7. 落地：一个可执行的决策框架</a><a class="toc-sub" href="#7-1-端云混合路由要显式设计">7.1 端云混合路由要显式设计</a><a class="toc-sub" href="#7-2-Android-侧落地清单">7.2 Android 侧落地清单</a><a class="toc-sub" href="#7-3-常见误区速查">7.3 常见误区速查</a><a href="#8-小结：一张表收束全文">8. 小结：一张表收束全文</a><a href="#参考资料">参考资料</a></div></nav></dialog><dialog class="article-share-dialog" id="article-share-dialog" aria-labelledby="article-share-heading"><div class="article-share-top"><h2 id="article-share-heading">分享这篇文章</h2><button class="icon-button" id="article-share-close" type="button" aria-label="关闭文章分享">×</button></div><p class="article-share-title" id="article-share-title"></p><label for="article-share-content">复制内容</label><textarea id="article-share-content" rows="3" readonly spellcheck="false"></textarea><div class="article-share-actions"><button class="button service-button" id="article-share-copy" type="button">复制链接</button><button class="button service-button" id="article-share-markdown" type="button">复制 Markdown</button><button class="button service-button" id="article-share-native" type="button" hidden>系统分享 ↗</button></div><p class="article-share-status" id="article-share-status" role="status" aria-live="polite"></p></dialog><dialog class="search-dialog" id="search-dialog" aria-labelledby="search-heading" data-search-engine="/js/search-engine.3aa72a637c24.js" data-search-worker="/js/search-worker.00453e57d6dd.js" data-search-script="/js/search.dd51b426b395.js" data-search-index="/morii-search.fdab32b77404.json" data-page-size="10" data-snippets-per-article="2"><div class="search-header"><div class="search-dialog__top"><div><span class="section-kicker">SEARCH MORII</span><h2 id="search-heading">发现字里行间</h2></div><button class="icon-button" id="search-close" type="button" aria-label="关闭搜索" title="关闭（Esc）">×</button></div><label class="sr-only" for="search-input">搜索关键词</label><div class="search-input-row"><span class="search-input-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 4.5 4.5"></path></svg></span><input id="search-input" type="search" placeholder="搜索标题、正文、分类或标签…" autocomplete="off" maxlength="200" aria-controls="search-results" aria-describedby="search-keyboard-help"><button id="search-clear" type="button" aria-label="清空搜索关键词" hidden>清空</button></div><div class="search-scope" role="group" aria-label="搜索范围"><button type="button" data-search-scope="all" aria-pressed="true">全部内容</button><button type="button" data-search-scope="title" aria-pressed="false">仅标题</button><button type="button" data-search-scope="topics" aria-pressed="false">分类与标签</button></div><label class="search-category" for="search-category"><span>按分类筛选</span><select id="search-category"><option value="">全部分类</option><option value="ai">ai</option><option value="Android">Android</option><option value="Flutter">Flutter</option><option value="HarmonyOS">HarmonyOS</option><option value="KMP">KMP</option><option value="AI">AI</option><option value="tauri">tauri</option><option value="技术原理">技术原理</option><option value="项目分享">项目分享</option><option value="编译原理">编译原理</option><option value="实习">实习</option></select></label><div class="search-suggestions" aria-label="快速查找"><span>快速查找</span><button type="button" data-search-term="Android"># Android</button><button type="button" data-search-term="Flutter"># Flutter</button><button type="button" data-search-term="Kotlin"># Kotlin</button><button type="button" data-search-term="HarmonyOS"># HarmonyOS</button><button type="button" data-search-term="面试"># 面试</button></div></div><div class="search-scroll"><div class="search-results-heading"><strong id="search-results-heading">最近文章</strong><p id="search-status" role="status" aria-live="polite">共 35 篇文章</p></div><div class="search-empty" hidden><span class="search-empty-icon" aria-hidden="true">⌕</span><strong>没有找到相关文章</strong><p>换个关键词，或切换到“全部内容”试试。</p></div><ul id="search-results" aria-labelledby="search-results-heading"><li data-categories="[&quot;技术原理&quot;]" data-search="geoai 底层原理与运行运行机制机制：空间数据建模、时空推理与 gis 管线 " data-topics="技术原理 GeoAI GIS 空间计算 深度学习" data-protected="false"><a href="/2026/11/18/geoai-%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86%E4%B8%8E%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6-%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BB%BA%E6%A8%A1-%E6%97%B6%E7%A9%BA%E6%8E%A8%E7%90%86%E4%B8%8E-gis-%E7%AE%A1%E7%BA%BF/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">GeoAI 底层原理与运行运行机制机制：空间数据建模、时空推理与 GIS 管线</strong><p class="search-result-summary">GeoAI 并非把通用人工智能模型直接套到地图上，而是将空间数据结构、地理约束、机器学习与 GIS 运算组合为一条可验证的处理链。它的核心难点不只在模型精度，还在于：数据是否处于一致的空间基准，模型是否理解尺度与邻域关系，以及预测结果能否转化为拓扑正确、可供下游使用的地理对象。 本文从数据特性...</p><small>2026.11.19</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-categories="[&quot;AI&quot;]" data-search="从内存墙到并行生成：2026 端侧大模型推理技术全景 从带宽瓶颈的第一性原理出发，逐层拆解量化、kv cache、投机解码、运行时编译与扩散语言模型，并给出端云混合路由的工程决策框架。" data-topics="AI Android 端侧AI LLM推理 量化 KV Cache 投机解码" data-protected="false"><a href="/2026/11/08/edge-llm-inference-2026/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">从内存墙到并行生成：2026 端侧大模型推理技术全景</strong><p class="search-result-summary">从带宽瓶颈的第一性原理出发，逐层拆解量化、KV Cache、投机解码、运行时编译与扩散语言模型，并给出端云混合路由的工程决策框架。</p><small>2026.11.08</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-categories="[&quot;项目分享&quot;]" data-search="hexostudio 1.0：给自己的 hexo 博客做一个管理后台 hexostudio 首个正式版本发布，支持网页与桌面端，让 hexo 博客的写作、配置和 git 管理更方便。" data-topics="项目分享 Hexo HexoStudio 开源项目" data-protected="false"><a href="/2026/10/27/hexostudio-1-0/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">HexoStudio 1.0：给自己的 Hexo 博客做一个管理后台</strong><p class="search-result-summary">HexoStudio 首个正式版本发布，支持网页与桌面端，让 Hexo 博客的写作、配置和 Git 管理更方便。</p><small>2026.10.27</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-categories="[]" data-search="端侧 ai 与客户端工程：从大模型接入到端云协同架构实践 " data-topics="" data-protected="false"><a href="/2026/10/27/%E7%AB%AF%E4%BE%A7-ai-%E4%B8%8E%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%B7%A5%E7%A8%8B-%E4%BB%8E%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A5%E5%85%A5%E5%88%B0%E7%AB%AF%E4%BA%91%E5%8D%8F%E5%90%8C%E6%9E%B6%E6%9E%84%E5%AE%9E%E8%B7%B5/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">端侧 AI 与客户端工程：从大模型接入到端云协同架构实践</strong><p class="search-result-summary">端侧 AI 与客户端工程：从大模型接入到端云协同架构实践 一、引言：AI 正在重塑客户端交互 过去，客户端应用主要通过按钮、菜单和表单响应用户操作。如今，大语言模型（LLM）让自然语言逐渐成为新的交互入口：用户可以直接描述目标，由 AI 助手理解意图、生成内容，甚至协助完成一系列任务。 对客户...</p><small>2026.10.27</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-categories="[&quot;Android&quot;]" data-search="android 17 全面解读：开发者与用户都该知道的变化 " data-topics="Android" data-protected="false"><a href="/2026/06/18/Android%2017%20%E5%85%A8%E9%9D%A2%E8%A7%A3%E8%AF%BB%EF%BC%9A%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8E%E7%94%A8%E6%88%B7%E9%83%BD%E8%AF%A5%E7%9F%A5%E9%81%93%E7%9A%84%E5%8F%98%E5%8C%96/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">Android 17 全面解读：开发者与用户都该知道的变化</strong><p class="search-result-summary">Android 17 全面解读：开发者与用户都该知道的变化 版本信息：Android 17 / API Level 37稳定版发布日期：2026 年 6 月 16 日首批适配：Pixel 6 ~ Pixel 10 系列（含 Pixel 10 Pro Fold、Pixel Fold、Pixel ...</p><small>2026.06.18</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-categories="[&quot;ai&quot;]" data-search="ai 技术项目深度速递 · 2026-06-11 " data-topics="ai github" data-protected="false"><a href="/2026/06/10/AI%20%E6%8A%80%E6%9C%AF%E9%A1%B9%E7%9B%AE%E6%B7%B1%E5%BA%A6%E9%80%9F%E9%80%92%20%C2%B7%202026-06-11/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">AI 技术项目深度速递 · 2026-06-11</strong><p class="search-result-summary">AI 技术项目深度速递 · 2026-06-11 自动采集自 GitHub Search API 与 Trending,共 20 个项目,按 star 排序。每个项目包含:解决的问题 / 核心原理 / 技术亮点 / 适用场景 / 可学习点。 目录 alibaba/open-code-revie...</p><small>2026.06.11</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-categories="[&quot;tauri&quot;]" data-search="tauri 完整学习路线 " data-topics="tauri" data-protected="false"><a href="/2026/06/03/Tauri%20%E5%AE%8C%E6%95%B4%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">Tauri 完整学习路线</strong><p class="search-result-summary">Tauri 完整学习路线（从零到产出工具） 作者定制版 · 适用画像：有移动端开发经验 + 目标 Windows 自用工具 + 零 Rust 基础预计周期：8-12 周（每天 1-2 小时投入）最后更新：2026-05 📚 文档结构 本学习包含以下模块（建议按顺序阅读）： 序号 文件 内容 ...</p><small>2026.06.04</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-categories="[]" data-search="多模态端侧推理 sdk " data-topics="" data-protected="false"><a href="/2026/05/26/%E5%A4%9A%E6%A8%A1%E6%80%81%E7%AB%AF%E4%BE%A7%E6%8E%A8%E7%90%86%20SDK/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">多模态端侧推理 SDK</strong><p class="search-result-summary">多模态端侧推理 SDK — 开源项目技术方案 一、核心定位 一句话： 让移动端 APP 开发者用 3 行代码获得离线多模态 AI 能力（文本/视觉/语音）。 二、整体架构 三、核心模块详细设计 模块 1：Pipeline Orchestrator（管线编排器） 这是 SDK 的灵魂 — 把多个...</p><small>2026.05.27</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-categories="[&quot;KMP&quot;]" data-search="ktor 学习与实践文档 " data-topics="KMP Kotlin" data-protected="false"><a href="/2025/09/28/Ktor%20%E5%AD%A6%E4%B9%A0%E4%B8%8E%E5%AE%9E%E8%B7%B5%E6%96%87%E6%A1%A3/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">Ktor 学习与实践文档</strong><p class="search-result-summary">Kotlin Multiplatform (KMP) + Ktor 学习与实践文档 一、概述 Kotlin Multiplatform (KMP) 是 JetBrains 提供的跨平台开发方案，核心思想是逻辑层代码共享，UI 层保持原生。在 KMP 中，网络层通常使用 Ktor，这是一个由 J...</p><small>2025.09.29</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-categories="[&quot;Flutter&quot;]" data-search="flutter - autoroute " data-topics="Flutter Router" data-protected="false"><a href="/2025/09/21/Flutter%20-%20AutoRoute/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">Flutter - AutoRoute</strong><p class="search-result-summary">介绍 What is AutoRoute? 它是一个 Flutter 导航包，支持强类型参数传递、轻松的深度链接，并使用代码生成来简化路由设置。也就是说，它只需要极少量的代码即可生成应用内部导航所需的一切。 Why AutoRoute? 如果您的应用需要深层链接、受保护的路由，或者只是需要简洁...</p><small>2025.09.22</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-categories="[]" data-search="harmonyos-两种preferencesutil实现方式 " data-topics="" data-protected="false"><a href="/2025/01/20/HarmonyOS-%E4%B8%A4%E7%A7%8DPreferencesUtil%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">HarmonyOS-两种PreferencesUtil实现方式</strong><p class="search-result-summary">代码笔记 · 打开全文查看完整示例。</p><small>2025.01.20</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-categories="[&quot;HarmonyOS&quot;]" data-search="harmonyos-@ohos/axios网络请求 " data-topics="HarmonyOS 网络" data-protected="false"><a href="/2024/12/01/HarmonyOS-@ohos/axios%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">HarmonyOS-@ohos/axios网络请求</strong><p class="search-result-summary">由于HarmonyOS官方提供的网络请求比较复杂，不太适用于项目管理，需要进行网络框架的封装。 主要使用较广的第三方网络请求框架有 @ohos/axios 和 @ohos/retrofit @ohos/axios 主要偏向前端，和前端的axios很相似，对于前端开发者能够很快上手 @ohos/...</p><small>2024.12.01</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-categories="[]" data-search="rxjava 面试题 " data-topics="" data-protected="false"><a href="/2024/09/09/RxJava%20%E9%9D%A2%E8%AF%95%E9%A2%98/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">RxJava 面试题</strong><p class="search-result-summary">1.RxJava基本概念和原理是什么？ 答案：RxJava 是一个用于响应式编程的库，通过 Observable（可观察对象）来发射数据流，并通过 Observer（观察者）来消费数据流。它使用操作符（Operators）来对数据流进行变换、过滤、合并等操作，允许我们以声明式的方式编写异步代码...</p><small>2024.09.10</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-categories="[]" data-search="高新兴实习第三周 " data-topics="" data-protected="false"><a href="/2024/08/11/%E9%AB%98%E6%96%B0%E5%85%B4%E5%AE%9E%E4%B9%A0%E7%AC%AC%E4%B8%89%E5%91%A8/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">高新兴实习第三周</strong><p class="search-result-summary">暂未提供摘要，点击查看文章。</p><small>2024.08.12</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-categories="[&quot;实习&quot;]" data-search="高新兴实习第二周 " data-topics="实习 高新兴" data-protected="false"><a href="/2024/08/11/%E9%AB%98%E6%96%B0%E5%85%B4%E5%AE%9E%E4%B9%A0%E7%AC%AC%E4%BA%8C%E5%91%A8/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">高新兴实习第二周</strong><p class="search-result-summary">实习第6天 2024-7-29 帮助部门进行测试包转发，查看学习大疆SDK开发者文档。 实习第7天 2024-7-30 基本大致了解完大疆开发者文档，熟悉大疆SDK接口的调用流程。学习EventBus框架，熟悉订阅者模式 实习第8天 2024-7-31 无人机的主要功能大致已经有所了解 实习第...</p><small>2024.08.12</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-categories="[]" data-search="android-eventbus " data-topics="" data-protected="false"><a href="/2024/07/29/Android-EventBus/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">Android-EventBus</strong><p class="search-result-summary">EventBus线程模式 EventBus支持订阅者和发布者在不同的线程中调用。可以使用线程模式来指定调用订阅者方法的线程。EventBus支持5种线程模式。 ThreadMode.POSRING ThreadMode.MAIN ThreadMode.MAIN_ORDERED ThreadMo...</p><small>2024.07.30</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-categories="[&quot;Android&quot;]" data-search="rxjava-函数响应式编程 " data-topics="Android java" data-protected="false"><a href="/2024/07/25/RxJava-%E5%87%BD%E6%95%B0%E5%93%8D%E5%BA%94%E5%BC%8F%E7%BC%96%E7%A8%8B/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">RxJava-函数响应式编程</strong><p class="search-result-summary">函数响应式编程概述 函数式编程是面向数学的抽象，把计算描述为一种表达式求值，函数可以在任何地方定义，并且可以对函数进行组合。 响应式编程是一种面向数据流和变化传播的编程范式，数据更新是相关联的。把函数式编程里的一套思路和响应式编程组合起来就是函数响应式编程。 函数响应式编程可以简化项目，特别是...</p><small>2024.07.25</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-categories="[&quot;实习&quot;]" data-search="高新兴实习第一周 " data-topics="实习 高新兴" data-protected="false"><a href="/2024/07/21/%E9%AB%98%E6%96%B0%E5%85%B4%E5%AE%9E%E4%B9%A0%E7%AC%AC%E4%B8%80%E5%91%A8/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">高新兴实习第一周</strong><p class="search-result-summary">实习第一天 2024-7-21 今天进行了入职报道，去到了人力资源部递交了一些入职材料，然后在会议室里签署了个人资料，实习协议书，保密协议，以及薪资条款。之后HR给我们讲解了一些工作注意事项，包括打卡等，然后再在HR的帮助下加入了工作的钉钉群。 之后，在部门的HRBP的带领下回到自己所在的部门...</p><small>2024.07.22</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-categories="[&quot;HarmonyOS&quot;]" data-search="harmonyos-arkts语法 " data-topics="HarmonyOS ArkTS" data-protected="false"><a href="/2024/07/03/HarmonyOS-ArkTS%E8%AF%AD%E6%B3%95/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">HarmonyOS-ArkTS语法</strong><p class="search-result-summary">ArkTS在TypeScript(简称TS)生态基础上做了进一步扩展，保持了TS的基本风格，同时通过规范定义强化开发期静态检查和分析，提升程序执行稳定性和性能。 在UI开发框架中，ArkTS主要扩展了如下能力： 基本语法：ArkTS定义了声明式UI描述、自定义组件和动态扩展UI元素的能力，再配...</p><small>2024.07.03</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li><li data-categories="[]" data-search="android三种动画学习 " data-topics="Android" data-protected="false"><a href="/2024/06/18/Android%E4%B8%89%E7%A7%8D%E5%8A%A8%E7%94%BB%E5%AD%A6%E4%B9%A0/"><span class="search-result-icon" aria-hidden="true">≡</span><div class="search-result-content"><strong class="search-result-title">Android三种动画学习</strong><p class="search-result-summary">Android的动画分为了三种， 分别是 帧动画、View动画（补间动画）、属性动画。 1、帧动画 帧动画就是顺序播放一组预先定义好的图片，就类似于我们观看视频，就是一张一张的图片连续播放。 帧动画的使用很简单，总共就两个步骤： 1、在res/drawable目录下定义一个XML文件，根节点为...</p><small>2024.06.19</small></div><span class="search-result-arrow" aria-hidden="true">↗</span></a></li></ul><button class="button service-button" id="search-more" type="button" hidden>展示更多结果</button></div><div class="search-footer"><div class="search-service"><p id="search-service-status" role="status" aria-live="polite">多个关键词用空格分隔</p><button id="search-retry" type="button" hidden>重试</button></div><p id="search-keyboard-help"><span><kbd>↑</kbd> <kbd>↓</kbd> 选择</span><span><kbd>Enter</kbd> 打开</span><span><kbd>Esc</kbd> 关闭</span></p></div></dialog><dialog class="lightbox" id="image-dialog" aria-label="图片预览"><div class="lightbox-header"><strong>图片预览</strong><button class="icon-button" id="image-close" type="button" aria-label="关闭图片预览">×</button></div><figure><div class="lightbox-stage" id="image-stage" tabindex="0" role="group" aria-label="图片查看区域" aria-describedby="image-help"><img id="image-preview" alt="" draggable="false"><div class="lightbox-feedback" id="image-feedback" hidden><span class="lightbox-feedback-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="5" width="24" height="22" rx="5"></rect><circle cx="12" cy="12" r="2"></circle><path d="m5 23 7-7 5 5 4-4 6 6"></path></svg></span><strong id="image-state-title">正在加载图片</strong><p id="image-status" role="status" aria-live="polite"></p><button class="button service-button" id="image-retry" type="button" hidden>重新加载图片</button></div></div><figcaption id="image-caption"></figcaption></figure><div class="lightbox-zoom" role="group" aria-label="图片缩放"><button class="icon-button" id="image-zoom-out" type="button" aria-label="缩小图片" title="缩小（−）">−</button><output id="image-scale" aria-label="当前缩放倍数">1.0×</output><button class="icon-button" id="image-zoom-in" type="button" aria-label="放大图片" title="放大（+）">+</button><button class="button service-button" id="image-reset" type="button" title="重置缩放（0）">适应窗口</button></div><p class="lightbox-help" id="image-help">滚轮 / 双指缩放 · 放大后拖拽 · 左右滑动切图 · Esc 关闭</p><div class="lightbox-controls"><button class="icon-button" id="image-previous" type="button" aria-label="上一张图片">←</button><span id="image-counter" aria-live="polite"></span><button class="icon-button" id="image-next" type="button" aria-label="下一张图片">→</button><a class="text-link" id="image-original" target="_blank" rel="noopener noreferrer">打开原图 ↗</a></div></dialog><button class="icon-button back-to-top" id="back-to-top" type="button" aria-label="返回顶部" hidden>↑</button><div class="sr-only" id="theme-announcement" role="status" aria-live="polite"></div><div id="morii-audio-hub" data-music-config="{&quot;remote&quot;:{&quot;api&quot;:&quot;https://api.injahow.cn/meting/?server=:server&amp;type=:type&amp;id=:id&amp;r=:r&quot;,&quot;id&quot;:&quot;1451608172&quot;,&quot;server&quot;:&quot;tencent&quot;,&quot;type&quot;:&quot;playlist&quot;},&quot;volume&quot;:0.7,&quot;title&quot;:&quot;我的音乐收藏&quot;,&quot;description&quot;:&quot;给日常留一点旋律，边听边逛。&quot;,&quot;playlist&quot;:&quot;https://y.qq.com/n/ryqq/playlist/1451608172&quot;,&quot;playlistLabel&quot;:&quot;在 QQ 音乐收听&quot;,&quot;embed&quot;:&quot;&quot;,&quot;tracks&quot;:[]}" data-music-page="/music/"><audio id="music-player" preload="none" aria-label="音乐播放器"></audio><div class="music-float" hidden aria-label="悬浮音乐播放器"><div class="music-capsule"><span class="music-capsule-progress" aria-hidden="true"></span><button class="music-ball" type="button" data-music-action="toggle" aria-label="播放音乐"><img class="music-ball-cover" alt="" hidden><span class="music-ball-note" aria-hidden="true">♫</span><span class="music-ball-state" aria-hidden="true">▶</span></button><button class="music-float-track" type="button" aria-expanded="false" aria-controls="music-capsule-lyrics" title="点击歌名展开或收起歌词"><span data-music-title>未选择音乐</span></button><p id="music-capsule-lyrics" data-music-mini-lyric aria-hidden="true">让音乐陪你继续探索。</p><div class="music-float-actions"><button type="button" data-music-action="previous" aria-label="上一首">⏮</button><button type="button" data-music-action="next" aria-label="下一首">⏭</button><a href="/music/" aria-label="打开音乐馆" title="打开完整音乐馆">♫</a></div><button class="music-float-resume" type="button" data-music-action="toggle">播放音乐</button></div><p class="sr-only" data-music-status role="status"></p></div></div><script src="/js/i18n.86bd214d03a7.js?v=1.1.0" defer></script><script src="/js/theme.00b34bdf377e.js?v=1.1.0" defer></script><script src="/js/music.72fedebf3ffe.js?v=1.1.0" defer></script><script src="/js/effects.b6741af3d151.js?v=1.1.0" defer data-spotlight="on" data-tilt="on" data-ripple="on"></script><script src="/js/motion.c096138cc34e.js?v=1.1.0" defer></script><script src="/js/runtime.be7a3a5381b5.js?v=1.1.0" defer></script><script src="/js/navigation.fdba0379d460.js?v=1.1.0" defer></script><script src="/js/media.4212a8067bb4.js?v=1.1.0" defer></script><script src="/js/clock.47d18b87b986.js?v=1.1.0" defer></script><script src="/js/reading-list.a8b748c3c1b9.js?v=1.1.0" defer></script><script src="/js/reading.a28552acb935.js?v=1.1.0" defer></script><script src="/js/reading-resume.2af548636b34.js?v=1.1.0" defer></script><script src="/js/share.81e52d9face0.js?v=1.1.0" defer></script><script src="/js/print.55ce4a8a0969.js?v=1.1.0" defer></script><script src="/js/reading-preferences.0d6447f6d599.js?v=1.1.0" defer></script><script src="/js/services.e817d8a72f97.js?v=1.1.0" defer></script><!-- hexo injector body_end start --><script data-pjax src="/assets/hexo-reader/reader.js" data-hexo-reader-js></script><script data-pjax>if(window.hexoReaderBoot){window.hexoReaderBoot();}</script><!-- hexo injector body_end end --></body></html>

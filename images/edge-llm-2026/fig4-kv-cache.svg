@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 470" width="960" height="470" font-family="system-ui, -apple-system, 'Segoe UI', 'Microsoft YaHei', sans-serif">
+  <rect width="960" height="470" fill="#ffffff"/>
+  <text x="32" y="42" font-size="21" font-weight="700" fill="#1b2333">图 4　KV Cache 随上下文线性增长，是长对话的隐性杀手</text>
+  <text x="32" y="68" font-size="14" fill="#7a8499">M = 2 × L × n_kv × d_head × T × bytes；权重是常量，状态却跟着对话一起膨胀</text>
+
+  <!-- chart area -->
+  <rect x="60" y="92" width="540" height="300" rx="10" fill="#fbfcff" stroke="#e6eaf3" stroke-width="2"/>
+  <path d="M96 356 V118" stroke="#8a94a8" stroke-width="2"/>
+  <path d="M96 356 H574" stroke="#8a94a8" stroke-width="2"/>
+  <text x="70" y="122" font-size="12" fill="#7a8499">2.0 GB</text>
+  <text x="70" y="238" font-size="12" fill="#7a8499">1.0 GB</text>
+  <text x="82" y="360" font-size="12" fill="#7a8499">0</text>
+  <g font-size="12" fill="#7a8499" text-anchor="middle">
+    <text x="96" y="378">0</text><text x="215" y="378">2K</text><text x="334" y="378">4K</text><text x="454" y="378">6K</text><text x="574" y="378">8K</text>
+  </g>
+  <text x="270" y="398" font-size="13" fill="#5b6478">上下文长度 T（token）</text>
+
+  <!-- MHA FP16 -->
+  <polyline points="96,356 215,297 334,237 454,178 574,118" fill="none" stroke="#e2566d" stroke-width="3.5"/>
+  <circle cx="574" cy="118" r="5" fill="#e2566d"/>
+  <!-- GQA FP16 -->
+  <polyline points="96,356 215,341 334,326 454,311 574,296" fill="none" stroke="#f59e0b" stroke-width="3.5"/>
+  <circle cx="574" cy="296" r="5" fill="#f59e0b"/>
+  <!-- GQA + INT8 + sliding window -->
+  <polyline points="96,356 215,332 240,329 334,329 454,329 574,329" fill="none" stroke="#0ea5a4" stroke-width="3.5"/>
+  <circle cx="574" cy="329" r="5" fill="#0ea5a4"/>
+  <path d="M240 329 V356" stroke="#0ea5a4" stroke-width="1.5" stroke-dasharray="4 4"/>
+  <text x="248" y="322" font-size="12" fill="#0ea5a4">窗口封顶</text>
+
+  <g font-size="13">
+    <rect x="330" y="106" width="14" height="4" fill="#e2566d"/><text x="352" y="112" fill="#5b6478">MHA · FP16（对照基线）</text>
+    <rect x="330" y="132" width="14" height="4" fill="#f59e0b"/><text x="352" y="138" fill="#5b6478">GQA（n_kv 减少约 4 倍）</text>
+    <rect x="330" y="158" width="14" height="4" fill="#0ea5a4"/><text x="352" y="164" fill="#5b6478">GQA + KV INT8 + 滑窗</text>
+  </g>
+
+  <!-- right cards -->
+  <g transform="translate(624,92)">
+    <rect x="0" y="0" width="304" height="68" rx="10" fill="#f7f9ff" stroke="#dfe3ec" stroke-width="2"/>
+    <text x="16" y="26" font-size="14" font-weight="700" fill="#5568f6">① 结构：减少 n_kv</text>
+    <text x="16" y="50" font-size="13" fill="#5b6478">MQA / GQA / MLA，改模型结构</text>
+
+    <rect x="0" y="78" width="304" height="68" rx="10" fill="#f7f9ff" stroke="#dfe3ec" stroke-width="2"/>
+    <text x="16" y="104" font-size="14" font-weight="700" fill="#f59e0b">② 时间：不让 T 无限长</text>
+    <text x="16" y="128" font-size="13" fill="#5b6478">滑窗注意力 / 驱逐 / 早期层跳过</text>
+
+    <rect x="0" y="156" width="304" height="68" rx="10" fill="#f7f9ff" stroke="#dfe3ec" stroke-width="2"/>
+    <text x="16" y="182" font-size="14" font-weight="700" fill="#8b5cf6">③ 精度：压缩 bytes</text>
+    <text x="16" y="206" font-size="13" fill="#5b6478">KV INT8 / INT4，甚至 2-bit</text>
+
+    <rect x="0" y="234" width="304" height="68" rx="10" fill="#f7f9ff" stroke="#dfe3ec" stroke-width="2"/>
+    <text x="16" y="260" font-size="14" font-weight="700" fill="#0ea5a4">④ 管理：按需分配</text>
+    <text x="16" y="284" font-size="13" fill="#5b6478">分页 / 动态增长 / 前缀缓存复用</text>
+  </g>
+
+  <text x="32" y="440" font-size="13" fill="#7a8499">曲线为原理示意，用于说明量级与趋势，非特定机型实测值</text>
+</svg>

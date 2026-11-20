@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 620" width="1600" height="620" font-family="system-ui, -apple-system, 'Segoe UI', 'Microsoft YaHei', sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eef1ff"/>
+      <stop offset="0.55" stop-color="#f6f8ff"/>
+      <stop offset="1" stop-color="#eafaf7"/>
+    </linearGradient>
+    <linearGradient id="bar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#5568f6"/>
+      <stop offset="1" stop-color="#8c9aff"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="620" fill="url(#bg)"/>
+  <circle cx="1330" cy="120" r="230" fill="#5568f6" opacity="0.06"/>
+  <circle cx="1450" cy="520" r="170" fill="#0ea5a4" opacity="0.07"/>
+
+  <rect x="92" y="104" width="6" height="58" rx="3" fill="#5568f6"/>
+  <text x="120" y="146" font-size="20" fill="#5568f6" letter-spacing="4">DEEP DIVE · 2026</text>
+
+  <text x="92" y="248" font-size="62" font-weight="700" fill="#1b2333">从内存墙到并行生成</text>
+  <text x="92" y="330" font-size="46" font-weight="600" fill="#3d4763">端侧大模型推理技术全景</text>
+  <text x="92" y="392" font-size="21" fill="#5b6478">量化 · KV Cache · 投机解码 · 编译调度 · 扩散语言模型</text>
+  <rect x="92" y="428" width="560" height="2" fill="#dfe3ec"/>
+  <text x="92" y="472" font-size="18" fill="#7a8499">一条主线：每生成一个 token，要搬多少字节、做多少次串行运算</text>
+
+  <!-- right side: decode loop illustration -->
+  <g transform="translate(1010,150)">
+    <rect x="0" y="0" width="470" height="300" rx="20" fill="#ffffff" stroke="#dfe3ec" stroke-width="2"/>
+    <text x="26" y="40" font-size="17" font-weight="600" fill="#1b2333">Decode · 串行解码</text>
+    <text x="26" y="66" font-size="14" fill="#7a8499">每个 token 都要重读全部权重</text>
+    <g fill="url(#bar)">
+      <rect x="26" y="92" width="62" height="34" rx="6"/>
+      <rect x="98" y="92" width="62" height="34" rx="6" opacity="0.82"/>
+      <rect x="170" y="92" width="62" height="34" rx="6" opacity="0.64"/>
+      <rect x="242" y="92" width="62" height="34" rx="6" opacity="0.46"/>
+      <rect x="314" y="92" width="62" height="34" rx="6" opacity="0.3"/>
+      <rect x="386" y="92" width="58" height="34" rx="6" opacity="0.18"/>
+    </g>
+    <text x="26" y="152" font-size="13" fill="#5b6478">t1</text>
+    <text x="98" y="152" font-size="13" fill="#5b6478">t2</text>
+    <text x="170" y="152" font-size="13" fill="#5b6478">t3</text>
+    <text x="242" y="152" font-size="13" fill="#5b6478">t4</text>
+    <text x="314" y="152" font-size="13" fill="#5b6478">t5</text>
+    <text x="386" y="152" font-size="13" fill="#5b6478">…</text>
+    <path d="M26 176 H444" stroke="#dfe3ec" stroke-width="2" stroke-dasharray="6 6"/>
+    <g font-size="14" fill="#5b6478">
+      <text x="26" y="210">权重搬运</text>
+      <text x="26" y="236">显存 / 内存带宽</text>
+      <text x="26" y="262">算术强度</text>
+    </g>
+    <g font-size="14" font-weight="600" fill="#e2566d" text-anchor="end">
+      <text x="444" y="210">每步重复</text>
+      <text x="444" y="236">瓶颈</text>
+      <text x="444" y="262">极低</text>
+    </g>
+  </g>
+
+  <rect x="1010" y="474" width="470" height="52" rx="12" fill="#ffffff" stroke="#dfe3ec" stroke-width="2"/>
+  <text x="1036" y="507" font-size="17" fill="#1b2333">破局思路：压缩 W / S / N，或改变生成范式</text>
+
+  <text x="92" y="562" font-size="16" fill="#98a1b3">示意图 · 非实测数据</text>
+</svg>

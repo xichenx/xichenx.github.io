@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 500" width="960" height="500" font-family="system-ui, -apple-system, 'Segoe UI', 'Microsoft YaHei', sans-serif">
+  <rect width="960" height="500" fill="#ffffff"/>
+  <text x="32" y="42" font-size="21" font-weight="700" fill="#1b2333">图 1　Prefill 与 Decode：同一个模型，两种完全不同的瓶颈</text>
+  <text x="32" y="68" font-size="14" fill="#7a8499">决定端侧体验的是右侧那个循环，而它每一步都要把权重完整搬一遍</text>
+
+  <!-- Prefill panel -->
+  <rect x="32" y="92" width="424" height="256" rx="14" fill="#f7f9ff" stroke="#dfe3ec" stroke-width="2"/>
+  <text x="54" y="124" font-size="17" font-weight="700" fill="#5568f6">① Prefill　预填充</text>
+  <text x="54" y="150" font-size="14" fill="#5b6478">输入整段 prompt，一次并行前向</text>
+  <g fill="#5568f6">
+    <rect x="54" y="176" width="46" height="34" rx="6" opacity="0.95"/>
+    <rect x="108" y="176" width="46" height="34" rx="6" opacity="0.82"/>
+    <rect x="162" y="176" width="46" height="34" rx="6" opacity="0.68"/>
+    <rect x="216" y="176" width="46" height="34" rx="6" opacity="0.55"/>
+    <rect x="270" y="176" width="46" height="34" rx="6" opacity="0.42"/>
+  </g>
+  <g font-size="12" fill="#5b6478" text-anchor="middle">
+    <text x="77" y="228">你</text><text x="131" y="228">好</text><text x="185" y="228">，</text><text x="239" y="228">介</text><text x="293" y="228">绍</text>
+  </g>
+  <path d="M330 193 H382" stroke="#5568f6" stroke-width="3" marker-end="url(#arrowBlue)"/>
+  <rect x="54" y="248" width="372" height="42" rx="8" fill="#ffffff" stroke="#c9d2f5" stroke-width="2"/>
+  <text x="68" y="275" font-size="14" fill="#1b2333">1 次前向 · 矩阵乘很大 · 算力吃满 → 计算受限</text>
+  <text x="54" y="320" font-size="13" fill="#7a8499">产出：首 token 延迟 TTFT + 初始 KV Cache</text>
+
+  <!-- Decode panel -->
+  <rect x="504" y="92" width="424" height="256" rx="14" fill="#fff8f8" stroke="#f3d7dc" stroke-width="2"/>
+  <text x="526" y="124" font-size="17" font-weight="700" fill="#e2566d">② Decode　自回归解码</text>
+  <text x="526" y="150" font-size="14" fill="#5b6478">一次只吐 1 个 token，反复执行</text>
+  <g fill="#e2566d">
+    <rect x="526" y="176" width="52" height="34" rx="6" opacity="0.95"/>
+    <rect x="588" y="176" width="52" height="34" rx="6" opacity="0.78"/>
+    <rect x="650" y="176" width="52" height="34" rx="6" opacity="0.62"/>
+    <rect x="712" y="176" width="52" height="34" rx="6" opacity="0.46"/>
+    <rect x="774" y="176" width="52" height="34" rx="6" opacity="0.3"/>
+  </g>
+  <g font-size="12" fill="#5b6478" text-anchor="middle">
+    <text x="552" y="228">t1</text><text x="614" y="228">t2</text><text x="676" y="228">t3</text><text x="738" y="228">t4</text><text x="800" y="228">t5</text>
+  </g>
+  <path d="M838 193 H892" stroke="#e2566d" stroke-width="3" marker-end="url(#arrowRed)"/>
+  <rect x="526" y="248" width="372" height="42" rx="8" fill="#ffffff" stroke="#f3c9d0" stroke-width="2"/>
+  <text x="540" y="275" font-size="14" fill="#1b2333">N 次前向 · 每次只算 1 token → 带宽受限</text>
+  <text x="526" y="320" font-size="13" fill="#7a8499">产出：输出速度 TPS，直接决定"卡不卡"</text>
+
+  <!-- bottom bandwidth band -->
+  <rect x="32" y="372" width="896" height="96" rx="14" fill="#f7f8fc" stroke="#dfe3ec" stroke-width="2"/>
+  <text x="54" y="402" font-size="15" font-weight="600" fill="#1b2333">共同点：每一层权重都必须从内存流进计算单元</text>
+  <rect x="54" y="418" width="852" height="20" rx="10" fill="#e5e9f5"/>
+  <rect x="54" y="418" width="852" height="20" rx="10" fill="url(#hatch)"/>
+  <path d="M54 448 H906" stroke="#5568f6" stroke-width="2" stroke-dasharray="5 5"/>
+  <text x="54" y="462" font-size="13" fill="#5b6478">Prefill：读 1 次权重，算 T 个 token　　|　　Decode：读 N 次权重，算 N 个 token　→　带宽被重复消耗 N 遍</text>
+
+  <defs>
+    <marker id="arrowBlue" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#5568f6"/></marker>
+    <marker id="arrowRed" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#e2566d"/></marker>
+    <pattern id="hatch" width="14" height="14" patternUnits="userSpaceOnUse"><path d="M0 14 L14 0" stroke="#b9c4ee" stroke-width="3"/></pattern>
+  </defs>
+</svg>
