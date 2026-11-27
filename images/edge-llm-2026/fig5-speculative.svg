@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 500" width="960" height="500" font-family="system-ui, -apple-system, 'Segoe UI', 'Microsoft YaHei', sans-serif">
+  <rect width="960" height="500" fill="#ffffff"/>
+  <text x="32" y="42" font-size="21" font-weight="700" fill="#1b2333">图 5　投机解码：用小模型的"猜"，换掉大模型的"等"</text>
+  <text x="32" y="68" font-size="14" fill="#7a8499">关键不是猜得准，而是验证 γ 个候选只需一次目标模型前向，且输出分布严格不变</text>
+
+  <!-- draft lane -->
+  <text x="32" y="112" font-size="15" font-weight="700" fill="#f59e0b">① Draft（轻量草稿模型）</text>
+  <g fill="#fef3c7" stroke="#f59e0b" stroke-width="2">
+    <rect x="32" y="126" width="132" height="52" rx="8"/>
+    <rect x="180" y="126" width="132" height="52" rx="8"/>
+    <rect x="328" y="126" width="132" height="52" rx="8"/>
+    <rect x="476" y="126" width="132" height="52" rx="8"/>
+  </g>
+  <g font-size="14" font-weight="600" fill="#92400e" text-anchor="middle">
+    <text x="98" y="157">x₁</text><text x="246" y="157">x₂</text><text x="394" y="157">x₃</text><text x="542" y="157">x₄</text>
+  </g>
+  <text x="628" y="157" font-size="13" fill="#7a8499">γ = 4 次廉价串行前向</text>
+
+  <!-- target lane -->
+  <text x="32" y="222" font-size="15" font-weight="700" fill="#5568f6">② Verify（目标大模型，仅 1 次前向）</text>
+  <rect x="32" y="236" width="576" height="60" rx="10" fill="#e9edff" stroke="#5568f6" stroke-width="2.5"/>
+  <text x="320" y="273" font-size="15" font-weight="600" fill="#3b4bc4" text-anchor="middle">一次并行打分：p₁ p₂ p₃ p₄ p₅ 同时算出</text>
+  <text x="628" y="271" font-size="13" fill="#7a8499">权重只读一遍，其余算力"顺带"用掉</text>
+
+  <!-- result lane -->
+  <text x="32" y="332" font-size="15" font-weight="700" fill="#1b2333">③ 逐位接受 / 首个拒绝处修正</text>
+  <g font-size="15" font-weight="700" text-anchor="middle">
+    <rect x="32" y="346" width="132" height="46" rx="8" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/><text x="98" y="376" fill="#15803d">✓ 接受</text>
+    <rect x="180" y="346" width="132" height="46" rx="8" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/><text x="246" y="376" fill="#15803d">✓ 接受</text>
+    <rect x="328" y="346" width="132" height="46" rx="8" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/><text x="394" y="376" fill="#15803d">✓ 接受</text>
+    <rect x="476" y="346" width="132" height="46" rx="8" fill="#fee2e2" stroke="#e2566d" stroke-width="2"/><text x="542" y="376" fill="#be123c">✗ 拒绝</text>
+  </g>
+  <text x="628" y="368" font-size="13" fill="#5b6478">输出 4 个 token</text>
+  <text x="628" y="390" font-size="13" fill="#5b6478">（3 接受 + 1 修正），</text>
+  <text x="628" y="412" font-size="13" font-weight="700" fill="#5568f6">只花 1 次目标前向</text>
+
+  <!-- formula -->
+  <rect x="32" y="418" width="896" height="66" rx="10" fill="#f7f9ff" stroke="#dfe3ec" stroke-width="2"/>
+  <text x="52" y="444" font-size="14" fill="#1b2333">E[每轮 token 数] = (1 − α^(γ+1)) / (1 − α)　　加速比 = (1 − α^(γ+1)) / ((1 − α)(γc + 1))</text>
+  <text x="52" y="468" font-size="13" fill="#5b6478">代入 α = 0.8、γ = 4、c = 0.05：约 3.36 token / 轮，理论加速约 2.8×（α 接受率，c 草稿与目标单次耗时比）</text>
+</svg>

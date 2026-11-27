@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" width="960" height="480" font-family="system-ui, -apple-system, 'Segoe UI', 'Microsoft YaHei', sans-serif">
+  <rect width="960" height="480" fill="#ffffff"/>
+  <text x="32" y="42" font-size="21" font-weight="700" fill="#1b2333">图 3　量化：把每步必须搬运的字节数直接砍下来</text>
+  <text x="32" y="68" font-size="14" fill="#7a8499">以 3B 参数模型为例，仅示意量级关系</text>
+
+  <!-- bars -->
+  <g font-size="14" fill="#1b2333">
+    <text x="32" y="122">FP16</text>
+    <text x="32" y="182">INT8</text>
+    <text x="32" y="242">INT4</text>
+    <text x="32" y="302">INT4 + group</text>
+  </g>
+  <rect x="170" y="100" width="640" height="30" rx="6" fill="#e2566d"/>
+  <rect x="170" y="160" width="320" height="30" rx="6" fill="#f59e0b"/>
+  <rect x="170" y="220" width="160" height="30" rx="6" fill="#5568f6"/>
+  <rect x="170" y="280" width="176" height="30" rx="6" fill="#8b5cf6"/>
+  <g font-size="14" font-weight="600" fill="#5b6478">
+    <text x="824" y="122">6.0 GB</text>
+    <text x="504" y="182">3.0 GB</text>
+    <text x="344" y="242">1.5 GB</text>
+    <text x="360" y="302">≈1.6 GB（含 scale / zero point）</text>
+  </g>
+
+  <!-- formula box -->
+  <rect x="32" y="336" width="896" height="122" rx="12" fill="#f7f9ff" stroke="#dfe3ec" stroke-width="2"/>
+  <text x="54" y="366" font-size="15" font-weight="700" fill="#5568f6">仿射量化（以 INT4 为例，值域 -8 ~ 7）</text>
+  <text x="54" y="396" font-size="15" fill="#1b2333">s = max(|W|) / 7　　q = clip(round(W / s), -8, 7)　　Ŵ = s · q</text>
+  <text x="54" y="424" font-size="14" fill="#5b6478">粒度越细，s 越贴合每组的数值分布，误差越小：per-tensor → per-channel → group-wise（如 32 / 128 一组）</text>
+  <text x="54" y="446" font-size="14" fill="#5b6478">端侧常用 W4A16：权重 4bit 存储，计算前反量化、激活保持 16bit，兼顾带宽与精度</text>
+
+  <defs>
+    <marker id="qa" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#5568f6"/></marker>
+  </defs>
+</svg>

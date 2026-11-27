@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 756" width="660" height="756" role="img" aria-labelledby="title desc">
+  <title id="title">Android 报销助手的端侧流程</title>
+  <desc id="desc">选择发票后检查端侧能力。可用时提取字段，否则手工录入。用户校对后保存草稿。如果选择设置提醒，创建成功时展示执行结果，失败时保留草稿并单独重试提醒。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse" markerUnits="userSpaceOnUse">
+      <path d="M0 0 10 5 0 10Z" fill="#596782"/>
+    </marker>
+    <style>
+      text { font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", "Heiti SC", sans-serif; }
+      .heading { fill:#17213a; font-size:26px; font-weight:700; }
+      .text { fill:#17213a; font-size:19px; font-weight:700; text-anchor:middle; }
+      .sub { fill:#4d5b77; font-size:16px; text-anchor:middle; }
+      .label { fill:#52607b; font-size:15px; text-anchor:middle; }
+      .line { fill:none; stroke:#596782; stroke-width:2; stroke-linejoin:round; marker-end:url(#arrow); }
+      .box { fill:#fff; stroke:#ced7e9; }
+      .secondary { fill:#edf4fa; stroke:#bed2e6; }
+      .decision { fill:#edeaff; stroke:#cfc6f4; }
+      .success { fill:#e8f5ee; stroke:#bddcc9; }
+    </style>
+  </defs>
+  <rect width="660" height="756" rx="24" fill="#f4f6fb"/>
+  <text x="34" y="47" class="heading">报销草稿与提醒流程</text>
+
+  <g aria-hidden="true">
+    <path class="line" d="M330 123V153"/>
+    <path class="line" d="M330 201V221H165V256"/>
+    <path class="line" d="M330 201V221H495V256"/>
+    <path class="line" d="M165 316V337H330V357"/>
+    <path class="line" d="M495 316V337H330V357"/>
+    <path class="line" d="M330 415V443"/>
+    <path class="line" d="M330 495V520"/>
+    <path class="line" d="M330 568V588H115V616"/>
+    <path class="line" d="M330 568V616"/>
+    <path class="line" d="M330 668V695"/>
+    <path class="line" d="M453 642H476"/>
+  </g>
+
+  <rect class="box" x="207" y="75" width="246" height="48" rx="12"/>
+  <text class="text" x="330" y="105">用户选择发票</text>
+
+  <rect class="decision" x="207" y="153" width="246" height="48" rx="12"/>
+  <text class="text" x="330" y="183">端侧模型是否可用</text>
+
+  <text class="label" x="140" y="242">可用</text>
+  <text class="label" x="537" y="242">不可用</text>
+  <rect class="box" x="49" y="256" width="232" height="60" rx="12"/>
+  <text class="text" x="165" y="281">提取票据字段</text>
+  <text class="sub" x="165" y="304">金额、币种、日期</text>
+  <rect class="secondary" x="379" y="256" width="232" height="60" rx="12"/>
+  <text class="text" x="495" y="281">手工录入</text>
+  <text class="sub" x="495" y="304">保留原来的表单入口</text>
+
+  <rect class="decision" x="207" y="357" width="246" height="58" rx="12"/>
+  <text class="text" x="330" y="382">用户校对并确认</text>
+  <text class="sub" x="330" y="404">确认字段与提醒时间</text>
+
+  <rect class="box" x="207" y="443" width="246" height="52" rx="12"/>
+  <text class="text" x="330" y="475">保存报销草稿</text>
+
+  <rect class="decision" x="207" y="520" width="246" height="48" rx="12"/>
+  <text class="text" x="330" y="550">是否设置提醒</text>
+
+  <text class="label" x="103" y="607">否</text>
+  <text class="label" x="346" y="604">是</text>
+  <rect class="success" x="30" y="616" width="170" height="52" rx="12"/>
+  <text class="text" x="115" y="648">草稿已保存</text>
+
+  <rect class="box" x="207" y="616" width="246" height="52" rx="12"/>
+  <text class="text" x="330" y="648">创建提醒</text>
+
+  <text class="label" x="353" y="687">成功</text>
+  <rect class="success" x="207" y="695" width="246" height="40" rx="12"/>
+  <text class="text" x="330" y="721">展示任务结果</text>
+
+  <rect class="secondary" x="476" y="616" width="154" height="70" rx="12"/>
+  <text class="text" x="553" y="641">创建失败</text>
+  <text class="sub" x="553" y="665">保留草稿，重试提醒</text>
+</svg>

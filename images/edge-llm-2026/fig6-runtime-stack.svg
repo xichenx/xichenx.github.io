@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 460" width="960" height="460" font-family="system-ui, -apple-system, 'Segoe UI', 'Microsoft YaHei', sans-serif">
+  <rect width="960" height="460" fill="#ffffff"/>
+  <text x="32" y="42" font-size="21" font-weight="700" fill="#1b2333">图 6　2026 端侧推理四层栈：优化发生在每一层</text>
+  <text x="32" y="68" font-size="14" fill="#7a8499">上层决定"能不能用"，中间两层决定"快不快"，底层决定"跑在哪"</text>
+
+  <g>
+    <rect x="32" y="92" width="700" height="72" rx="10" fill="#eef1ff" stroke="#c9d2f5" stroke-width="2"/>
+    <text x="52" y="122" font-size="16" font-weight="700" fill="#5568f6">① 应用 API 层</text>
+    <text x="52" y="148" font-size="14" fill="#5b6478">ML Kit GenAI / MediaPipe Tasks / AI Edge Gallery / 业务自研 SDK</text>
+    <rect x="748" y="92" width="180" height="72" rx="10" fill="#ffffff" stroke="#dfe3ec" stroke-width="2"/>
+    <text x="766" y="122" font-size="13" font-weight="600" fill="#1b2333">Kotlin / Swift / JS</text>
+    <text x="766" y="146" font-size="13" fill="#7a8499">Flutter / C++ / Python</text>
+
+    <rect x="32" y="176" width="700" height="72" rx="10" fill="#eafaf7" stroke="#bfe9e3" stroke-width="2"/>
+    <text x="52" y="206" font-size="16" font-weight="700" fill="#0e8f88">② 运行时 / 推理引擎</text>
+    <text x="52" y="232" font-size="14" fill="#5b6478">LiteRT-LM · ExecuTorch · MLC-LLM · llama.cpp · ONNX Runtime Mobile · Core ML</text>
+    <rect x="748" y="176" width="180" height="72" rx="10" fill="#ffffff" stroke="#dfe3ec" stroke-width="2"/>
+    <text x="766" y="206" font-size="13" font-weight="600" fill="#1b2333">KV 管理 / 调度</text>
+    <text x="766" y="230" font-size="13" fill="#7a8499">投机解码 / 前缀缓存</text>
+
+    <rect x="32" y="260" width="700" height="72" rx="10" fill="#fff7e8" stroke="#f6dfae" stroke-width="2"/>
+    <text x="52" y="290" font-size="16" font-weight="700" fill="#c07a05">③ 编译器 / 硬件抽象</text>
+    <text x="52" y="316" font-size="14" fill="#5b6478">算子融合 · 图切分与委托 · 内存对齐 · 低比特 GEMM 内核（QNN / Vulkan / Metal）</text>
+    <rect x="748" y="260" width="180" height="72" rx="10" fill="#ffffff" stroke="#dfe3ec" stroke-width="2"/>
+    <text x="766" y="290" font-size="13" font-weight="600" fill="#1b2333">NPU / GPU / CPU</text>
+    <text x="766" y="314" font-size="13" fill="#7a8499">按机型分层降级</text>
+
+    <rect x="32" y="344" width="700" height="72" rx="10" fill="#f5f0ff" stroke="#ddcdf7" stroke-width="2"/>
+    <text x="52" y="374" font-size="16" font-weight="700" fill="#7c4dd6">④ 模型格式 / 数值格式</text>
+    <text x="52" y="400" font-size="14" fill="#5b6478">.litertlm · .pte · GGUF · .tflite　|　INT4 / FP8 / NVFP4 / MXFP4 + QAT</text>
+    <rect x="748" y="344" width="180" height="72" rx="10" fill="#ffffff" stroke="#dfe3ec" stroke-width="2"/>
+    <text x="766" y="374" font-size="13" font-weight="600" fill="#1b2333">决定 W 的大小</text>
+    <text x="766" y="398" font-size="13" fill="#7a8499">与可用内核</text>
+  </g>
+
+  <text x="32" y="444" font-size="13" fill="#7a8499">同一份权重，在图切分与内核选择上的差异，往往比模型本身的小数点差异更影响实测帧率</text>
+</svg>

@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 460" width="960" height="460" font-family="system-ui, -apple-system, 'Segoe UI', 'Microsoft YaHei', sans-serif">
+  <rect width="960" height="460" fill="#ffffff"/>
+  <text x="32" y="42" font-size="21" font-weight="700" fill="#1b2333">图 8　端云混合路由：把"跑不跑得动"变成请求前的显式决策</text>
+  <text x="32" y="68" font-size="14" fill="#7a8499">r(x, d, s, p) → { 本地执行, 上云, 延后/拒绝 }；不要用"本地失败再兜底"代替策略</text>
+
+  <!-- request -->
+  <rect x="32" y="182" width="150" height="66" rx="10" fill="#eef1ff" stroke="#c9d2f5" stroke-width="2"/>
+  <text x="107" y="210" font-size="15" font-weight="600" fill="#5568f6" text-anchor="middle">用户请求</text>
+  <text x="107" y="232" font-size="13" fill="#7a8499" text-anchor="middle">文本 / 图像 / 语音</text>
+  <path d="M182 215 H224" stroke="#8a94a8" stroke-width="2.5" marker-end="url(#ra)"/>
+
+  <!-- inputs box -->
+  <rect x="232" y="104" width="246" height="222" rx="12" fill="#f7f9ff" stroke="#dfe3ec" stroke-width="2"/>
+  <text x="252" y="134" font-size="15" font-weight="700" fill="#1b2333">路由输入（4 类信号）</text>
+  <g font-size="14" fill="#5b6478">
+    <text x="252" y="166">x　任务类别 / 复杂度</text>
+    <text x="252" y="196">d　数据敏感等级</text>
+    <text x="252" y="226">s　设备实时状态</text>
+    <text x="252" y="256">p　版本化产品策略</text>
+  </g>
+  <rect x="252" y="276" width="206" height="34" rx="6" fill="#ffffff" stroke="#dfe3ec" stroke-width="2"/>
+  <text x="264" y="298" font-size="12" fill="#7a8499">s：模型可用 / 内存 / 温度 / 电量 / 网络</text>
+
+  <path d="M478 215 H520" stroke="#8a94a8" stroke-width="2.5" marker-end="url(#ra)"/>
+
+  <!-- decision -->
+  <path d="M520 215 L592 158 L664 215 L592 272 Z" fill="#fff7e8" stroke="#f59e0b" stroke-width="2.5"/>
+  <text x="592" y="211" font-size="14" font-weight="700" fill="#c07a05" text-anchor="middle">路由决策</text>
+  <text x="592" y="232" font-size="12" fill="#7a8499" text-anchor="middle">r(·)</text>
+
+  <!-- branches -->
+  <path d="M664 215 H716" stroke="#8a94a8" stroke-width="2.5" marker-end="url(#ra)"/>
+  <rect x="720" y="96" width="208" height="66" rx="10" fill="#eafaf7" stroke="#bfe9e3" stroke-width="2"/>
+  <text x="824" y="124" font-size="15" font-weight="700" fill="#0e8f88" text-anchor="middle">本地执行</text>
+  <text x="824" y="146" font-size="12" fill="#5b6478" text-anchor="middle">隐私 / 离线 / 低延迟</text>
+
+  <rect x="720" y="182" width="208" height="66" rx="10" fill="#eef1ff" stroke="#c9d2f5" stroke-width="2"/>
+  <text x="824" y="210" font-size="15" font-weight="700" fill="#5568f6" text-anchor="middle">上云执行</text>
+  <text x="824" y="232" font-size="12" fill="#5b6478" text-anchor="middle">长上下文 / 深度推理</text>
+
+  <rect x="720" y="268" width="208" height="66" rx="10" fill="#f7f8fc" stroke="#dfe3ec" stroke-width="2"/>
+  <text x="824" y="296" font-size="15" font-weight="700" fill="#5b6478" text-anchor="middle">延后 / 拒绝</text>
+  <text x="824" y="318" font-size="12" fill="#7a8499" text-anchor="middle">过热 / 低电量 / 策略禁止</text>
+
+  <path d="M664 200 Q692 154 720 129" fill="none" stroke="#0ea5a4" stroke-width="2"/>
+  <path d="M664 230 Q692 258 720 296" fill="none" stroke="#98a1b3" stroke-width="2"/>
+
+  <!-- feedback loop -->
+  <rect x="232" y="356" width="696" height="70" rx="10" fill="#f7f9ff" stroke="#dfe3ec" stroke-width="2"/>
+  <text x="252" y="384" font-size="14" font-weight="600" fill="#1b2333">观测闭环：TTFT · TPS · 峰值内存 · J/token · 温度曲线 → 回写设备画像与策略 p</text>
+  <text x="252" y="408" font-size="13" fill="#5b6478">没有指标就没有路由：只在真机上测出来的数据，才配决定下一档降级阈值</text>
+  <path d="M824 248 V340 Q824 356 700 356" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#rp)"/>
+
+  <defs>
+    <marker id="ra" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#8a94a8"/></marker>
+    <marker id="rp" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#8b5cf6"/></marker>
+  </defs>
+</svg>
